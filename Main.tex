@@ -1,0 +1,194 @@
+\documentclass[9pt,twocolumn,twoside]{gsajnl}
+% Use the documentclass option 'lineno' to view line numbers
+
+% Package imports
+\usepackage{gensymb}
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand*{\thesubfigure}{\Alph{subfigure}}
+\usepackage{tabularx, multirow}
+\usepackage{makecell}
+\hypersetup{draft}
+
+\usepackage{siunitx}
+\sisetup{output-exponent-marker=\ensuremath{\mathrm{e}}}
+
+\usepackage{enumitem}
+\newcommand{\method}[1]{\qquad Method #1}
+
+\newcommand{\indep}{\rotatebox[origin=c]{90}{$\models$}}
+\newcommand{\eg}{\emph{e.g.}}
+
+\newcommand{\bbeta}{\boldsymbol{\beta}}
+\newcommand{\bzero}{\mathbf{0}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\tausq}{\tau^{2}}
+
+\articletype{inv} % article type
+% {inv} Investigation 
+% {gs} Genomic Selection
+% {goi} Genetics of Immunity 
+% {gos} Genetics of Sex 
+% {mp} Multiparental Populations
+
+% scrub Genetics journal info -- for submission and biorxiv
+\fancypagestyle{firststyle}{}
+\renewcommand{\firstpagefootnote}{\blfootnote{Manuscript compiled: \today}}
+
+\title{Tissue-specific quantitative trait locus analyses of gene expression and chromatin accessibility in the Collaborative Cross mouse population}
+
+\author[$\ast$,$\dagger$,$\ddagger$]{Gregory R. Keele}
+\author[$\ast$,$\dagger$,$\ddagger$,$\ast\ast\ast$]{Bryan Quach}
+\author[$\ddagger$]{Jennifer W. Israel}
+\author[$\ddagger\ddagger$]{Yihui Zhou}
+\author[$\S\S$]{Grace A. Chappell}
+\author[$\S\S$]{Lauren Lewis}
+\author[$\dagger\dagger$]{Alexias Safi}
+\author[$\ddagger$]{Jeremy M. Simon}
+\author[$\ddagger$]{Paul Cotney}
+\author[$\dagger\dagger$]{Gregory E. Crawford}
+\author[$\ddagger$,$\ast\ast$]{William Valdar}
+\author[$\ddagger\ddagger$]{Fred A. Wright}
+\author[$\S\S$,1]{Ivan Rusyn}
+\author[$\ddagger$,$\S$,$\ast\ast$,1]{Terrence S. Furey}
+
+\affil[$\ast$]{Authors contributed equally}
+\affil[$\dagger$]{Curriculum in Bioinformatics and Computational Biology}
+\affil[$\ddagger$]{Department of Genetics}
+\affil[$\S$]{Department of Biology}
+\affil[$\ast\ast$]{Lineberger Comprehensive Cancer Center, University of North Carolina at Chapel Hill}
+\affil[$\dagger\dagger$]{Department of Pediatrics, Center for Genomic and Computational Biology, Duke University, Durham, NC}
+\affil[$\ddagger\ddagger$]{Departments of Statistics and Biological Sciences, North Carolina State University, Raleigh, NC}
+\affil[$\S\S$]{Department of Veterinary Integrative Biosciences, Texas A\&M University, College Station, TX}
+\affil[$\ast\ast\ast$]{Center for Omics Discovery and Epidemiology, Research Triangle Institute (RTI) International\hspace{17cm} ORCID IDs: 
+0000-0002-1843-7900 (G.R.K.), 0000-0002-2419-0430 (W.V.)}
+
+\keywords{multiparental populations, MPP, mediation, QTL, genome-wide association}
+
+\runningtitle{Tissue-specific quantitative trait locus analysis} % For use in the footer 
+
+\runningauthor{Keele \textit{et al.}}
+
+\begin{abstract}
+
+\end{abstract}
+
+\setboolean{displaycopyright}{true}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{firststyle}
+%\marginmark
+\firstpagefootnote
+\correspondingauthoraffiliation{Corresponding authors: 4458 TAMU, Texas A \& M University, College Station, TX 77843. 
+
+E-mail: irusyn@tamu.edu
+
+120 Mason Farm Rd., Genetic Medicine Bldg., Suite 5113, University of North Carolina, Chapel Hill, NC 27599. 
+
+E-mail: tsfurey@email.unc.edu}
+\vspace{-11pt}%
+
+\input{1_Introduction.tex}
+
+\input{2_Methods.tex}
+
+\input{3_Results.tex}
+
+\input{4_Discussion.tex}
+
+\section{Acknowledgments}
+Author contributions: GRK, BQ, and TSF wrote the manuscript. GRK and WV developed the statistical methods for QTL analysis, and GK wrote the software to perform the respective analyses. BQ processed the sequence data and performed the differential expression and accessible analyses. GRK and BQ performed all QTL and mediation analyses. The authors declare no conflicts of interest.
+
+\bibliography{eQTL_mediation.bib}
+
+\clearpage
+
+\section{Appendix A: False positive control}
+
+\subsection{Family-wide error rate}
+
+The family-wide error rate (FWER) is the probability of detecting a single false positive across all genome-wide tests. Controlling FWER instead of the single test type I error rate ($\alpha$) is necessary because FWER increases with the number independent tests, reaching 1 for $\alpha = 0.05$ in the context of genome-wide tests. Controlling FWER is more conservative than controlling the false discovery rate (FDR) for multiple testing correction, and appropriate for genome scans of a single trait because there are not expected to be an excess number of QTL per outcome. 
+
+Based on simulations of the breeding design \citep{Valdar2006c}, the CC panel was expected to be balanced in terms of founder haplotype contributions. This balance was realized to large extent \citep{Srivastava2017}, though the PWK and CAST founders have reduced contributions in comparison to the other founders. \cite{KeeleSPARCC} performed simulations from the realized CC strain genomes to examine QTL mapping power, and found low levels of population structure in the CC genomes, violating the exchangeability assumption made by the permutation procedure, which characterizes a null distribution for the test statistic\citep{Doerge1996}. Nevertheless, we use a permutation approach, given that we expect the presence of strong effect QTL for the molecular traits that are detectable in the presence of subtle population structure.
+
+Specifically, 1000 permutations of the sample identities were taken, and then genome scans performed on each permutation of each trait. For each trait, the minimum p-value from each permutation genome scan is recorded, transformed to the -$\log_{10}$ scale (logP), and then used fit a null extreme value distribution (EVD) \citep{Dudbridge2004,Valdar2006c}. Genome-wide permutation-based p-values (permP) are obtained by calculating the probability of a more extreme logP than the observed from the cumulative distribution function of the EVD.
+
+\subsection{False discovery rate}
+
+Analyzing a large numbers of traits, as is the case with gene expression and chromatin accessibility, also contributes significantly to a multiple testing burden. Not only is an association for a trait being tested at positions across the genome, but the whole process is repeated per trait. The expected number of significant tests is also different globally across all the traits, with many traits expected to have QTL in comparison to there being few QTL for a single trait. 
+
+An FDR procedure can address this multiple testing dynamic, accounting for the additional testing due to genome-wide traits while being more lenient than strict FWER control across traits. As in \cite{Chick2016}, an FDR procedure \citep{Benjamini1995,Storey2003} is applied to the per-trait FWER-adjusted permP, producing q-values. QTL are detected if q-value $\le \alpha_{\text{FDR}}$, where $\alpha_{\text{FDR}}$ is the specified false discovery rate. QTL were called using both $\alpha_{\text{FDR}} = 0.1$ and $\alpha_{\text{FDR}} = 0.2$.
+
+\section{Appendix B: Mapping procedures}
+
+\subsection{Method 1: Multi-stage conditional regression with genome-wide FWER and FDR}
+
+The combined per-trait FWER control and across-trait FDR control restrict the mapping procedure’s ability to detect multiple QTL per outcome in a statistically valid manner because the EVD used for FWER adjustment is fit from the maximum statistical score per trait. To include additional strong statistical scores is potentially biasing, as would be the case when there are multiple associations above the FWER threshold, increasing the enrichment in small p-values. This inflations in small p-values is precisely the pattern of association the FDR procedure detects. To avoid this problem, a multi-stage conditional fitting approach is used \citep{Jansen2017}. The procedure is described in the following steps:
+\begin{enumerate}
+	\item For a given trait, conduct genome scan according to the model described in Eq \ref{eq:alternative_model}.
+    \item Perform genome scans for the permuted trait to characterize an EVD. Calculate FWER-adjusted permP from the observed maximum logP of the genome scan of the trait. The permP is stored to be used as input to an FDR method.
+    \item Specify a genome-wide $\alpha_{\text{step}}$ for determining whether subsequent conditional scans should be conducted for the trait. We set $\alpha_{\text{step}} = 0.1$. If the $\text{permP} > \alpha_{\text{step}}$, no further conditional scans are conducted.
+    \item If $\text{permP} \le \alpha_{\text{step}}$, steps 1-3 are repeated for additional conditional scans of the outcome. For $j > 1$, $j^{\text{th}}$ conditional scan use the same form of alternative and null model as described in Eq \ref{eq:alternative_model}, except with the inclusion of locus effects from the peak associations from previous stages. Generally, the alternative model for conditional stage scan $J$ follows as:
+\begin{equation}
+y_{i} = \mu + \text{QTL}_{i} + \sum_{j=1}^{J-1}\text{locus}_{i}^{j} + \text{batch}_{i} + \varepsilon_{i},
+\label{eq:conditional_model}
+\end{equation}
+with $\text{locus}_{i}^{j}$ representing the locus effect of the peak association from the $j^{\text{th}}$ stage scan of the outcome for individual $i$, and is also included in the null model of conditional scans. Now steps 2-4 are repeated.
+\end{enumerate}
+
+A multi-stage conditional scan approach could have issues with over-fitting 47 data points per trait, given that each $\text{QTL}$ and $\text{locus}$ effect represents the estimation of seven fixed effects. However, the permutations were found to appropriately compensate for this potential in the recalculation of the EVD based on permutations of the conditional scans in step 2. \textbf{Figure \ref{fig:conditional_scans}} provides a clear example in which the gene \textit{Gpn3} has a local-eQTL detected after a strong distal-eQTL is conditioned for within the model in lung tissue. This multi-stage conditional procedure is referred to as Method 1.
+
+\subsection{Method 2: Single-stage regression with chromosome-wide FWER and FDR control}
+
+Given that the data represent 47 individual mice, there may be poor power to detect genome-wide significant QTL. Because of the strong biological prior evidence for local-QTL, significant genetic associations that meet chromosome-wide significance for the local chromosome of the trait were also detected and recorded. This was accomplished by fitting a chromosome-wide EVD, and thus producing chromosome-wide FWER-adjusted permP for each trait. Chromosome-wide results were restricted to the first stage of the multi-stage procedure, thus referred to as a single-stage analysis, and allowing only a single chromosome-wide permP per trait. The same FDR then used as in Method 1, resulting in chromosome-wide q-values. This more lenient single-stage procedure is referred to as Method 2.
+
+\subsection{Method 3: Single-stage regression with genome-wide and chromosome-wide FWER control for local-QTL}
+
+A final local-QTL exclusive single step analysis is used. Instead of calculating genome-wide and chromosome-wide permP from the overall maximum logP, FWER-controlled permP are adjusted from the maximum logP within the proximal window of the trait from the first stage scans from Method 1. An FDR procedure is not used, in part because the permP are likely to be poorly distributed with respect to the expectations of FDR. A local-QTL is detected when $\text{permP} < 0.05$. This procedure, now referred to as Method 3, is less conservative for local-QTL because there is no FDR control, instead leveraging the strong biological precedent for proximal genetic regulation. It also does not leniently detect intra-chromosomal distal-QTL, as with Method 2.
+
+\section{Appendix C: Mediation analysis}
+
+\subsection{Mediation models}
+
+\subsubsection{Mediation of local-eQTL through chromatin state.}
+Mediation through chromatin accessibility was evaluated for all local-eQTL detected through the lenient Method 3, leveraging prior knowledge of the predominance of local genetic regulation and the effects of proximal chromatin state. Candidate mediators are detected at genome and chromosome-wide significance through 1,000 permutations to define EVD for FWER adjustment.
+
+\subsubsection{Mediation of distal-eQTL through proximal gene expression.}
+Mediation of the effect of genome-wide significant distal-eQTL through proximal gene expression was evaluated. Genome-wide significance is required for distal-eQTL because there is not additional strong biological information to support increased leniency as is the case with proximal signal. As with mediation through chromatin state, 1,000 permutations are used to define mediation significance thresholds at the genome-wide level. 
+
+Mediation of cQTL through other chromatin sites and gene expression were also evaluated, but did not result in the detection of any candidate mediators.
+
+\subsection{Mediation significance thresholds}
+
+Empirical significance thresholds for the mediation scans can be defined through permutations, similarly to as is done with the QTL scans. Instead of permuting the trait outcome, the pairing of trait to QTL is maintained, and the mediator is permuted. EVD are then fit for potential mediators from the minimum logP from permutation scans, instead of the maximum logP in QTL scans. FWER-adjusted mediation permP are extracted from the EVD, which can be calculated in terms of genome-wide and chromosome-wide significance. An FDR adjustment is not used with mediation because it is only evaluated for detected QTL, which could potentially violate the uniform null distribution expectations of FDR.
+
+\subsection{Formal mediation criterion}
+
+Detection of mediation has some caveats and pitfalls compared to the statistical analyses used for QTL mapping, in part due to the fact that the relationships \ref{rel:eQTL} and \ref{rel:cQTL} could be complex, whereas the directionality of the relationships for QTL is fixed because the genetic state at the QTL cannot change due because of the trait. This does not hold for the mediation model, where Y could in fact causally influence M (Y $\rightarrow$ M). \cite{Didelez2007} note that false mediation signals can be detected when the association between the M and Y are particularly strong, whereby M acts as a surrogate for X. Based on concerns over fitting relatively complex models to data comprising 47 observations, we use stringent requirements for declaring evidence for mediation:
+\begin{enumerate}
+	\item Detection of a significant eQTL (relationship \ref{rel:eQTL}).
+    \begin{enumerate}
+    	\item Mediation through chromatin: chromosome-wide permP < 0.05 from Method 3
+        \item Mediation through expression: genome-wide q-value < 0.1 from Method 1
+    \end{enumerate}
+    \item Detection of significant mediator within a 20 Mb window centered around the eQTL from previous step.
+    \item Detection of a significant QTL for the mediator from previous step.
+    \begin{enumerate}
+    	\item Mediation through chromatin: chromosome-wide permP < 0.05 from Method 3 and within 10 Mb upstream or downstream of gene TSS
+        \item Mediation through expression: genome-wide q-value < 0.1 from Method 1 and within 10 Mb upstream or downstream of the eQTL position
+    \end{enumerate}
+    \item It is not possible to distinguish M $\rightarrow$ Y from M $\leftarrow$ Y given these data. If M is an intermediary of X on Y, the expectation is that the effect of X $\rightarrow$ M is greater than X $\rightarrow$ Y. We check that the effect size of the QTL for step 1 (X $\rightarrow$ Y) is less than the effect size of the QTL from step 3 (X $\rightarrow$ M), based on Eq \ref{eq:effect_size}. Failure of this step does not disprove the proposed mediation model, but it could suggest that the relationship between M and Y is more complicated than the simple models tested here, or that greater noise is incurred in the measurement of M than Y.
+\end{enumerate}
+
+\clearpage
+
+\section{Data and Supplement details}
+
+\thispagestyle{empty}
+\clearpage
+
+\input{5_Supplemental.tex}
+
+\end{document}

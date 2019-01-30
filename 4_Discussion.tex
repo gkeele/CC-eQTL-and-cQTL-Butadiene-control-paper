@@ -1,0 +1,23 @@
+\section{Discussion}
+
+We perform QTL mapping of gene expression and chromatin accessibility in 47 CC strains. We describe multiple approaches of varying statistical stringency to allow for detection of lower effect local-QTL, important in a study with a restricted sample size. 
+
+Furthermore, we describe statistical approaches for two models of the mediation of the eQTL effect, one through local chromatin accessibility, and the other through an interaction with another gene, measured through its expression, such as a transcription factor, for specifically distal-eQTL. We oriented our mediation through chromatin accessibility to local-eQTL, for which this study is better powered, and find significant support that mediation through chromatin is present (4.2-9.6\% of local-eQTL across the tissues). Certain regions of the genome could not be assessed for chromatin mediation (or cQTL) because ATAC-seq read alignment ambiguity, further restricting our ability to assess mediation. Despite these constraints, the results are still consistent with the belief that chromatin plays a role in the regulation of gene expression. In terms of gene expression mediators of distal-eQTL, though we are likely poorly powered to detect them, we do find a handful of strong candidates, specifically of zinc finger protein genes acting as mediators. 
+
+\subsection{Multiple procedures for QTL detection}
+
+The use of multiple criteria for detection allowed us to assess varying degrees of statistical support for the associations, and in particular, leverage the prior belief in local associations in order to detect higher numbers of QTL for a relatively small sample of 47 mice. The multi-stage procedure allows for genome-wide detection of QTL that incorporates both FWER and FDR adjustments. Both the chromosome-wide FDR and single step analyses strongly increase power to detect local-QTL, but lose the ability to adequately accommodate distal-QTL.
+
+% \subsection{Distal-QTL on local chromosome}
+
+% We find that we are powered to detect distal-QTL predominately located on the local chromosome, as seen in \textbf{Figure \ref{fig:grid_plot}}. Many FWER-significant (permP < 0.05) distal-QTL on non-local chromosomes are filtered by the FDR procedure, such as the distal-eQTL for \textit{Ccnyl1}, shown in \textbf{Figure \ref{fig:exmediation}}. The mediation of this distal-eQTL through zinc finger proteins strongly suggests that it is a real distal-eQTL. It is possible that distal-QTL on non-local chromosomes tend to be of lower effect than distal-QTL located on the local chromosome, though far from the gene or chromatin site, and these data are not sufficiently powered to detect non-local chromosome distal-QTL. 
+
+\subsection{QTL effect size}
+
+Estimation of the variance explained by the QTL, referred to as the effect size, can provide a point summary for haplotype-based QTL mapping, analogous to the effect of the minor allele, which is commonly used in SNP association. Fitting the QTL effect as a random term, and thus inducing conservative shrinkage on the effect size, can highlight QTL detections that are likely based on unstable fixed effects from influential data points. Notably, a number of the genome-wide significant distal-eQTL have very low effect size estimates (\textbf{Figure \ref{fig:qtl_effect_sizes_strict} [top]}) in comparison to the effects sizes seen in local-eQTL, even when detected with more lenient procedures, as in \textbf{Figure \ref{fig:qtl_effect_sizes_permissive} [top]}. A mapping procedure that fits the QTL effect as a random effect, as in \cite{Wei2016}, would not detect these QTL. However, a random effects procedure is more computationally intensive, which is particularly prohibitive in the context of genome-wide traits, thus justifying a follow-up approach in which effect sizes are evaluated for the detected QTL.
+
+\subsection{QTL mapping tissues jointly}
+
+\subsection{Mediation}
+
+Our mediation approach uses a similar approach to that previously done with DO mice \citep{Chick2016,Keller2018}, though with some modification and to our knowledge, it has never been used in the CC. Notably we use a permutation procedure in which the mediator variable is permuted to determine empirical thresholds of significance. We also filter out mediators based on QTL effect sizes that are consistent with the proposed models of mediation. Mediation within the field of system genetics is a growing area of interest, and the methods proposed here support that development.
