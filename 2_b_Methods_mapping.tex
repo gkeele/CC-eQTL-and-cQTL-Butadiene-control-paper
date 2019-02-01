@@ -60,14 +60,15 @@ At the level of a single trait, FWER is the probability of a false positive acro
 To account for multiple testing over many traits, an FDR adjustment \citep{Benjamini1995} can be used to produce q-values, which are interpreted as the probability that a detected QTL is a false discovery. See \textbf{Appendix A} for greater detail on the control of FWER and FDR. 
 
 \subsubsection{Mapping procedures.} Three mapping procedures were used to detect QTL, each with unique features. They are as follows:
-\begin{enumerate}[label = \method{{\arabic*:}}]
-\setlength{\itemindent}{3em}
-	\item Multi-stage conditional regression with genome-wide FWER and FDR control. This procedure is the most statistically stringent, can identify both local and distal-QTL, and potentially multiple QTL per trait in an unbiased FDR control.
-    \item Single-stage regression with chromosome-wide FWER and FDR control. This procedure is oriented towards identification of local-QTL by using the much more lenient chromosome-wide FWER adjustment. Putative distal-QTL that are located on the same chromosome as the target but are not proximal to the trait's genomic coordinate are also leniently detected, referred to here as intra-chromosomal distal-QTL.
-    \item Single-stage regression with genome-wide and chromosome-wide FWER control. This procedure only detects local-QTL, leveraging strong biological precedent for local genetic regulation to reduce the significance threshold. FWER adjustment, either at genome or chromosome-wide levels, is performed for the maximum logP in the local window (defined here as 10 Mb upstream or downstream of target's coordinate), without FDR control.
+%\begin{enumerate}[label = \method{{\arabic*:}}]
+%\setlength{\itemindent}{3em}
+\begin{enumerate}
+	\item Multi-stage conditional regression with genome-wide FWER and FDR control (Method 1). This procedure is the most statistically stringent, can identify both local and distal-QTL, and potentially multiple QTL per trait in an unbiased FDR control.
+    \item Single-stage regression with chromosome-wide FWER and FDR control (Method 2). This procedure is oriented towards identification of local-QTL by using the much more lenient chromosome-wide FWER adjustment. Putative distal-QTL that are located on the same chromosome as the target but are not proximal to the trait's genomic coordinate are also leniently detected, referred to here as intra-chromosomal distal-QTL.
+    \item Single-stage regression with genome-wide and chromosome-wide FWER control (Method 3). This procedure only detects local-QTL, leveraging strong biological precedent for local genetic regulation to reduce the significance threshold. FWER adjustment, either at genome or chromosome-wide levels, is performed for the maximum logP in the local window (defined here as 10 Mb upstream or downstream of target's coordinate), without FDR control.
 \end{enumerate}
 
-See \textbf{Table \ref{tab:qtl_procedures}} for simple breakdowns of the three procedures and \textbf{Appendix B} for greater detail on each.
+See \textbf{Table \ref{tab:qtl_procedures}} for simple descriptions of the three procedures and \textbf{Appendix B} for greater detail on each.
 
 \subsubsection{QTL founder allele effects and effect size.} 
 

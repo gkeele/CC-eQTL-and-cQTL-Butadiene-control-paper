@@ -10,6 +10,34 @@
 \begin{tableminipage}{\textwidth}
 \captionsetup{width=\textwidth}
 \centering
+\caption{\bf Number of differentially expressed genes and accessible chromatin regions detected between lung, liver, and kidney tissues
+\label{tab:diff_gene}}
+\end{tableminipage}
+\begin{tableminipage}{\textwidth}
+\begin{tabularx}{\textwidth}{cll|XXX}
+\hline 
+& & & & \center{Tissue comparison} & \\
+& & & Lung vs. Liver & Lung vs. Kidney & Liver vs. Kidney \\
+\hline
+%%%%%%%%%%%%%%%%
+\parbox[t]{5mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{q-value < 0.1}}} & 
+Genes & Up-regulated & 2,473 (20.8\footnote{Percentage of all tested genes.\label{fn:total_perc_gene}}) & 2,246 (18.9\footref{fn:total_perc_gene}) & 2,123 (17.9\footref{fn:total_perc_gene}) \\
+& & Down-regulated & 3,236 (27.2\footref{fn:total_perc_gene}) & 2,527 (21.3\footref{fn:total_perc_gene}) & 1,441 (12.1\footref{fn:total_perc_gene}) \\
+& & Total & 5,709 (48.0\footref{fn:total_perc_gene}) & 4,773 (40.2\footref{fn:total_perc_gene}) & 3,564 (30.0\footref{fn:total_perc_gene}) \\
+\cline{2-6}
+& Chromatin Regions & Increased accessibility & 20,194 (19.6\footnote{Percentage of all tested chromatin regions prior to merging adjacent genomic windows.\label{fn:total_perc_chrom}}) & 19,202 (17.4\footref{fn:total_perc_chrom}) & 15,252 (12.9\footref{fn:total_perc_chrom}) \\
+& & Decreased accessibility & 20,603 (19.7\footref{fn:total_perc_chrom}) & 12,967 (11.2\footref{fn:total_perc_chrom}) & 12,796 (11.4\footref{fn:total_perc_chrom}) \\
+& & Total & 40,797 (39.3\footref{fn:total_perc_chrom}) & 32,169 (28.6\footref{fn:total_perc_chrom}) & 28,048 (24.3\footref{fn:total_perc_chrom}) \\
+\hline
+\end{tabularx}
+\end{tableminipage}
+\end{table*}
+
+\begin{table*}[h]
+\renewcommand{\familydefault}{\sfdefault}\normalfont
+\begin{tableminipage}{\textwidth}
+\captionsetup{width=\textwidth}
+\centering
 \caption{\bf Number of genes with eQTL detected in lung, liver, and kidney tissues
 \label{tab:eqtl_mapping}}
 \end{tableminipage}
@@ -185,15 +213,15 @@ Kidney & \textit{C330018D20Rik} & 13 & \textit{Depdc1b} & 18 & 9.97e-04 \\
 \begin{figure*}[hp]
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 \centering
-\includegraphics[width=0.8\textwidth, trim={0in 0in 0in 0in}, clip]{figs/pca_processed.pdf}
-\caption{Principal components analysis of (A) gene expression and (B) chromatin accessibility for lung (blue), liver (gray), and kidney (orange) tissue samples derived from RNA-seq and ATAC-seq data respectively. Principal components (PCs) 1 and 2 capture a majority of the variance and show a greater amount of between tissue variability than within tissue variability. \label{fig:pca_plots}}
+\includegraphics[width=0.8\textwidth, trim={0.25in 0.5in 0.5in 0in}, clip]{figs/pca_plot.pdf}
+\caption{\textbf{Principle components analysis identifies tissue type as key source of variation for gene expression and chromatin accessibility.} Molecular traits for lung (blue), liver (gray), and kidney (orange) tissue samples were derived from RNA-seq and ATAC-seq data. Principal components (PC) 1 and 2 capture a majority of the variation and show a greater amount of between tissue variability than within tissue variability. \label{fig:pca_plots}}
 \end{figure*}
 
 \begin{figure*}[hp]
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 \centering
 \includegraphics[width=0.8\textwidth, trim={0in 0in 0in 0in}, clip]{figs/diff_concordance.png}
-\caption{Concordance between DE genes and DARs in between-tissue comparisons. DE genes were categorized by direction of DE and chromatin accessibility in their promoter regions.\label{fig:diff_concordance}}
+\caption{\textbf{Concordance between DE genes and DARs in between-tissue comparisons.} DE genes were categorized by direction of DE and chromatin accessibility in their promoter regions.\label{fig:diff_concordance}}
 \end{figure*}
 
 \begin{figure*}[hp]
@@ -268,7 +296,7 @@ Kidney & \textit{C330018D20Rik} & 13 & \textit{Depdc1b} & 18 & 9.97e-04 \\
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 \centering
 \includegraphics[width=0.9\textwidth, page=4, trim={2in 1in 2in 1in}, clip]{figs/tissue_comparison_figures.pdf}
-\caption{Stuff.
+\caption{\textbf{Effect sizes are slightly correlated for QTL pairs.}
 \label{fig:qtl_effect_size_comparison}}
 \end{figure*}
 
@@ -276,7 +304,7 @@ Kidney & \textit{C330018D20Rik} & 13 & \textit{Depdc1b} & 18 & 9.97e-04 \\
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 \centering
 \includegraphics[width=0.9\textwidth, page=5, trim={2in 1in 2in 1in}, clip]{figs/tissue_comparison_figures.pdf}
-\caption{Stuff.
+\caption{\textbf{QTL pairs with highly correlated founder allele effects tend to map near each other.}
 \label{fig:qtl_cor_by_distance_comparison}}
 \end{figure*}
 
@@ -284,7 +312,7 @@ Kidney & \textit{C330018D20Rik} & 13 & \textit{Depdc1b} & 18 & 9.97e-04 \\
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 \centering
 \includegraphics[width=\textwidth, page=3, trim={3.5in 3in 3in 3in}, clip]{figs/tissue_comparison_figures.pdf}
-\caption{Stuff.
+\caption{\textbf{Enrichment detected in QTL pairs with significantly correlated founder allele effects.}
 \label{fig:qtl_pair_histograms}}
 \end{figure*}
 
@@ -292,14 +320,28 @@ Kidney & \textit{C330018D20Rik} & 13 & \textit{Depdc1b} & 18 & 9.97e-04 \\
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 \centering
 \includegraphics[width=\textwidth]{figs/mediation_or_colocal.pdf}
-\caption{\textbf{Mediation of local-eQTL through chromatin state.} Detection of chromatin mediation requires that the eQTL and cQTL co-localize, as well as possess similar founder allele effects. Co-localizing cQTL are observed for local-eQTL for both \textit{Hdhd3} in liver tissue (A) and \textit{Acbd4} in kidney tissue (B). eQTL an cQTL scans are shown in the left plots. The red tick marks the TSS for both genes. Founder effects plots are in the middle. These effects are estimated as the centered and scaled regression coefficients. The effects for the eQTL and cQTL are highly correlated for \textit{Hdhd3} (B), but not for \textit{Acbd4} (E). Genome-wide eQTL, cQTL, and mediation are in the right column. Strong mediation of the eQTL through chromatin is detected for \textit{Hdhd3}, but not for \textit{Acbd4}. The effect size of the cQTL co-local to the \textit{Acbd4} is smaller than the eQTL, also inconsistent with the relationship depicted in \textbf{Figure \ref{fig:graph} A}.\label{fig:colocalization}}
+\caption{\textbf{Co-localizing QTL are not sufficient for mediation.} Detection of chromatin mediation requires that the eQTL and cQTL co-localize, as well as possess similar founder allele effects. Co-localizing cQTL are observed for local-eQTL for both \textit{Hdhd3} in liver tissue (A) and \textit{Acbd4} in kidney tissue (B). eQTL an cQTL scans are shown in the left plots. The red tick marks the TSS for both genes. Founder effects plots are in the middle. These effects are estimated as the centered and scaled regression coefficients. The effects for the eQTL and cQTL are highly correlated for \textit{Hdhd3} (B), but not for \textit{Acbd4} (E). Genome-wide eQTL, cQTL, and mediation are in the right column. Strong mediation of the eQTL through chromatin is detected for \textit{Hdhd3}, but not for \textit{Acbd4}. The effect size of the cQTL co-local to the \textit{Acbd4} is smaller than the eQTL, also inconsistent with the relationship depicted in \textbf{Figure \ref{fig:graph} A}.\label{fig:colocalization}}
 \end{figure*}
 
 \begin{figure*}[hp]
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 \centering
 \includegraphics[width=\textwidth, trim={0in 0.5in 0in 0in}, clip]{figs/ccnyl1_mediation.pdf}
-\caption{\textbf{Mediation of distal-eQTL of \textit{Ccnyl1}.} Distal-eQTL for one gene can correspond to local-eQTL of a mediating gene. The gene \textit{Ccnyl1}, located on chromosome 1, has a strong distal-eQTL on chromosome 4. Genes \textit{Zfp979} and \textit{Zfp985}, zinc finger proteins likely with DNA binding properties, are identified as strong mediators of the distal-eQTL, both genome-wide (A) and chromosome-wide (B). The founder haplotype effects for the distal-eQTL of \textit{Ccnyl1} are reduced but concordant with the effects the local-eQTL of \textit{Zfp979}, which is consistent with the relationship in \textbf{Figure \ref{fig:graph} B}.\label{fig:ccnyl1_exmediation}}
+\caption{\textbf{Mediation of \textit{Ccnyl1} distal-eQTL through expression of \textit{Zfp979.}} Distal-eQTL for one gene can correspond to local-eQTL of a mediating gene. The gene \textit{Ccnyl1}, located on chromosome 1, has a strong distal-eQTL on chromosome 4. Genes \textit{Zfp979} and \textit{Zfp985}, zinc finger proteins likely with DNA binding properties, are identified as strong mediators of the distal-eQTL, both genome-wide (A) and chromosome-wide (B). The founder haplotype effects for the distal-eQTL of \textit{Ccnyl1} are reduced but concordant with the effects the local-eQTL of \textit{Zfp979}, which is consistent with the relationship in \textbf{Figure \ref{fig:graph} B}.\label{fig:ccnyl1_exmediation}}
+\end{figure*}
+
+\begin{figure*}[hp]
+\renewcommand{\familydefault}{\sfdefault}\normalfont
+\centering
+\includegraphics[width=\textwidth, trim={0in 0.5in 0in 0in}, clip]{figs/akr1e1_mediation.pdf}
+\caption{\textbf{Full mediation model of distal-eQTL of \textit{Akr1e1}.} \label{fig:akr1e1_exmediation}}
+\end{figure*}
+
+\begin{figure*}[hp]
+\renewcommand{\familydefault}{\sfdefault}\normalfont
+\centering
+\includegraphics[width=\textwidth, trim={1in 0in 1in 0in}, clip]{figs/akr1e1_observed_relationships.pdf}
+\caption{\textbf{Observed relationships related to the \textit{Akr1e1} distal-eQTL.} \label{fig:akr1e1_exmediation}}
 \end{figure*}
 
 
