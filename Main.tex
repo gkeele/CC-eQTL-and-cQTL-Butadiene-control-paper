@@ -23,6 +23,8 @@
 \newcommand{\bI}{\mathbf{I}}
 \newcommand{\bx}{\mathbf{x}}
 \newcommand{\tausq}{\tau^{2}}
+\newcommand{\qtl}{\widehat{h^{2}}_{\text{QTL}}}
+\newcommand{\by}{\mathbf{y}}
 
 \articletype{inv} % article type
 % {inv} Investigation 
@@ -36,12 +38,12 @@
 \renewcommand{\firstpagefootnote}{\blfootnote{Manuscript compiled: \today}}
 
 %\title{Tissue-specific QTL analysis of gene expression and chromatin accessibility in the Collaborative Cross mouse population}
+%\title{Chromatin-mediated gene expression within three tissues using the Collaborative Cross mouse resource}
 
-\title{QTL analysis in the Collaborative Cross mouse population reveals multi-tissue patterns of genetic regulation spanning gene expression and chromatin accessibility}
+\title{Integrative QTL analysis of gene expression and chromatin accessibility identifies multi-tissue patterns of genetic regulation}
 
-
-\author[$\ast$,$\dagger$,$\ddagger$]{Gregory R. Keele}
-\author[$\ast$,$\dagger$,$\ddagger$,$\ast\ast\ast$]{Bryan Quach}
+\author[$\ast$,$\dagger$,$\ddagger$,$\ast\ast\ast$]{Gregory R. Keele}
+\author[$\ast$,$\dagger$,$\ddagger$,$\dagger\dagger\dagger$]{Bryan Quach}
 \author[$\ddagger$]{Jennifer W. Israel}
 \author[$\ddagger\ddagger$]{Yihui Zhou}
 \author[$\S\S$]{Grace A. Chappell}
@@ -63,18 +65,19 @@
 \affil[$\dagger\dagger$]{Department of Pediatrics, Center for Genomic and Computational Biology, Duke University, Durham, NC}
 \affil[$\ddagger\ddagger$]{Departments of Statistics and Biological Sciences, North Carolina State University, Raleigh, NC}
 \affil[$\S\S$]{Department of Veterinary Integrative Biosciences, Texas A\&M University, College Station, TX}
-\affil[$\ast\ast\ast$]{Center for Omics Discovery and Epidemiology, Research Triangle Institute (RTI) International\hspace{17cm} ORCID IDs: 
+\affil[$\ast\ast\ast$]{The Jackson Laboratory, Bar Harbor, ME}
+\affil[$\dagger\dagger\dagger$]{Center for Omics Discovery and Epidemiology, Research Triangle Institute (RTI) International\hspace{17cm} ORCID IDs: 
 0000-0002-1843-7900 (G.R.K.), 0000-0002-2419-0430 (W.V.)}
 
-\keywords{multiparental populations, MPP, mediation, QTL, genome-wide association}
+\keywords{multiparental populations (MPP), Collaborative Cross (CC), Diversity Outbred (DO), mediation, genome-wide association (GWA)}
 
-\runningtitle{Tissue-specific quantitative trait locus analysis} % For use in the footer 
+\runningtitle{Integrative QTL analysis across multiple tissues in the Collaborative Cross} % For use in the footer 
 
 \runningauthor{Keele \textit{et al.}}
 
 \begin{abstract}
 
-
+Many factors influence the transcriptional profiles of tissues, which can influence the variation observed in complex traits and diseases. We analyzed gene transcript and chromatin accessibility levels from liver, lung, and kidney tissues from 47 strains of the Collaborative Cross (CC) mouse population to characterize expression and chromatin state dynamics across tissues, including their underlying genetic regulation. We detected 2,211 genes with QTL observed consistently across multiple tissues with significantly correlated founder allele effects. Other genes possessed tissue-specific QTL, such as \textit{Pik3c2g} with unique local-eQTL observed in all three tissues. Leveraging the overlapping measurement of gene expression and chromatin accessibility on the same mice from multiple tissues, we use mediation analysis to identify chromatin and gene intermediates of eQTL effects. Based on QTL and mediation analyses over multiple tissues, we propose a causal model for the distal genetic regulation of \textit{Akr1e1}, a gene involved in glycogen metabolism, through a zinc finger protein and chromatin intermediates. Our analysis demonstrates the complexity of transcriptional and chromatin dynamics and their genetic regulation across tissues, as well as the value of the CC and related genetic resource populations for dissecting relationships between layers of biological data.
 
 \end{abstract}
 
@@ -104,7 +107,7 @@ E-mail: tsfurey@email.unc.edu}
 \input{4_Discussion.tex}
 
 \section{Acknowledgments}
-Author contributions: GRK, BQ, and TSF wrote the manuscript. GRK and WV developed the statistical methods for QTL analysis, and GK wrote the software to perform the respective analyses. BQ processed the sequence data and performed the differential expression and accessible analyses. GRK and BQ performed all QTL and mediation analyses. The authors declare no conflicts of interest.
+Author contributions: GRK, BQ, and TSF wrote the manuscript. GRK and WV developed the statistical methods for QTL analysis, and GRK wrote the software to perform the respective analyses. BQ processed the sequence data and performed the differential expression and accessible analyses. GRK and BQ performed all QTL and mediation analyses. The authors declare no conflicts of interest.
 
 \bibliography{eQTL_mediation.bib}
 

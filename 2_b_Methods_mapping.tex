@@ -6,13 +6,13 @@ Read counts for each sample were converted to counts per million (CPM) and norma
 y_{i} = \mu + \text{strain}_{i} + \text{batch}_{i} + \text{tissue}_{i} + \varepsilon_{i},
 \label{eq:limma_model}
 \end{equation}
-where $y_{i}$ is the TMM-normalized CPM value in $\text{tissue}_{i}$ (lung, liver, or kidney tissue) from individual $i$. $\mu$ is the intercept, representing the overall mean; $\text{batch}_{i}$ is effect of sequencing center; $\text{strain}_i$ is the strain-specific effect; and $\varepsilon_{i}$ is an error term, with $\varepsilon_{i} \sim \text{N}(0, \sigma^{2})$.
+where $y_{i}$ is the TMM-normalized CPM value in $\text{tissue}_{i}$ (lung, liver, or kidney) from individual $i$; $\mu$ is the intercept, representing the overall mean; $\text{batch}_{i}$ is effect of sequencing center; $\text{strain}_i$ is the strain-specific effect; and $\varepsilon_{i}$ is an error term, distributed as $\text{N}(0, \sigma^{2})$.
 
 To account for mean-variance relationships in gene expression and chromatin accessibility data, precision weights were calculated using the \textit{limma} function \textit{voom} and incorporated into the linear modeling procedure. The p-values were adjusted using an FDR procedure \citep{Benjamini1995}, and differentially expressed genes and accessible chromatin windows were called based on the q-value $\le$ 0.01 and log$_{2}$ fold-change $\geq$ 1. Adjacent significantly differential chromatin windows in the same direction were merged with a p-value computed using Simes' method \citep{Sarkar1997}, and chromatin regions were re-evaluated for significance using the Simes p-values.
 
 \subsection{Gene set association analysis}
 
-GSAASeqSP \citep{Xiong2014} with Reactome Pathway Database annotations (July 24, 2015 release) was used to identify biological pathways enriched with differentially expressed genes or accessible chromatin. For genes, gene lists were provided as input to GSAASeqSP along with a weight for each gene $g$, calculated as:
+GSAASeqSP \citep{Xiong2014} with Reactome Pathway Database annotations (July 24, 2015 release) was used to identify biological pathways enriched with differentially expressed genes or accessible chromatin. A list of assayed genes were provided as input to GSAASeqSP along with a weight for each gene $g$, calculated as:
 \begin{equation}
 \text{weight}_{g} = \text{sign}(\text{fc}_{g}) * (1-q_{g}),
 \label{eq:gene_weighting}
@@ -21,7 +21,7 @@ where $\text{sign}(\text{fc}_{g})$ is the sign of the expression fold change, an
 
 \subsection{QTL analysis}
 
-A single locus approach to QTL mapping was used for both gene expression and chromatin accessibility. The CC mice have well-characterized founder haplotypes, allowing the association analysis to be haplotype-based, also referred to as interval mapping or linkage analysis \citep{Lander1989}. Assessing association between haplotype descent and phenotype has advantages to variant association, such as implicitly modeling multiple local variants simultaneously and more closely reflecting the linkage disequilibrium (LD) decay. Because haplotype state is not directly observed but rather probabilistically inferred \citep{Lander1987,Mott2000,Liu2010,Fu2012,Gatti2014,Zheng2015}, formal interval mapping requires an computationally inefficient Expectation-Maximization (EM) algorithm \citep{Dempster1977}. A computationally efficient regression approximation \citep{Haley1992,Martinez1992} is commonly used instead for multiparental populations (MPP) \citep{Valdar2006a,Valdar2009,Svenson2012,Baud2013,Baud2014}, including the CC \citep{Aylor2011,Kelada2016,Mosedale2017,Donoghue2017}. This efficiency is particularly important in the context of a study of genome-wide molecular phenotypes.
+A single locus approach to QTL mapping was used for both gene expression and chromatin accessibility. The CC mice have well-characterized founder haplotypes, allowing the association analysis to be haplotype-based, also referred to as interval mapping or linkage analysis \citep{Lander1989}. Assessing association between haplotype descent and phenotype has advantages to variant association, such as implicitly modeling multiple local variants simultaneously and more closely reflecting the linkage disequilibrium (LD) decay. Because haplotype state is not directly observed but rather probabilistically inferred (\eg \citealt{Lander1987,Mott2000,Liu2010,Fu2012,Gatti2014,Zheng2015}), formal interval mapping requires an computationally inefficient Expectation-Maximization (EM) algorithm \citep{Dempster1977}. A computationally efficient regression approximation \citep{Haley1992,Martinez1992} is commonly used instead for multiparental populations (MPP) (\eg \citealt{Valdar2006a,Valdar2009,Svenson2012,Baud2013,Baud2014}), including the CC (\eg \citealt{Aylor2011,Kelada2016,Mosedale2017,Donoghue2017}). This efficiency is particularly important in the context of a study of genome-wide molecular phenotypes.
 
 \begin{table*}[h]
 \renewcommand{\familydefault}{\sfdefault}\normalfont
@@ -59,7 +59,7 @@ At the level of a single trait, FWER is the probability of a false positive acro
 
 To account for multiple testing over many traits, an FDR adjustment \citep{Benjamini1995} can be used to produce q-values, which are interpreted as the probability that a detected QTL is a false discovery. See \textbf{Appendix A} for greater detail on the control of FWER and FDR. 
 
-\subsubsection{Mapping procedures.} Three mapping procedures were used to detect QTL, each with unique features. They are as follows:
+\subsubsection{Mapping procedures.} Three mapping procedures were used to detect QTL, each with unique features:
 %\begin{enumerate}[label = \method{{\arabic*:}}]
 %\setlength{\itemindent}{3em}
 \begin{enumerate}
@@ -72,11 +72,19 @@ See \textbf{Table \ref{tab:qtl_procedures}} for simple descriptions of the three
 
 \subsubsection{QTL founder allele effects and effect size.} 
 
-The founder allele effects at a QTL, as fit in the mapping model (Eq \ref{eq:alternative_model}), can help distinguish which genetic variants drive an observed QTL. However, these effects, when pulled directly from the mapping procedures, are comprised of a vector with one fixed effect regression coefficient per founder strain, and can be unstable when there are few observations per founder strain contribution at a locus, resulting in artificially extreme effects \citep{Zhang2014}. To conservatively constrain the effect estimates, the model in Eq \ref{eq:alternative_model} was re-fit at the detected QTL, but with the QTL effect as a random effect vector with corresponding variance component \citep{Wei2016}, such that $\text{QTL}_{i} = \bx_{i}\bbeta$ with $\bbeta \sim \text{N}(\bzero, \bI\tausq)$. $\bx_{i}$ is the founder haplotype dosage vector for individual $i$ at the QTL, $\bbeta$ is the QTL effect vector, and $\tausq$ is the variance component corresponding to the QTL effect vector. The best linear unbiased predictors of the allele effects [$\widehat{\bbeta}_{\text{BLUP}}$] \citep{Robinson1991} were calculated and used for further comparison of QTL across tissues. A point estimate of the proportion of the variance explained by the QTL effect is calculated as:
+The founder allele effects at a QTL, as fit in the mapping model (Eq \ref{eq:alternative_model}), can help distinguish which genetic variants drive an observed QTL. However, these effects, when pulled directly from the mapping procedures, are comprised of a vector with one fixed effect regression coefficient per founder strain, and can be unstable when there are few observations per founder strain contribution at a locus, resulting in artificially extreme effects \citep{Zhang2014}. To conservatively constrain the effect estimates, the model in Eq \ref{eq:alternative_model} was re-fit at the detected QTL, but with the QTL effect as a random effect vector with corresponding variance component \citep{Wei2016}, such that $\text{QTL}_{i} = \bx_{i}\bbeta$ with $\bbeta \sim \text{N}(\bzero, \bI\tausq)$. $\bx_{i}$ is the founder haplotype dosage vector for individual $i$ at the QTL, $\bbeta$ is the QTL effect vector, and $\tausq$ is the variance component corresponding to the QTL effect vector. The best linear unbiased predictors of the allele effects [$\widehat{\bbeta}_{\text{BLUP}}$] \citep{Robinson1991} were calculated, centered and scaled, and used for further comparison of QTL across tissues. 
+
+A point estimate of the proportion of the variance explained by the QTL effect, referred to as the QTL effect size ($\qtl$), is calculated as:
 \begin{equation}
-    \text{QTL effect size} = \frac{\widehat{\tau^{2}}}{\widehat{\tau^{2}} + \widehat{\sigma^{2}}},
+    \qtl = 1 - \frac{\text{RSS}_{\text{QTL}}}{\text{RSS}_{0}},
     \label{eq:effect_size}
-\end{equation} which is referred to as the QTL effect size and also used to compare and summarize QTL findings. 
+\end{equation}
+where $\text{RSS} = \sum_{i = 1}^{n}(y_{i} - \widehat{y_{i}})^{2}$ is the residual sum of squares for the alternative (Eq \ref{eq:alternative_model}) and null models, and $n = 47$. For comparison, we also calculated a conservative, constrained estimate of QTL effect size, estimated from the QTL model with QTL parameters constrained as random effects:
+\begin{equation}
+    \widehat{h^{2}}_{\text{QTL ranef}} = \frac{\widehat{\tau^{2}}}{\widehat{\tau^{2}} + \widehat{\sigma^{2}}},
+    \label{eq:effect_size_ranef}
+\end{equation}
+QTL with effect sizes that are particularly reduced by the random effects model are more likely to be the result of extreme data points or imbalanced founder contributions at the locus.
 
 \subsubsection{Cross-tissue comparison of QTL.}
 
@@ -86,7 +94,7 @@ For a pair of matched QTL $j$ and $k$ from different tissues, the Pearson correl
 
 \subsubsection{Variant association.}
 
-Variant association was performed within the genomic regions surrounding overlapping QTL in order to detect similarities and differences patterns of association between tissues. Variant genotypes from Build38 were obtained using the ISVdb \citep{Oreper2017} for the CC strains, which were converted to Build37 coordinates with the liftOver tool \citep{Lawrence2009}. Variants were filtered out if they had minor allele frequencies below 0.1 or were not genotyped in one of the CC founder strains to avoid artificially high signals.
+Variant association was performed within the genomic regions surrounding overlapping QTL in order to detect similarities and differences in patterns of association between tissues. Variant genotypes from Build38 were obtained using the ISVdb \citep{Oreper2017} for the CC strains, which were converted to Build37 coordinates with the liftOver tool \citep{Lawrence2009}. Variants were filtered out if their minor allele frequencies $\le 0.1$ or they were not genotyped in one of the CC founder strains to avoid false signals.
 
 \subsection{Mediation analysis}
 
@@ -107,13 +115,13 @@ The previous traits (Y) can also be viewed as potential mediators (M). Here we c
 \text{X}\textsuperscript{QTL} \quad \indep \quad \text{Y}^{\text{G}_{j}} \quad | \quad \text{M}
 \label{rel:full_mediator}
 \end{equation}
-where ``A $\indep$ B'' indicates that A and B are independent of each other, and ``A|B'' is A given conditional variable B. X being fully independent of Y given M is consistent with X acting on Y completely through M, referred to as full mediation. In practice, the true relationship can be complex and obscured by noise, instead resulting in partial mediation, whereby X affects Y both directly and through M. Genome-wide data present a significant challenge to systematically testing these relationships.
+where ``A $\indep$ B'' indicates that A and B are independent of each other, and ``A|B'' is A conditioned on variable B. X being fully independent of Y given M is consistent with X acting on Y completely through M, referred to as full mediation. In practice, the true relationship can be complex and obscured by noise, instead resulting in partial mediation, whereby X affects Y both directly and through M. Genome-wide data present a significant challenge to systematically testing these relationships.
 
 \begin{figure}[htbp]
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 \centering
 \includegraphics[width=\linewidth, page=1, clip, trim={0in 0.5in 0in 0in}]{figs/mediation_graph.pdf}
-\caption{\textbf{Mediation models.} Simple mediation models for the genetic regulation of gene expression, in which local-eQTL are mediated through chromatin accessibility in the region of the gene,  and  distal-eQTL are mediated through the transcription of a proximal gene. Chromatin mediation is consistent with genetic variation influencing the accessibility of gene j to the transcriptional machinery. Mediation through proximal gene expression is consistent with distal-eQTL that result when the expression of gene j is dependent on a downstream interaction with gene k, such as transcription factors. \label{fig:graph}}
+\caption{\textbf{Simple mediation models for the genetic regulation of gene expression.} The top model is the mediation of local-eQTL through chromatin accessibility in the region of the gene. This model of mediation is consistent with genetic variation influencing the accessibility of gene j to the transcriptional machinery. The bottom model represents distal-eQTL that are mediated through the transcription of genes proximal to the QTL. Mediation through proximal gene expression is consistent with distal-eQTL that result from as transcription factor activity. \label{fig:graph}}
 \end{figure}
 
 \subsubsection{Genome-wide mediation.}
