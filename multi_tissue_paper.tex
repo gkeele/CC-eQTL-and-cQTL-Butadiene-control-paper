@@ -43,7 +43,7 @@
 \title{Integrative QTL analysis of gene expression and chromatin accessibility identifies multi-tissue patterns of genetic regulation}
 
 \author[$\ast$,$\dagger$,$\ddagger$,$\ast\ast\ast$]{Gregory R. Keele}
-\author[$\ast$,$\dagger$,$\ddagger$,$\dagger\dagger\dagger$]{Bryan Quach}
+\author[$\ast$,$\dagger$,$\ddagger$,$\dagger\dagger\dagger$]{Bryan C. Quach}
 \author[$\ddagger$]{Jennifer W. Israel}
 \author[$\ddagger\ddagger$]{Yihui Zhou}
 \author[$\S\S$]{Grace A. Chappell}
@@ -291,7 +291,7 @@ Results files and scripts to generate the results from the data are provided in 
 
 Gene expression, using RNA-seq, and chromatin accessibility, using ATAC-seq, were measured in lung, liver, and kidney tissues of 47 unique strains in the Collaborative Cross (CC) mouse population. As the function of each tissue is quite distinct, we expected that these data would reflect tissue-specific differences. Principal components analysis (PCA) on each of the gene expression and chromatin accessibility profiles clearly show the clustering of all samples by tissue (\textbf{Figure \ref{fig:pca_plots}}). 
 
-To further validate the quality of these data, we performed pairwise differential expression (DE) and differentially accessible region (DAR) analysis between the three tissues (\textbf{Table \ref{tab:diff_gene}}). We found between 3,564-5,709 DE genes, and 28,048-40,797 DARs across the comparisons. For both expression and chromatin accessibility, liver and kidney tissues were the most similar, and lung and liver were the most distinct, also reflected in the PCA plots. Pathway analyses show between-tissue differences are related mainly to metabolic and immune-related pathways (\textbf{TO DO: Add GSAA tables (FWER < 0.05}) and reflects the distinct demands of each tissue. Energy metabolism pathways were more active in liver and kidney and immune-related pathways were more pronounced in lung. We compared the concordance between DE genes and DARs genome-wide and observed that most DE gene promoters do not show significant differences in chromatin accessibility (\textbf{Figure \ref{fig:diff_concordance}}). In cases where there is significantly variable accessibility in the promoter of a DE gene, though, the vast majority agree in direction (i.e. higher expression and greater accessibility).
+To further validate the quality of these data, we performed pairwise differential expression (DE) and differentially accessible region (DAR) analysis between the three tissues (\textbf{Table \ref{tab:diff_gene}}). We found between 3,564-5,709 DE genes, and 28,048-40,797 DARs across the comparisons (FWER < 0.1). For both expression and chromatin accessibility, liver and kidney tissues were the most similar, and lung and liver were the most distinct, also reflected in the PCA plots. Pathway analyses show many between-tissue differences related to metabolic and immune-related pathways (FWER < 0.1) that reflects the distinct demands of each tissue. Energy metabolism pathways were more active in liver and kidney and immune-related pathways were more pronounced in lung. We compared the concordance between DE genes and DARs genome-wide and observed that most DE gene promoters do not show significant differences in chromatin accessibility (\textbf{Figure \ref{fig:diff_concordance}}). In cases where there is significantly variable accessibility in the promoter of a DE gene, though, the vast majority agree in direction (i.e. higher expression and greater accessibility).
 
 \begin{figure*}[h]
 \renewcommand{\familydefault}{\sfdefault}\normalfont
@@ -477,7 +477,7 @@ In summary, in this study we have performed QTL and mediation analyses of gene e
 \section{Acknowledgments}
 This work was funded by grants from the National Institute of Environmental Health Sciences (NIEHS) (R01-ES023195 to IR and GEC and P30-ES025128). We are grateful for discussions with Gary A.\ Churchill for on mediation analysis that influenced this work. Additionally GRK was partially supported through funding from Dr.\ Churchill and The Jackson Laboratory.
 
-Author contributions: GRK, BQ, WV, and TSF wrote the manuscript. GRK, BQ, and WV developed the statistical methods for QTL analysis, and GRK wrote the software to perform the respective analyses. BQ processed the sequence data and performed the DE and DAR analyses. GRK and BQ performed all QTL and mediation analyses. The authors declare no conflicts of interest.
+Author contributions: GRK, BCQ, WV, and TSF wrote the manuscript. GRK, BCQ, and WV developed the statistical methods for QTL analysis, and GRK wrote the software to perform the respective analyses. BCQ processed the sequence data and performed the DE and DAR analyses. GRK and BCQ performed all QTL and mediation analyses. The authors declare no conflicts of interest.
 
 \bibliography{eQTL_mediation.bib}
 
