@@ -172,8 +172,8 @@ Method 2\footnote{Single-step regression analysis with chromosome-wide FDR < 0.1
 Procedure & Significance & Liver & Lung & Kidney \\
 \hline
 %%%%%%%%%%%%%%%%
-Method 3\footnote{10 Mb upstream or downstream of the gene TSS with local-eQTL that meets chromosome-wide significance through Method 3. Additionally, chromatin mediator must possess a local-cQTL that meets chromosome-wide significance through Method 3.} & genome-wide & 30 (1.8\footnote{Percentage of genes with a chromatin mediator that meet chromosome-wide significance for a local-eQTL through Method 3.\label{fn:mediator_perc}}) & 68 (3.6\footref{fn:mediator_perc}) & 46 (2.2\footref{fn:mediator_perc}) \\
-& chromosome-wide & 70 (4.2\footref{fn:mediator_perc}) & 181 (9.6\footref{fn:mediator_perc}) & 137 (6.5\footref{fn:mediator_perc}) \\
+Method 3\footnote{10 Mb upstream or downstream of the gene TSS with local-eQTL that meets chromosome-wide significance through Method 3. Additionally, chromatin mediator must possess a local-cQTL that meets chromosome-wide significance through Method 3.} & genome-wide & 13 (0.8\footnote{Percentage of genes with a chromatin mediator that meet chromosome-wide significance for a local-eQTL through Method 3.\label{fn:mediator_perc}}) & 42 (2.2\footref{fn:mediator_perc}) & 21 (1.0\footref{fn:mediator_perc}) \\
+& chromosome-wide & 35 (2.1\footref{fn:mediator_perc}) & 106 (5.6\footref{fn:mediator_perc}) & 66 (3.1\footref{fn:mediator_perc}) \\
 \hline
 \end{tabularx}
 \end{tableminipage}
@@ -227,9 +227,25 @@ Kidney & \textit{C330018D20Rik} & 13 & \textit{Depdc1b} & 18 & 9.97e-04 \\
 \begin{figure*}[hp]
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 \centering
+\includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/upset_genes_chromatin.pdf}
+\caption{\textbf{Overlap across tissues of genes and chromatin windows used for QTL analysis.} Sequence traits were filtered to remove outcomes more likely to cause in spurious QTL signal. Genes with TPM $\le 1$ and chromatin windows with TMP $\le 5$ for $\ge$ 50\% of samples were removed from analysis. After this filtering process, lung had the greatest number of traits analyzed, for both genes and chromatin windows, followed by kidney and then liver. 
+\label{fig:upset_genes_chromatin}}
+\end{figure*}
+
+\begin{figure*}[hp]
+\renewcommand{\familydefault}{\sfdefault}\normalfont
+\centering
 \includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/gpn3_conditional_scan.pdf}
 \caption{\textbf{Detection of local-eQTL after conditioning on distal-eQTL for \textit{Gpn3}.} The multi-stage conditional regression approach of Method 1 allows for the detection of multiple genome-wide significant QTL, which can then be appropriately incorporated into a FDR procedure across many outcomes. In this example in lung tissue, the gene \textit{Gpn3} initially has a strong distal-eQTL on chromosome 8 (A). Though a peak is detected near the TSS of \textit{Gpn3}, it does not meet genome-wide significance. However, after conditioning on the distal-eQTL, the local-eQTL is detected (B). Horizontal dashed lines represent empirical 95\% significance thresholds based on 1000 permutations.
 \label{fig:conditional_scans}}
+\end{figure*}
+
+\begin{figure*}[hp]
+\renewcommand{\familydefault}{\sfdefault}\normalfont
+\centering
+\includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/upset_eqtl_cqtl.pdf}
+\caption{\textbf{Overlap across tissues of genes and chromatin windows with local-QTL detected.} The majority of sequence traits with a local-QTL detected were identified in only a single tissue. Kidney had the highest number of local-eQTL, whereas lung had the highest number of local-cQTL. Liver had a relative lack of local-cQTL, which may relate to its having the fewest chromatin windows analyzed (\textbf{Figure \ref{fig:upset_genes_chromatin} [right]}). Results included local-QTL detected with Method 1 (FDR < 0.1), Method 2 (FDR < 0.1), and Method 3 (genome-wide and chromosome-wide). 
+\label{fig:upset_eqtl_cqtl}}
 \end{figure*}
 
 \begin{figure*}[h]

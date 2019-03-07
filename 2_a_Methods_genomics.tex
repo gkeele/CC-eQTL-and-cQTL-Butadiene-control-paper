@@ -16,7 +16,7 @@ Reads were similarly filtered as with RNA-seq. Reads were aligned to the appropr
 
 \subsection{Sequence trait filtering for QTL analysis}
 
-Trimmed mean of M-values (TMM) normalization [edgeR, \citep{edgeR}] was applied to TPM values from read counts of genes and chromatin windows respectively. Genes with TMM-normalized TPM values $\leq$ 1 and chromatin windows with normalized counts $\leq$ 5 for $\geq$ 50\% of samples were excluded. For each gene and chromatin window, we applied $K$-means clustering with $K=2$ to identify outcomes containing outlier observations that could cause spurious, outlier-driven QTL calls. Any gene or chromatin window where the smaller $K$-means cluster had a cardinality of 1 was removed.
+Trimmed mean of M-values (TMM) normalization [edgeR, \citep{edgeR}] was applied to TPM values from read counts of genes and chromatin windows, respectively. Genes with TMM-normalized TPM values $\leq$ 1 and chromatin windows with normalized counts $\leq$ 5 for $\geq$ 50\% of samples were excluded. For each gene and chromatin window, we applied $K$-means clustering with $K=2$ to identify outcomes containing outlier observations that could cause spurious, outlier-driven QTL calls. Any gene or chromatin window where the smaller $K$-means cluster had a cardinality of 1 was removed.
 
 \subsection{Founder mosaic reduction}
 
