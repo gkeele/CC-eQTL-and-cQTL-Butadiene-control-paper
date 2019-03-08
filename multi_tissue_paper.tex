@@ -111,6 +111,14 @@ Here we use a sample composed of a single male mouse from 47 strains of the CC t
 \section{Materials and Methods}
 \label{sec:materials:methods}
 
+\begin{figure*}[htbp]
+\renewcommand{\familydefault}{\sfdefault}\normalfont
+\centering
+\includegraphics[width=0.8\linewidth, clip, trim={0in 0in 0in 0in}]{figs/overview_diagram_simplified.pdf}
+\caption{\textbf{Diagram of the experiment and analyses.} RNA-seq and ATAC-seq were collected from liver, lung, and kidney tissues of males from 47 CC strains. Each CC strain was derived from an inbreeding funnel, and thus represents a recombinant inbred mosaic of the initial eight founder haplotypes. Differential analyses with pathway enrichment analyses were performed to identify biological pathways enriched in differentially expressed genes and accessible chromatin regions. QTL and mediation analyses were performed to identify regions that causally regulate gene expression and chromatin accessibility.
+\label{fig:overview}}
+\end{figure*}
+
 \subsection{Animals}
 
 Adult male mice (8-12 weeks old) from 47 CC strains (University of North Carolina Systems Genetics Core) were maintained on an NTP 2000 wafer diet (Zeigler Brothers, Inc., Gardners, PA) and water \textit{ad libitum}. The housing room was maintained on a 12-h light-dark cycle. Our experimental design sought to maximize the number of strains relative to within-strain replications based on the power analysis for QTL mapping in mouse populations \citep{Kaeppler1997}; therefore, one mouse was used per strain. Mice were euthanized and lungs, liver and kidney tissues were collected, flash frozen in liquid nitrogen, and stored at -80\degree C. These studies were approved by the Institutional Animal Care and Use Committees at Texas A\&M University and the University of North Carolina.
@@ -232,7 +240,7 @@ Detection of mediation is dependent on a number of assumptions about the underly
 \begin{figure}[htbp]
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 \centering
-\includegraphics[width=\linewidth, page=1, clip, trim={0in 0.5in 0in 0in}]{figs/mediation_graph.pdf}
+\includegraphics[width=\linewidth, clip, trim={0in 0.5in 0in 0in}]{figs/mediation_graph.pdf}
 \caption{\textbf{Simple mediation models for the genetic regulation of gene expression.} The top model is the mediation of local-eQTL through chromatin accessibility in the region of the gene. This model of mediation is consistent with genetic variation influencing the accessibility of gene j to the transcriptional machinery. The bottom model represents distal-eQTL that are mediated through the transcription of genes proximal to the QTL. Mediation through proximal gene expression is consistent with distal-eQTL that result from as transcription factor activity. 
 \label{fig:graph}}
 \end{figure}
