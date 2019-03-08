@@ -144,7 +144,7 @@ y_{i} = \mu + \text{strain}_{i} + \text{batch}_{i} + \text{tissue}_{i} + \vareps
 \end{equation}
 where $y_{i}$ is the TMM-normalized CPM value in $\text{tissue}_{i}$ (lung, liver, or kidney) from individual $i$; $\mu$ is the intercept, representing the overall mean; $\text{batch}_{i}$ is effect of sequencing center; $\text{strain}_i$ is the strain-specific effect; and $\varepsilon_{i}$ is an error term, distributed as $\text{N}(0, \sigma^{2})$.
 
-To account for mean-variance relationships in gene expression and chromatin accessibility data, precision weights were calculated using the \textit{limma} function \textit{voom} and incorporated into the linear modeling procedure. The p-values were adjusted using an FDR procedure \citep{Benjamini1995}, and differentially expressed genes and accessible chromatin windows were called based on the q-value $\le$ 0.01 and log$_{2}$ fold-change $\geq$ 1. Adjacent significantly differential chromatin windows in the same direction were merged with a p-value computed using Simes' method \citep{Sarkar1997}, and chromatin regions were re-evaluated for significance using the Simes p-values.
+To account for mean-variance relationships in gene expression and chromatin accessibility data, precision weights were calculated using the \textit{limma} function \textit{voom} and incorporated into the linear modeling procedure. The p-values were adjusted using an false discovery rate (FDR) procedure \citep{Benjamini1995}, and differentially expressed genes and accessible chromatin windows were called based on the q-value $\le$ 0.01 and log$_{2}$ fold-change $\geq$ 1. Adjacent significantly differential chromatin windows in the same direction were merged with a p-value computed using Simes' method \citep{Sarkar1997}, and chromatin regions were re-evaluated for significance using the Simes p-values.
 
 \subsection{Gene set association analysis}
 
@@ -186,20 +186,13 @@ For a genome scan, the alternative model is fit at positions across the genome a
 y_{i} = \mu + \text{QTL}_{i} + \text{batch}_{i} + \varepsilon_{i},
 \label{eq:alternative_model}
 \end{equation}
-where $y_{i}$ is the trait, either levels of gene expression or chromatin accessibility for individual $i$. $\mu$ is an intercept term, representing the sample mean. $\text{QTL}_{i}$ is the genetic locus effect, here fit according to an additive fixed effects model. The effect of sequencing center is modeled as the covariate $\text{batch}_{i}$. $\varepsilon_{i}$ is the error term for individual $i$, such that $\varepsilon_{i} \sim \text{N}(0, \sigma^{2})$. $y$ are transformed to better satisfy the regression assumption that the residuals are normally distributed; here we take the normal quantiles from the ranks of the trait, in order to be strongly reduce the influence of potential extreme observations in a sample of 47 individuals. The null model is the same for all tested loci and is equivalent to Eq \ref{eq:alternative_model} with $\text{QTL}_{i} = 0$ for all individuals. The two models are compared statistically at each position, and summarized with an F-test p-value. QTL are detected if the improvement in fit of the alternative model compared to the null model surpasses a set threshold of significance.
-
-\subsubsection{Significance thresholds.}
-Thresholds of significance in the context of genome-wide scans for a large number of traits need to account for the heavy multiple testing burden. In order to efficiently detect QTL, we use three procedures to define statistical significance over varying stringency, allowing greater leniency for putative proximal genetic regulators. These procedures address the family-wide error rate (FWER) and false discovery rate (FDR) differently.
-
-At the level of a single trait, FWER is the probability of a false positive across all tests that are performed. The FWER is controlled through adjustment of an observed -$\log_{10}$ p-value (logP) through 1,000 permutations of the trait, producing an FWER-adjusted p-value (permP). This adjustment can be performed for genome-wide and more lenient chromosome-wide significance.
-
-To account for multiple testing over many traits, an FDR adjustment \citep{Benjamini1995} can be used to produce q-values, which are interpreted as the probability that a detected QTL is a false discovery. See \textbf{Appendix A} for greater detail on the control of FWER and FDR. 
+where $y_{i}$ is the trait, either levels of gene expression or chromatin accessibility for individual $i$. $\mu$ is an intercept term, representing the sample mean. $\text{QTL}_{i}$ is the genetic locus effect, here fit according to an additive fixed effects model. The effect of sequencing center is modeled as the covariate $\text{batch}_{i}$. $\varepsilon_{i}$ is the error term for individual $i$, such that $\varepsilon_{i} \sim \text{N}(0, \sigma^{2})$. $y$ are transformed to better satisfy the regression assumption that the residuals are normally distributed; here we take the normal quantiles from the ranks of the trait, in order to be strongly reduce the influence of potential extreme observations in a sample of 47 individuals. The null model is the same for all tested loci and is equivalent to Eq \ref{eq:alternative_model} with $\text{QTL}_{i} = 0$ for all individuals. The two models are compared statistically at each position, and summarized with an ANOVA p-value. QTL are detected if the improvement in fit of the alternative model compared to the null model surpasses a set threshold of significance, which are described in \textbf{Appendix A}.
 
 \subsubsection{Mapping procedures.} Three mapping procedures were used to detect QTL, each with unique features:
 %\begin{enumerate}[label = \method{{\arabic*:}}]
 %\setlength{\itemindent}{3em}
 \begin{enumerate}
-	\item Multi-stage conditional regression with genome-wide FWER and FDR control (Method 1). This procedure is the most statistically stringent, can identify both local and distal-QTL, and potentially multiple QTL per trait in an unbiased FDR control.
+	\item Multi-stage conditional regression with genome-wide family-wide error rate (FWER) and FDR control (Method 1). This procedure is the most statistically stringent, can identify both local and distal-QTL, and potentially multiple QTL per trait in an unbiased FDR control.
     \item Single-stage regression with chromosome-wide FWER and FDR control (Method 2). This procedure is oriented towards identification of local-QTL by using the much more lenient chromosome-wide FWER adjustment. Putative distal-QTL that are located on the same chromosome as the target but are not proximal to the trait's genomic coordinate are also leniently detected, referred to here as intra-chromosomal distal-QTL.
     \item Single-stage regression with genome-wide and chromosome-wide FWER control (Method 3). This procedure only detects local-QTL, leveraging strong biological precedent for local genetic regulation to reduce the significance threshold. FWER adjustment, either at genome or chromosome-wide levels, is performed for the maximum logP in the local window (defined here as 10 Mb upstream or downstream of target's coordinate), without FDR control.
 \end{enumerate}
@@ -234,30 +227,14 @@ Variant association was performed within the genomic regions surrounding overlap
 
 \subsection{Mediation analysis}
 
-Detection of mediator relationship is dependent on a number of assumptions about the underlying variables, their relationships, and the directionality of those relationships, many of which cannot be satisfied in systems far less complex than that between chromatin state and gene transcription in living organisms. However, evidence that is consistent with chromatin state acting as a mediator of gene expression is supportive of the hypothesis that chromatin state plays a key role in the regulation of gene transcription.
-
-\cite{Baron1986} give a description of the relationships that need be tested to declare mediation. For this study, simple models that consist of three variables are used: the independent variable X, the mediator M, and the dependent variable Y \citep{MacKinnon2007}. Superscripts are used to indicate whether a variable is the QTL, chromatin accessibility at site $k$ ($\text{C}_{k}$), or expression of gene $j$ ($\text{G}_{j}$) in the model. When an eQTL is detected, the following relationship is supported:
-\begin{equation}
-\text{X}\textsuperscript{QTL} \quad \rightarrow \quad \text{Y}^{\text{G}_{j}}
-\label{rel:eQTL}
-\end{equation}
-When cQTL or proximal eQTL to distal-eQTL are detected, a similar relationship is detected:
-\begin{equation}
-\text{X}\textsuperscript{QTL} \quad \rightarrow \quad \text{M}
-\label{rel:cQTL}
-\end{equation}
-The previous traits (Y) can also be viewed as potential mediators (M). Here we consider two models of mediation: 1) the effect of an eQTL is mediated through local chromatin state ($\text{M}^{C_{k}}$) and 2) the effect of the distal-eQTL is mediated through a proximal gene ($\text{M}^{G_{k}}$), depicted in \textbf{Figure \ref{fig:graph}}. Co-localizing QTL are consistent with the co-occurrence of $X \rightarrow Y^{G_{j}}$ and $X \rightarrow Y^{C_{k}}$ at a locus. A true mediation relationship has an additional requirement, specifically that: 
-\begin{equation}
-\text{X}\textsuperscript{QTL} \quad \indep \quad \text{Y}^{\text{G}_{j}} \quad | \quad \text{M}
-\label{rel:full_mediator}
-\end{equation}
-where ``A $\indep$ B'' indicates that A and B are independent of each other, and ``A|B'' is A conditioned on variable B. X being fully independent of Y given M is consistent with X acting on Y completely through M, referred to as full mediation. In practice, the true relationship can be complex and obscured by noise, instead resulting in partial mediation, whereby X affects Y both directly and through M. Genome-wide data present a significant challenge to systematically testing these relationships.
+Detection of mediation is dependent on a number of assumptions about the underlying variables, their relationships, and the directionality of those relationships, many of which cannot be satisfied in a system as complex as chromatin accessibility and transcriptional regulation in whole living organisms. However, signals in the data that are consistent with the mediation model could identify putative causal factors that regulate gene expression. \textbf{Figure \ref{fig:graph}} represents the mediation models tested herein.
 
 \begin{figure}[htbp]
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 \centering
 \includegraphics[width=\linewidth, page=1, clip, trim={0in 0.5in 0in 0in}]{figs/mediation_graph.pdf}
-\caption{\textbf{Simple mediation models for the genetic regulation of gene expression.} The top model is the mediation of local-eQTL through chromatin accessibility in the region of the gene. This model of mediation is consistent with genetic variation influencing the accessibility of gene j to the transcriptional machinery. The bottom model represents distal-eQTL that are mediated through the transcription of genes proximal to the QTL. Mediation through proximal gene expression is consistent with distal-eQTL that result from as transcription factor activity. \label{fig:graph}}
+\caption{\textbf{Simple mediation models for the genetic regulation of gene expression.} The top model is the mediation of local-eQTL through chromatin accessibility in the region of the gene. This model of mediation is consistent with genetic variation influencing the accessibility of gene j to the transcriptional machinery. The bottom model represents distal-eQTL that are mediated through the transcription of genes proximal to the QTL. Mediation through proximal gene expression is consistent with distal-eQTL that result from as transcription factor activity. 
+\label{fig:graph}}
 \end{figure}
 
 \subsubsection{Genome-wide mediation.}
@@ -276,7 +253,7 @@ y^{\text{G}_{j}}_{i} = \mu + m_{ik} \nonumber + \text{batch}_{i} + \varepsilon_{
 \end{equation}
 where $y^{\text{G}_{j}}_{i}$ is the expression levels for individual $i$ of gene $j$ with an eQTL, $\mu$ is the intercept term, $\text{eQTL}_{i}^{\text{G}_{j}}$ is the eQTL effect on gene $j$, $m_{ik}$ is the effect of the $k$\textsuperscript{th} mediator, either chromatin accessibility or gene expression depending on the mediation model being evaluated, $\text{batch}_{i}$ is the effect of the sequencing center, and $\varepsilon_{i}$ is random noise. Conditioned loci can be included for certain eQTL, as in Eq \ref{eq:conditional_model}, but not included here for clarity. Whereas with the QTL genome scan, the locus effect was changed at each position, for the mediation scan, it is fixed at the eQTL locus, and the mediator is changed.
 
-Because the eQTL is always included in the alternative model but not the null model, the logP of the mediation scan should fluctuate around the observed eQTL logP. At mediators that possess some or all of the information present in the eQTL, the logP will drop. Significant logP drops represent candidate mediators. Significance thresholds to control FWER were determined by performing mediation scans on 1,000 permutations of the mediator variable. See \textbf{Appendix C} for greater detail on the mediation analysis, including permutation approach to significance thresholds and the formal criterion for mediation detection.
+Because the eQTL is always included in the alternative model but not the null model, the logP of the mediation scan should fluctuate around the observed eQTL logP. At mediators that possess some or all of the information present in the eQTL, the logP will drop. Significant logP drops represent candidate mediators. Significance thresholds to control FWER were determined by performing mediation scans on 1,000 permutations of the mediator variable. See \textbf{Appendix C} for further discussion and greater detail on the mediation analysis, including permutation approach to significance thresholds and the formal criterion for mediation detection.
 
 \subsection{Software and Data Availability}
 
@@ -484,7 +461,13 @@ Author contributions: GRK, BCQ, WV, and TSF wrote the manuscript. GRK, BCQ, and 
 \clearpage
 
 %%%%%%%%%% Appendices
-\section{Appendix A: False positive control}
+\section{Appendix A: Significance thresholds}
+
+Thresholds of significance in the context of genome-wide scans for a large number of traits need to account for the heavy multiple testing burden. In order to efficiently detect QTL, we use three procedures to define statistical significance over varying stringency, allowing greater leniency for putative proximal genetic regulators. These procedures address the family-wide error rate (FWER) and false discovery rate (FDR) differently.
+
+At the level of a single trait, FWER is the probability of a false positive across all tests that are performed. The FWER is controlled through adjustment of an observed -$\log_{10}$ p-value (logP) through 1,000 permutations of the trait, producing an FWER-adjusted p-value (permP). This adjustment can be performed for genome-wide and more lenient chromosome-wide significance.
+
+To account for multiple testing over many traits, an FDR adjustment \citep{Benjamini1995} can be used to produce q-values, which are interpreted as the probability that a detected QTL is a false discovery. 
 
 \subsection{Family-wide error rate}
 
@@ -528,6 +511,23 @@ Given that the data represent 47 individual mice, there may be poor power to det
 A final local-QTL exclusive single step analysis is used. Instead of calculating genome-wide and chromosome-wide permP from the overall maximum logP, FWER-controlled permP are adjusted from the maximum logP within the proximal window of the trait from the first stage scans from Method 1. An FDR procedure is not used, in part because the permP are likely to be poorly distributed with respect to the expectations of FDR. A local-QTL is detected when $\text{permP} < 0.05$. This procedure, now referred to as Method 3, is less conservative for local-QTL because there is no FDR control, instead leveraging the strong biological precedent for proximal genetic regulation. It also does not leniently detect intra-chromosomal distal-QTL, as with Method 2.
 
 \section{Appendix C: Mediation analysis}
+
+\cite{Baron1986} give a description of the relationships that need be tested to declare mediation. For this study, simple models that consist of three variables are used: the independent variable X, the mediator M, and the dependent variable Y \citep{MacKinnon2007}. Superscripts are used to indicate whether a variable is the QTL, chromatin accessibility at site $k$ ($\text{C}_{k}$), or expression of gene $j$ ($\text{G}_{j}$) in the model. When an eQTL is detected, the following relationship is supported:
+\begin{equation}
+\text{X}\textsuperscript{QTL} \quad \rightarrow \quad \text{Y}^{\text{G}_{j}}
+\label{rel:eQTL}
+\end{equation}
+When cQTL or proximal eQTL to distal-eQTL are detected, a similar relationship is detected:
+\begin{equation}
+\text{X}\textsuperscript{QTL} \quad \rightarrow \quad \text{M}
+\label{rel:cQTL}
+\end{equation}
+The previous traits (Y) can also be viewed as potential mediators (M). Here we consider two models of mediation: 1) the effect of an eQTL is mediated through local chromatin state ($\text{M}^{C_{k}}$) and 2) the effect of the distal-eQTL is mediated through a proximal gene ($\text{M}^{G_{k}}$), depicted in \textbf{Figure \ref{fig:graph}}. Co-localizing QTL are consistent with the co-occurrence of $X \rightarrow Y^{G_{j}}$ and $X \rightarrow Y^{C_{k}}$ at a locus. A true mediation relationship has an additional requirement, specifically that: 
+\begin{equation}
+\text{X}\textsuperscript{QTL} \quad \indep \quad \text{Y}^{\text{G}_{j}} \quad | \quad \text{M}
+\label{rel:full_mediator}
+\end{equation}
+where ``A $\indep$ B'' indicates that A and B are independent of each other, and ``A|B'' is A conditioned on variable B. X being fully independent of Y given M is consistent with X acting on Y completely through M, referred to as full mediation. In practice, the true relationship can be complex and obscured by noise, instead resulting in partial mediation, whereby X affects Y both directly and through M. Genome-wide data present a significant challenge to systematically testing these relationships.
 
 \subsection{Mediation models}
 
