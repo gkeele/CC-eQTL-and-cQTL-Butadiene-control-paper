@@ -34,6 +34,10 @@
 \newcommand{\reply}{\ensuremath{\hookrightarrow}\xspace}
 \newcommand{\addheadline}{\subsubsection{\WVinline{[Add headline]}\xspace}}
 
+\newcommand{\GK}[2]{\textcolor{green}{#1\footnote{\textcolor{green}{GK: #2}}}}
+\newcommand{\GKinline}[1]{\textcolor{green}{#1}}
+
+
 \articletype{inv} % article type
 % {inv} Investigation 
 % {gs} Genomic Selection
@@ -117,7 +121,7 @@ More formal integration through statistical mediation analyses have also been us
 %\cite{Pai2015} localized eQTL to genomic regulatory elements in human lymphoblastoid cell line data to infer the mode of action of the QTL. \cite{Alasoo2017} further elucidated the roles of eQTL within regulatory elements by testing the effect of enhancer sequence modifications. \cite{Roytman2018} propose the use of probabilistic mediation models, finding they perform better to detect relationships between histone modification QTL (hQTL) and eQTL in comparison to simple QTL overlap in data from 112 humans. \cite{Wu2018} use mediation to tease apart the relationships among DNA methylation sites, gene expression, and complex traits. 
 %\cite{Battle2015} detected the co-localization of eQTL, ribosome occupancy QTL (rQTL), and protein abundance (pQTL), observing significant overlap and a potential buffering of rQTL effects on protein levels.
 
-\WV{Despite these successes, using data from human populations for genotype-phenotype analyses is challenging, in part due to an inability to tightly control experimental conditions and genetic backgrounds to reproducibly and unambiguously detect casual linkages.}{Needs rewording.} To aid in this effort, genetically-diverse mouse population resources have been established, including the Collaborative Cross (CC) \citep{Churchill2004,Hall2012,Srivastava2017} and the Diversity Outbred (DO) mice \citep{Churchill2012}. The CC and the DO are derived from the same eight founder strains: (short names in parentheses): A/J (AJ), C57BL/6J (B6), 129S1/SvImJ (129), NOD/ShiLtJ (NOD), NZO/H1LtJ (NZO), CAST/EiJ (CAST), PWK/PhJ (PWK), and WSB/EiJ (WSB). Whereas the CC are recombinant inbred strains, the DO are largely heterozygous, outbred animals, bred with a random mating strategy that seeks to maximize diversity. \cite{Chick2016} used a genome-wide mediation approach to link transcriptional and post-translational regulation of protein levels in 192 DO mice, and also used the CC to confirm results by showing that estimates of founder allele effects from each of the related populations corresponded. Recently, \cite{Skelly2019} used mediation analysis to connect chromatin accessibility with gene expression in embryonic stem cells derived from DO mice. In comparison to the DO, the CC is more restricted in the number of unique genomes and has reduced mapping resolution, \WV{but it does provide biological replicates, allowing measurements to be taken under varying experimental conditions while maintaining a constant genetic background.}{This would be more of a selling point if this had replicates.}
+\WV{Despite these successes, using data from human populations for genotype-phenotype analyses is challenging, in part due to an inability to tightly control experimental conditions and genetic backgrounds to reproducibly and unambiguously detect casual linkages.}{Needs rewording.} To aid in this effort, genetically-diverse mouse population resources have been established, including the Collaborative Cross (CC) \citep{Churchill2004,Hall2012,Srivastava2017} and the Diversity Outbred (DO) mice \citep{Churchill2012}. The CC and the DO are derived from the same eight founder strains: (short names in parentheses): A/J (AJ), C57BL/6J (B6), 129S1/SvImJ (129), NOD/ShiLtJ (NOD), NZO/H1LtJ (NZO), CAST/EiJ (CAST), PWK/PhJ (PWK), and WSB/EiJ (WSB). Whereas the CC are recombinant inbred strains, the DO are largely heterozygous, outbred animals, bred with a random mating strategy that seeks to maximize diversity. \cite{Chick2016} used a genome-wide mediation approach to link transcriptional and post-translational regulation of protein levels in 192 DO mice, and also used the CC to confirm results by showing that estimates of founder allele effects from each of the related populations corresponded. Recently, \cite{Skelly2019} used mediation analysis to connect chromatin accessibility with gene expression in embryonic stem cells derived from DO mice. In comparison to the DO, the CC is more restricted in the number of unique genomes and has reduced mapping resolution, \WV{but it does provide biological replicates, allowing measurements to be taken under varying experimental conditions while maintaining a constant genetic background.}{This would be more of a selling point if this had replicates.}\GK{}{Yeah, I included as plug for the CC, though I realize it's awkward given the study. Should I remove it?}
 
 Here we use a sample composed of a single male mouse from 47 strains of the CC to investigate tissue-specific dynamics between gene expression and  chromatin accessibility, as determined by Assay for Transposase Accessible Chromatin sequencing (ATAC-seq), in lung, liver, and kidney tissues. We detect QTL underlying gene expression and chromatin accessibility variation across the strains, and assess the support for mediation of the effect of eQTL through chromatin accessibility using a novel implementation of methods adapted from \cite{Chick2016}. Additionally, we detect gene mediators of distal-eQTL. 
 %We identify and characterize examples of strong mediation, as well as co-localizing but independent eQTL and cQTL. 
@@ -137,7 +141,7 @@ These findings demonstrate the experimental power of the CC for integrative anal
 
 \subsection{Animals}
 
-Adult male mice (8-12 weeks old) from \WV{47 CC strains}{Which strains---is it a secret? List the strains used in this pgh (comma separated) or an Appendix section.} (University of North Carolina Systems Genetics Core) were maintained on an NTP 2000 wafer diet (Zeigler Brothers, Inc., Gardners, PA) and water \textit{ad libitum}. The housing room was maintained on a 12-h light-dark cycle. Our experimental design sought to maximize the number of strains relative to within-strain replications based on the power analysis for QTL mapping in mouse populations \citep{Kaeppler1997}; therefore, one mouse was used per strain. Mice were euthanized and lungs, liver and kidney tissues were collected, flash frozen in liquid nitrogen, and stored at -80\degree C. These studies were approved by the Institutional Animal Care and Use Committees at Texas A\&M University and the University of North Carolina. \textbf{Figure \ref{fig:overview}} is a diagram of the experiment and subsequent analyses performed for this study.
+Adult male mice (8-12 weeks old) from 47 CC strains were acquired from the University of North Carolina Systems Genetics Core (listed in \textbf{Appendix A}) and maintained on an NTP 2000 wafer diet (Zeigler Brothers, Inc., Gardners, PA) and water \textit{ad libitum}. The housing room was maintained on a 12-h light-dark cycle. Our experimental design sought to maximize the number of strains relative to within-strain replications based on the power analysis for QTL mapping in mouse populations \citep{Kaeppler1997}; therefore, one mouse was used per strain. Mice were euthanized and lungs, liver and kidney tissues were collected, flash frozen in liquid nitrogen, and stored at -80\degree C. These studies were approved by the Institutional Animal Care and Use Committees at Texas A\&M University and the University of North Carolina. \textbf{Figure \ref{fig:overview}} is a diagram of the experiment and subsequent analyses performed for this study.
 
 \subsection{mRNA sequencing and processing}
 
@@ -157,7 +161,7 @@ Trimmed mean of M-values (TMM) normalization [edgeR, \citep{edgeR}] was applied 
 
 \subsection{CC strain genotypes and inferred haplotype mosaics}
 
-CC genomes are mosaics of the founder strain haplotypes and were previously reconstructed by the UNC Systems Genetics Core (\url{http://csbio.unc.edu/CCstatus/index.py?run=FounderProbs}) with the Hidden Markov Model of \cite{Fu2012} on genotype calls [MegaMUGA array \citep{Morgan2016muga}] from multiple animals per strain. \WV{To reduce the number of statistical tests, adjacent genomic regions were merged through averaging if the founder mosaics for all mice were similar, defined as L2 distance $\leq$ 10\% of the maximum L2 distance ($\sqrt{2}$ for a probability vector).}{...and so how many loci were tested? (Is this the same as in Keele et al 2019?)}
+CC genomes are mosaics of the founder strain haplotypes and were previously reconstructed by the UNC Systems Genetics Core (\url{http://csbio.unc.edu/CCstatus/index.py?run=FounderProbs}) with the Hidden Markov Model of \cite{Fu2012} on genotype calls [MegaMUGA array \citep{Morgan2016muga}] from multiple animals per strain. To reduce the number of statistical tests, adjacent genomic regions were merged through averaging if the founder mosaics for all mice were similar, defined as L2 distance $\leq$ 10\% of the maximum L2 distance ($\sqrt{2}$ for a probability vector), which resulted in a reduction from 77,592 to 14,191 regions.
 
 \subsection{Differential expression and accessibility analyses}
 
@@ -166,12 +170,12 @@ To account for mean-variance relationships in gene expression and chromatin acce
 
 \subsection{Gene set association analysis}
 
-GSAASeqSP \citep{Xiong2014} with Reactome Pathway Database annotations (July 24, 2015 release) was used to identify biological pathways enriched with differentially expressed genes or accessible chromatin. A list of assayed genes were provided as input to GSAASeqSP along with a weight for each gene $g$, calculated as:
+Biological pathways enriched with differentially expressed genes or accessible chromatin were identified with GSAASeqSP \citep{Xiong2014} with Reactome Pathway Database annotations (July 24, 2015 release). A list of assayed genes were input to GSAASeqSP along with a weight for each gene $g$, calculated as:
 \begin{equation}
 \text{weight}_{g} = \text{sign}(\text{fc}_{g}) \times (1-q_{g}),
 \label{eq:gene_weighting}
 \end{equation}
-where $\text{sign}(\text{fc}_{g})$ is the sign of the expression fold change, and $q_{g}$ is the FDR-adjusted p-value. Pathways with gene sets of cardinality < 15 or > 500 were excluded. For chromatin accessibility, each region was mapped to a gene using GREAT v3.0.0 (\textit{basal plus extension} mode, \textit{5 kb upstream}, \textit{1 kb downstream}, and no distal extension). \WV{Each gene was associated with the chromatin region with the most significant FDR-adjusted q-value and gene weights were calculated as above with $\text{sign}(\text{fc}_{g})$, the sign of chromatin accessibility fold-change and $q_{g}$ the FDR-adjusted q-value of the chromatin region representing gene $g$.}{Fix grammar.}
+where $\text{sign}(\text{fc}_{g})$ is the sign of the expression fold change, and $q_{g}$ is the FDR-adjusted p-value. Pathways with gene sets of cardinality < 15 or > 500 were excluded. For chromatin accessibility, each region was mapped to a gene using GREAT v3.0.0 (\textit{basal plus extension} mode, \textit{5 kb upstream}, \textit{1 kb downstream}, and no distal extension). Each gene was then paired with the chromatin region with the smallest FDR-adjusted p-value. Gene weights were calculated as with gene expression, but with $\text{sign}(\text{fc}_{g})$ representing the sign of chromatin accessibility fold-change and $q_{g}$ the FDR-adjusted p-value of the chromatin region paired wigh gene $g$.
 
 
 \begin{table*}[h]
@@ -194,8 +198,6 @@ Method 3 & local & genome \& chromosome-wide & no & 1 \\
 \end{tabularx}
 \end{tableminipage}
 \end{table*}
-
-
 
 \subsection{QTL analysis}
 
@@ -522,17 +524,21 @@ Author contributions: GRK, BCQ, WV, and TSF wrote the manuscript. GRK, BCQ, and 
 \clearpage
 
 %%%%%%%%%% Appendices
-\section{Appendix A: Significance thresholds}
+\section{Appendix A: CC strains}
+
+This study included males from the following 47 CC strains: CC001, CC002, CC003, CC004, CC005, CC006, CC007, CC010, CC011, CC012, CC013, CC015, CC016, CC017, CC019, CC020, CC021, CC023, CC024, CC025, CC027, CC028, CC029, CC030, CC031, CC032, CC033, CC035, CC036, CC037, CC038, CC039, CC040, CC041, CC042, CC043, CC044, CC045, CC046, CC049, CC053, CC055, CC057, CC059, CC061, CC062, and CC068.
+
+\section{Appendix B: Significance thresholds}
 
 \WV{}{This appendix material should be heavily thinned, potentially put into the Methods}
 
-Thresholds of significance in the context of genome-wide scans for a large number of traits need to account for the heavy multiple testing burden. In order to efficiently detect QTL, we use three procedures to define statistical significance over varying stringency, allowing greater leniency for putative proximal genetic regulators. These procedures address the family-wide error rate (FWER) and false discovery rate (FDR) differently.
+Thresholds of significance in the context of genome-wide scans for a large number of traits need to account for the heavy multiple testing burden. In order to efficiently detect QTL, we use three procedures to define statistical significance over varying stringency, allowing greater leniency for putative proximal genetic regulators. These procedures address the family-wise error rate (FWER) and false discovery rate (FDR) differently.
 
 At the level of a single trait, FWER is the probability of a false positive across all tests that are performed. The FWER is controlled through adjustment of an observed -$\log_{10}$ p-value (logP) through 1,000 permutations of the trait, producing an FWER-adjusted p-value (permP). This adjustment can be performed for genome-wide and more lenient chromosome-wide significance.
 
 To account for multiple testing over many traits, an FDR adjustment \citep{Benjamini1995} can be used to produce q-values, which are interpreted as the probability that a detected QTL is a false discovery. 
 
-\subsection{Family-\WVinline{\st{wide}wise} error rate}
+\subsection{Family-wise error rate}
 
 %The family-wide error rate (FWER) is the probability of detecting a single false positive across all genome-wide tests. Controlling FWER instead of the single test type I error rate ($\alpha$) is necessary because FWER increases with the number independent tests, reaching 1 for $\alpha = 0.05$ in the context of genome-wide tests. Controlling FWER is more conservative than controlling the false discovery rate (FDR) for multiple testing correction, and appropriate for genome scans of a single trait because there are not expected to be an excess number of QTL per outcome. 
 
@@ -546,7 +552,7 @@ Analyzing a large numbers of traits, as is the case with gene expression and chr
 
 An FDR procedure can address this multiple testing dynamic, accounting for the additional testing due to genome-wide traits while being more lenient than strict FWER control across traits. As in \cite{Chick2016}, an FDR procedure \citep{Benjamini1995,Storey2003} is applied to the per-trait FWER-adjusted permP, producing q-values. QTL are detected if q-value $\le \alpha_{\text{FDR}}$, where $\alpha_{\text{FDR}}$ is the specified false discovery rate. QTL were called using both $\alpha_{\text{FDR}} = 0.1$ and $\alpha_{\text{FDR}} = 0.2$.
 
-\section{Appendix B: Mapping procedures}
+\section{Appendix C: Mapping procedures}
 
 \subsection{Method 1: Multi-stage conditional regression with genome-wide FWER and FDR}
 
@@ -573,7 +579,7 @@ Given that the data represent 47 individual mice, there may be poor power to det
 
 A final local-QTL exclusive single step analysis is used. Instead of calculating genome-wide and chromosome-wide permP from the overall maximum logP, FWER-controlled permP are adjusted from the maximum logP within the proximal window of the trait from the first stage scans from Method 1. An FDR procedure is not used, in part because the permP are likely to be poorly distributed with respect to the expectations of FDR. A local-QTL is detected when $\text{permP} < 0.05$. This procedure, now referred to as Method 3, is less conservative for local-QTL because there is no FDR control, instead leveraging the strong biological precedent for proximal genetic regulation. It also does not leniently detect intra-chromosomal distal-QTL, as with Method 2.
 
-\section{Appendix C: Mediation analysis}
+\section{Appendix D: Mediation analysis}
 
 \cite{Baron1986} give a description of the relationships that need be tested to declare mediation. For this study, simple models that consist of three variables are used: the independent variable X, the mediator M, and the dependent variable Y \citep{MacKinnon2007}. Superscripts are used to indicate whether a variable is the QTL, chromatin accessibility at site $k$ ($\text{C}_{k}$), or expression of gene $j$ ($\text{G}_{j}$) in the model. When an eQTL is detected, the following relationship is supported:
 \begin{equation}
