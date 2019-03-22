@@ -250,11 +250,7 @@ Correlations were performed as follows. For a pair of matched QTL $j$ and $k$ fr
 
 \subsubsection{Variant association.}
 
-\WV{Variant association was performed within the genomic regions surrounding overlapping QTL in order to detect similarities and differences in patterns of association between tissues.}{Explain why it was needed in addition to the QTL analysis.} Variant genotypes from Build38 were obtained using the ISVdb \citep{Oreper2017} for the CC strains, which were converted to Build37 coordinates with the liftOver tool \citep{Lawrence2009}. Variants were filtered out if their minor allele frequencies $\le 0.1$ or they were not genotyped in one of the CC founder strains to avoid false signals.
-
-\subsection{Mediation analysis \WVinline{[Maybe merge into section below]}}
-
-\WV{}{Define mediation and explain what we are trying to do before talking about its assumptions; assumptions should be last. As currently written, the reader doesn't know what we are trying to acheive, what mediation is, or how it can help us. Tell them a story and get them excited by it; then caveats, then equations.} Detection of mediation is dependent on a number of assumptions about the underlying variables, their relationships, and the directionality of those relationships, many of which cannot be satisfied in a system as complex as chromatin accessibility and transcriptional regulation in whole living organisms. However, signals in the data that are consistent with the mediation model could identify putative causal factors that regulate gene expression. \textbf{Figure \ref{fig:graph}} represents the mediation models tested herein.
+Variant association was performed within the genomic regions surrounding overlapping QTL in order to detect similarities and differences in patterns of association between tissues, \GKinline{potentially distinguishing distinct tissue-specific QTL from those observed in multiple tissues}. Variant genotypes from Build38 were obtained using the ISVdb \citep{Oreper2017} for the CC strains, which were converted to Build37 coordinates with the liftOver tool \citep{Lawrence2009}. Variants were filtered out if their minor allele frequencies $\le 0.1$ or they were not genotyped in one of the CC founder strains to avoid false signals.
 
 \begin{figure}[htbp]
 \renewcommand{\familydefault}{\sfdefault}\normalfont
@@ -264,11 +260,13 @@ Correlations were performed as follows. For a pair of matched QTL $j$ and $k$ fr
 \label{fig:graph}}
 \end{figure}
 
-\subsubsection{Genome-wide mediation.}
+\subsection{Mediation analysis}
 
-Mediation analysis have recently been used with genomic data, including in humans (\eg \citealt{Battle2014}). We use a similar approach to \cite{Chick2016} and \cite{Keller2018} to assess statistically significant mediation of eQTL effects on gene expression.
+Mediation analyses have recently been used with genomic data, including in humans (\eg \citealt{Battle2014}). We use a similar approach to \cite{Chick2016} and \cite{Keller2018} to assess statistically significant mediation of eQTL effects on gene expression.
 
-The mediation relationships are evaluated in a genome-wide scan, allowing for the detection of \WV{FWER-corrected significant mediators}{???} that \WV{satisfy relationships \ref{rel:eQTL}, \ref{rel:cQTL}, and \ref{rel:full_mediator}}{???}. Similar to the QTL mapping genome scan described in Eq \ref{eq:alternative_model} and \WV{Eq \ref{eq:conditional_model}}{???}, the mediation scan involves a comparison of an alternative and a null model at loci across the genome. The alternative model is
+Detection of mediation is dependent on a number of assumptions about the underlying variables, their relationships, and the directionality of those relationships, many of which cannot be satisfied in a system as complex as chromatin accessibility and transcriptional regulation in whole living organisms. However, signals in the data that are consistent with the mediation model could identify putative causal factors that regulate gene expression. \textbf{Figure \ref{fig:graph}} represents the mediation models tested herein.
+
+The mediation relationships are evaluated in a genome-wide scan, allowing for the detection of statistically significant candidate mediators. Similar to the QTL mapping genome scan described in Eq \ref{eq:alternative_model}, the mediation scan involves a comparison of an alternative and a null model at loci across the genome. The alternative model is
 \begin{equation}
 y^{\text{G}_{j}}_{i} = \mu + \text{eQTL}_{i}^{\text{G}_{j}} + m_{ik} + \text{batch}_{i} + \varepsilon_{i},
 \label{eq:mediation_alt}
@@ -284,28 +282,20 @@ Because the eQTL is always included in the alternative model but not the null mo
 
 \subsection{Software and Data Availability}
 
-All statistical analyses were conducted with the R statistical programming language \citep{RSoftware2019}. The R package miQTL was used for all the mapping and mediations analyses, and is available on GitHub at \url{https://github.com/gkeele/miqtl}. A static version of miQTL is also provided in the \textbf{Supplement} (File S1).
+All statistical analyses were conducted with the R statistical programming language \citep{RSoftware2019}. The R package miQTL was used for all the mapping and mediations analyses, and is available on GitHub at \url{https://github.com/gkeele/miqtl}. A static version of miQTL is also provided in the \textbf{Supplement} as File S1.
 
 Results files and scripts to generate the results from the data are provided in the \textbf{Supplement}, described in File S1. These files are available at figshare. File S3 contains the founder haplotype mosaics used for this study in a format that works with miQTL. Files S4 - 9 are the processed sequence traits used in the analyses. File S11 is the supplemental tables and figures.
 
 %%%%%%%%%% Results
 \section{Results}
 
-\WV{}{Please use headlines where possible. Note: a headline is what you found, not what you did or a general subject area.}
+%\WV{}{Please use headlines where possible. Note: a headline is what you found, not what you did or a general subject area.}
 
-\subsection{Tissue-specific genome-wide gene expression and chromatin accessibility in three tissues \WVinline{[Convert to (or add a) headline]}}
+\subsection{\GKinline{Gene expression and chromatin accessibility}} %\WVinline{[Convert to (or add a) headline]}}
 
 Gene expression, using RNA-seq, and chromatin accessibility, using ATAC-seq, were measured in lung, liver, and kidney tissues in one mouse from each of 47 CC strains. As the function of each tissue is quite distinct, we expected that these data would reflect tissue-specific differences. Principal components analysis (PCA) of each of the gene expression and chromatin accessibility profiles clearly show the clustering of all samples by tissue (\textbf{Figure \ref{fig:pca_plots}}). 
 
-To further validate the quality of these data, we performed pairwise differential expression (DE) and differentially accessible region (DAR) analysis between the three tissues (\textbf{Table \ref{tab:diff_gene}}), and found between 3,564-5,709 DE genes, and 28,048-40,797 DARs across the comparisons (FWER < 0.1). For both expression and chromatin accessibility, liver and kidney tissues were the most similar, and lung and liver were the most distinct, also reflected in the PCA plots. Pathway analyses showed many between-tissue differences related to metabolic and immune-related pathways (FWER < 0.1) that reflects the distinct demands of each tissue. Energy metabolism pathways were more active in liver and kidney and immune-related pathways were more pronounced in lung. We compared the concordance between DE genes and DARs genome-wide and observed that most DE gene promoters do not show significant differences in chromatin accessibility (\textbf{Figure \ref{fig:diff_concordance}}). In cases where there is significantly variable accessibility in the promoter of a DE gene, though, the vast majority agree in direction (\ie, higher expression and greater accessibility).
-
-\begin{figure*}[h]
-\renewcommand{\familydefault}{\sfdefault}\normalfont
-\centering
-\includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/qtl_map_main.pdf}
-\caption{\textbf{Detected QTL are largely local for both gene expression and chromatin accessibility.} Detected QTL from Method 1 (multi-stage FDR) and Method 3 (genome-wide and chromosome-wide) are included, excluding intra-chromosomal distal-QTL detected through Method 2. The y-axis represents the genomic position of the gene or chromatin site, and the x-axis represents the genomic position of the QTL. Local-QTL appear as dots along the diagonal, and distal-QTL off of it.
-\label{fig:grid_plot}}
-\end{figure*}
+\subsubsection{\GKinline{Differential analysis of genes and chromatin accessibility correspond.}} We performed pairwise differential expression (DE) and differentially accessible region (DAR) analysis between the three tissues (\textbf{Table \ref{tab:diff_gene}}), and found between 3,564-5,709 DE genes, and 28,048-40,797 DARs (FWER < 0.1). For both expression and chromatin accessibility, liver and kidney tissues were the most similar, and lung and liver the most distinct, which was also reflected in the PCA plots. Pathway analyses showed many between-tissue differences related to metabolic and immune-related pathways (FWER < 0.1), reflecting the distinct demands of each tissue. Energy metabolism pathways were more active in liver and kidney and immune-related pathways were more pronounced in lung. We compared the concordance between DE genes and DARs genome-wide and observed that most DE gene promoters do not show significant differences in chromatin accessibility (\textbf{Figure \ref{fig:diff_concordance}}). In cases where there were significant variability in accessibility at the promoter of a DE gene, though, the vast majority agree in direction (\ie, higher expression with greater accessibility).
 
 \subsection{Tissue-specific expression QTL}
 
@@ -318,7 +308,15 @@ We classified local-eQTL as being within 10 Mb of the transcription start site (
 For Method 2, only local-eQTL and intra-chromosomal distal-eQTL were detected due to our use of chromosome-wide significance criteria. 
 For Method 3, the least stringent method, we only detected local-eQTL.
 
-After filtering lowly expressed genes, \WV{the number of genes considered in eQTL mapping}{my change---okay?} was 8401 for liver, 11357 for lung, and 10092 for kidney; a breakdown of the genes analyzed per tissue for QTL analysis is provided in \textbf{Figure \ref{fig:upset_genes_chromatin} [left]} using an UpSet plot \citep{Conway2017}. Positions of local-eQTL detected for each tissue using any of the three methods (Method 1, genome-wide q-value < 0.1; Method 2, chromosome-wide q-value < 0.1; Method 3, genome-wide and chromosome-wide FWER p-value < 0.05)  are shown in \textbf{Figure \ref{fig:grid_plot} [top]} (light colored dots), as well as summarized in \textbf{Table \ref{tab:eqtl_mapping}}. We also identified eQTL with Method 1 using a more relaxed significance threshold (q-value < 0.2; \textbf{Table \ref{tab:eqtl_mapping_lenient}}). Increasing the FDR threshold from 0.1 to 0.2 increases the number of distal-eQTL detected to a greater extent than local-eQTL. Using Method 3 and requiring genome-wide significance, the percentage of tested genes with local-eQTL were 6.3\% for lung, 8.4\% for liver, and 9.5\% for kidney (\textbf{Table \ref{tab:eqtl_mapping}}). These percentages increase to 16.6\%, 19.8\%, and 20.8\% respectively when criteria were less stringent with only \WV{chromosome-wide significance}{=What Method?}. Most genes with local-eQTL were observed in only one tissue (\textbf{Figure \ref{fig:upset_eqtl_cqtl} [left]}).
+After filtering lowly expressed genes, the number of genes considered in eQTL mapping was 8401 for liver, 11357 for lung, and 10092 for kidney; a breakdown of the genes analyzed per tissue for QTL analysis is provided in \textbf{Figure \ref{fig:upset_genes_chromatin} [left]} using an UpSet plot \citep{Conway2017}. Positions of local-eQTL detected for each tissue using any of the three methods (Method 1, genome-wide q-value < 0.1; Method 2, chromosome-wide q-value < 0.1; Method 3, genome-wide and chromosome-wide FWER p-value < 0.05)  are shown in \textbf{Figure \ref{fig:grid_plot} [top]} (light colored dots), as well as summarized in \textbf{Table \ref{tab:eqtl_mapping}}. We also identified eQTL with Method 1 using a more relaxed significance threshold (q-value < 0.2; \textbf{Table \ref{tab:eqtl_mapping_lenient}}). Increasing the FDR threshold from 0.1 to 0.2 increases the number of distal-eQTL detected to a greater extent than local-eQTL. Using Method 3 and requiring genome-wide significance, the percentage of tested genes with local-eQTL were 6.3\% for lung, 8.4\% for liver, and 9.5\% for kidney (\textbf{Table \ref{tab:eqtl_mapping}}). These percentages increase to 16.6\%, 19.8\%, and 20.8\% respectively when criteria were less stringent with only \WV{chromosome-wide significance}{=What Method?}. Most genes with local-eQTL were observed in only one tissue (\textbf{Figure \ref{fig:upset_eqtl_cqtl} [left]}).
+
+\begin{figure*}[h]
+\renewcommand{\familydefault}{\sfdefault}\normalfont
+\centering
+\includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/qtl_map_main.pdf}
+\caption{\textbf{Detected QTL are largely local for both gene expression and chromatin accessibility.} Detected QTL from Method 1 (multi-stage FDR) and Method 3 (genome-wide and chromosome-wide) are included, excluding intra-chromosomal distal-QTL detected through Method 2. The y-axis represents the genomic position of the gene or chromatin site, and the x-axis represents the genomic position of the QTL. Local-QTL appear as dots along the diagonal, and distal-QTL off of it.
+\label{fig:grid_plot}}
+\end{figure*}
 
 For each eQTL detected by any of our methods, we estimated the effect size of the eQTL.
 \WV{}{Add one sentence caveat about the Beavis effect, citing \citet{KeeleSPARCC}.}
