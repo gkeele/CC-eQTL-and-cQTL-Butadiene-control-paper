@@ -231,8 +231,8 @@ See \textbf{Appendix C} for greater detail on the mapping procedures.
 
 \subsubsection{QTL effect size.}
 
-\WV{}{I removed the shrinkage estimation of QTL effect size. I can't see that it adds anything and, anyway, estimation of effect size based on a variance component controlling 8 variables is pretty unstable and probably not something we want to advocate.}
-The effect size of a detected QTL was defined as the $R^2$ attributable to the QTL term; specifically, as $1-\text{RSS}_\text{QTL} / \text{RSS}_0$, where $\text{RSS} = \sum_{i = 1}^{n}(y_{i} - \widehat{y_{i}})^{2}$ is the residual sum of squares, \ie, the sum of squares around predicted value $\widehat{y_i}$, and $\text{RSS}_{\text{QTL}}$ and $\text{RSS}_0$ denote the RSS calculated for the QTL and null models respectively.
+%\WV{}{I removed the shrinkage estimation of QTL effect size. I can't see that it adds anything and, anyway, estimation of effect size based on a variance component controlling 8 variables is pretty unstable and probably not something we want to advocate.}
+The effect size of a detected QTL was defined as the $R^2$ attributable to the QTL term; specifically, as $1-\text{RSS}_\text{QTL} / \text{RSS}_0$, where $\text{RSS} = \sum_{i = 1}^{n}(y_{i} - \widehat{y_{i}})^{2}$ is the residual sum of squares, \ie, the sum of squares around predicted value $\widehat{y_i}$, and $\text{RSS}_{\text{QTL}}$ and $\text{RSS}_0$ denote the RSS calculated for the QTL and null models respectively. \GKinline{We also estimated a conservative QTL effect size estimate with a QTL random effects model, which is compared to the $R^{2}$ estimate in \textbf{Figures \ref{fig:qtl_effect_size_fixefvsranef}}}
 
 \subsubsection{QTL effects: estimating BLUPs for effects of founder haplotypes.} 
 
