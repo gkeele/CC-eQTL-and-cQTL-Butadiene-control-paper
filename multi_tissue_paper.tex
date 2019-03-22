@@ -11,8 +11,10 @@
 \usepackage{siunitx}
 \sisetup{output-exponent-marker=\ensuremath{\mathrm{e}}}
 
-\usepackage{enumitem}
-\newcommand{\method}[1]{\qquad Method #1}
+
+%\usepackage[dvipsnames]{xcolor}
+%\usepackage{enumitem}
+%\newcommand{\method}[1]{\qquad Method #1}
 \usepackage{soul}
 \usepackage{xspace}
 \newcommand{\indep}{\rotatebox[origin=c]{90}{$\models$}}
@@ -34,8 +36,8 @@
 \newcommand{\reply}{\ensuremath{\hookrightarrow}\xspace}
 \newcommand{\addheadline}{\subsubsection{\WVinline{[Add headline]}\xspace}}
 
-\newcommand{\GK}[2]{\textcolor{green}{#1\footnote{\textcolor{green}{GK: #2}}}}
-\newcommand{\GKinline}[1]{\textcolor{green}{#1}}
+\newcommand{\GK}[2]{\textcolor{teal}{#1\footnote{\textcolor{teal}{GK: #2}}}}
+\newcommand{\GKinline}[1]{\textcolor{teal}{#1}}
 
 
 \articletype{inv} % article type
@@ -111,7 +113,7 @@ E-mail: tsfurey@email.unc.edu}
 \vspace{-11pt}%
 
 %%%%%%%%%% Introduction
-Determining the mechanisms by which genetic variants drive molecular, cellular, and physiological phenotypes has proved to be challenging \citep{Schadt2009}. These mechanisms can be informed by genome-wide experiments that provide data on variations in molecular and cellular states in genotyped individuals, but most examples of such data are largely observational, due in part to constraints of specific populations (\eg, humans), the limitations of existing experimental technologies, and the challenge of coordinating large numbers of experiments with multiple levels of data \citep{Schaid2018}. More recently, inferences have been drawn on the relationships that connect such data by pairing complementary genome-wide datasets from the same individuals with \WV{modern statistical mediation analysis}{Need ref, esp about ``modern''. Maybe old ref and new ref.}. These analyses can identify putative causal relationships rather than correlational interactions, providing meaningful and actionable targets in terms of downstream applications in areas such as medicine and agriculture.
+Determining the mechanisms by which genetic variants drive molecular, cellular, and physiological phenotypes has proved to be challenging \citep{Schadt2009}. These mechanisms can be informed by genome-wide experiments that provide data on variations in molecular and cellular states in genotyped individuals, but most examples of such data are largely observational, due in part to constraints of specific populations (\eg, humans), the limitations of existing experimental technologies, and the challenge of coordinating large numbers of experiments with multiple levels of data \citep{Schaid2018}. \GKinline{One approach for drawing inferences on the relationships that connect such data by pairing complementary datasets from the same individuals with statistical mediation analysis (\eg \citealt{Baron1986, Mackinnon2007}), which is increasingly being used in the context of genomics \citep{Richmond2016}.} These analyses can identify putative causal relationships rather than correlational interactions, providing meaningful and actionable targets in terms of downstream applications in areas such as medicine and agriculture.
 
 %Integrative analyses can inform upon the regulation of fundamental biological processes, such as through the combined assessment of gene transcription and gene regulation data. 
 %\cite{Degner2012} correlated chromatin accessibility quantitative trait loci (cQTL) with gene expression QTL (eQTL) in human lymphoblastoid cell lines, to suggest how some genetic variants modulated transcription though chromatin state. 
@@ -161,7 +163,7 @@ Trimmed mean of M-values (TMM) normalization [edgeR, \citep{edgeR}] was applied 
 
 \subsection{CC strain genotypes and inferred haplotype mosaics}
 
-CC genomes are mosaics of the founder strain haplotypes and were previously reconstructed by the UNC Systems Genetics Core (\url{http://csbio.unc.edu/CCstatus/index.py?run=FounderProbs}) with the Hidden Markov Model of \cite{Fu2012} on genotype calls [MegaMUGA array \citep{Morgan2016muga}] from multiple animals per strain. To reduce the number of statistical tests, adjacent genomic regions were merged through averaging if the founder mosaics for all mice were similar, defined as L2 distance $\leq$ 10\% of the maximum L2 distance ($\sqrt{2}$ for a probability vector), which resulted in a reduction from 77,592 to 14,191 regions.
+CC genomes are mosaics of the founder strain haplotypes and were previously reconstructed by the UNC Systems Genetics Core (\url{http://csbio.unc.edu/CCstatus/index.py?run=FounderProbs}) with the Hidden Markov Model of \cite{Fu2012} on genotype calls [MegaMUGA array \citep{Morgan2016muga}] from multiple animals per strain. To reduce the number of statistical tests, adjacent genomic regions were merged through averaging if the founder mosaics for all mice were similar, defined as L2 distance $\leq$ 10\% of the maximum L2 distance ($\sqrt{2}$ for a probability vector), \GKinline{which the number of regions from 77,592 to 14,191.}
 
 \subsection{Differential expression and accessibility analyses}
 
