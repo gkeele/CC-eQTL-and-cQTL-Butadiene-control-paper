@@ -170,7 +170,7 @@ CC genomes are mosaics of the founder strain haplotypes and were previously reco
 \subsection{Differential expression and accessibility analyses}
 
 Read counts for each sample were converted to counts per million (CPM) and normalized using TMM normalization (\textit{edgeR}). Windows with > 70 \% of samples with CPM $\leq$ 1 were removed. Differentially expressed genes and accessible chromatin windows were determined using \textit{limma} \citep{limma} using a linear model with TMM-normalized CPM value as the response and fixed effect covariates of strain, batch and tissue (lung, liver, or kidney). 
-To account for mean-variance relationships in gene expression and chromatin accessibility data, precision weights were calculated using the \textit{limma} function \textit{voom} and incorporated into the linear modeling procedure. The p-values were adjusted using an false discovery rate (FDR) procedure \citep{Benjamini1995}, and differentially expressed genes and accessible chromatin windows were called based on the q-value $\le$ 0.01 and log$_{2}$ fold-change $\geq$ 1. Adjacent significantly differential chromatin windows in the same direction were merged with a p-value computed using Simes' method \citep{Sarkar1997}, and chromatin regions were re-evaluated for significance using the Simes p-values.
+To account for mean-variance relationships in gene expression and chromatin accessibility data, precision weights were calculated using the \textit{limma} function \textit{voom} and incorporated into the linear modeling procedure. The p-values were adjusted using a false discovery rate (FDR) procedure \citep{Benjamini1995}, and differentially expressed genes and accessible chromatin windows were called based on the q-value $\le$ 0.01 and log$_{2}$ fold-change $\geq$ 1. Adjacent significantly differential chromatin windows in the same direction were merged with a p-value computed using Simes' method \citep{Sarkar1997}, and chromatin regions were re-evaluated for significance using the Simes p-values.
 
 \subsection{Gene set association analysis}
 
@@ -203,7 +203,7 @@ where $\text{sign}(\text{fc}_{g})$ is the sign of the expression fold change, an
 %\end{tableminipage}
 %\end{table*}
 
-\subsection{QTL analysis}
+\subsection{QTL model}
 
 QTL analysis was performed for both gene expression and chromatin accessibility using regression on inferred haplotypes \citep{Mott2000}, a variant of Haley-Knott regression \citep{Haley1992,Martinez1992} commonly used for mapping in the CC \citep{Valdar2006c,Aylor2011,Gralinski2015,Kelada2016,Donoghue2017,KeeleSPARCC} and other multiparent populations (MPPs) [\eg, \citet{King2012} in \textit{Drosophila}].
 
@@ -218,14 +218,28 @@ The fit of \autoref{eq:alternative_model} was compared with the fit of the same 
 
 %A single locus approach to QTL mapping was used for both gene expression and chromatin accessibility. The CC mice have well-characterized founder haplotypes, allowing the association analysis to be haplotype-based, also referred to as interval mapping or linkage analysis \citep{Lander1989}. Assessing association between haplotype descent and phenotype has advantages to variant association, such as implicitly modeling multiple local variants simultaneously and more closely reflecting the linkage disequilibrium (LD) decay. Because haplotype state is not directly observed but rather probabilistically inferred (\eg \citealt{Lander1987,Mott2000,Liu2010,Fu2012,Gatti2014,Zheng2015}), formal interval mapping requires an computationally inefficient Expectation-Maximization (EM) algorithm \citep{Dempster1977}. A computationally efficient regression approximation \citep{Haley1992,Martinez1992} is commonly used instead for multiparental populations (MPP) (\eg \citealt{Valdar2006a,Valdar2009,Svenson2012,Baud2013,Baud2014}), including the CC (\eg \citealt{Aylor2011,Kelada2016,Mosedale2017,Donoghue2017}). This efficiency is particularly important in the context of a study of genome-wide molecular phenotypes.
 
-\subsubsection{Mapping eQTL and cQTL genome-wide \WVinline{Redo this section --- needs more, see note.}} \WV{Three mapping procedures were used to detect QTL, each with unique features:}{This section must start with a rationale (why does it make sense to have three methods?), prefably a more precise version of the one currently in the Discussion. The three methods described here need more description. At present they cannot be understood without the Appendix. Also, I don't find Table 1 useful or understandable. Delete Table 1 and just try to make this section clear.}
+\subsection{\GKinline{QTL mapping procedures}}
+%\WVinline{Redo this section --- needs more, see note.}} \WV{Three mapping procedures were used to detect QTL, each with unique features:}{This section must start with a rationale (why does it make sense to have three methods?), prefably a more precise version of the one currently in the Discussion. The three methods described here need more description. At present they cannot be understood without the Appendix. Also, I don't find Table 1 useful or understandable. Delete Table 1 and just try to make this section clear.}
 %\begin{enumerate}[label = \method{{\arabic*:}}]
 %\setlength{\itemindent}{3em}
-\begin{description}
-	\item[Method 1:] Multi-stage conditional regression with genome-wide family-wide error rate (FWER) and FDR control (Method 1). This procedure is the most statistically stringent, can identify both local and distal-QTL, and potentially multiple QTL per trait in an unbiased FDR control.
-    \item[Method 2:] Single-stage regression with chromosome-wide FWER and FDR control (Method 2). This procedure is oriented towards identification of local-QTL by using the much more lenient chromosome-wide FWER adjustment. Putative distal-QTL that are located on the same chromosome as the target but are not proximal to the trait's genomic coordinate are also leniently detected, referred to here as intra-chromosomal distal-QTL.
-    \item[Method 3:] Single-stage regression with genome-wide and chromosome-wide FWER control (Method 3). This procedure only detects local-QTL, leveraging strong biological precedent for local genetic regulation to reduce the significance threshold. FWER adjustment, either at genome or chromosome-wide levels, is performed for the maximum logP in the local window (defined here as 10 Mb upstream or downstream of target's coordinate), without FDR control.
-\end{description}
+\GKinline{We used three related procedures for calling eQTL and cQTL at varying levels of statistical significance while taking into account local/distal status of putative QTL.}
+
+\subsubsection{\GKinline{Local analysis.}} 
+\GKinline{We first detected local-QTL, leveraging the prior belief in local genetic regulation, here on referred to as Analysis L. Genome-wide scans were performed for all traits, and a QTL was detected if the peak association (measured as logP) within 10 Mb of the gene transcription start site (TSS) or chromatin region midpoint surpasses the significance threshold. Significance was evaluated with thresholds, both genome-wide and at the more lenient level of the local chromosome, determined through permutations (see \textbf{Appendix B} for more details).}
+
+\subsubsection{\GKinline{Local chromosome analysis.}} 
+\GKinline{We next expand the scope of potential detected QTL to include any locus on the chromosome that harbors the trait, \ie the local chromosome, here after referred to as Analysis LC. These results are drawn from the same genome scans as Analysis L; however, instead of considering only the local window around the trait genomic coordinate, the peak logP on the local chromosome is adjusted to control the family-wise error rate (FWER) based on the permutation scans, denoted as permP. Additionally, we adjust the permP to control the FDR (at both 0.1 and 0.2), accounting for multiple testing across the traits.}
+
+\GKinline{In comparison to Analysis L, this procedure is more stringent on local-QTL because of the additional FDR adjustment. Alternatively, it leniently detects distal-QTL located on the local chromosome.}
+
+\subsubsection{\GKinline{Genome-wide analysis.}} 
+\GKinline{Our final approach to detecting QTL also uses the same genome scans as Analyses L and LC.}
+
+%\begin{description}
+%	\item[Method 1:] Multi-stage conditional regression with genome-wide family-wide error rate (FWER) and FDR control (Method 1). This procedure is the most statistically stringent, can identify both local and distal-QTL, and potentially multiple QTL per trait in an unbiased FDR control.
+%    \item[Method 2:] Single-stage regression with chromosome-wide FWER and FDR control (Method 2). This procedure is oriented towards identification of local-QTL by using the much more lenient chromosome-wide FWER adjustment. Putative distal-QTL that are located on the same chromosome as the target but are not proximal to the trait's genomic coordinate are also leniently detected, referred to here as intra-chromosomal distal-QTL.
+%    \item[Method 3:] Single-stage regression with genome-wide and chromosome-wide FWER control (Method 3). This procedure only detects local-QTL, leveraging strong biological precedent for local genetic regulation to reduce the significance threshold. FWER adjustment, either at genome or chromosome-wide levels, is performed for the maximum logP in the local window (defined here as 10 Mb upstream or downstream of target's coordinate), without FDR control.
+%\end{description}
 
 See \textbf{Appendix C} for greater detail on the mapping procedures.
 
@@ -304,7 +318,7 @@ To evaluate the impact of genetic variation on gene expression, we performed eQT
 Method 1 was the most stringent and involved a multi-stage conditional regression procedure paired with an FDR control that allowed for the detection of potentially multiple eQTL per gene and required significance at a genome-wide level.
 Method 2 was less stringent, requiring FDR-controlled significance at a chromosome-wide level and only using results from the first stage of the multi-stage analysis, which we refer to as a single-step analysis. 
 Method 3 was also a single-step analysis and employed an even more lenient significance criteria based on the genome-wide and chromosome-wide adjusted FWER p-value. 
-We classified local-eQTL as being within 10 Mb of the transcription start site (TSS) of the gene, and distal-eQTL as being greater than 10 Mb from the TSS on the same chromosome (intra-chromosomal) or on a different chromosome (inter-chromosomal). 
+We classified local-eQTL as being within 10 Mb of the gene TSS, and distal-eQTL as being greater than 10 Mb from the TSS on the same chromosome (intra-chromosomal) or on a different chromosome (inter-chromosomal). 
 For Method 2, only local-eQTL and intra-chromosomal distal-eQTL were detected due to our use of chromosome-wide significance criteria. 
 For Method 3, the least stringent method, we only detected local-eQTL.
 
@@ -536,7 +550,7 @@ Author contributions: GRK, BCQ, WV, and TSF wrote the manuscript. GRK, BCQ, and 
 
 This study included males from the following 47 CC strains: CC001, CC002, CC003, CC004, CC005, CC006, CC007, CC010, CC011, CC012, CC013, CC015, CC016, CC017, CC019, CC020, CC021, CC023, CC024, CC025, CC027, CC028, CC029, CC030, CC031, CC032, CC033, CC035, CC036, CC037, CC038, CC039, CC040, CC041, CC042, CC043, CC044, CC045, CC046, CC049, CC053, CC055, CC057, CC059, CC061, CC062, and CC068.
 
-\section{Appendix B: Significance thresholds}
+\section{Appendix B: Permutation significance thresholds}
 
 \WV{}{This appendix material should be heavily thinned, potentially put into the Methods}
 
