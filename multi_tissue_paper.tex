@@ -229,16 +229,18 @@ The fit of \autoref{eq:alternative_model} was compared with the fit of the same 
 %\setlength{\itemindent}{3em}
 \GKinline{We used three related procedures for calling eQTL and cQTL at varying levels of statistical significance while taking into account local/distal status of putative QTL.}
 
-\subsubsection{\GKinline{Local analysis.}} 
+\subsubsection{\GKinline{Local analysis - Analysis L.}} 
 \GKinline{We first detected local-QTL, leveraging the prior belief in local genetic regulation, here on referred to as Analysis L. Genome-wide scans were performed for all traits, and a QTL was detected if the peak association (measured as logP) within 10Mb of the gene transcription start site (TSS) or chromatin region midpoint surpasses the significance threshold. QTL were called with respect to both genome-wide and local chromosome-wide thresholds.}
 
-\subsubsection{\GKinline{Local chromosome analysis.}} 
-\GKinline{We next expand the scope of potential detected QTL to include any locus on the chromosome that harbors the trait, \ie the local chromosome, here after referred to as Analysis LC. These results are drawn from the same genome scans as Analysis L; however, instead of considering only the local window around the trait genomic coordinate, the peak logP on the local chromosome is adjusted to control the family-wise error rate (FWER) based on the local chromosome EVD, denoted as permP. Additionally, we adjust the permP to control the FDR (at both 0.1 and 0.2), accounting for multiple testing across the traits.}
+\subsubsection{\GKinline{Local chromosome analysis - Analysis LC.}} 
+\GKinline{We next expand the scope of potential detected QTL to include any locus on the chromosome that harbors the trait, \ie the local chromosome, here after referred to as Analysis LC. These results are drawn from the same genome scans as Analysis L; however, instead of considering only the local window around the trait's genomic coordinate, the peak logP on the local chromosome is adjusted to control the family-wise error rate (FWER) based on the local chromosome EVD, denoted as permP. Additionally, we adjust the permP to control the FDR (at both 0.1 and 0.2), accounting for multiple testing across the traits. See \textbf{Appendix B} for further discussion on false positive control.}
 
-\GKinline{In comparison to Analysis L, this procedure is more stringent on local-QTL because of the additional FDR adjustment. Alternatively, it leniently detects distal-QTL located on the local chromosome. Notably, Analysis LC would not detect QTL within the local window if a stronger association is observed outside the window, though Analysis L would.}
+\GKinline{In comparison to Analysis L, this procedure is more stringent on local-QTL because of the additional FDR adjustment. Alternatively, it is highly lenient in detecting distal-QTL located on the local chromosome. Notably, Analysis LC would not detect QTL within the local window if a stronger association is observed outside the window, though Analysis L would.}
 
-\subsubsection{\GKinline{Genome-wide analysis.}} 
-\GKinline{Our final approach to detecting QTL also uses the same genome scans as Analyses L and LC.}
+\subsubsection{\GKinline{Genome-wide analysis - Analysis G.}} 
+\GKinline{Our final approach for detecting QTL, referred to as Analysis G, is the most statistically stringent, only identifying genome-wide significant QTL that pass FDR control. Analysis G also uses the same genome scans as Analyses L and LC, but incorporates additional scans conditioned on detected QTL to potentially identify multiple QTL per trait in unbiased fashion for FDR. Notably, the local status of the QTL does not factor into Analysis G. See \textbf{Appendix D} for details on the conditional genome scan procedure.}
+
+\GKinline{Analyses L, LC, and G potentially detect many of the same QTL, specifically strong local-QTL. Collectively, they allow for efficient detection of QTL with varying degrees of statistical support while strongly leveraging local status.}
 
 %\begin{description}
 %	\item[Method 1:] Multi-stage conditional regression with genome-wide family-wide error rate (FWER) and FDR control (Method 1). This procedure is the most statistically stringent, can identify both local and distal-QTL, and potentially multiple QTL per trait in an unbiased FDR control.
@@ -246,7 +248,7 @@ The fit of \autoref{eq:alternative_model} was compared with the fit of the same 
 %    \item[Method 3:] Single-stage regression with genome-wide and chromosome-wide FWER control (Method 3). This procedure only detects local-QTL, leveraging strong biological precedent for local genetic regulation to reduce the significance threshold. FWER adjustment, either at genome or chromosome-wide levels, is performed for the maximum logP in the local window (defined here as 10 Mb upstream or downstream of target's coordinate), without FDR control.
 %\end{description}
 
-See \textbf{Appendix C} for greater detail on the mapping procedures.
+%See \textbf{Appendix C} for greater detail on the mapping procedures.
 
 \subsubsection{QTL effect size.}
 
@@ -318,7 +320,7 @@ Gene expression, using RNA-seq, and chromatin accessibility, using ATAC-seq, wer
 
 \subsection{Tissue-specific expression QTL}
 
-To evaluate the impact of genetic variation on gene expression, we performed eQTL mapping \WV{using three related approaches.}{Is the reason for using three approaches ever explained?}
+To evaluate the impact of genetic variation on gene expression, we performed eQTL mapping \GKinline{using three related analyses of varying statistical rigor for calling QTL.}
 % to detect eQTL were used (\textbf{Table \ref{tab:qtl_procedures}}), summarized here and described more completely in \textbf{Appendix B}. 
 Method 1 was the most stringent and involved a multi-stage conditional regression procedure paired with an FDR control that allowed for the detection of potentially multiple eQTL per gene and required significance at a genome-wide level.
 Method 2 was less stringent, requiring FDR-controlled significance at a chromosome-wide level and only using results from the first stage of the multi-stage analysis, which we refer to as a single-step analysis. 
@@ -362,7 +364,7 @@ Again we found that the CAST and PWK haplotypes have more extreme effects than t
 
 \section{Paired QTL detected in multiple tissues}
 
-\WV{}{Break up this section with headlines.}
+%\WV{}{Break up this section with headlines.}
 
 For a given trait, QTL from different tissues were paired based on co-localizing to approximately the same genomic region. For local-QTL, both had to be within the local window, defined at 10 Mb around the gene TSS, resulting in a maximum distance of 20 Mb between QTL. For distal-eQTL, both had to be within 10 Mb of each other. 
 For local-eQTL, we detected 761 (liver/lung), 1206 (liver/kidney), and 1025 (lung/kidney) pairs. For distal-eQTL, we detected 61 (liver/lung), 120 (liver/kidney), and 59 (lung/kidney) pairs. For cQTL, the vast majority of pairs were local, with 55 (liver/lung), 56 (liver/kidney), and 142 (lung/kidney). Only 4 distal-cQTL pairs were observed, all between lung and kidney. The effect sizes of paired QTL vary across tissues, though they were significantly correlated (\textbf{Figure \ref{fig:qtl_effect_size_comparison}}).
@@ -580,11 +582,11 @@ Author contributions: GRK, BCQ, WV, and TSF wrote the manuscript. GRK, BCQ, and 
 
 \GKinline{An FDR procedure can address this multiple testing dynamic, accounting for the additional testing due to many traits while being more lenient than strict FWER control across traits. An FDR procedure \citep{Benjamini1995,Storey2003} was applied to the per-trait permP, producing $q$-values. QTL are detected if q-value $\le \alpha_{\text{FDR}}$, where $\alpha_{\text{FDR}}$ is the specified false discovery rate. QTL were called using both $\alpha_{\text{FDR}} = 0.1$ and $\alpha_{\text{FDR}} = 0.2$. Analysis LC used permP derived EVD defined from the local chromosome, and Analysis G used genome-wide permP.}
 
-\section{Appendix C: Mapping procedures}
+%\section{Appendix C: Mapping procedures}
 
-\subsection{Method 1: Multi-stage conditional regression with genome-wide FWER and FDR}
+\section{\GKinline{Appendix C: Conditional genome scans (Analysis G)}}
 
-The combined per-trait FWER control and across-trait FDR control restrict the mapping procedure’s ability to detect multiple QTL per outcome in a statistically valid manner because the EVD used for FWER adjustment is fit from the maximum statistical score per trait. To include additional strong statistical scores is potentially biasing, as would be the case when there are multiple associations above the FWER threshold, increasing the enrichment in small p-values. This inflations in small p-values is precisely the pattern of association the FDR procedure detects. To avoid this problem, a multi-stage conditional fitting approach is used \citep{Jansen2017}. The procedure is described in the following steps:
+The combined per-trait FWER control and across-trait FDR control restrict the mapping procedures ability to detect multiple QTL per outcome in a statistically valid manner because the EVD used for FWER adjustment is fit from the maximum statistical score per trait. To include additional strong statistical scores is potentially biasing, as would be the case when there are multiple associations above the FWER threshold, increasing the enrichment in small p-values. This inflations in small p-values is precisely the pattern of association the FDR procedure detects. To avoid this problem, a multi-stage conditional fitting approach is used \citep{Jansen2017}. The procedure is described in the following steps:
 \begin{enumerate}
 	\item For a given trait, conduct genome scan according to the model described in Eq \ref{eq:alternative_model}.
     \item Perform genome scans for the permuted trait to characterize an EVD. Calculate FWER-adjusted permP from the observed maximum logP of the genome scan of the trait. The permP is stored to be used as input to an FDR method.
@@ -599,13 +601,13 @@ with $\text{locus}_{i}^{j}$ representing the locus effect of the peak associatio
 
 A multi-stage conditional scan approach could have issues with over-fitting 47 data points per trait, given that each $\text{QTL}$ and $\text{locus}$ effect represents the estimation of seven fixed effects. However, the permutations were found to appropriately compensate for this potential in the recalculation of the EVD based on permutations of the conditional scans in step 2. \textbf{Figure \ref{fig:conditional_scans}} provides a clear example in which the gene \textit{Gpn3} has a local-eQTL detected after a strong distal-eQTL is conditioned for within the model in lung tissue. This multi-stage conditional procedure is referred to as Method 1.
 
-\subsection{Method 2: Single-stage regression with chromosome-wide FWER and FDR control}
+%\subsection{Method 2: Single-stage regression with chromosome-wide FWER and FDR control}
 
-Given that the data represent 47 individual mice, there may be poor power to detect genome-wide significant QTL. Because of the strong biological prior evidence for local-QTL, significant genetic associations that meet chromosome-wide significance for the local chromosome of the trait were also detected and recorded. This was accomplished by fitting a chromosome-wide EVD, and thus producing chromosome-wide FWER-adjusted permP for each trait. Chromosome-wide results were restricted to the first stage of the multi-stage procedure, thus referred to as a single-stage analysis, and allowing only a single chromosome-wide permP per trait. The same FDR then used as in Method 1, resulting in chromosome-wide q-values. This more lenient single-stage procedure is referred to as Method 2.
+%Given that the data represent 47 individual mice, there may be poor power to detect genome-wide significant QTL. Because of the strong biological prior evidence for local-QTL, significant genetic associations that meet chromosome-wide significance for the local chromosome of the trait were also detected and recorded. This was accomplished by fitting a chromosome-wide EVD, and thus producing chromosome-wide FWER-adjusted permP for each trait. Chromosome-wide results were restricted to the first stage of the multi-stage procedure, thus referred to as a single-stage analysis, and allowing only a single chromosome-wide permP per trait. The same FDR then used as in Method 1, resulting in chromosome-wide q-values. This more lenient single-stage procedure is referred to as Method 2.
 
-\subsection{Method 3: Single-stage regression with genome-wide and chromosome-wide FWER control for local-QTL}
+%\subsection{Method 3: Single-stage regression with genome-wide and chromosome-wide FWER control for local-QTL}
 
-A final local-QTL exclusive single step analysis is used. Instead of calculating genome-wide and chromosome-wide permP from the overall maximum logP, FWER-controlled permP are adjusted from the maximum logP within the proximal window of the trait from the first stage scans from Method 1. An FDR procedure is not used, in part because the permP are likely to be poorly distributed with respect to the expectations of FDR. A local-QTL is detected when $\text{permP} < 0.05$. This procedure, now referred to as Method 3, is less conservative for local-QTL because there is no FDR control, instead leveraging the strong biological precedent for proximal genetic regulation. It also does not leniently detect intra-chromosomal distal-QTL, as with Method 2.
+%A final local-QTL exclusive single step analysis is used. Instead of calculating genome-wide and chromosome-wide permP from the overall maximum logP, FWER-controlled permP are adjusted from the maximum logP within the proximal window of the trait from the first stage scans from Method 1. An FDR procedure is not used, in part because the permP are likely to be poorly distributed with respect to the expectations of FDR. A local-QTL is detected when $\text{permP} < 0.05$. This procedure, now referred to as Method 3, is less conservative for local-QTL because there is no FDR control, instead leveraging the strong biological precedent for proximal genetic regulation. It also does not leniently detect intra-chromosomal distal-QTL, as with Method 2.
 
 \section{Appendix D: Mediation analysis}
 
