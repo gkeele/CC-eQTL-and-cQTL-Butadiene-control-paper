@@ -304,9 +304,9 @@ Because the eQTL is always included in the alternative model but not the null mo
 
 \subsection{Software and Data Availability}
 
-All statistical analyses were conducted with the R statistical programming language \citep{RSoftware2019}. The R package miQTL was used for all the mapping and mediations analyses, and is available on GitHub at \url{https://github.com/gkeele/miqtl}. A static version of miQTL is also provided in the \textbf{Supplement} as File S1.
+All statistical analyses were conducted with the R statistical programming language \citep{RSoftware2019}. The R package miQTL was used for all the mapping and mediations analyses, and is available on GitHub at \url{https://github.com/gkeele/miqtl}. A static version of miQTL is also provided in the \textbf{Supplement} (File S2).
 
-Results files and scripts to generate the results from the data are provided in the \textbf{Supplement}, described in File S1. These files are available at figshare. File S3 contains the founder haplotype mosaics used for this study in a format that works with miQTL. Files S4 - 9 are the processed sequence traits used in the analyses. File S11 is the supplemental tables and figures.
+The data, results files, and scripts to generate the results are provided in the \textbf{Supplement}, described in File S1. All files are available at figshare. File S3 contains the founder haplotype mosaics used for this study in a format that works with miQTL. Files S4 - S9 are the processed gene expression and chromatin accessibility data for liver, lung, and kidney used in the differential and QTL analyses. Files S10 - S12 are the results tables of differentially expressed genes for (liver/lung), (liver/kidney), and (lung/kidney); and Files S13 - S15 are results tables for differentially accessible regions. Files S16 - S18 are the local-eQTL results tables for liver, lung, and kidney, respectively; Files S19 - S21 are distal-eQTL results tables; Files S22 - S24 are local-cQTL results tables; and Files S25 - S27 are distal-cQTL results tables. Files S28 - S30 are results tables of local-eQTL with chromatin mediators. File S31 is the supplemental tables and figures.
 
 %%%%%%%%%% Results
 \section{Results}
@@ -477,7 +477,7 @@ Further elucidation of the genetic regulation of \textit{Akr1e1} was observed in
 
 \subsection{Overview of QTL and mediation analyses \WVinline{Move to near the beginning of the results, \ie, BEFORE the deep dive? --- Terry, thoughts?}}
 
-All QTL and mediation results for all three tissues are depicted as circos plots \citep{Gu2014} in \textbf{Figure \ref{fig:circos_plot}}. Notably, local-QTL and chromatin mediation are not evenly distributed across the genome, but tend to aggregate in pockets. In particular, there is a high concentration of cQTL and chromatin mediation detected along chromosome 17, observed across all three tissues, which happens to correspond to the immune-related major histocompatibility (MHC) region in mouse. However, we note that most of the chromatin-mediated genes in this region are not histocompatibility genes (\textbf{Tables SXX}). The patterns of distal-QTL and gene mediation appear to be tissue-specific, though there are consistent regions observed across the tissues, such as the \textit{Idd9} region \citep{HamiltonWilliams2010} of chromosome 4, which contains multiple zinc finger proteins and regulates genes such as \textit{Akr1e1} and \textit{Ccnyl1}. Previously discussed genes are highlighted for each tissue.
+All QTL and mediation results for all three tissues are depicted as circos plots \citep{Gu2014} in \textbf{Figure \ref{fig:circos_plot}}. Notably, local-QTL and chromatin mediation are not evenly distributed across the genome, but tend to aggregate in pockets. In particular, there is a high concentration of cQTL and chromatin mediation detected along chromosome 17, observed across all three tissues, which happens to correspond to the immune-related major histocompatibility (MHC) region in mouse. However, we note that most of the chromatin-mediated genes in this region are not histocompatibility genes (\textbf{Files S28} - \textbf{S30}). The patterns of distal-QTL and gene mediation appear to be tissue-specific, though there are consistent regions observed across the tissues, such as the \textit{Idd9} region \citep{HamiltonWilliams2010} of chromosome 4, which contains multiple zinc finger proteins and regulates genes such as \textit{Akr1e1} and \textit{Ccnyl1}. Previously discussed genes are highlighted for each tissue.
 
 \begin{figure*}[h!]
 \renewcommand{\familydefault}{\sfdefault}\normalfont
@@ -673,13 +673,16 @@ Data and analysis files in the \textbf{Supplement} include:
 	\item File\_S1: data\_supplement\_details.pdf
 	\item File\_S2: miqtl\_1.1.1.tar.gz
 	\item File\_S3: cc\_genome\_cache.zip
-	\item File\_S4: liver\_expression.csv
-	\item File\_S5: lung\_expression.csv
-	\item File\_S6: kidney\_expression.csv
-	\item File\_S7: liver\_chromatin.csv
-	\item File\_S8: lung\_chromatin.csv
-	\item File\_S9: kidney\_chromatin.csv
-	\item File\_S11: supplement\_tables\_figures.pdf
+	\item File\_S4 - S6: \{liver,lung,kidney\}\_expression.csv
+	\item File\_S7 - S9: \{liver,lung,kidney\}\_chromatin.csv
+	\item File\_S10 - S12: de\_\{liver\_lung,liver\_kidney,lung\_kidney\}.csv
+	\item File\_S13 - S15: dar\_\{liver\_lung,liver\_kidney,lung\_kidney\}.csv
+	\item File\_S16 - S18: \{liver,lung,kidney\}\_local\_eqtl.csv
+	\item File\_S19 - S21: \{liver,lung,kidney\}\_distal\_eqtl.csv
+	\item File\_S22 - S24: \{liver,lung,kidney\}\_local\_cqtl.csv
+	\item File\_S25 - S27: \{liver,lung,kidney\}\_distal\_cqtl.csv
+	\item File\_S28 - S30: \{liver,lung,kidney\}\_chromatin\_mediation.csv
+	\item File\_S31: supplement\_tables\_figures.pdf
 \end{itemize}
 
 \section{miQTL package}
