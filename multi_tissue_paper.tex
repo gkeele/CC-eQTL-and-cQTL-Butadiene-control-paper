@@ -246,17 +246,27 @@ The fit of \autoref{eq:alternative_model} was compared with the fit of the same 
 \GKinline{We used three related procedures for calling eQTL and cQTL at varying levels of statistical significance while taking into account local/distal status of putative QTL.}
 
 \subsubsection{\GKinline{Local analysis - Analysis L.}} 
-\GKinline{We first detected local-QTL, leveraging the prior belief in local genetic regulation, here on referred to as Analysis L. Genome-wide scans were performed for all traits, and a QTL was detected if the peak association (measured as logP) within 10Mb of the gene transcription start site (TSS) or chromatin region midpoint surpasses the significance threshold. QTL were called with respect to both genome-wide and local chromosome-wide thresholds.}
+\GKinline{We first detected local-QTL, leveraging the prior belief in local genetic regulation, here on referred to as Analysis L. Genome-wide scans were performed for all traits, and a QTL was detected if the peak association (measured as logP) within 10Mb of the gene transcription start site (TSS) or chromatin region midpoint surpasses the significance threshold. QTL were called with respect to local chromosome-wide thresholds.}
+
+% WV to self: chrom-adj logP (permP) at max peak in window. Not adj for num of genes. 
+% .. better to region-adj logP and then FDR it.
 
 \subsubsection{\GKinline{Local chromosome analysis - Analysis LC.}} 
 \GKinline{We next expand the scope of potential detected QTL to include any locus on the chromosome that harbors the trait, \ie the local chromosome, here after referred to as Analysis LC. These results are drawn from the same genome scans as Analysis L; however, instead of considering only the local window around the trait's genomic coordinate, the peak logP on the local chromosome is adjusted to control the family-wise error rate (FWER) based on the local chromosome EVD, denoted as permP. Additionally, we adjust the permP to control the FDR (at both 0.1 and 0.2), accounting for multiple testing across the traits. See \textbf{Appendix B} for further discussion on false positive control.}
 
 \GKinline{In comparison to Analysis L, this procedure is more stringent on local-QTL because of the additional FDR adjustment. Alternatively, it is highly lenient in detecting distal-QTL located on the local chromosome. Notably, Analysis LC would not detect QTL within the local window if a stronger association is observed outside the window, though Analysis L would.}
 
+% WV to self: chrom-adj logP (permP) at max peak on chromosome, then FDR adjust for num of genes.
+
 \subsubsection{\GKinline{Genome-wide analysis - Analysis G.}} 
 \GKinline{Our final approach for detecting QTL, referred to as Analysis G, is the most statistically stringent, only identifying genome-wide significant QTL that pass FDR control. Analysis G also uses the same genome scans as Analyses L and LC, but incorporates additional scans conditioned on detected QTL to potentially identify multiple QTL per trait in unbiased fashion for FDR. Notably, the local status of the QTL does not factor into Analysis G. See \textbf{Appendix D} for details on the conditional genome scan procedure.}
 
 \GKinline{Analyses L, LC, and G potentially detect many of the same QTL, specifically strong local-QTL. Collectively, they allow for efficient detection of QTL with varying degrees of statistical support while strongly leveraging local status.}
+
+% WV to self: genome-adj logP at max peak on genome, subject to a further FDR -> gen-perm-Q
+
+% Three methods: like changing the threshold, but only if local QTL is the biggest.
+
 
 %\begin{description}
 %	\item[Method 1:] Multi-stage conditional regression with genome-wide family-wide error rate (FWER) and FDR control (Method 1). This procedure is the most statistically stringent, can identify both local and distal-QTL, and potentially multiple QTL per trait in an unbiased FDR control.
