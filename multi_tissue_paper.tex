@@ -192,10 +192,15 @@ To account for mean-variance relationships in gene expression and chromatin acce
 
 Biological pathways enriched with differentially expressed genes or accessible chromatin were identified with GSAASeqSP \citep{Xiong2014} with Reactome Pathway Database annotations (July 24, 2015 release). A list of assayed genes were input to GSAASeqSP along with a weight for each gene $g$, calculated as:
 \begin{equation}
-\text{weight}_{g} = \text{sign}(\text{fc}_{g}) \times (1-q_{g}),
+\text{weight}_{g} = \text{sign}(\Delta_{g}) \times (1-q_{g}),
 \label{eq:gene_weighting}
 \end{equation}
-where $\text{sign}(\text{fc}_{g})$ is the sign of the expression fold change, and $q_{g}$ is the FDR-adjusted $p$-value. Pathways with gene sets of cardinality < 15 or > 500 were excluded. For chromatin accessibility, each region was mapped to a gene using GREAT v3.0.0 (\textit{basal plus extension} mode, \textit{5 kb upstream}, \textit{1 kb downstream}, and no distal extension). \WV{Each gene was then paired with the chromatin region with the smallest FDR-adjusted $p$-value.}{in the same location? I'm not understanding this.} Gene weights were calculated as with gene expression, but with $\text{sign}(\text{fc}_{g})$ representing the sign of chromatin accessibility fold-change and $q_{g}$ the FDR-adjusted $p$-value of the chromatin region paired wigh gene $g$.
+where $\text{sign}(\Delta_{g)}$ is the sign of the fold change in gene $g$ expression, and $q_{g}$ is the FDR-adjusted DE $p$-value. Pathways with gene sets of cardinality < 15 or > 500 were excluded. 
+
+For pathway analysis of differentially chromatin accessiblility \GKinline{near genes}, each region was mapped to a gene using GREAT v3.0.0 (\textit{basal plus extension} mode, \textit{5 kb upstream}, \textit{1 kb downstream}, and no distal extension). 
+\WV{Each gene was then paired with the chromatin region with the smallest FDR-adjusted $p$-value.}{in the same location? I'm not understanding this.}  
+\GK{}{I'm not completely sure because Bryan performed these analyses and wrote this section. I think the challenge is that chromatin accessibility is a messier, less discrete molecular trait. So really it's DAR near genes. I've split it into two paragraphs, and included an alternative sentence, though I'm not sure if it's any better.} 
+\GKinline{The minimum DAR $q$-value was selected as the summary $q_{g}$ for chromatin near gene $g$.} Gene weights were calculated as with gene expression, but with $\text{sign}(\Delta_{g})$ representing the sign of chromatin accessibility fold-change and $q_{g}$ the FDR-adjusted $p$-value of the chromatin region paired with gene $g$.
 
 %\begin{table*}[h]
 %\renewcommand{\familydefault}{\sfdefault}\normalfont
@@ -242,7 +247,7 @@ These protocols used two types of multiple test correction: a permutation-based 
 
 \subsubsection{Permutation-based significance thresholds: chromosome- and genome-wide.}
 
-\WV{}{I reordered this subsubsection a bit but it needs a bit more cleaning up.} Thresholds were determined based on permutations specific to each trait. 1,000 permutations of the sample index were recorded, and then genome scans performed for each trait, using the same permutations. Given a trait, the maximum logP, from either the entire genome or the local chromosome, for each permutation was collected, and used to fit a null \WV{extreme value distribution (EVD)}{Not GEV?} \citep{Dudbridge2004}. Genome-wide and local chromosome-wide thresholds were calculated as the 95\textsuperscript{th} upper quantile of the respective EVDs. \WV{}{And explain genomewide and chromosomewide adjustment. Use this section to define shorthands you can use in the descriptions of the analyses below.}
+\WV{}{I reordered this subsubsection a bit but it needs a bit more cleaning up.} Thresholds were determined based on permutations specific to each trait. 1,000 permutations of the sample index were recorded, and then genome scans performed for each trait, using the same permutations. Given a trait, the maximum logP, from either the entire genome or the local chromosome, for each permutation was collected, and used to fit a null \GKinline{generalized extreme value distribution (GEV)} \citep{Dudbridge2004}. Genome-wide and local chromosome-wide thresholds were calculated as the 95\textsuperscript{th} upper quantile of the respective EVDs. \WV{}{And explain genomewide and chromosomewide adjustment. Use this section to define shorthands you can use in the descriptions of the analyses below.}
 
 \WV{}{This pgh is a caveat, so it goes second} The appropriateness of permutation-derived thresholds \citep{Doerge1996} is dependent on the CC having balanced founder haplotype contributions. This assumption was supported by simulations of the funnel breeding design \citep{Valdar2006c}, though recently \cite{Keele2019} performed simulations of the observed CC strain genomes and found low levels of population structure for highly polygenic genetic architectures. As such, we use permutations given that molecular traits often have strong effect QTL that are detectable in the presence of subtle population structure.
 
