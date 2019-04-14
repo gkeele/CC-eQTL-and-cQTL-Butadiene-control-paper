@@ -30,6 +30,10 @@
 \newcommand{\tausq}{\tau^{2}}
 \newcommand{\qtl}{\widehat{h^{2}}_{\text{QTL}}}
 
+\newcommand{\permplc}{\text{permP}_{\text{LC}}}
+\newcommand{\permpg}{\text{permP}_{\text{G}}}
+
+
 \newcommand{\WV}[2]{\textcolor{red}{#1\footnote{\textcolor{red}{WV: #2}}}}
 \newcommand{\WVinline}[1]{\textcolor{red}{#1}}
 \newcommand{\WVst}[1]{\textcolor{red}{\st{#1}}}
@@ -38,6 +42,7 @@
 
 \newcommand{\GK}[2]{\textcolor{teal}{#1\footnote{\textcolor{teal}{GK: #2}}}}
 \newcommand{\GKinline}[1]{\textcolor{teal}{#1}}
+\newcommand{\GKst}[1]{\textcolor{teal}{\st{#1}}}
 
 
 \articletype{inv} % article type
@@ -197,10 +202,11 @@ Biological pathways enriched with differentially expressed genes or accessible c
 \end{equation}
 where $\text{sign}(\Delta_{g)}$ is the sign of the fold change in gene $g$ expression, and $q_{g}$ is the FDR-adjusted DE $p$-value. Pathways with gene sets of cardinality < 15 or > 500 were excluded. 
 
-For pathway analysis of differentially chromatin accessiblility \GKinline{near genes}, each region was mapped to a gene using GREAT v3.0.0 (\textit{basal plus extension} mode, \textit{5 kb upstream}, \textit{1 kb downstream}, and no distal extension). 
-\WV{Each gene was then paired with the chromatin region with the smallest FDR-adjusted $p$-value.}{in the same location? I'm not understanding this.}  
+For pathway analysis of differentially accessible chromatin \GKinline{near genes}, each chromatin region was mapped to a gene using GREAT v3.0.0 (\textit{basal plus extension} mode, \textit{5 kb upstream}, \textit{1 kb downstream}, and no distal extension). 
+\GKst{Each gene was then paired with the chromatin region with the smallest FDR-adjusted $p$-value.}\WV{}{in the same location? I'm not understanding this.}  
 \GK{}{I'm not completely sure because Bryan performed these analyses and wrote this section. I think the challenge is that chromatin accessibility is a messier, less discrete molecular trait. So really it's DAR near genes. I've split it into two paragraphs, and included an alternative sentence, though I'm not sure if it's any better.} 
-\GKinline{The minimum DAR $q$-value was selected as the summary $q_{g}$ for chromatin near gene $g$.} Gene weights were calculated as with gene expression, but with $\text{sign}(\Delta_{g})$ representing the sign of chromatin accessibility fold-change and $q_{g}$ the FDR-adjusted $p$-value of the chromatin region paired with gene $g$.
+%\GKinline{The minimum DAR $q$-value from the chromatin traits associated with a gene $g$ was selected as the summary $q_{g}$.} 
+Weights were calculated as with gene expression, but with $\text{sign}(\Delta_{g})$ representing the sign of fold-change from the chromatin region with minimum FDR-adjusted $p$-value that is associated with gene $g$.
 
 %\begin{table*}[h]
 %\renewcommand{\familydefault}{\sfdefault}\normalfont
@@ -229,36 +235,44 @@ QTL analysis was performed for both gene expression and chromatin accessibility 
 
 For a given trait---the expression of a gene or the accessibility of a chromatin region---at each of the 14,191 loci in the genome, we fitted the linear model,
 \begin{equation}
-  y_i = \mu + \text{batch}_{b[i]} + \text{QTL}_i + \varepsilon_i\, \label{eq:alternative_model}
+  y_i = \mu + \text{batch}_{b[i]} + \text{QTL}_i + \varepsilon_i\, 
+  \label{eq:alternative_model}
 \end{equation}
 where $y_{i}$ is the trait level for individual $i$, $\mu$ is the intercept, $\text{batch}_b$ is a categorical fixed effect covariate with five levels $b=1,\dots,5$ representing five sequencing batches for both gene expression and chromatin accessibility, with $b[i]$ denoting the value of $b$ relevant to $i$, $\varepsilon_i\sim\text{N}(0,\sigma^2)$ models the residual error, and $\text{QTL}_{i}$ models the genetic effect at the locus, namely that of the eQTL (if mapping expression) or cQTL (if mapping accessible chromatin). Specificaly, the QTL term models the (additive) effects of alternate haplotype states and is defined as $\text{QTL}_{i}=\bbeta\T\bx_i$, where $\bx_i=(x_{i,\text{AJ}},\dots,x_{i,\text{WSB}})\T$ is a vector of haplotype dosages (\ie, the posterior expected count, from 0 to 2, inferred by the haplotype reconstruction) for the eight founder haplotypes and $\bbeta=(\beta_\text{AJ},\dots,\beta_\text{WSB})\T$ is a corresponding vector of fixed effects. (Note that in fitting this term as a fixed effects vector, the linear dependency among the dosages in $\bx_i$ results in at least one founder haplotype effect being omitted to achieve identifiability; estimation of effects for all eight founders is performed using a modification described later). Prior to model fitting, to avoid sensitivity to non-normality and strong outliers, the response $\{y_i\}^n_{i=1}$ was subject to a rank inverse normal transformation (RINT).
-The fit of \autoref{eq:alternative_model} was compared with the fit of the same model omitting the QTL term (the null model) by an F-test, leading to a nominal $p$-value, reported as the $\text{logP}=-\log_{10}(\text{$p$-value})$. A QTL was detected if this logP surpassed a set significance threshold, described below. %in \textbf{Appendix A}. 
+The fit of Eq \ref{eq:alternative_model} was compared with the fit of the same model omitting the QTL term (the null model) by an F-test, leading to a nominal $p$-value, reported as the $\text{logP}=-\log_{10}(\text{$p$-value})$. A QTL was detected if this logP surpassed a set significance threshold, described below. %in \textbf{Appendix A}. 
 
 %In this form of QTL mapping, which is a type of linkage disequilibrium (LD) mapping or haplotype association, the genotypes of the individuals are not used for association directly; rather, they are used to obtain a probabilistic reconstruction of the underlying mosaic of founder haplotypes, and association is performed on that underlying haplotype mosaic instead. This allows a wider range of trait variants to be detected since the haplotypes implicitly model not only multi-allelic variants but also all local epistatic interactions [\eg, arguments in \citet{Zhang2014}]; it also clearly reveals the LD pattern and therefore the realistic limits of mapping resolution.
 
 %A single locus approach to QTL mapping was used for both gene expression and chromatin accessibility. The CC mice have well-characterized founder haplotypes, allowing the association analysis to be haplotype-based, also referred to as interval mapping or linkage analysis \citep{Lander1989}. Assessing association between haplotype descent and phenotype has advantages to variant association, such as implicitly modeling multiple local variants simultaneously and more closely reflecting the linkage disequilibrium (LD) decay. Because haplotype state is not directly observed but rather probabilistically inferred (\eg \citealt{Lander1987,Mott2000,Liu2010,Fu2012,Gatti2014,Zheng2015}), formal interval mapping requires an computationally inefficient Expectation-Maximization (EM) algorithm \citep{Dempster1977}. A computationally efficient regression approximation \citep{Haley1992,Martinez1992} is commonly used instead for multiparental populations (MPP) (\eg \citealt{Valdar2006a,Valdar2009,Svenson2012,Baud2013,Baud2014}), including the CC (\eg \citealt{Aylor2011,Kelada2016,Mosedale2017,Donoghue2017}). This efficiency is particularly important in the context of a study of genome-wide molecular phenotypes.
 
-\subsection{Calling detected QTL: local (L), local chromosome (LC), and genomewide (G)}
+\subsection{\GKinline{QTL detection}: local (L), local chromosome (LC), and genomewide (G)}
 
 QTL detections were declared according to three distinct protocols of varying stringency and emphasis. The first protocol, Analysis L, was concerned only with detection of ``local QTL'', that is, QTL located at or close to the relevant expressed gene or accessible chromatin region.
 The second protocol, Analysis LC, broadened the search for QTL to anywhere on the local chromosome; the greater number of loci considered meant that the criterion used to call detected QTL for this protocol was more stringent.
 The third protocol, Analysis G, broadened the search further---to the entire genome; its detection criterion was the most stringent.
-These protocols used two types of multiple test correction: a permutation-based control of the familywise error rate (FWER) and the Benjamini-Hochberg False Discovery Rate (FDR) \cite{}. Below we describe the permutation procedure, and then the three protocols.
+These protocols used two types of multiple test correction: a permutation-based control of the family-wise error rate (FWER) and the Benjamini-Hochberg False Discovery Rate (FDR; \citealt{Benjamini1995}). Below we describe the permutation procedure, and then the three protocols.
 
-\subsubsection{Permutation-based significance thresholds: chromosome- and genome-wide.}
+%\subsubsection{Permutation-based significance thresholds: local chromosome- and genome-wide.}
+\subsubsection{\GKinline{Permutation-based error rate control: local chromosome- and genome-wide.}}
 
-\WV{}{I reordered this subsubsection a bit but it needs a bit more cleaning up.} Thresholds were determined based on permutations specific to each trait. 1,000 permutations of the sample index were recorded, and then genome scans performed for each trait, using the same permutations. Given a trait, the maximum logP, from either the entire genome or the local chromosome, for each permutation was collected, and used to fit a null \GKinline{generalized extreme value distribution (GEV)} \citep{Dudbridge2004}. Genome-wide and local chromosome-wide thresholds were calculated as the 95\textsuperscript{th} upper quantile of the respective EVDs. \WV{}{And explain genomewide and chromosomewide adjustment. Use this section to define shorthands you can use in the descriptions of the analyses below.}
+\WV{}{I reordered this subsubsection a bit but it needs a bit more cleaning up.} 
+Family-wise error rates were controlled based on permutations specific to each trait. 1,000 permutations of the sample index were recorded, and then genome scans performed for each trait, using the same permutation orderings. Given a trait, the maximum logP from either the entire genome or the local chromosome for each permutation was collected, and used to fit a null \GKinline{generalized extreme value (GEV) distribution \GKinline{in order to control the genome- and local chromosome-wide error rates, respectively}} \citep{Dudbridge2004}. 
+%Thresholds were calculated as the 95\textsuperscript{th} upper quantile of their respective \GKinline{GEV distributions}. 
+\GKinline{Error rates were controlled by adjusting the logP of each QTL based on the respective cumulative density functions from the GEV distributions: $\text{permP} = 1 - \text{GEV}(\text{logP})$. $\permpg$ and $\permplc$ correspond to adjusted logP for genome-wiee and local chromosome-wide error rates, respectively.}
+\WV{}{And explain genomewide and chromosomewide adjustment. Use this section to define shorthands you can use in the descriptions of the analyses below.}
 
-\WV{}{This pgh is a caveat, so it goes second} The appropriateness of permutation-derived thresholds \citep{Doerge1996} is dependent on the CC having balanced founder haplotype contributions. This assumption was supported by simulations of the funnel breeding design \citep{Valdar2006c}, though recently \cite{Keele2019} performed simulations of the observed CC strain genomes and found low levels of population structure for highly polygenic genetic architectures. As such, we use permutations given that molecular traits often have strong effect QTL that are detectable in the presence of subtle population structure.
+\WV{}{This pgh is a caveat, so it goes second} The appropriateness of permutation-derived thresholds \citep{Doerge1996} is dependent on the CC having balanced founder haplotype contributions. This assumption was supported by simulations of the funnel breeding design \citep{Valdar2006c}, though recently \cite{Keele2019} performed simulations of the observed CC strain genomes and found low levels of population structure for highly polygenic genetic architectures. Nevertheless, we use permutations given that molecular traits often have strong effect QTL that are detectable in the presence of subtle population structure.
 
 \subsubsection{Local analysis - Analysis L.} 
-Our detection criteria for local-QTL leverages a strong prior belief that there will be local genetic regulation. For a given trait, this local analysis involved examining QTL associations at all loci within a 10Mb window of the gene transcription start site (TSS) or chromatin region midpoint. A QTL was detected if the logP of the maximum peak (the peak logP) in the window was above the chromosome-wide significance threshold. This peak logP is reported after chromosome-wide adjustment.
+Our detection criteria for local-QTL leverages our strong prior belief in local genetic regulation. For a given trait, this local analysis involved examining QTL associations at all loci within a 10Mb window of the gene transcription start site (TSS) or chromatin region midpoint. A QTL was detected if the $\text{permP}_{\text{LC}} \leq 0.05$. \GKinline{Notably, we can also check whether the corresponding $\text{permP}_{\text{G}} \leq 0.05$, as an additional characterization of statistical significance of detected local-QTL}
+%This peak logP is reported after chromosome-wide adjustment.
 
 % WV to self: chrom-adj logP (permP) at max peak in window. Not adj for num of genes. 
 % .. better to region-adj logP and then FDR it.
 
 \subsubsection{Local chromosome analysis - Analysis LC.} 
-Local chromosome analysis involved examining QTL associations at all loci on the local chromosome, \ie, the chromosome harboring the gene or chromatin region. The peak logP is subject to chromosome-wide adjustment. \WV{The chromosome-wide adjusted logPs for all traits of a given type (expression or chromatin) are then further subject to adjustment by FDR.}{correct? may need additions}
+Local chromosome analysis involved examining QTL associations at all loci on the local chromosome, \ie, the chromosome harboring the gene or chromatin region. The peak logP is subject to chromosome-wide adjustment, \GKinline{producing $\permplc$, which are further subject to adjustment by FDR}. 
+%\WV{The chromosome-wide adjusted logPs for all traits of a given type (expression or chromatin) are then further subject to adjustment by FDR.}{correct? may need additions}
 %Additionally, we adjust the permP to control the FDR (at both 0.1 and 0.2), accounting for multiple testing across the traits. See \textbf{Appendix B} for further discussion on false positive control.
 
 In comparison to Analysis L, this procedure is more stringent on local-QTL because of the additional FDR adjustment. Alternatively, it is highly lenient in detecting distal-QTL located on the local chromosome; it would not detect QTL within the local window if a stronger association were observed outside.
@@ -266,8 +280,7 @@ In comparison to Analysis L, this procedure is more stringent on local-QTL becau
 % WV to self: chrom-adj logP (permP) at max peak on chromosome, then FDR adjust for num of genes.
 
 \subsubsection{Genome-wide analysis - Analysis G.} 
-\WV{
-\GKinline{Genomewide analysis ... incorporates additional scans conditioned on detected QTL to potentially identify multiple QTL per trait in unbiased fashion for FDR. Notably, the local status of the QTL does not factor into Analysis G. See \textbf{Appendix D} for details on the conditional genome scan procedure.}}{Re-write this pgh and provide enough details to understand it, following the style of the descriptions above.}
+\GKinline{The genome-wide analysis is largely equivalent to Analysis LC, though $\permpg$ are used with FDR adjustment instead. It also incorporates additional scans conditioned on detected QTL to potentially identify multiple QTL per trait. Briefly, after a QTL is detected, a subsequent scan (and permutations) is performed in which the previously detected QTL is included in both the null and alternative models, which allows for additional independent QTL to be detected with FDR control. See \textbf{Appendix D} for greater detail on this conditional scan procedure. Notably, the local/distal status of the QTL does not factor into Analysis G.}
 
 \GKinline{Analyses L, LC, and G potentially detect many of the same QTL, specifically strong local-QTL. Collectively, they allow for efficient detection of QTL with varying degrees of statistical support while strongly leveraging local status.}
 
@@ -305,7 +318,11 @@ Correlations were performed as follows. For a pair of matched QTL $j$ and $k$ fr
 
 \subsubsection{Variant association.}
 
-\WV{Variant association}{explain what this is and justify it relative to the haplotype-based mapping described earlier} was performed within the genomic regions surrounding overlapping QTL in order to detect similarities and differences in patterns of association between tissues, \GKinline{potentially distinguishing distinct tissue-specific QTL from those observed in multiple tissues}. Variant genotypes from Build38 were obtained using the ISVdb \citep{Oreper2017} for the CC strains, which were converted to Build37 coordinates with the liftOver tool \citep{Lawrence2009}. Variants were filtered out if their minor allele frequencies $\le 0.1$ or they were not genotyped in one of the CC founder strains to avoid false signals.
+\WV{}{explain what this is and justify it relative to the haplotype-based mapping described earlier}\GKinline{Variant association was performed within the local windows of genes with local-QTL detected in more than one tissue. Tissue-specific local-eQTL are expected to have larger differences in patterns of variant association compared to an eQTL functionally active in multiple tissues}. 
+
+\GKinline{Variant association has been used previously in MPP (\eg, \citealt{Baud2014, Keele2018}\GK{}{Maybe too blatant a self-citation}), and uses the some underlying model as the haplotype-based mapping (Eq \ref{eq:alternative_model}), with the QTL term now representing imputed dosages of the minor allele. Variant association can more powerfully detect QTL than haplotype mapping if the simpler variant model is closer to the underlying biological mechanism \citep{Yalcin2005}, though it will struggle to detect multi-allelic QTL.} \GK{}{I'm probably giving too much detail given that I only briefly and qualitatively allude to this when some of the local-QTL have different looking variant associations patterns.}
+
+Variant genotypes from Build38 were obtained using the ISVdb \citep{Oreper2017} for the CC strains, which were converted to Build37 coordinates with the liftOver tool \citep{Lawrence2009}. Variants were filtered out if their minor allele frequencies $\le 0.1$ or they were not genotyped in one of the CC founder strains to avoid false signals.
 
 \begin{figure}[htbp]
 \renewcommand{\familydefault}{\sfdefault}\normalfont
