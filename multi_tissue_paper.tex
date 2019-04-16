@@ -826,17 +826,17 @@ Genes & Up-regulated & 2,473 (20.8\footnote{Percentage of all tested genes.\labe
 Procedure & eQTL type & Liver & Lung & Kidney \\
 \hline
 %%%%%%%%%%%%%%%%
-Analysis G\footnote{Multi-stage conditional regression analysis with genome-wide FDR < 0.1. \label{fn:method_one}} & All & 520 (6.2\footnote{Percentage of all tested genes.\label{fn:total_perc}}) & 478 (4.2\footref{fn:total_perc}) & 739 (7.3\footref{fn:total_perc}) \\
+Analysis G\footnote{Analysis G: FDR < 0.1. \label{fn:method_one}} & All & 520 (6.2\footnote{Percentage of all tested genes.\label{fn:total_perc}}) & 478 (4.2\footref{fn:total_perc}) & 739 (7.3\footref{fn:total_perc}) \\
 & Local\footnote{10Mb upstream or downstream of gene TSS. \label{fn:local_eqtl}} & 400 (76.9\footnote{Percentage of genes with genome-wide eQTL.\label{fn:gw_eqtl_perc}}) & 369 (77.2\footref{fn:gw_eqtl_perc}) & 601 (81.3\footref{fn:gw_eqtl_perc}) \\
 & Distal\footnote{More than 10Mb upstream or downstream of gene TSS or on another chromosome. \label{fn:distal_eqtl}} & 132 (25.4\footref{fn:gw_eqtl_perc}) & 112 (23.4\footref{fn:gw_eqtl_perc}) & 148 (20.0\footref{fn:gw_eqtl_perc}) \\
 \hline
 % %%%%%%%%%%%%%%%%
-Analysis LC\footnote{Single-step regression analysis with chromosome-wide FDR < 0.1. \label{fn:method_two}} & All & 2,587 (30.8\footref{fn:total_perc}) & 2,069 (18.2\footref{fn:total_perc}) & 3,191 (31.6\footref{fn:total_perc}) \\
+Analysis LC\footnote{Analysis LC: FDR < 0.1. \label{fn:method_two}} & All & 2,587 (30.8\footref{fn:total_perc}) & 2,069 (18.2\footref{fn:total_perc}) & 3,191 (31.6\footref{fn:total_perc}) \\
 & Local\footref{fn:local_eqtl} & 1,749 (67.6\footnote{Percentage of genes with chromosome-wide eQTL.\label{fn:cw_eqtl_perc}}) & 1,498 (72.4\footref{fn:cw_eqtl_perc}) & 2,214 (69.4\footref{fn:cw_eqtl_perc}) \\
 & Distal\footref{fn:distal_eqtl} & 838 (32.4\footref{fn:cw_eqtl_perc}) & 571 (27.6\footref{fn:cw_eqtl_perc}) & 977 (30.6\footref{fn:cw_eqtl_perc}) \\
 \hline
 % %%%%%%%%%%%%%%%%
-Analysis L\footnote{Single-step regression analysis restricted to local signals and with FWER $p$-value < 0.05. \label{fn:method_three}} & Local\footref{fn:local_eqtl} genome-wide & 702 (8.4\footref{fn:total_perc}) & 713 (6.3\footref{fn:total_perc}) & 955 (9.5\footref{fn:total_perc}) \\
+Analysis L\footnote{Analysis L: permP < 0.05. \label{fn:method_three}} & Local\footref{fn:local_eqtl} genome-wide & 702 (8.4\footref{fn:total_perc}) & 713 (6.3\footref{fn:total_perc}) & 955 (9.5\footref{fn:total_perc}) \\
 & Local\footref{fn:local_eqtl} chromosome-wide & 1,661 (19.8\footref{fn:total_perc}) & 1,880 (16.6\footref{fn:total_perc}) & 2,102 (20.8\footref{fn:total_perc}) \\
 % & chromatin mediator\footnote{Must be within 10Mb upstream or downstream of an local-eQTL that is at least chromosome-wide significant. Additionally, chromatin mediator must possess a local c-QTL that is at least chromosome-wide significant.} & genome-wide & 38 (2.2\footnote{Percentage of genes with a chromatin mediator that have at least a chromosome-wide significant local-eQTL from local analysis.\label{fn:mediator_perc}}) & 13 (0.9\footref{fn:mediator_perc}) & 19 (1.0\footref{fn:mediator_perc}) \\
 % & chromosome-wide & 99 (5.9\footref{fn:mediator_perc}) & 30 (2.0\footref{fn:mediator_perc}) & 49 (2.6\footref{fn:mediator_perc}) \\
@@ -860,12 +860,12 @@ Analysis L\footnote{Single-step regression analysis restricted to local signals 
 Procedure & eQTL type & Liver & Lung & Kidney \\
 \hline
 %%%%%%%%%%%%%%%%
-Analysis G\footnote{Multi-stage conditional regression analysis with genome-wide FDR < 0.2.} & All & 881 (10.5\footref{fn:total_perc}) & 811 (7.1\footref{fn:total_perc}) & 1,189 (11.8\footref{fn:total_perc}) \\
+Analysis G\footnote{Analysis G: FDR < 0.2.} & All & 881 (10.5\footref{fn:total_perc}) & 811 (7.1\footref{fn:total_perc}) & 1,189 (11.8\footref{fn:total_perc}) \\
 & Local\footnote{10Mb upstream or downstream of gene TSS. \label{fn:local_eqtl}} & 568 (64.5\footref{fn:gw_eqtl_perc}) & 522 (64.4\footref{fn:gw_eqtl_perc}) & 809 (68.0\footref{fn:gw_eqtl_perc}) \\
 & Distal\footnote{More than 10Mb upstream or downstream of gene TSS or on another chromosome. \label{fn:distal_eqtl}} & 339 (38.5\footref{fn:gw_eqtl_perc}) & 301 (37.1\footref{fn:gw_eqtl_perc}) & 411 (34.6\footref{fn:gw_eqtl_perc}) \\
 \hline
 % %%%%%%%%%%%%%%%%
-Analysis LC\footnote{Single-step regression analysis with chromosome-wide FDR < 0.2.} & All & 4,699 (55.9\footref{fn:total_perc}) & 3,675 (32.4\footref{fn:total_perc}) & 5,469 (54.2\footref{fn:total_perc}) \\
+Analysis LC\footnote{Analysis LC: FDR < 0.2.} & All & 4,699 (55.9\footref{fn:total_perc}) & 3,675 (32.4\footref{fn:total_perc}) & 5,469 (54.2\footref{fn:total_perc}) \\
 & Local\footref{fn:local_eqtl} & 2,519 (53.6\footnote{Percentage of genes with chromosome-wide eQTL.\label{fn:cw_eqtl_perc}}) & 2,213 (60.2\footref{fn:cw_eqtl_perc}) & 3,099 (56.7\footref{fn:cw_eqtl_perc}) \\
 & Distal\footref{fn:distal_eqtl} & 2,180 (46.4\footref{fn:cw_eqtl_perc}) & 1,462 (39.8\footref{fn:cw_eqtl_perc}) & 2,370 (43.3\footref{fn:cw_eqtl_perc}) \\
 \hline
@@ -888,17 +888,17 @@ Analysis LC\footnote{Single-step regression analysis with chromosome-wide FDR < 
 Procedure & cQTL type & Liver & Lung & Kidney \\
 \hline
 %%%%%%%%%%%%%%%%
-Analysis G\footnote{Multi-stage conditional regression analysis with genome-wide FDR < 0.1.} & All & 17 (0.1\footnote{Percentage of all tested chromatin site.\label{fn:total_perc}}) & 114 (0.5\footref{fn:total_perc}) & 59 (0.3\footref{fn:total_perc}) \\
+Analysis G\footnote{Analysis L: FDR < 0.1.} & All & 17 (0.1\footnote{Percentage of all tested chromatin site.\label{fn:total_perc}}) & 114 (0.5\footref{fn:total_perc}) & 59 (0.3\footref{fn:total_perc}) \\
 & Local\footnote{10Mb upstream or downstream of the midpoint of the chromatin accessibility site. \label{fn:local_cqtl}} & 16 (94.1\footnote{Percentage of chromatin accessibility sites with genome-wide cQTL.\label{fn:gw_cqtl_perc}}) & 78 (68.4\footref{fn:gw_cqtl_perc}) & 39 (66.1\footref{fn:gw_cqtl_perc}) \\
 & Distal\footnote{More than 10Mb upstream or downstream of the midpoint of the chromatin accessibility site or on another chromosome. \label{fn:distal_cqtl}} & 1 (5.9\footref{fn:gw_cqtl_perc}) & 36 (31.6\footref{fn:gw_cqtl_perc}) & 20 (33.9\footref{fn:gw_cqtl_perc}) \\
 \hline
 % %%%%%%%%%%%%%%%%
-Analysis LC\footnote{Single-step regression analysis with chromosome-wide FDR < 0.1.} & All & 39 (0.3\footref{fn:total_perc}) & 226 (0.9\footref{fn:total_perc}) & 130 (0.7\footref{fn:total_perc}) \\
+Analysis LC\footnote{Analysis LC: FDR < 0.1.} & All & 39 (0.3\footref{fn:total_perc}) & 226 (0.9\footref{fn:total_perc}) & 130 (0.7\footref{fn:total_perc}) \\
 & Local\footref{fn:local_cqtl} & 35 (89.7\footnote{Percentage of chromatin accessibility sites with chromosome-wide cQTL.\label{fn:cw_cqtl_perc}}) & 186 (82.3\footref{fn:cw_cqtl_perc}) & 98 (75.4\footref{fn:cw_cqtl_perc}) \\
 & Distal\footref{fn:distal_cqtl} & 4 (10.3\footref{fn:cw_cqtl_perc}) & 40 (17.7\footref{fn:cw_cqtl_perc}) & 32 (24.6\footref{fn:cw_cqtl_perc}) \\
 \hline
 % %%%%%%%%%%%%%%%%
-Analysis L\footnote{Single-step regression analysis restricted to local signals and with FWER $p$-value < 0.05.} & Local\footref{fn:local_cqtl} genome-wide & 70 (0.6\footref{fn:total_perc}) & 244 (1.0\footref{fn:total_perc}) & 149 (0.8\footref{fn:total_perc}) \\
+Analysis L\footnote{Analysis L: permP < 0.05.} & Local\footref{fn:local_cqtl} genome-wide & 70 (0.6\footref{fn:total_perc}) & 244 (1.0\footref{fn:total_perc}) & 149 (0.8\footref{fn:total_perc}) \\
 & Local\footref{fn:local_cqtl} chromosome-wide & 299 (2.6\footref{fn:total_perc}) & 876 (3.6\footref{fn:total_perc}) & 616 (3.4\footref{fn:total_perc}) \\
 % & chromatin mediator\footnote{Must be within 10Mb upstream or downstream of an local-eQTL that is at least chromosome-wide significant. Additionally, chromatin mediator must possess a local c-QTL that is at least chromosome-wide significant.} & genome-wide & 38 (2.2\footnote{Percentage of genes with a chromatin mediator that have at least a chromosome-wide significant local-eQTL from local analysis.\label{fn:mediator_perc}}) & 13 (0.9\footref{fn:mediator_perc}) & 19 (1.0\footref{fn:mediator_perc}) \\
 % & chromosome-wide & 99 (5.9\footref{fn:mediator_perc}) & 30 (2.0\footref{fn:mediator_perc}) & 49 (2.6\footref{fn:mediator_perc}) \\
@@ -922,12 +922,12 @@ Analysis L\footnote{Single-step regression analysis restricted to local signals 
 Procedure & cQTL type & Liver & Lung & Kidney \\
 \hline
 %%%%%%%%%%%%%%%%
-Analysis G\footnote{Multi-stage conditional regression analysis with genome-wide FDR < 0.1.} & All & 20 (0.2\footref{fn:total_perc}) & 220 (0.9\footref{fn:total_perc}) & 113 (0.6\footref{fn:total_perc}) \\
+Analysis G\footnote{Analysis G: FDR < 0.1.} & All & 20 (0.2\footref{fn:total_perc}) & 220 (0.9\footref{fn:total_perc}) & 113 (0.6\footref{fn:total_perc}) \\
 & Local\footnote{10Mb upstream or downstream of the midpoint of the chromatin accessibility site. \label{fn:local_cqtl}} & 18 (90.0\footref{fn:gw_cqtl_perc}) & 116 (52.7\footref{fn:gw_cqtl_perc}) & 55 (48.7\footref{fn:gw_cqtl_perc}) \\
 & Distal\footnote{More than 10Mb upstream or downstream of the midpoint of the chromatin accessibility site. \label{fn:distal_cqtl}} & 2 (10.0\footref{fn:gw_cqtl_perc}) & 105 (47.7\footref{fn:gw_cqtl_perc}) & 58 (51.3\footref{fn:gw_cqtl_perc}) \\
 \hline
 % %%%%%%%%%%%%%%%%
-Analysis LC\footnote{Single-step regression analysis with chromosome-wide FDR < 0.1.} & All & 62 (0.5\footref{fn:total_perc}) & 309 (1.3\footref{fn:total_perc}) & 249 (1.4\footref{fn:total_perc}) \\
+Analysis LC\footnote{Analysis LC: FDR < 0.1.} & All & 62 (0.5\footref{fn:total_perc}) & 309 (1.3\footref{fn:total_perc}) & 249 (1.4\footref{fn:total_perc}) \\
 & Local\footref{fn:local_cqtl} & 50 (80.6\footref{fn:cw_cqtl_perc}) & 238 (77.0\footref{fn:cw_cqtl_perc}) & 149 (59.8\footref{fn:cw_cqtl_perc}) \\
 & Distal\footref{fn:distal_cqtl} & 12 (19.4\footref{fn:cw_cqtl_perc}) & 71 (23.0\footref{fn:cw_cqtl_perc}) & 100 (40.2\footref{fn:cw_cqtl_perc}) \\
 \hline
