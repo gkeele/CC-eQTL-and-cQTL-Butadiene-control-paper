@@ -45,6 +45,7 @@
 \newcommand{\GKinline}[1]{\textcolor{teal}{#1}}
 \newcommand{\GKst}[1]{\textcolor{teal}{\st{#1}}}
 
+\newcommand{\TFinline}[1]{\textcolor{violet}{#1}}
 
 \articletype{inv} % article type
 % {inv} Investigation 
@@ -97,8 +98,11 @@
 
 \begin{abstract}
 
-\WVinline{WV EDITED ABSTRACT:} 
-The transcriptional profiles of genes across tissues are modulated by, among other things, genetic variation and chromatin accessibility. \WVinline{The interplay of these factors, however, is poorly understood. [TERRY F to edit as appropriate.]}
+
+
+%\WVinline{WV EDITED ABSTRACT:} 
+\WVinline{The transcriptional profiles of genes across tissues are modulated by, among other things, genetic variation and chromatin accessibility. The interplay of these factors, however, is poorly understood.} 
+\TFinline{Gene transcription profiles across tissues are largely defined by the activity of regulatory elements, most of which correspond to regions of accessible chromatin. Genetic variation can modulate regulatory element activity resulting in variable transcription rates across individuals, however the interplay of these factors is poorly understood.}
 Here we characterize expression and chromatin state dynamics across three tissues---liver, lung, and kidney---in 47 strains of the 
 Collaborative Cross (CC) mouse population, paying particular attention to the regulation of these dynamics by expression quantitative trait loci (eQTL) and chromatin QTL (cQTL). 
 QTL whose allelic effects were common across tissues were detected for 1,101 genes and 133 chromatin regions.
@@ -107,9 +111,9 @@ Leveraging the overlapping measurement of gene expression and chromatin accessib
 Based on QTL and mediation analyses over multiple tissues, we propose a causal model for the distal genetic regulation of \textit{Akr1e1}, a gene involved in glycogen metabolism, through a zinc finger protein and chromatin intermediates.
 This analysis demonstrates the complexity of transcriptional and chromatin dynamics and their regulation over multiple tissues, as well as the value of the CC and related genetic resource populations for identifying specific regulatory mechanisms in biological data.
 
-\WVinline{OLD ABSTRACT:}
-Many factors such as genetic variation and chromatin accessibility modulate the transcriptional profiles of genes across tissues.
- We analyzed gene transcript and chromatin accessibility levels from liver, lung, and kidney tissues for 47 strains of the Collaborative Cross (CC) mouse population to characterize expression and chromatin state dynamics across tissues, with particular attention paid to their genetic regulation through the identification of expression quantitative trait loci (eQTL) and chromatin QTL (cQTL). We detected 1,101 genes and 133 chromatin regions that possessed QTL with correlated founder haplotype effects across multiple tissues. Tissue-specific QTL were also detected genes and chromatin, including \textit{Pik3c2g} with distinct local-eQTL observed in all three tissues. Leveraging the overlapping measurement of gene expression and chromatin accessibility on the same mice from multiple tissues, we used mediation analysis to identify chromatin and gene expression intermediates of eQTL effects. Based on QTL and mediation analyses over multiple tissues, we propose a causal model for the distal genetic regulation of \textit{Akr1e1}, a gene involved in glycogen metabolism, through a zinc finger protein and chromatin intermediates. This analysis demonstrates the complexity of transcriptional and chromatin dynamics and their regulation over multiple tissues, as well as the value of the CC and related genetic resource populations for identifying specific regulatory mechanisms in biological data.
+%\WVinline{OLD ABSTRACT:}
+%Many factors such as genetic variation and chromatin accessibility modulate the transcriptional profiles of genes across tissues.
+% We analyzed gene transcript and chromatin accessibility levels from liver, lung, and kidney tissues for 47 strains of the Collaborative Cross (CC) mouse population to characterize expression and chromatin state dynamics across tissues, with particular attention paid to their genetic regulation through the identification of expression quantitative trait loci (eQTL) and chromatin QTL (cQTL). We detected 1,101 genes and 133 chromatin regions that possessed QTL with correlated founder haplotype effects across multiple tissues. Tissue-specific QTL were also detected genes and chromatin, including \textit{Pik3c2g} with distinct local-eQTL observed in all three tissues. Leveraging the overlapping measurement of gene expression and chromatin accessibility on the same mice from multiple tissues, we used mediation analysis to identify chromatin and gene expression intermediates of eQTL effects. Based on QTL and mediation analyses over multiple tissues, we propose a causal model for the distal genetic regulation of \textit{Akr1e1}, a gene involved in glycogen metabolism, through a zinc finger protein and chromatin intermediates. This analysis demonstrates the complexity of transcriptional and chromatin dynamics and their regulation over multiple tissues, as well as the value of the CC and related genetic resource populations for identifying specific regulatory mechanisms in biological data.
 
 \end{abstract}
 
@@ -133,12 +137,12 @@ E-mail: tsfurey@email.unc.edu}
 %\linenumbers
 %%%%%%%%%% Introduction
 Determining the mechanisms by which genetic variants drive molecular, cellular, and physiological phenotypes has proved to be challenging \citep{Schadt2009}. These mechanisms can be informed by genome-wide experiments that provide data on variations in molecular and cellular states in genotyped individuals, but most examples of such data are largely observational, due in part to constraints of specific populations (\eg, humans), the limitations of existing experimental technologies, and the challenge of coordinating large numbers of experiments with multiple levels of data \citep{Schaid2018}. 
-One approach to shed light on these dynamics is to pair complementary datasets from the same individuals and perform statistical mediation analysis (\eg \citealt{Baron1986, Mackinnon2007}), an increasingly tool in genomics \citep{Richmond2016}. These analyses can identify putative causal relationships rather than correlational interactions, providing meaningful and actionable targets in terms of downstream applications in areas such as medicine and agriculture.
+One approach to shed light on these dynamics is to pair complementary datasets from the same individuals and perform statistical mediation analysis (\eg \citealt{Baron1986, Mackinnon2007}), an increasingly used tool in genomics \citep{Richmond2016}. These analyses can identify putative causal relationships rather than correlational interactions, providing meaningful and actionable targets in terms of downstream applications in areas such as medicine and agriculture.
 
 %Integrative analyses can inform upon the regulation of fundamental biological processes, such as through the combined assessment of gene transcription and gene regulation data. 
 %\cite{Degner2012} correlated chromatin accessibility quantitative trait loci (cQTL) with gene expression QTL (eQTL) in human lymphoblastoid cell lines, to suggest how some genetic variants modulated transcription though chromatin state. 
 %\cite{Battle2014} investigated the regulation of gene expression in 922 humans, using eQTL and allele specific expression QTL to assess evidence for genes proximal to distal-eQTL behaving as mediators to distal-eQTL target genes. 
-In human data, co-occurence of QTL across various multi-omic data has been used to assess the potential for related and connected biological processes; examples include gene expression with chromatin accessibility \citep{Degner2012}, regulatory elements \citep{Pai2015},  and ribosome occupancy and protein \citep{Battle2015, Yang2017}.
+In human data, co-occurence of QTL across various multi-omic data has been used to assess the potential for related and connected biological processes; examples include gene expression with chromatin accessibility \citep{Degner2012}, regulatory elements \citep{Pai2015},  and ribosome occupancy and protein abundances \citep{Battle2015, Yang2017}.
 More formal integration through statistical mediation analyses have also been used to investigate relationships between levels of human biological data, \eg, distal-eQTL with local gene expression \citep{Battle2014}, and eQTL with regulatory elements \citep{Alasoo2017, Roytman2018, Wu2018}.
 %\cite{Pai2015} localized eQTL to genomic regulatory elements in human lymphoblastoid cell line data to infer the mode of action of the QTL. \cite{Alasoo2017} further elucidated the roles of eQTL within regulatory elements by testing the effect of enhancer sequence modifications. \cite{Roytman2018} propose the use of probabilistic mediation models, finding they perform better to detect relationships between histone modification QTL (hQTL) and eQTL in comparison to simple QTL overlap in data from 112 humans. \cite{Wu2018} use mediation to tease apart the relationships among DNA methylation sites, gene expression, and complex traits. 
 %\cite{Battle2015} detected the co-localization of eQTL, ribosome occupancy QTL (rQTL), and protein abundance (pQTL), observing significant overlap and a potential buffering of rQTL effects on protein levels.
