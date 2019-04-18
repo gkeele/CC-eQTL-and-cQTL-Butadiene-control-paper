@@ -193,7 +193,7 @@ Trimmed mean of M-values (TMM) normalization [edgeR, \citep{edgeR}] was applied 
 
 \subsection{CC strain genotypes and inferred haplotype mosaics}
 
-CC genomes are mosaics of the founder strain haplotypes and were previously reconstructed by the UNC Systems Genetics Core (\url{http://csbio.unc.edu/CCstatus/index.py?run=FounderProbs}) with the Hidden Markov Model of \cite{Fu2012} on genotype calls [MegaMUGA array \citep{Morgan2016muga}] from multiple animals per strain. To reduce the number of statistical tests, adjacent genomic regions were merged through averaging if the founder mosaics for all mice were similar, defined as L2 distance $\leq$ 10\% of the maximum L2 distance ($\sqrt{2}$ for a probability vector), which reduced the number of tested loci from 77,592 to 14,191.
+CC genomes are mosaics of the founder strain haplotypes and were previously reconstructed by the UNC Systems Genetics Core (\url{http://csbio.unc.edu/CCstatus/index.py?run=FounderProbs}) with the Hidden Markov Model of \cite{Fu2012} on genotype calls [MegaMUGA array \citep{Morgan2016muga}] from multiple animals per strain. \GKinline{Notably, QTL mapping power will be reduced at loci where variants were still segregating, and these specific animals differ from their ancestors \citep{Shorter2019}.} To reduce the number of statistical tests, adjacent genomic regions were merged through averaging if the founder mosaics for all mice were similar, defined as L2 distance $\leq$ 10\% of the maximum L2 distance ($\sqrt{2}$ for a probability vector), which reduced the number of tested loci from 77,592 to 14,191.
 
 \subsection{Differential expression and accessibility analyses}
 
