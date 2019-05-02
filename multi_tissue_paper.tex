@@ -429,7 +429,7 @@ For all QTL we estimated the effects of the underlying founder haplotypes. Consi
 
 %Again we found that the CAST and PWK haplotypes have more extreme effects than the other strains for local-cQTL, though the pattern is less pronounced than with local-eQTL, likely due to the reduced number of cQTL (\textbf{Figure \ref{fig:cqtl_effects_abs}}). The numbers of detected distal-cQTL were low, and no clear trends are obvious.
 
-\section{\GKinline{QTL paired across multiple tissues}}
+\subsection{\GKinline{QTL paired across multiple tissues}}
 
 %\WV{}{Break up this section with headlines.}
 
@@ -497,16 +497,16 @@ Another example is the Period circadian clock 2 (\textit{Per2}; \textbf{Figure \
 \subsubsection{\GKinline{\textit{Rnf13}: Tissue-specific distal-eQTL.}}
 QTL analysis in multiple tissues also allows for the detection of tissue-specific distal-QTL. The Ring finger protein 13 (\textit{Rnf13}; \textbf{Figure \ref{fig:correlated_distal_eqtl}C}) gene was lowly expressed in all tissue but with a strong local-eQTL detected in liver. The multi-stage conditional regression approach (Analysis G), conditioning on the local-eQTL, detected a distal-eQTL on chromosome 12. Comparing the residuals after regressing out the local-eQTL and founder haplotype effects suggested that mice with B6 contributions at the distal locus had higher \textit{Rnf13} expression. In lung tissue, a distal-eQTL was detected on the X chromosome with a different haplotype effect pattern, notably high expression when A/J, B6, and PWK haplotypes were present, and low expression with NOD and NZO haplotypes. These examples demonstrate that analyzing multiple tissues can provide greater evidence of distal-QTL, as well as potentially identify tissue-specific genetic regulation.
 
-\section{Mediation of eQTL}
+\subsection{Mediation of eQTL: chromatin intermediates}
 
-Measurement of gene expression and chromatin accessibility data in the same mice and tissues enables the use of mediation analysis to help elucidate the relationships between genotype, chromatin accessibility, and gene expression. 
+\WV{Measurement of gene expression and chromatin accessibility data in the same mice and tissues enables the use of mediation analysis to help elucidate the relationships between genotype, chromatin accessibility, and gene expression. 
 We considered two possible models for the mediation of eQTL effects and assessed the evidence for each in our data.
-
+}{Title changed; modify as necessary}
 %We assessed evidence for each of two distinct mediation models of eQTL effects (\textbf{Figure \ref{fig:graph}}):
 %1) a model the effect of local-eQTL on gene expression is mediated by proximal chromatin accessibility.
 %2) the effect of distal-eQTL on gene expression is mediated through proximal gene expression
 
-\subsection{Chromatin intermediates}
+%\subsection{Chromatin intermediates}
 %\WVinline{[results good enough to reword as headline, perhaps with gene names?]}}
 
 In the first mediation model, we assess the extent to which proximal chromatin state acted as a mediator of the effect of local-eQTL (\textbf{Figure \ref{fig:graph}A}). This was tested using an approach adapted from \cite{Chick2016} to detect mediation through chromatin accessibility of local-eQTL detected through Analysis L (genome-wide and chromosome-wide; see \textbf{Appendix C} for greater detail).  
@@ -518,7 +518,7 @@ A large drop in eQTL significance at the location of the cQTL represents a stron
 
 Co-localization of eQTL and cQTL is not sufficient for mediation. For both \textit{Hdhd3} in liver (\textbf{Figure \ref{fig:colocalization}A}) and the acyl-Coenzyme A binding domain containing 4 gene (\textit{Acbd4}) in kidney (\textbf{Figure \ref{fig:colocalization}B}), there are local-eQTL with a co-localizing cQTL. Comparing the statistical associations at the genomic locations of the eQTL and cQTL as well as the founder haplotype effects for both the eQTL and cQTL, the correspondence in both is better for \textit{Hdhd3} compared to \textit{Acbd4}. As with \textit{Ccdc137}, a strong mediation signal is detected for \textit{Hdhd3}, indicated by the decrease in the eQTL association when conditioning on the chromatin state. Mediation is not detected for \textit{Abcd4}, which is consistent with the genetic regulation of both gene and chromatin site not stemming from the same causal origin.
 
-\subsection{Gene intermediates} 
+\subsection{Mediation of eQTL: gene intermediates} 
 %\WVinline{[results good enough to reword as headline, perhaps with gene names?]}}
 
 In the second mediation model, \GKinline{expression levels of genes with genomic coordinates local to distal-eQTL were evaluated as potential mediators}, similar to \cite{Keller2018}, for distal-eQTL detected through Analysis G. 
@@ -536,7 +536,7 @@ Genes highlighted previously, such as \textit{Akr1e1}, are indicated at their ge
 \label{fig:circos_plot}}
 \end{figure*}
 
-\subsection{Overview of QTL and mediation analyses}\GK{}{I have moved it up to before \textit{Akr1e1}, and re-written slightly. Moving it up further will require more extensive re-arranging, as I'm currently discussing correlated eQTL effects with examples prior to discussing mediation whatsoever.}\WV{}{``Overview'' suggests the beginning. ``Summary'', since you've been talking about genes and mediation analyses. Or ``Integrating''?}
+\subsection{Integration of QTL and mediation analyses}\GK{}{I have moved it up to before \textit{Akr1e1}, and re-written slightly. Moving it up further will require more extensive re-arranging, as I'm currently discussing correlated eQTL effects with examples prior to discussing mediation whatsoever.}\WV{}{``Overview'' suggests the beginning. ``Summary'', since you've been talking about genes and mediation analyses. Or ``Integrating''?}
 %\WVinline{Move to near the beginning of the results, \ie, BEFORE the deep dive? --- Terry, thoughts?}}
 All QTL and mediation results for all three tissues are depicted as circos plots \citep{Gu2014} in \textbf{Figure \ref{fig:circos_plot}}. It is notable that local-QTL and chromatin mediation are not evenly distributed across the genome, but rather tend to aggregate in pockets. In particular, there is a high concentration of cQTL and chromatin mediation detected along chromosome 17, observed across all three tissues, which happens to correspond to the immune-related major histocompatibility (MHC) region in mouse. However, most of the chromatin-mediated genes in this region are not histocompatibility genes (Files S28 - S30). The patterns of distal-QTL and gene mediation appear to be tissue-specific, though there are consistent regions observed across the tissues, such as the \textit{Idd9} region \citep{HamiltonWilliams2010} of chromosome 4, which contains multiple zinc finger proteins (ZFPs) and regulates genes such as \textit{Akr1e1} and \textit{Ccnyl1}. Previously discussed genes are highlighted for each tissue.
 
