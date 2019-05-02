@@ -378,7 +378,9 @@ Gene expression and chromatin accessibility, measured with RNA-seq and ATAC-seq 
 
 \subsubsection{Differentially expressed genes strongly correspond with accessible chromatin regions.} We performed pairwise differential expression (DE) and differentially accessible region (DAR) analysis between the three tissues (\textbf{Table \ref{tab:diff_gene}}), and found between 3,564 - 5,709 DE genes, and 28,048 - 40,797 DARs (FWER < 0.1). For both expression and chromatin accessibility, liver and kidney tissues were the most similar, and lung and liver the most distinct, which was also reflected in the PCA plots. Pathway analyses showed many between-tissue differences related to metabolic and immune-related pathways (FWER < 0.1), reflecting the distinct demands of each tissue. Energy metabolism pathways were more active in liver and kidney and immune-related pathways were more pronounced in lung. We compared the concordance between DE genes and DARs genome-wide and observed that most DE gene promoters do not show significant differences in chromatin accessibility (\textbf{Figure \ref{fig:diff_concordance}}). In cases where there were significant variability in accessibility at the promoter of a DE gene, though, the vast majority agree in direction (\ie, higher expression with greater accessibility).
 
-\subsection{Tissue-specific expression QTL}
+\subsection{QTL detection}
+
+\subsubsection{Tissue-specific expression QTL}
 
 To evaluate the impact of genetic variation on gene expression, we performed eQTL \WVinline{mapping at three distinct scopes:} the local region of a gene (defined as within 10Mb of the gene TSS; Analysis L), the local chromosome (Analysis LC), and genome-wide (Analysis G). Additionally, we classify distal-eQTL located on the local chromosome as intra-chromosomal, and otherwise inter-chromosomal.
 % to detect eQTL were used (\textbf{Table \ref{tab:qtl_procedures}}), summarized here and described more completely in \textbf{Appendix B}. 
@@ -402,11 +404,10 @@ We also identified eQTL with Analyses LC and G using a more relaxed significance
 \label{fig:grid_plot}}
 \end{figure*}
 
-\subsection{Tissue-specific chromatin QTL}
-
+\subsubsection{Tissue-specific chromatin QTL}
 To determine genetic effects on chromatin structure, genomic regions were divided into $\sim$300 base pair windows, and used in chromatin accessibility QTL (cQTL) analysis with the same scopes of analysis used with eQTL. We tested 11448, 24426, and 17918 chromatin regions in liver, lung, and kidney, respectively. The overlap in chromatin windows across tissues is described in \textbf{Figure \ref{fig:upset_genes_chromatin}B}. Overall, there were substantially fewer cQTL detected compared to eQTL for all tissues (\textbf{Figure \ref{fig:grid_plot}B}; \textbf{Table \ref{tab:cqtl_mapping}}). As with eQTL, cQTL are more likely to be local (66 - 94.1\% for Analysis G; 75 - 90\% for Analysis LC).
 
-\subsection{\WVinline{QTL effect sizes seen in the L, LC and G analyses}}
+\subsubsection{\WVinline{QTL effect sizes seen in the L, LC and G analyses}}
 
 \WV{}{I'm still not sure why we're telling them about this. Seems like more of a footnote.} For each detected QTL we estimated the effect size. These effect size estimates require careful interpretation since, on a sample of 47 strains, they are expected to be upwardly biased owing to the Beavis effect \citep{Keele2019}. Nonetheless, they can be used to compare QTL detected by the different analyses.
 
