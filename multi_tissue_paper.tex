@@ -271,7 +271,7 @@ Error rates were controlled by calculating a $p$-value for each QTL based on the
 The appropriateness of permutation-derived thresholds \citep{Doerge1996} is dependent on the CC having balanced founder haplotype contributions. This assumption was supported by simulations of the funnel breeding design \citep{Valdar2006c}. More recently, \cite{Keele2019} performed simulations of the observed CC strain genomes and found low levels of population structure for highly polygenic genetic architectures. Nevertheless, we use permutations given that molecular traits often have strong effect QTL that are detectable in the presence of subtle population structure.
 
 \subsubsection{Local analysis - Analysis L} 
-Our detection criteria for local-QTL leverages our strong prior belief in local genetic regulation. For a given trait, this local analysis involved examining QTL associations at all loci within a 10Mb window of the gene transcription start site (TSS) or chromatin region midpoint. A QTL was detected if the $\text{permP}_{\text{LC}} \leq 0.05$. Notably, we can also check whether the corresponding $\text{permP}_{\text{G}} \leq 0.05$, as an additional characterization of statistical significance of detected local-QTL.
+Our detection criteria for local-QTL leverages our strong prior belief in local genetic regulation. For a given trait, this local analysis involved examining QTL associations at all loci within a 10Mb window of the gene transcription start site (TSS) or chromatin region midpoint. A QTL was detected if the $\text{permP}_{\text{C}} \leq 0.05$. Notably, we can also check whether the corresponding $\text{permP}_{\text{G}} \leq 0.05$, as an additional characterization of statistical significance of detected local-QTL.
 %This peak logP is reported after chromosome-wide adjustment.
 
 % WV to self: chrom-adj logP (permP) at max peak in window. Not adj for num of genes. 
@@ -404,7 +404,7 @@ We also identified eQTL with Analyses C and G using a more relaxed significance 
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 \centering
 \includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/qtl_map_main.png}
-\caption{\textbf{Detected QTL are largely local for both gene expression (A) and chromatin accessibility (B).} Detected QTL from Analyses G and L are included, excluding intra-chromosomal distal-QTL detected through Analysis LC. The y-axis represents the genomic position of the gene or chromatin site, and the x-axis represents the genomic position of the QTL. Local-QTL appear as dots along the diagonal, and distal-QTL off of it.
+\caption{\textbf{Detected QTL are largely local for both gene expression (A) and chromatin accessibility (B).} Detected QTL from Analyses G and L are included, excluding intra-chromosomal distal-QTL detected through Analysis C. The y-axis represents the genomic position of the gene or chromatin site, and the x-axis represents the genomic position of the QTL. Local-QTL appear as dots along the diagonal, and distal-QTL off of it.
 \label{fig:grid_plot}}
 \end{figure*}
 
@@ -450,24 +450,22 @@ Testing correlation between the founder haplotype effects for pairs of QTL (FDR 
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 \centering
 \includegraphics[width=0.9\textwidth, trim={0in 0in 0in 0in}, clip]{figs/correlated_local_eqtl_update.png}
-\caption{\textbf{Examples of genes with local-eQTL observed in all three tissues.} \textit{Cox7c} and \textit{Ubc} possess local-eQTL with highly correlated founder alllele effects across all three tissues, supportive of shared causal origin (A). \textit{Slc44a3} has a more complicated pattern of local-eQTL founder effects across the tissues, with correlated effects shared between lung and kidney, and transgressive effects in the liver eQTL by comparison, consistent with distinct casual variants comparing liver to lung and kidney. (B). For each gene, the expression data are plotted with boxplots based on most likely founder haplotype pair (diplotype), and differential expression between tissues is highlighted. The haplotype association for each tissue is also included near the gene TSS with variant association overlaid. The most statistically rigorous method to detect the QTL is also included. The black tick represents the gene TSS and the colored ticks represent haplotype and variant peaks. Founder effects estimated as constrained BLUPs are also included with their pairwise correlations. Estimated effects were generally consistent with the expression data.\label{fig:correlated_local_eqtl}}
+\caption{\textbf{Examples of genes with local-eQTL observed in all three tissues.} \textit{Cox7c} possesses local-eQTL with highly correlated haplotype effects across all three tissues, supportive of shared causal origin (A). \textit{Slc44a3} has a more complicated pattern of local-eQTL founder effects across the tissues, with correlated effects shared between lung and kidney, and transgressive effects in the liver eQTL by comparison, consistent with distinct casual variants comparing liver to lung and kidney. (B). For both genes, the expression data are plotted with bars representing the interquartile ranges of likely founder haplotype pair (diplotype), and differential expression between tissues is highlighted. The haplotype association for each tissue is also included near the gene TSS with variant association overlaid. The most statistically rigorous method to detect the QTL is also included. The red tick represents the gene TSS, the black tick represents the variant association peak, and the colored tick represents haplotype association peak. Founder effects estimated as constrained BLUPs are also included with their pairwise correlations. Estimated effects were generally consistent with the expression data.\label{fig:correlated_local_eqtl}}
 \end{figure*}
 
-%\subsection{Genes with correlated local-eQTL: \textit{Cox7c} and \textit{Ubc}}
-
-\subsubsection{\textit{Cox7c} and \textit{Ubc}: Consistent haplotype effects for multi-tissue local-eQTL}
-Cytochrome c oxidase subunit 7C (\textit{Cox7c}) and ubiquitin C (\textit{Ubc}) are examples of genes that possess local-eQTL with highly correlated effects in all three tissues (Figure \ref{fig:correlated_local_eqtl}A).
-For \textit{Cox7c}, local-eQTL consistently drove higher expression when the CAST haplotype was present, intermediate expression with 129, NOD, and NZO haplotypes, and lower expression with A/J, B6, PWK, and WSB haplotypes. The \textit{Ubc} local-eQTL consistently drove higher expression when the B6, NOD, NZO, and WSB haploytpes were present. Though the founder effects on relative expression levels within each tissue are consistent for both genes, we note that the expression level of \textit{Cox7c} was significantly higher in liver compared to both lung ($q = \num{5.41e-18}$) and kidney ($q = \num{6.25e-19}$), and for \textit{Ubc}, expression levels in liver and lung were even considered significantly differential ($q = 0.022$). 
+\subsubsection{\textit{Cox7c}: Consistent haplotype effects for multi-tissue local-eQTL}
+Cytochrome c oxidase subunit 7C (\textit{Cox7c}) is an example of a gene that possess local-eQTL with highly correlated effects in all three tissues (Figure \ref{fig:correlated_local_eqtl}A).
+The local-eQTL consistently drove higher expression when the CAST haplotype was present, intermediate expression with 129, NOD, and NZO haplotypes, and lower expression with A/J, B6, PWK, and WSB haplotypes. Though the haplotype effects on relative expression levels within each tissue are consistent, we note that the expression levels was significantly higher in liver compared to both lung ($q = \num{5.41e-18}$) and kidney ($q = \num{6.25e-19}$). Ubiquitin C (\textit{Ubc}) is another example of a gene with consistent local-eQTL detected in all three tissues (Figure \ref{fig:ubc_correlated_eqtl}).
 
 %The haplotype and variant associations in the local region match closely for all tissues for both \textit{Cox7c} and \textit{Ubc}. Though all the \textit{Ubc} local-eQTL were detected with the most stringent Method 1, the \textit{Cox7c} local-eQTL were detected with the more lenient Method 2.
 
 %\subsection{Genes with uncorrelated local-eQTL: \textit{Slc44a3} and \textit{Pik3c2g}}
 
-\begin{figure*}[h]
+\begin{figure*}[h!]
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 \centering
 \includegraphics[width=0.9\textwidth, trim={0in 0.5in 0in 0in}, clip]{figs/pik3c2g_example.pdf}
-\caption{\textbf{\textit{Pik3c2g} possesses tissue-specific local-eQTL.} Local-eQTL for \textit{Pik3c2g} are detected in all three tissues in the 3Mb region surrounding its TSS. The genomes of the CC founders can be simplified in terms of contributions from three subspecies lineages of \textit{M. musculus}: \textit{dom} (blue), \textit{cast} (yellow), and \textit{mus} (red). The effects of each local-eQTL matched the subspecies contributions near the eQTL coordinates, with low subspecies alleles colored teal and high alleles colored salmon, consistent with local-eQTL for \textit{Pik3c2g} being distinct and tissue-specific. The gene expression data are represented as boxplots, categorized based on most likely diplotype at the eQTL for each CC strain. Haplotype and variants associations are included for each tissue, with the black tick representing the \textit{Pik3c2g} TSS and colored ticks representing haplotype and variant peaks. The most rigorous procedure to detect each QTL is reported. Founder effects, estimated as constrained BLUPs, were consistent with the expression data, and uncorrelated across the tissues.\label{fig:pik3c2g}}
+\caption{\textbf{\textit{Pik3c2g} possesses tissue-specific local-eQTL.} Local-eQTL for \textit{Pik3c2g} are detected in all three tissues in the 3Mb region surrounding its TSS. The genomes of the CC founders can be simplified in terms of contributions from three subspecies lineages of \textit{M. musculus}: \textit{dom} (blue), \textit{cast} (yellow), and \textit{mus} (red). The effects of each local-eQTL matched the subspecies contributions near the eQTL coordinates, with low subspecies alleles colored teal and high alleles colored salmon, consistent with local-eQTL for \textit{Pik3c2g} being distinct and tissue-specific. The gene expression data are represented as interquartile range bars, categorized based on most likely diplotype at the eQTL for each CC strain. Haplotype and variants associations are included for each tissue, with the red tick representing the \textit{Pik3c2g} TSS, black ticks representing variant association peak, and colored ticks representing the haplotype association peak. The most rigorous procedure to detect each QTL is reported. Founder effects, estimated as constrained BLUPs, were consistent with the expression data, and uncorrelated across the tissues.\label{fig:pik3c2g}}
 \end{figure*}
 
 \subsubsection{\textit{Slc44a3} and \textit{Pik3c2g}: Tissue-specific local-eQTL}
@@ -488,7 +486,7 @@ In liver, the B6 haplotype resulted in lower expression compared to the other ha
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 \centering
 \includegraphics[width=0.9\textwidth, trim={0in 0in 0in 0in}, clip]{figs/correlated_distal_eqtl.pdf}
-\caption{\textbf{Examples of genes with distal-eQTL effect patterns across tissues.} \textit{Akr1e1} has highly significant distal-eQTL detected on chromosome 4 in all three tissues with correlated founder effects (A). \textit{Per2} has intra-chromosomal distal-eQTL leniently detected 100Mb away from the TSS, also with highly correlated founder effects across the tissue, providing further support that the distal-eQTL are real (B). \textit{Rnf13} has a liver-specific distal-eQTL on chromosome 13 detected after conditioning on its local-eQTL on chromosome 2, and a lung-specific distal-eQTL on chromosome X, each with distinct founder effect patterns (C). Expression data are represented as boxplots for most likely diplotype, with differential expression noted when significant. Haplotype associations for each tissue distal-eQTL combination are shown, with the most rigorous statistical procedure for detection reported. Red ticks signify the gene TSS and black ticks represent that eQTL peak. Fit founder effects, estimated as BLUPs, are included, along with the pairwise correlations of the eQTL. The black asterisk marks the high B6 effect that drives the distal-eQTL in liver after conditioning on the local-eQTL for \textit{Rnf13}.
+\caption{\textbf{Examples of genes with distal-eQTL effect patterns across tissues.} \textit{Akr1e1} has highly significant distal-eQTL detected on chromosome 4 in all three tissues with correlated founder effects (A). \textit{Per2} has intra-chromosomal distal-eQTL leniently detected 100Mb away from the TSS, also with highly correlated founder effects across the tissue, providing further support that the distal-eQTL are real (B). \textit{Rnf13} has a liver-specific distal-eQTL on chromosome 13 detected after conditioning on its local-eQTL on chromosome 2, and a lung-specific distal-eQTL on chromosome X, each with distinct founder effect patterns (C). Expression data are represented as interquartile ranges for most likely diplotype, with differential expression noted when significant. Haplotype associations for each tissue distal-eQTL combination are shown, with the most rigorous statistical procedure for detection reported. Red ticks signify the gene TSS and black ticks represent that eQTL peak. Fit founder effects, estimated as BLUPs, are included, along with the pairwise correlations of the eQTL. The black asterisk marks the high B6 effect that drives the distal-eQTL in liver after conditioning on the local-eQTL for \textit{Rnf13}.
 \label{fig:correlated_distal_eqtl}}
 \end{figure*}
 
@@ -504,10 +502,10 @@ For example, the Aldo-keto reductase family 1, member E1 (\textit{Akr1e1}; Figur
 %The distal-eQTL for \textit{Akr1e1} will be discussed further with the topic of mediation.
 %As with local-QTL, correlated distal-eQTL can provide strong evidence that marginally significant QTL are valid. 
 Another example is the Period circadian clock 2 (\textit{Per2}; Figure \ref{fig:correlated_distal_eqtl}B) gene, which possesses intra-chromosomal distal-eQTL that are detected in all three tissues that are approximately 100Mb away from the TSS at a lenient chromosome-wide significance (Analysis C; FDR $\leq$ 0.2). The founder haplotype effects are significantly correlated among the tissues, characterized by high expression with the NOD and PWK haplotypes present. Together, these findings provide strong validation for the distal-eQTL, which would commonly not even be detected based on tissue-stratified analyses.
+Other unique patterns of distal genetic regulation were detected, such as for Ring finger protein 13 gene (\textit{Rnf13}) with tissue-specific distal-eQTL, described in Figure \ref{fig:rnf13_distal_eqtl}.
 
-\subsubsection{\textit{Rnf13}: Tissue-specific distal-eQTL}
-%QTL analysis in multiple tissues also allows for the detection of tissue-specific distal-QTL. 
-The Ring finger protein 13 (\textit{Rnf13}; Figure \ref{fig:correlated_distal_eqtl}C) gene was lowly expressed in all tissues but with a strong local-eQTL detected in liver. Using the multi-stage conditional regression approach (Analysis G) and conditioning on the local-eQTL, we detected a distal-eQTL on chromosome 12. Comparing the residuals after regressing out the local-eQTL and founder haplotype effects suggested that mice with the B6 haplotype at the distal locus had higher \textit{Rnf13} expression. In lung tissue, a distal-eQTL was detected on the X chromosome with a different haplotype effect pattern, notably higher \textit{Rnf13} expression when A/J, B6, and PWK haplotypes were present and lower expression with NOD and NZO haplotypes. These examples demonstrate how multi-tissue analysis can provide greater support for distal-QTL, including potential tissue-specific genetic regulation.
+%\subsubsection{\textit{Rnf13}: Tissue-specific distal-eQTL}
+%Using the multi-stage conditional regression approach (Analysis G) and conditioning on the local-eQTL, we detected a distal-eQTL on chromosome 12. Comparing the residuals after regressing out the local-eQTL and founder haplotype effects suggested that mice with the B6 haplotype at the distal locus had higher \textit{Rnf13} expression. In lung tissue, a distal-eQTL was detected on the X chromosome with a different haplotype effect pattern, notably higher \textit{Rnf13} expression when A/J, B6, and PWK haplotypes were present and lower expression with NOD and NZO haplotypes. These examples demonstrate how multi-tissue analysis can provide greater support for distal-QTL, including potential tissue-specific genetic regulation.
 
 \subsection{Mediation of eQTL by chromatin}
 
@@ -553,7 +551,7 @@ The QTL and mediation results for all three tissues are depicted as circos plots
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 \centering
 \includegraphics[width=\textwidth, trim={0in 0.1in 0in 0in}, clip]{figs/akr1e1_full_model_update.png}
-\caption{\textbf{Complex mediation model for \textit{Akr1e1} distal-eQTL.}  The genetic regulation of \textit{Akr1e1} expression is reconstructed based on relationships observed across the three tissues. Distal-eQTL are detected in all tissues at similar levels of significance. A local-eQTL for \textit{Zfp985} that is proximal to the \textit{Akr1e1} distal-eQTL was observed in lung, and \textit{Zfp985} expression is detected as anti-correlated mediator of the distal-eQTL, consistent with \textit{Zfp985} suppressing \textit{Akr1e1} expression. The chromatin site proximal to the \textit{Akr1e1} TSS has a distal-cQTL detected in kidney. The chromatin accessibility at the site was found to be a significant correlated mediator of \textit{Akr1e1} expression. Combining associations across tissues supports a biological model whereby \textit{Zfp985}, expressed in mice with NOD, NZO, PWK, and WSB haplotypes, silences \textit{Akr1e1} through KRAB domain-induced heterochromatin. QTL and mediation genome scans are included, along with sequence phenotypes as boxplots categorized according to most likely diplotype, and modeled founder effects fit as BLUPs. The relative magnitudes of the QTL effect sizes and mediation significance are consistent with the proposed model, with \textit{Zfp985} local-eQTL > chromatin distal-eQTL > \textit{Akr1e1} distal-eQTL and chromatin mediation > mediation through \textit{Zfp985} expression.
+\caption{\textbf{Complex mediation model for \textit{Akr1e1} distal-eQTL.}  The genetic regulation of \textit{Akr1e1} expression is reconstructed based on relationships observed across the three tissues. Distal-eQTL are detected in all tissues at similar levels of significance. A local-eQTL for \textit{Zfp985} that is proximal to the \textit{Akr1e1} distal-eQTL was observed in lung, and \textit{Zfp985} expression is detected as anti-correlated mediator of the distal-eQTL, consistent with \textit{Zfp985} suppressing \textit{Akr1e1} expression. The chromatin site proximal to the \textit{Akr1e1} TSS has a distal-cQTL detected in kidney. The chromatin accessibility at the site was found to be a significant correlated mediator of \textit{Akr1e1} expression. Combining associations across tissues supports a biological model whereby \textit{Zfp985}, expressed in mice with NOD, NZO, PWK, and WSB haplotypes, silences \textit{Akr1e1} through KRAB domain-induced heterochromatin. QTL and mediation genome scans are included, along with sequence phenotypes as interquartile ranges categorized according to most likely diplotype, and modeled founder effects fit as BLUPs. The relative magnitudes of the QTL effect sizes and mediation significance are consistent with the proposed model, with \textit{Zfp985} local-eQTL > chromatin distal-eQTL > \textit{Akr1e1} distal-eQTL and chromatin mediation > mediation through \textit{Zfp985} expression.
 \label{fig:akr1e1_full_model}}
 \end{figure*}
 
@@ -602,7 +600,7 @@ When multiple levels of molecular traits are measured, joint analyses may be inc
 
 \subsection{Correlated haplotype effects suggest multi-allelic QTL}
 
-Haplotype-based association in MPP allows for the detection of multi-allelic QTL \citep{Aylor2011}, such as observed with the kidney local-eQTL of \textit{Pik3c2g} in which mice with B6 contributions in the region have an intermediate level of expression. The correlation coefficient between the founder haplotype effects for QTL pairs provides an interesting summary, generally not possible in the simpler bi-allelic setting commonly used in variant association. The extent of the correlation between the founder effects for QTL pairs of certain genes, such as \textit{Cox7c} and \textit{Ubc} (Figure \ref{fig:correlated_local_eqtl}A) suggests that these QTL are at least subtly multi-allelic. Correlated founder effects are consistent with genetic regulation, even local to the gene TSS, being potentially complex with strain-specific modifiers.
+Haplotype-based association in MPP allows for the detection of multi-allelic QTL \citep{Crowley2015}, such as observed with the kidney local-eQTL of \textit{Pik3c2g} in which mice with B6 contributions in the region have an intermediate level of expression. The correlation coefficient between the founder haplotype effects for QTL pairs provides an interesting summary, generally not possible in the simpler bi-allelic setting commonly used in variant association. The extent of the correlation between the founder effects for QTL pairs of certain genes, such as \textit{Cox7c} and \textit{Ubc} (Figure \ref{fig:correlated_local_eqtl}A) suggests that these QTL are at least subtly multi-allelic. Correlated founder effects are consistent with genetic regulation, even local to the gene TSS, being potentially complex with strain-specific modifiers.
 
 \subsection{Correlated haplotype effects with differential expression across tissues}
 
@@ -729,7 +727,7 @@ Empirical $p$-values for the mediators can be defined through permutations, simi
 \subsection{Mediation models}
 
 \subsubsection{Mediation of local-eQTL through chromatin state.}
-Mediation through chromatin accessibility was evaluated for all local-eQTL detected through the lenient Analysis L, leveraging prior knowledge of the predominance of local genetic regulation and the effects of proximal chromatin state. Candidate mediators are detected at genome and chromosome-wide significance through 1,000 permutations to define GEVs for FWER control of minimum mediation logP. Genome-wide mediation is detected if $\permpmed_{\text{G}} \leq 0.05$ and local chromosome-wide if $\permpmed_{\text{LC}} \leq 0.05$. 
+Mediation through chromatin accessibility was evaluated for all local-eQTL detected through the lenient Analysis L, leveraging prior knowledge of the predominance of local genetic regulation and the effects of proximal chromatin state. Candidate mediators are detected at genome and chromosome-wide significance through 1,000 permutations to define GEVs for FWER control of minimum mediation logP. Genome-wide mediation is detected if $\permpmed_{\text{G}} \leq 0.05$ and local chromosome-wide if $\permpmed_{\text{C}} \leq 0.05$. 
 
 \subsubsection{Mediation of distal-eQTL through local gene expression.}
 Mediation of the effect of genome-wide significant distal-eQTL through proximal gene expression was evaluated. Genome-wide significance is required for distal-eQTL because there is not additional strong biological information to support reduced stringency as is the case with local signal. As with mediation through chromatin state, 1,000 permutations are used to define genome-wide mediation $p$-values, $\permpmed_{\text{G}}$. 
@@ -742,13 +740,13 @@ Detection of mediation has some caveats and pitfalls compared to the statistical
 \begin{enumerate}
 	\item Detection of a significant eQTL (relationship \ref{rel:eQTL}).
     \begin{enumerate}
-    	\item Mediation through chromatin: $\permpmed_{\text{LC}} \leq 0.05$ from Analysis L
+    	\item Mediation through chromatin: $\permpmed_{\text{C}} \leq 0.05$ from Analysis L
         \item Mediation through expression: $\permpmed_{\text{G}} \leq 0.05$ from Analysis G
     \end{enumerate}
     \item Detection of significant mediator within a 20Mb window centered around the eQTL from previous step.
     \item Detection of a significant QTL for the mediator from previous step.
     \begin{enumerate}
-    	\item Mediation through chromatin: $\permpmed_{\text{LC}} \leq 0.05$ from Analysis L and within 10Mb upstream or downstream of gene TSS
+    	\item Mediation through chromatin: $\permpmed_{\text{C}} \leq 0.05$ from Analysis L and within 10Mb upstream or downstream of gene TSS
         \item Mediation through expression: $\permpmed_{\text{G}} \leq 0.05$ from Analysis G and within 10Mb upstream or downstream of the eQTL position
     \end{enumerate}
     \item It is not possible to distinguish M $\rightarrow$ Y from M $\leftarrow$ Y given these data. If M is an intermediary of X on Y, the expectation is that the effect of X $\rightarrow$ M is greater than X $\rightarrow$ Y. We check that the effect size of the QTL for step 1 (X $\rightarrow$ Y) is less than the effect size of the QTL from step 3 (X $\rightarrow$ M). Failure of this step does not disprove the proposed mediation model, but it could suggest that the relationship between M and Y is more complicated than the simple models tested here, or that greater noise is incurred in the measurement of M than Y.
@@ -850,7 +848,7 @@ Analysis G\footnote{Analysis G: FDR < 0.1. \label{fn:method_one}} & All & 520 (6
 & Distal\footnote{More than 10Mb upstream or downstream of gene TSS or on another chromosome. \label{fn:distal_eqtl}} & 132 (25.4\footref{fn:gw_eqtl_perc}) & 112 (23.4\footref{fn:gw_eqtl_perc}) & 148 (20.0\footref{fn:gw_eqtl_perc}) \\
 \hline
 % %%%%%%%%%%%%%%%%
-Analysis LC\footnote{Analysis LC: FDR < 0.1. \label{fn:method_two}} & All & 2,587 (30.8\footref{fn:total_perc}) & 2,069 (18.2\footref{fn:total_perc}) & 3,191 (31.6\footref{fn:total_perc}) \\
+Analysis C\footnote{Analysis C: FDR < 0.1. \label{fn:method_two}} & All & 2,587 (30.8\footref{fn:total_perc}) & 2,069 (18.2\footref{fn:total_perc}) & 3,191 (31.6\footref{fn:total_perc}) \\
 & Local\footref{fn:local_eqtl} & 1,749 (67.6\footnote{Percentage of genes with chromosome-wide eQTL.\label{fn:cw_eqtl_perc}}) & 1,498 (72.4\footref{fn:cw_eqtl_perc}) & 2,214 (69.4\footref{fn:cw_eqtl_perc}) \\
 & Distal\footref{fn:distal_eqtl} & 838 (32.4\footref{fn:cw_eqtl_perc}) & 571 (27.6\footref{fn:cw_eqtl_perc}) & 977 (30.6\footref{fn:cw_eqtl_perc}) \\
 \hline
@@ -884,7 +882,7 @@ Analysis G\footnote{Analysis G: FDR < 0.2.} & All & 881 (10.5\footref{fn:total_p
 & Distal\footnote{More than 10Mb upstream or downstream of gene TSS or on another chromosome. \label{fn:distal_eqtl}} & 339 (38.5\footref{fn:gw_eqtl_perc}) & 301 (37.1\footref{fn:gw_eqtl_perc}) & 411 (34.6\footref{fn:gw_eqtl_perc}) \\
 \hline
 % %%%%%%%%%%%%%%%%
-Analysis LC\footnote{Analysis LC: FDR < 0.2.} & All & 4,699 (55.9\footref{fn:total_perc}) & 3,675 (32.4\footref{fn:total_perc}) & 5,469 (54.2\footref{fn:total_perc}) \\
+Analysis C\footnote{Analysis C: FDR < 0.2.} & All & 4,699 (55.9\footref{fn:total_perc}) & 3,675 (32.4\footref{fn:total_perc}) & 5,469 (54.2\footref{fn:total_perc}) \\
 & Local\footref{fn:local_eqtl} & 2,519 (53.6\footnote{Percentage of genes with chromosome-wide eQTL.\label{fn:cw_eqtl_perc}}) & 2,213 (60.2\footref{fn:cw_eqtl_perc}) & 3,099 (56.7\footref{fn:cw_eqtl_perc}) \\
 & Distal\footref{fn:distal_eqtl} & 2,180 (46.4\footref{fn:cw_eqtl_perc}) & 1,462 (39.8\footref{fn:cw_eqtl_perc}) & 2,370 (43.3\footref{fn:cw_eqtl_perc}) \\
 \hline
@@ -912,7 +910,7 @@ Analysis G\footnote{Analysis L: FDR < 0.1.} & All & 17 (0.1\footnote{Percentage 
 & Distal\footnote{More than 10Mb upstream or downstream of the midpoint of the chromatin accessibility site or on another chromosome. \label{fn:distal_cqtl}} & 1 (5.9\footref{fn:gw_cqtl_perc}) & 36 (31.6\footref{fn:gw_cqtl_perc}) & 20 (33.9\footref{fn:gw_cqtl_perc}) \\
 \hline
 % %%%%%%%%%%%%%%%%
-Analysis LC\footnote{Analysis LC: FDR < 0.1.} & All & 39 (0.3\footref{fn:total_perc}) & 226 (0.9\footref{fn:total_perc}) & 130 (0.7\footref{fn:total_perc}) \\
+Analysis C\footnote{Analysis C: FDR < 0.1.} & All & 39 (0.3\footref{fn:total_perc}) & 226 (0.9\footref{fn:total_perc}) & 130 (0.7\footref{fn:total_perc}) \\
 & Local\footref{fn:local_cqtl} & 35 (89.7\footnote{Percentage of chromatin accessibility sites with chromosome-wide cQTL.\label{fn:cw_cqtl_perc}}) & 186 (82.3\footref{fn:cw_cqtl_perc}) & 98 (75.4\footref{fn:cw_cqtl_perc}) \\
 & Distal\footref{fn:distal_cqtl} & 4 (10.3\footref{fn:cw_cqtl_perc}) & 40 (17.7\footref{fn:cw_cqtl_perc}) & 32 (24.6\footref{fn:cw_cqtl_perc}) \\
 \hline
@@ -946,7 +944,7 @@ Analysis G\footnote{Analysis G: FDR < 0.1.} & All & 20 (0.2\footref{fn:total_per
 & Distal\footnote{More than 10Mb upstream or downstream of the midpoint of the chromatin accessibility site. \label{fn:distal_cqtl}} & 2 (10.0\footref{fn:gw_cqtl_perc}) & 105 (47.7\footref{fn:gw_cqtl_perc}) & 58 (51.3\footref{fn:gw_cqtl_perc}) \\
 \hline
 % %%%%%%%%%%%%%%%%
-Analysis LC\footnote{Analysis LC: FDR < 0.1.} & All & 62 (0.5\footref{fn:total_perc}) & 309 (1.3\footref{fn:total_perc}) & 249 (1.4\footref{fn:total_perc}) \\
+Analysis C\footnote{Analysis C: FDR < 0.1.} & All & 62 (0.5\footref{fn:total_perc}) & 309 (1.3\footref{fn:total_perc}) & 249 (1.4\footref{fn:total_perc}) \\
 & Local\footref{fn:local_cqtl} & 50 (80.6\footref{fn:cw_cqtl_perc}) & 238 (77.0\footref{fn:cw_cqtl_perc}) & 149 (59.8\footref{fn:cw_cqtl_perc}) \\
 & Distal\footref{fn:distal_cqtl} & 12 (19.4\footref{fn:cw_cqtl_perc}) & 71 (23.0\footref{fn:cw_cqtl_perc}) & 100 (40.2\footref{fn:cw_cqtl_perc}) \\
 \hline
@@ -1043,7 +1041,7 @@ Kidney & \textit{C330018D20Rik} & 13 & \textit{Depdc1b} & 18 & 9.97e-04 \\
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 \centering
 \includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/upset_eqtl_cqtl.pdf}
-\caption{\textbf{Overlap across tissues of genes (A) and chromatin windows (B) with local-QTL detected.} The majority of sequence traits with a local-QTL detected were identified in only a single tissue. Kidney had the highest number of local-eQTL, whereas lung had the highest number of local-cQTL. Liver had a relative lack of local-cQTL, which may relate to its having the fewest chromatin windows analyzed (Figure \ref{fig:upset_genes_chromatin}B). Results included local-QTL detected with Analysis G (FDR < 0.1), Analysis LC (FDR < 0.1), and Analysis L (genome-wide and chromosome-wide). 
+\caption{\textbf{Overlap across tissues of genes (A) and chromatin windows (B) with local-QTL detected.} The majority of sequence traits with a local-QTL detected were identified in only a single tissue. Kidney had the highest number of local-eQTL, whereas lung had the highest number of local-cQTL. Liver had a relative lack of local-cQTL, which may relate to its having the fewest chromatin windows analyzed (Figure \ref{fig:upset_genes_chromatin}B). Results included local-QTL detected with Analysis G (FDR < 0.1), Analysis C (FDR < 0.1), and Analysis L (genome-wide and chromosome-wide). 
 \label{fig:upset_eqtl_cqtl}}
 \end{figure*}
 
@@ -1051,14 +1049,14 @@ Kidney & \textit{C330018D20Rik} & 13 & \textit{Depdc1b} & 18 & 9.97e-04 \\
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 \centering
 \includegraphics[width=0.8\textwidth, trim={0in 0in 0in 0in}, clip]{figs/qtl_map_supplemental.png}
-\caption{\textbf{QTL mapping results using only Analysis G or Analysis LC.} QTL map plots of eQTL (A) and cQTL (B) with FDR controlled at 0.1 and 0.2 for liver, lung, and kidney. Detected QTL from Analysis G (multi-stage FDR) and Analysis LC (chromosome-wide FDR) are included. Analysis LC, which uses FDR control for chromosome-wide significant QTL, produces a large number of intra-chromosomal distal QTL. The y-axis represents the genomic position of the gene or chromatin site, and the x-axis represents the genomic position of the QTL. Local-QTL appear as dots along the diagonal.
+\caption{\textbf{QTL mapping results using only Analysis G or Analysis C.} QTL map plots of eQTL (A) and cQTL (B) with FDR controlled at 0.1 and 0.2 for liver, lung, and kidney. Detected QTL from Analysis G (multi-stage FDR) and Analysis C (chromosome-wide FDR) are included. Analysis C, which uses FDR control for chromosome-wide significant QTL, produces a large number of intra-chromosomal distal QTL. The y-axis represents the genomic position of the gene or chromatin site, and the x-axis represents the genomic position of the QTL. Local-QTL appear as dots along the diagonal.
 \label{fig:grid_fdr_plot}}
 \end{figure*}
 
 \begin{figure*}[h]
 \centering
 \includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/local_qtl_effects.png}
-\caption{\textbf{Local-QTL effect sizes by mapping analysis.} Based on ranking mapping analyses with respect to the extent of scope, local (L; purple) to local-chromosome (LC; orange) to genome-wide (G; green), the greater the scope corresponded to reduced power to detect QTL, shown in liver, lung, and kidney tissues for gene expression (yellow line) and chromatin accessibility (blue line). Each dot represents a detected local-QTL, colored according to the highest scope mapping procedure that detected it. The three horizontal bars represent the 25\textsuperscript{th}, 50\textsuperscript{th}, and 75\textsuperscript{th} quantiles of QTL effect sizes for all local-QTL per tissue. Analysis G generally detects QTL with effect size > 60\%, whereas Analyses LC and L detect QTL effect sizes > 45\%. Effect size estimates correspond to a fixed effects model of the QTL.
+\caption{\textbf{Local-QTL effect sizes by mapping analysis.} Based on ranking mapping analyses with respect to the extent of scope, local (L; magenta) to chromosome (C; plum) to genome-wide (G; cyan), the greater the scope corresponded to reduced power to detect QTL, shown in liver, lung, and kidney tissues for gene expression (yellow line) and chromatin accessibility (blue line). Each dot represents a detected local-QTL, colored according to the highest scope mapping procedure that detected it. The three horizontal bars represent the 25\textsuperscript{th}, 50\textsuperscript{th}, and 75\textsuperscript{th} quantiles of QTL effect sizes for all local-QTL per tissue. Analysis G generally detects QTL with effect size > 60\%, whereas Analyses C and L detect QTL effect sizes > 45\%. Effect size estimates correspond to a fixed effects model of the QTL.
 \label{fig:qtl_effect_sizes_by_method}}
 \end{figure*}
 
@@ -1079,7 +1077,7 @@ Kidney & \textit{C330018D20Rik} & 13 & \textit{Depdc1b} & 18 & 9.97e-04 \\
 \begin{figure*}[h]
 \centering
 \includegraphics[width=0.9\textwidth, trim={0in 0.25in 0in 0in}, clip]{figs/qtl_effect_sizes_local_v_distal.png}
-\caption{\textbf{QTL effect sizes by local/distal status.} Each dot represents a QTL detected through either Analyses G (A) or LC (B) with FDR $\leq$ 0.1. The three horizontal bars represent the 25\textsuperscript{th}, 50\textsuperscript{th}, and 75\textsuperscript{th} quantiles of QTL effect sizes for all local-QTL per tissue. More local-eQTL are detected and have higher effects than distal-QTL. Analysis LC detects a large number of intra-chromosomal distal-QTL that Analysis G does not, many of which have low effect sizes. Effect size estimates are based on a fixed effects model.
+\caption{\textbf{QTL effect sizes by local/distal status.} Each dot represents a QTL detected through either Analyses G (A) or C (B) with FDR $\leq$ 0.1. The three horizontal bars represent the 25\textsuperscript{th}, 50\textsuperscript{th}, and 75\textsuperscript{th} quantiles of QTL effect sizes for all local-QTL per tissue. More local-eQTL are detected and have higher effects than distal-QTL. Analysis C detects a large number of intra-chromosomal distal-QTL that Analysis G does not, many of which have low effect sizes. Effect size estimates are based on a fixed effects model.
 \label{fig:qtl_effect_sizes_local_v_distal}}
 \end{figure*}
 
@@ -1111,7 +1109,7 @@ Kidney & \textit{C330018D20Rik} & 13 & \textit{Depdc1b} & 18 & 9.97e-04 \\
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 \centering
 \includegraphics[width=\textwidth]{figs/qtl_distance_all.png}
-\caption{\textbf{Highly significant QTL map nearby the gene TSS and chromatin window midpoint.} The permutation-based $p$-value (permP) from Analyses G (A) and LC (B) for eQTL and cQTL by the distance (Mb) from the gene TSS and the midpoint of the chromatin site. Inter-chromosomal distal-QTL are not included. The red dashed lines represent 10Mb upstream and downstream of the gene TSS or the midpoint of the chromatin site for classifying QTL as local or distal. Significant signals (yellow or blue), based on $q\text{-value} \le 0.1$, are largely local. Analysis LC detects many more intra-chromosomal distal-QTL.
+\caption{\textbf{Highly significant QTL map nearby the gene TSS and chromatin window midpoint.} The permutation-based $p$-value (permP) from Analyses G (A) and C (B) for eQTL and cQTL by the distance (Mb) from the gene TSS and the midpoint of the chromatin site. Inter-chromosomal distal-QTL are not included. The red dashed lines represent 10Mb upstream and downstream of the gene TSS or the midpoint of the chromatin site for classifying QTL as local or distal. Significant signals (yellow or blue), based on $q\text{-value} \le 0.1$, are largely local. Analysis C detects many more intra-chromosomal distal-QTL.
 \label{fig:dist_all}}
 \end{figure*}
 
@@ -1152,6 +1150,25 @@ Kidney & \textit{C330018D20Rik} & 13 & \textit{Depdc1b} & 18 & 9.97e-04 \\
 \begin{figure*}[hp]
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 \centering
+\includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/ubc_correlated_eqtl.png}
+\caption{\textbf{The gene \textit{Ubc} has consistent strong local-eQTL observed in the three tissues.} The local-eQTL consistently drove higher expression when the B6, NOD, NZO, and WSB haploytpes were present. Expression levels in liver and lung were found to be significantly different ($q = 0.022$). The estimated haplotype effects, scaled BLUPs, were highly consistent with the expression data, represented as interquartile bars by most likely diplotype. The haplotype and variant associations in the eQTL regions were similar across tissues, suggesting they may represent the same causal origin. The red tick represents the \textit{Ubc} TSS, the black tick represents the peak variant association, and the colored ticks represent the peak haplotype association, each each tissue.
+\label{fig:ubc_correlated_eqtl}}
+\end{figure*}
+
+\begin{figure*}[hp]
+\renewcommand{\familydefault}{\sfdefault}\normalfont
+\centering
+\includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/rnf13_distal_eqtl.png}
+\caption{\textbf{The gene \textit{Rnf13} has tissue-specific patterns of genetic regulation.} A strong local-eQTL detected in liver. After conditioning on the local-eQTL, a statistically significant (Analysis G) distal-eQTL was detected on chromosome 12, largely driven by the B6 haplotype, distinct from the local-eQTL. The unique haplotype effect patterns for each eQTL can be seen in both the expression data, represented by interquartile bars by most likely diplotype, and the estimated effects (scaled BLUPs). On the association scans, the red tick marks the \textit{Rnf13} TSS and the black tick marks the location of distal-eQTL.
+\label{fig:rnf13_distal_eqtl}}
+\end{figure*}
+
+%The Ring finger protein 13 (\textit{Rnf13}; Figure \ref{fig:correlated_distal_eqtl}C) gene was lowly expressed in all tissues but with a strong local-eQTL detected in liver. Using the multi-stage conditional regression approach (Analysis G) and conditioning on the local-eQTL, we detected a distal-eQTL on chromosome 12. Comparing the residuals after regressing out the local-eQTL and founder haplotype effects suggested that mice with the B6 haplotype at the distal locus had higher \textit{Rnf13} expression. In lung tissue, a distal-eQTL was detected on the X chromosome with a different haplotype effect pattern, notably higher \textit{Rnf13} expression when A/J, B6, and PWK haplotypes were present and lower expression with NOD and NZO haplotypes. These examples demonstrate how multi-tissue analysis can provide greater support for distal-QTL, including potential tissue-specific genetic regulation.
+
+
+\begin{figure*}[hp]
+\renewcommand{\familydefault}{\sfdefault}\normalfont
+\centering
 \includegraphics[width=\textwidth]{figs/mediation_or_colocal.png}
 \caption{\textbf{Co-localizing eQTL and cQTL are not sufficient for statistical mediation.} The approach used to detect mediation through chromatin accessibility requires that the eQTL and cQTL co-localize (both within 10Mb of the gene TSS), as well as possess similar founder haplotype effect patterns. Co-localizing cQTL are observed for local-eQTL for both \textit{Hdhd3} in liver (A) and \textit{Acbd4} in kidney (B). QTL and mediation scans are shown, with chromosomes 4 and 11 blown up for \textit{Hdhd3} and \textit{Acbd4}, respectively. The red ticks denote the TSS for both genes. The founders effects were estimated as centered and scaled BLUPs. The founder effects for the eQTL and cQTL are highly correlated ($r = 0.96$) for \textit{Hdhd3}, but not for \textit{Acbd4} ($r = 0.52$). Strong mediation of the \textit{Hdhd3} eQTL through chromatin is detected, but not for \textit{Acbd4}. The effect size of the proximal cQTL to \textit{Acbd4} is smaller than its eQTL, also inconsistent with the relationship depicted in Figure \ref{fig:graph}A.
 \label{fig:colocalization}}
@@ -1171,7 +1188,7 @@ Kidney & \textit{C330018D20Rik} & 13 & \textit{Depdc1b} & 18 & 9.97e-04 \\
 \renewcommand{\familydefault}{\sfdefault}\normalfont
 \centering
 \includegraphics[width=\textwidth, trim={0in 0.5in 0in 0in}, clip]{figs/akr1e1_mediation.png}
-\caption{\textbf{Mediation of \textit{Akr1e1} distal-eQTL through \textit{Zfp985} expression.} Expression of \textit{Akr1e1} and \textit{Zfp985} are anti-correlated ($r = -0.69$) in lung. This relationship is also observed in the expression data plotted as boxplots, categorized by most likely diplotype, and the founder haplotype effects, estimated as scaled BLUPs. The QTL and mediation scans reveal that \textit{Akr1e1}, TSS marked with a red tick on chromosome 13, possesses a distal-eQTL on chromosome 4 that is proximal to the strong local-eQTL of \textit{Zfp985}. The mediation scan identifies \textit{Zfp985} as a strong candidate mediator consistent with the mediation model. A more complete picture of the genetic regulation of \textit{Akr1e1} expression is pieced together by looking across all three tissues and includes a potential chromatin mediator (Figure \ref{fig:akr1e1_full_model}).
+\caption{\textbf{Mediation of \textit{Akr1e1} distal-eQTL through \textit{Zfp985} expression.} Expression of \textit{Akr1e1} and \textit{Zfp985} are anti-correlated ($r = -0.69$) in lung. This relationship is also observed in the expression data with bars representing the interquartile range, categorized by most likely diplotype, and the founder haplotype effects, estimated as scaled BLUPs. The QTL and mediation scans reveal that \textit{Akr1e1}, TSS marked with a red tick on chromosome 13, possesses a distal-eQTL on chromosome 4 that is proximal to the strong local-eQTL of \textit{Zfp985}. The mediation scan identifies \textit{Zfp985} as a strong candidate mediator consistent with the mediation model. A more complete picture of the genetic regulation of \textit{Akr1e1} expression is pieced together by looking across all three tissues and includes a potential chromatin mediator (Figure \ref{fig:akr1e1_full_model}).
 \label{fig:akr1e1_exmediation}}
 \end{figure*}
 
