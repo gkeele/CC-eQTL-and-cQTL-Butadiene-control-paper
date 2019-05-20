@@ -272,7 +272,7 @@ Terrence S. Furey\textsuperscript{2,3,4,\ddag*}
 %\textpilcrow Membership list can be found in the Acknowledgments section.
 
 % Use the asterisk to denote corresponding authorship and provide email address in note below.
-* irusyn@tamu.edu, tsfurey@email.unc.edu
+* irusyn@tamu.edu; tsfurey@email.unc.edu
 
 \end{flushleft}
 % Please keep the abstract below 300 words
@@ -298,7 +298,7 @@ Genetic variation can drive alterations in gene expression levels and chromatin 
 % Use "Eq" instead of "Equation" for equation citations.
 \section*{Introduction}
 Determining the mechanisms by which genetic variants drive molecular, cellular, and physiological phenotypes has proved to be challenging \cite{Schadt2009}. These mechanisms can be informed by genome-wide experiments that provide data on variations in molecular and cellular states in genotyped individuals. Most examples of such data, though, are largely observational, due in part to constraints of specific populations (\eg, humans), the limitations of existing experimental technologies, and the challenge of coordinating large numbers of experiments with multiple levels of data \cite{Schaid2018}. 
-One approach to shed light on these dynamics is to pair complementary datasets from the same individuals and perform statistical mediation analysis (\eg \cite{Baron1986, Mackinnon2007}), which has increasingly been used in genomics \cite{Richmond2016}. These analyses can identify putative causal relationships rather than correlational interactions, providing meaningful and actionable targets in terms of downstream applications in areas such as medicine and agriculture.
+One approach to shed light on these dynamics is to pair complementary datasets from the same individuals and perform statistical mediation analysis (\eg, \cite{Baron1986, Mackinnon2007}), which has increasingly been used in genomics \cite{Richmond2016}. These analyses can identify putative causal relationships rather than correlational interactions, providing meaningful and actionable targets in terms of downstream applications in areas such as medicine and agriculture.
 
 In human data, co-occurence of QTL across various multi-omic data has been used to assess potentially related and connected biological processes; examples include gene expression with chromatin accessibility \cite{Degner2012} or regulatory elements \cite{Pai2015},  and ribosome occupancy with protein abundances \cite{Battle2015, Yang2017}.
 More formal integration through statistical mediation analyses have also been used to investigate relationships between levels of human biological data, such as distal-eQTL with local gene expression \cite{Battle2014}, and eQTL with regulatory elements \cite{Alasoo2017, Roytman2018, Wu2018}.
@@ -814,29 +814,527 @@ This work was funded by grants from the National Institute of Environmental Heal
 % here. See http://journals.plos.org/plosone/s/latex for 
 % step-by-step instructions.
 % 
-\bibliography{eQTL_mediation}
+%\bibliography{eQTL_mediation}
 
-%\begin{thebibliography}{10}
-%
-%\bibitem{bib1}
-%Conant GC, Wolfe KH.
-%\newblock {{T}urning a hobby into a job: how duplicated genes find new
-%  functions}.
-%\newblock Nat Rev Genet. 2008 Dec;9(12):938--950.
-%
-%\bibitem{bib2}
-%Ohno S.
-%\newblock Evolution by gene duplication.
-%\newblock London: George Alien \& Unwin Ltd. Berlin, Heidelberg and New York:
-%  Springer-Verlag.; 1970.
-%
-%\bibitem{bib3}
-%Magwire MM, Bayer F, Webster CL, Cao C, Jiggins FM.
-%\newblock {{S}uccessive increases in the resistance of {D}rosophila to viral
-%  infection through a transposon insertion followed by a {D}uplication}.
-%\newblock PLoS Genet. 2011 Oct;7(10):e1002337.
-%
-%\end{thebibliography}
+\begin{thebibliography}{10}
+
+\bibitem{Schadt2009}
+Schadt EE.
+\newblock {Molecular networks as sensors and drivers of common human diseases}.
+\newblock Nature. 2009;461(7261):218--223.
+\newblock doi:{10.1038/nature08454}.
+
+\bibitem{Schaid2018}
+Schaid DJ, Chen W, Larson NB.
+\newblock {From genome-wide associations to candidate causal variants by
+  statistical fine-mapping}.
+\newblock Nature Reviews Genetics. 2018;19(8):491--504.
+\newblock doi:{10.1038/s41576-018-0016-z}.
+
+\bibitem{Baron1986}
+Baron RM, Kenny DA.
+\newblock {The moderator-mediator variable distinction in social psychological
+  research: Conceptual, strategic, and statistical considerations.}
+\newblock Journal of Personality and Social Psychology. 1986;51(6):1173--1182.
+\newblock doi:{10.1037/0022-3514.51.6.1173}.
+
+\bibitem{Mackinnon2007}
+MacKinnon DP, Fairchild AJ, Fritz MS.
+\newblock {Mediation Analysis}.
+\newblock Annual Review of Psychology. 2007;58(1):593--614.
+\newblock doi:{10.1146/annurev.psych.58.110405.085542}.
+
+\bibitem{Richmond2016}
+Richmond RC, Hemani G, Tilling K, {Davey Smith} G, Relton CL.
+\newblock {Challenges and novel approaches for investigating molecular
+  mediation}.
+\newblock Human Molecular Genetics. 2016;25(R2):R149--R156.
+\newblock doi:{10.1093/hmg/ddw197}.
+
+\bibitem{Degner2012}
+Degner JF, Pai AA, Pique-Regi R, Veyrieras JB, Gaffney DJ, Pickrell JK, et~al.
+\newblock {DNase I sensitivity QTLs are a major determinant of human expression
+  variation.}
+\newblock Nature. 2012;482(7385):390--4.
+\newblock doi:{10.1038/nature10808}.
+
+\bibitem{Pai2015}
+Pai AA, Pritchard JK, Gilad Y.
+\newblock {The genetic and mechanistic basis for variation in gene regulation.}
+\newblock PLoS Genetics. 2015;11(1):e1004857.
+\newblock doi:{10.1371/journal.pgen.1004857}.
+
+\bibitem{Battle2015}
+Battle A, Khan Z, Wang SH, Mitrano A, Ford MJ, Pritchard JK, et~al.
+\newblock {Genomic variation. Impact of regulatory variation from RNA to
+  protein.}
+\newblock Science (New York, NY). 2015;347(6222):664--7.
+\newblock doi:{10.1126/science.1260793}.
+
+\bibitem{Yang2017}
+Yang F, Wang J, {GTEx Consortium}, Pierce BL, Chen LS.
+\newblock {Identifying cis-mediators for trans-eQTLs across many human tissues
+  using genomic mediation analysis.}
+\newblock Genome Research. 2017;27(11):1859--1871.
+\newblock doi:{10.1101/gr.216754.116}.
+
+\bibitem{Battle2014}
+Battle A, Mostafavi S, Zhu X, Potash JB, Weissman MM, McCormick C, et~al.
+\newblock {Characterizing the genetic basis of transcriptome diversity through
+  RNA-sequencing of 922 individuals}.
+\newblock Genome Research. 2014;24(1):14--24.
+\newblock doi:{10.1101/gr.155192.113}.
+
+\bibitem{Alasoo2017}
+Alasoo K, Rodrigues J, Mukhopadhyay S, Knights AJ, Mann AL, Kundu K, et~al.
+\newblock {Shared genetic effects on chromatin and gene expression indicate a
+  role for enhancer priming in immune response.}
+\newblock Nature Genetics. 2018; p. 102392.
+\newblock doi:{10.1038/s41588-018-0046-7}.
+
+\bibitem{Roytman2018}
+Roytman M, Kichaev G, Gusev A, Pasaniuc B.
+\newblock {Methods for fine-mapping with chromatin and expression data.}
+\newblock PLoS Genetics. 2018;14(2):e1007240.
+\newblock doi:{10.1371/journal.pgen.1007240}.
+
+\bibitem{Wu2018}
+Wu Y, Zeng J, Zhang F, Zhu Z, Qi T, Zheng Z, et~al.
+\newblock {Integrative analysis of omics summary data reveals putative
+  mechanisms underlying complex traits}.
+\newblock Nature Communications. 2018;9(1):918.
+\newblock doi:{10.1038/s41467-018-03371-0}.
+
+\bibitem{Visscher2017}
+Visscher PM, Wray NR, Zhang Q, Sklar P, McCarthy MI, Brown MA, et~al.
+\newblock {10 Years of GWAS Discovery: Biology, Function, and Translation.}
+\newblock American Journal of Human Genetics. 2017;101(1):5--22.
+\newblock doi:{10.1016/j.ajhg.2017.06.005}.
+
+\bibitem{Churchill2004}
+Churchill GA, Airey DC, Allayee H, Angel JM, Attie AD, Beatty J, et~al.
+\newblock {The Collaborative Cross, a community resource for the genetic
+  analysis of complex traits}.
+\newblock Nature Genetics. 2004;36(11):1133--1137.
+\newblock doi:{10.1038/ng1104-1133}.
+
+\bibitem{Hall2012}
+{Collaborative Cross Consortium}.
+\newblock {The genome architecture of the Collaborative Cross mouse genetic
+  reference population.}
+\newblock Genetics. 2012;190(2):389--401.
+\newblock doi:{10.1534/genetics.111.132639}.
+
+\bibitem{Srivastava2017}
+Srivastava A, Morgan AP, Najarian ML, Sarsani VK, Sigmon JS, Shorter JR, et~al.
+\newblock {Genomes of the mouse collaborative cross}.
+\newblock Genetics. 2017;206(2):537--556.
+\newblock doi:{10.1534/genetics.116.198838}.
+
+\bibitem{Churchill2012}
+Churchill G, Gatti D, Munger S, Svenson K.
+\newblock {The Diversity outbred mouse population}.
+\newblock Mammalian Genome. 2012;23:713--8.
+\newblock doi:{10.1007/s00335-012-9414-2.The}.
+
+\bibitem{Chick2016}
+Chick JM, Munger SC, Simecek P, Huttlin EL, Choi K, Gatti DM, et~al.
+\newblock {Defining the consequences of genetic variation on a proteome-wide
+  scale.}
+\newblock Nature. 2016;534(7608):500--5.
+\newblock doi:{10.1038/nature18270}.
+
+\bibitem{Skelly2019}
+Skelly DA, Czechanski A, Byers C, Aydin S, Spruce C, Olivier C, et~al.
+\newblock Genetic variation influences pluripotent ground state stability in
+  mouse embryonic stem cells through a hierarchy of molecular phenotypes.
+\newblock bioRxiv. 2019;doi:{10.1101/552059}.
+
+\bibitem{Kaeppler1997}
+Kaeppler SM.
+\newblock {Quantitative trait locus mapping using sets of near-isogenic lines:
+  Relative power comparisons and technical considerations}.
+\newblock Theoretical and Applied Genetics. 1997;95(3):384--392.
+\newblock doi:{10.1007/s001220050574}.
+
+\bibitem{Buenrostro2015}
+Buenrostro JD, Wu B, Chang HY, Greenleaf WJ.
+\newblock {ATAC-seq: A Method for Assaying Chromatin Accessibility
+  Genome-Wide}.
+\newblock In: Current Protocols in Molecular Biology. vol. 2015. Hoboken, NJ,
+  USA: John Wiley {\&} Sons, Inc.; 2015. p. 21.29.1--21.29.9.
+\newblock Available from:
+  \url{http://doi.wiley.com/10.1002/0471142727.mb2129s109}.
+
+\bibitem{Buenrostro2013}
+Buenrostro JD, Giresi PG, Zaba LC, Chang HY, Greenleaf WJ.
+\newblock {Transposition of native chromatin for fast and sensitive epigenomic
+  profiling of open chromatin, DNA-binding proteins and nucleosome position.}
+\newblock Nature Methods. 2013;10(12):1213--8.
+\newblock doi:{10.1038/nmeth.2688}.
+
+\bibitem{Shibata2012}
+Shibata Y, Sheffield NC, Fedrigo O, Babbitt CC, Wortham M, Tewari AK, et~al.
+\newblock {Extensive evolutionary changes in regulatory element activity during
+  human origins are associated with altered gene expression and positive
+  selection.}
+\newblock PLoS Genetics. 2012;8(6):e1002789.
+\newblock doi:{10.1371/journal.pgen.1002789}.
+
+\bibitem{Quinlan2010}
+Quinlan AR, Hall IM.
+\newblock {BEDTools : a flexible suite of utilities for comparing genomic
+  features}. 2010;26(6):841--842.
+\newblock doi:{10.1093/bioinformatics/btq033}.
+
+\bibitem{edgeR}
+Robinson MD, McCarthy DJ, Smyth GK.
+\newblock edgeR: a Bioconductor package for differential expression analysis of
+  digital gene expression data.
+\newblock Bioinformatics. 2010;26(1):139--140.
+
+\bibitem{Fu2012}
+Fu CP, Welsh CE, de~Villena FPM, McMillan L.
+\newblock {Inferring ancestry in admixed populations using microarray probe
+  intensities}.
+\newblock In: Proceedings of the ACM Conference on Bioinformatics,
+  Computational Biology and Biomedicine - BCB '12. New York, New York, USA: ACM
+  Press; 2012. p. 105--112.
+\newblock Available from:
+  \url{http://dl.acm.org/citation.cfm?id=2382936.2382950
+  http://dl.acm.org/citation.cfm?doid=2382936.2382950}.
+
+\bibitem{Morgan2016muga}
+Morgan AP, Fu CP, Kao CY, Welsh CE, Didion JP, Yadgary L, et~al.
+\newblock {The Mouse Universal Genotyping Array: From Substrains to
+  Subspecies}.
+\newblock G3 (Bethesda, Md). 2016;6(2):263--279.
+\newblock doi:{10.1534/g3.115.022087}.
+
+\bibitem{Shorter2019}
+Shorter JR, Najarian ML, Bell TA, Blanchard M, Ferris MT, Hock P, et~al.
+\newblock Whole Genome Sequencing and Progress Towards Full Inbreeding of the
+  Mouse Collaborative Cross Population.
+\newblock G3: Genes, Genomes, Genetics. 2019;doi:{10.1534/g3.119.400039}.
+
+\bibitem{limma}
+Ritchie ME, Phipson B, Wu D, Hu Y, Law CW, Shi W, et~al.
+\newblock {limma} powers differential expression analyses for {RNA}-sequencing
+  and microarray studies.
+\newblock Nucleic Acids Research. 2015;43(7):e47.
+
+\bibitem{Benjamini1995}
+Benjamini Y, Hochberg Y, Society RS, Benajmini Y, Hochberg Y, Society RS,
+  et~al.
+\newblock {Controlling the False Discovery Rate : A Practical and Powerful
+  Approach to Multiple Testing}.
+\newblock Journal of the Royal Statistical Society, Series B.
+  1995;57(1):289--300.
+
+\bibitem{Sarkar1997}
+Sarkar SK, Chang CK.
+\newblock {The Simes Method for Multiple Hypothesis Testing With Positively
+  Dependent Test Statistics}.
+\newblock Journal of the American Statistical Association. 1997;92(440):1601.
+\newblock doi:{10.2307/2965431}.
+
+\bibitem{Xiong2014}
+Xiong Q, Mukherjee S, Furey TS.
+\newblock {GSAASeqSP: a toolset for gene set association analysis of RNA-Seq
+  data.}
+\newblock Scientific Reports. 2014;4:6347.
+\newblock doi:{10.1038/srep06347}.
+
+\bibitem{Mott2000}
+Mott R, Talbot CJ, Turri MG, Collins AC, Flint J.
+\newblock {A method for fine mapping quantitative trait loci in outbred animal
+  stocks.}
+\newblock Proceedings of the National Academy of Sciences.
+  2000;97(23):12649--54.
+\newblock doi:{10.1073/pnas.230304397}.
+
+\bibitem{Haley1992}
+Haley CS, Knott SA.
+\newblock {A simple regression method for mapping quantitative trait loci in
+  line crosses using flanking markers}.
+\newblock Heredity. 1992;69:315--24.
+
+\bibitem{Martinez1992}
+Mart{\'{i}}nez O, Curnow RN.
+\newblock {Estimating the locations and the sizes of the effects of
+  quantitative trait loci using flanking markers}.
+\newblock Theoretical and Applied Genetics. 1992;85(4):480--488.
+\newblock doi:{10.1007/BF00222330}.
+
+\bibitem{Valdar2006c}
+Valdar W, Flint J, Mott R.
+\newblock {Simulating the collaborative cross: power of quantitative trait loci
+  detection and mapping resolution in large sets of recombinant inbred strains
+  of mice.}
+\newblock Genetics. 2006;172(3):1783--97.
+\newblock doi:{10.1534/genetics.104.039313}.
+
+\bibitem{Aylor2011}
+Aylor DL, Valdar W, Foulds-mathes W, Buus RJ, Verdugo RA, Baric RS, et~al.
+\newblock {Genetic analysis of complex traits in the emerging Collaborative
+  Cross}.
+\newblock Genome Research. 2011;21:1213--22.
+\newblock doi:{10.1101/gr.111310.110.mentally}.
+
+\bibitem{Gralinski2015}
+Gralinski LE, Ferris MT, Aylor DL, Whitmore AC, Green R, Frieman MB, et~al.
+\newblock {Genome Wide Identification of SARS-CoV Susceptibility Loci Using the
+  Collaborative Cross.}
+\newblock PLoS Genetics. 2015;11(10):e1005504.
+\newblock doi:{10.1371/journal.pgen.1005504}.
+
+\bibitem{Kelada2016}
+Kelada SNP.
+\newblock {Plethysmography Phenotype QTL in Mice Before and After Allergen
+  Sensitization and Challenge}.
+\newblock G3 (Bethesda, Md). 2016;6(9):2857--2865.
+\newblock doi:{10.1534/g3.116.032912}.
+
+\bibitem{Donoghue2017}
+Donoghue LJ, Livraghi-Butrico A, McFadden KM, Thomas JM, Chen G, Grubb BR,
+  et~al.
+\newblock {Identification of trans Protein QTL for Secreted Airway Mucins in
+  Mice and a Causal Role for Bpifb1.}
+\newblock Genetics. 2017;207(2):801--812.
+\newblock doi:{10.1534/genetics.117.300211}.
+
+\bibitem{Keele2019}
+Keele GR, Crouse WL, Kelada SNP, Valdar W.
+\newblock {Determinants of QTL Mapping Power in the Realized Collaborative
+  Cross.}
+\newblock G3 (Bethesda, Md). 2019;9(May):459966.
+\newblock doi:{10.1534/g3.119.400194}.
+
+\bibitem{King2012}
+King EG, Merkes CM, McNeil CL, Hoofer SR, Sen S, Broman KW, et~al.
+\newblock {Genetic dissection of a model complex trait using the Drosophila
+  Synthetic Population Resource.}
+\newblock Genome Research. 2012;22(8):1558--66.
+\newblock doi:{10.1101/gr.134031.111}.
+
+\bibitem{Dudbridge2004}
+Dudbridge F, Koeleman BPC.
+\newblock {Efficient Computation of Significance Levels for Multiple
+  Associations in Large Studies of Correlated Data, Including Genomewide
+  Association Studies}.
+\newblock The American Journal of Human Genetics. 2004;75(3):424--435.
+\newblock doi:{10.1086/423738}.
+
+\bibitem{Doerge1996}
+Doerge R, Churchill G.
+\newblock {Permutation tests for multiple loci affecting a quantitative
+  character}.
+\newblock Genetics. 1996;142(1977):285--94.
+
+\bibitem{Chesler2005}
+Chesler EJ, Lu L, Shou S, Qu Y, Gu J, Wang J, et~al.
+\newblock {Complex trait analysis of gene expression uncovers polygenic and
+  pleiotropic networks that modulate nervous system function}.
+\newblock Nature Genetics. 2005;37(3):233--242.
+\newblock doi:{10.1038/ng1518}.
+
+\bibitem{Zhang2014}
+Zhang Z, Wang W, Valdar W.
+\newblock {Bayesian modeling of haplotype effects in multiparent populations.}
+\newblock Genetics. 2014;198(1):139--56.
+\newblock doi:{10.1534/genetics.114.166249}.
+
+\bibitem{Wei2016}
+Wei J, Xu S.
+\newblock {A random-model approach to QTL mapping in multiparent advanced
+  generation intercross (MAGIC) populations}.
+\newblock Genetics. 2016;202(2):471--486.
+\newblock doi:{10.1534/genetics.115.179945}.
+
+\bibitem{Robinson1991}
+Robinson GK.
+\newblock {That BLUP is a Good Thing: The Estimation of Random Effects}.
+\newblock Statistical Science. 1991;6(1):15--51.
+\newblock doi:{10.2307/2246134}.
+
+\bibitem{Baud2014}
+Baud A, Guryev V, Hummel O, Johannesson M, {Rat Genome Sequencing and Mapping
+  Consortium}, Flint J.
+\newblock {Genomes and phenomes of a population of outbred rats and its
+  progenitors}.
+\newblock Scientific Data. 2014;1:140011.
+\newblock doi:{10.1038/sdata.2014.11}.
+
+\bibitem{Keele2018}
+Keele GR, Prokop JW, He H, Holl K, Littrell J, Deal A, et~al.
+\newblock {Genetic Fine-Mapping and Identification of Candidate Genes and
+  Variants for Adiposity Traits in Outbred Rats}.
+\newblock Obesity. 2018;26(1):213--222.
+\newblock doi:{10.1002/oby.22075}.
+
+\bibitem{Yalcin2005}
+Yalcin B, Flint J, Mott R.
+\newblock {Using progenitor strain information to identify quantitative trait
+  nucleotides in outbred mice.}
+\newblock Genetics. 2005;171(2):673--81.
+\newblock doi:{10.1534/genetics.104.028902}.
+
+\bibitem{Oreper2017}
+Oreper D, Cai Y, Tarantino LM, de~Villena FPM, Valdar W.
+\newblock {Inbred Strain Variant Database (ISVdb): A Repository for
+  Probabilistically Informed Sequence Differences Among the Collaborative Cross
+  Strains and Their Founders.}
+\newblock G3 (Bethesda, Md). 2017;7(6):1623--1630.
+\newblock doi:{10.1534/g3.117.041491}.
+
+\bibitem{Lawrence2009}
+Lawrence M, Gentleman R, Carey V.
+\newblock rtracklayer: an R package for interfacing with genome browsers.
+\newblock Bioinformatics. 2009;25:1841--1842.
+\newblock doi:{10.1093/bioinformatics/btp328}.
+
+\bibitem{Oreper2018}
+Oreper D, Schoenrock SA, McMullan R, Ervin R, Farrington J, Miller DR, et~al.
+\newblock {Reciprocal F1 Hybrids of Two Inbred Mouse Strains Reveal
+  Parent-of-Origin and Perinatal Diet Effects on Behavior and Expression}.
+\newblock G3 (Bethesda, Md). 2018;8(11):3447--3468.
+\newblock doi:{10.1534/g3.118.200135}.
+
+\bibitem{Keller2018}
+Keller MP, Gatti DM, Schueler KL, Rabaglia ME, Stapleton DS, Simecek P, et~al.
+\newblock {Genetic Drivers of Pancreatic Islet Function.}
+\newblock Genetics. 2018;209(1):335--356.
+\newblock doi:{10.1534/genetics.118.300864}.
+
+\bibitem{RSoftware2019}
+{R Core Team}. R: A Language and Environment for Statistical Computing; 2019.
+\newblock Available from: \url{https://www.R-project.org/}.
+
+\bibitem{Conway2017}
+Conway JR, Lex A, Gehlenborg N.
+\newblock {UpSetR: an R package for the visualization of intersecting sets and
+  their properties}.
+\newblock Bioinformatics. 2017;33(18):2938--2940.
+\newblock doi:{10.1093/bioinformatics/btx364}.
+
+\bibitem{Rieseberg1999}
+Rieseberg LH, Archer MA, Wayne RK.
+\newblock {Transgressive segregation, adaptation and speciation}.
+\newblock Heredity. 1999;83(4):363--372.
+\newblock doi:{10.1038/sj.hdy.6886170}.
+
+\bibitem{Yang2011}
+Yang H, Wang JR, Didion JP, Buus RJ, Bell TA, Welsh CE, et~al.
+\newblock {Subspecific origin and haplotype diversity in the laboratory mouse.}
+\newblock Nature Genetics. 2011;43(7):648--55.
+\newblock doi:{10.1038/ng.847}.
+
+\bibitem{Crowley2015}
+Crowley JJ, Zhabotynsky V, Sun W, Huang S, Pakatci IK, Kim Y, et~al.
+\newblock {Analyses of allele-specific gene expression in highly divergent
+  mouse crosses identifies pervasive allelic imbalance.}
+\newblock Nature Genetics. 2015;47(4):353--60.
+\newblock doi:{10.1038/ng.3222}.
+
+\bibitem{Braccini2015}
+Braccini L, Ciraolo E, Campa CC, Perino A, Longo DL, Tibolla G, et~al.
+\newblock {PI3K-C2$\gamma$ is a Rab5 effector selectively controlling endosomal
+  Akt2 activation downstream of insulin signalling}.
+\newblock Nature Communications. 2015;6(1):7400.
+\newblock doi:{10.1038/ncomms8400}.
+
+\bibitem{Gu2014}
+Gu Z, Gu L, Eils R, Schlesner M, Brors B.
+\newblock {circlize implements and enhances circular visualization in R}.
+\newblock Bioinformatics. 2014;30(19):2811--2812.
+\newblock doi:{10.1093/bioinformatics/btu393}.
+
+\bibitem{HamiltonWilliams2010}
+Hamilton-Williams EE, Wong SBJ, Martinez X, Rainbow DB, Hunter KM, Wicker LS,
+  et~al.
+\newblock {Idd9.2 and Idd9.3 Protective Alleles Function in CD4+ T-Cells and
+  Nonlymphoid Cells to Prevent Expansion of Pathogenic Islet-Specific CD8+
+  T-Cells}.
+\newblock Diabetes. 2010;59(6):1478--1486.
+\newblock doi:{10.2337/db09-1801}.
+
+\bibitem{Ecco2017}
+Ecco G, Imbeault M, Trono D.
+\newblock {KRAB zinc finger proteins}.
+\newblock Development. 2017;144(15):2719--2729.
+\newblock doi:{10.1242/dev.132605}.
+
+\bibitem{HamiltonWilliams2013}
+Hamilton-Williams EE, Rainbow DB, Cheung J, Christensen M, Lyons PA, Peterson
+  LB, et~al.
+\newblock {Fine mapping of type 1 diabetes regions Idd9.1 and Idd9.2 reveals
+  genetic complexity.}
+\newblock Mammalian Genome. 2013;24(9-10):358--75.
+\newblock doi:{10.1007/s00335-013-9466-y}.
+
+\bibitem{GTEX2017}
+Aguet F, Brown AA, Castel SE, Davis JR, He Y, Jo B, et~al.
+\newblock {Genetic effects on gene expression across human tissues}.
+\newblock Nature. 2017;550(7675):204--213.
+\newblock doi:{10.1038/nature24277}.
+
+\bibitem{Huang2009}
+Huang GJ, Shifman S, Valdar W, Johannesson M, Yalcin B, Taylor MS, et~al.
+\newblock {High resolution mapping of expression QTLs in heterogeneous stock
+  mice in multiple tissues}.
+\newblock Genome Research. 2009;19(6):1133--1140.
+\newblock doi:{10.1101/gr.088120.108}.
+
+\bibitem{Fu2012a}
+Fu J, Wolfs MGM, Deelen P, Westra HJ, Fehrmann RSN, {Te Meerman} GJ, et~al.
+\newblock {Unraveling the regulatory mechanisms underlying tissue-dependent
+  genetic variation of gene expression.}
+\newblock PLoS Genetics. 2012;8(1):e1002431.
+\newblock doi:{10.1371/journal.pgen.1002431}.
+
+\bibitem{Sul2013}
+Sul JH, Han B, Ye C, Choi T, Eskin E.
+\newblock {Effectively Identifying eQTLs from Multiple Tissues by Combining
+  Mixed Model and Meta-analytic Approaches}.
+\newblock PLoS Genetics. 2013;9(6):e1003491.
+\newblock doi:{10.1371/journal.pgen.1003491}.
+
+\bibitem{Flutre2013}
+Flutre T, Wen X, Pritchard J, Stephens M.
+\newblock {A statistical framework for joint eQTL analysis in multiple
+  tissues.}
+\newblock PLoS Genetics. 2013;9(5):e1003486.
+\newblock doi:{10.1371/journal.pgen.1003486}.
+
+\bibitem{Acharya2016}
+Acharya CR, McCarthy JM, Owzar K, Allen AS.
+\newblock {Exploiting expression patterns across multiple tissues to map
+  expression quantitative trait loci}.
+\newblock BMC Bioinformatics. 2016;17(1):257.
+\newblock doi:{10.1186/s12859-016-1123-5}.
+
+\bibitem{Rutledge2014}
+Rutledge H, Aylor DL, Carpenter DE, Peck BC, Chines P, Ostrowski LE, et~al.
+\newblock {Genetic regulation of Zfp30, CXCL1, and neutrophilic inflammation in
+  murine lung.}
+\newblock Genetics. 2014;198(2):735--45.
+\newblock doi:{10.1534/genetics.114.168138}.
+
+\bibitem{Kelada2014}
+Kelada SNP, Carpenter DE, Aylor DL, Chines P, Rutledge H, Chesler EJ, et~al.
+\newblock {Integrative genetic analysis of allergic inflammation in the murine
+  lung.}
+\newblock American Journal of Respiratory Cell and Molecular Giology.
+  2014;51(3):436--45.
+\newblock doi:{10.1165/rcmb.2013-0501OC}.
+
+\bibitem{Xu2003}
+Xu S.
+\newblock {Theoretical basis of the Beavis effect.}
+\newblock Genetics. 2003;165(4):2259--68.
+\newblock doi:{10.1534/genetics.114.161968}.
+
+\end{thebibliography}
 
 
 
