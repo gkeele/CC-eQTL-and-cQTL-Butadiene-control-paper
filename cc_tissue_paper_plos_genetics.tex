@@ -504,7 +504,7 @@ Adult male mice (8-12 weeks old) from 47 CC strains were acquired from the Unive
 
 Total RNA was isolated from flash-frozen tissue samples using a Qiagen miRNeasy Kit (Valencia, CA) according to the manufacturer’s protocol. RNA purity and integrity were evaluated using a Thermo Scientific Nanodrop 2000 (Waltham, MA) and an Agilent 2100 Bioanalyzer (Santa Clara, CA), respectively. A minimum RNA integrity value of 7.0 was required for RNA samples to be used for library preparation and sequencing. Libraries for samples with a sufficient RNA integrity value were prepared using the Illumina TruSeq Total RNA Sample Prep Kit (Illumina, Inc., San Diego, USA) with ribosomal depletion. Single-end (50 bp) sequencing was performed (Illumina HiSeq 2500).
 
-Sequencing reads were filtered (sequence quality score $\ge$ 20 for $\ge$ 90\% of bases) and adapter contamination was removed (TagDust). Reads were mapped to strain-specific pseudo-genomes (Build37, \url{http://csbio.unc.edu/CCstatus/index.py?run=Pseudo}) and psuedo-transcriptomes (C57BL/6J RefSeq annotations mapped to pseudo-genomes) using RSEM with STAR (v2.5.3a). Uniquely aligned reads  were used to quantify expression as transcripts per million (TPM) values.
+Sequencing reads were filtered (sequence quality score $\ge$ 20 for $\ge$ 90\% of bases) and adapter contamination was removed (TagDust). Reads were mapped to strain-specific pseudo-genomes (Build37, \url{http://csbio.unc.edu/CCstatus/index.py?run=Pseudo}) and psuedo-transcriptomes (C57BL/6J RefSeq annotations mapped to pseudo-genomes) using RSEM with STAR (v2.5.3a). Uniquely aligned reads were used to quantify expression as transcripts per million (TPM) values.
 
 \subsection*{ATAC-seq processing}
 
@@ -552,13 +552,13 @@ The fit of Eq \ref{eq:alternative_model} was compared with the fit of the same m
 \subsection*{QTL detection: local (L), chromosome-wide (C), and genome-wide (G)}
 
 QTL detections were declared according to three distinct protocols of varying stringency and emphasis. The first protocol, termed Analysis L, was concerned only with detection of ``local QTL'', that is, QTL located at or close to the relevant expressed gene or accessible chromatin region.
-The second protocol, Analysis C, broadened the search for QTL to anywhere on the chromosome on which trait is located; the greater number of loci considered meant that the criterion used to call detected QTL for this protocol was more stringent than Analysis L.
+The second protocol, Analysis C, broadened the search for QTL to anywhere on the chromosome on which the trait is located; the greater number of loci considered meant that the criterion used to call detected QTL for this protocol was more stringent than Analysis L.
 The third protocol, Analysis G, further broadened the search to the entire genome with the most stringent detection criterion.
 These protocols used two types of multiple test correction: a permutation-based control of the family-wise error rate (FWER) and the Benjamini-Hochberg False Discovery Rate (FDR; \cite{Benjamini1995}). Below we describe in detail the permutation procedure and then the three protocols.
 
 \subsubsection*{Permutation-based error rate control: chromosome- and genome-wide}
 
-The FWER was controlled based on permutations specific to each trait. 1,000 permutations of the sample index were recorded, and then genome scans performed for each trait, using the same permutation orderings. Given a trait, the maximum logP from either the entire genome or the chromosome for each permutation was collected, and used to fit a null generalized extreme value distribution (GEV) in order to control the genome- and chromosome-wide error rates, respectively \cite{Dudbridge2004}. 
+The FWER was controlled based on permutations specific to each trait. 1,000 permutations of the sample index were recorded, and then genome scans performed for each trait, using the same permutation orderings. Given a trait, the maximum logP from either the entire genome or the chromosome for each permutation was collected and used to fit a null generalized extreme value distribution (GEV) in order to control the genome- and chromosome-wide error rates, respectively \cite{Dudbridge2004}. 
 Error rates were controlled by calculating a $p$-value for each QTL based on the respective cumulative density functions from the GEVs: $\text{permP} = 1 - F_{\text{GEV}}(\text{logP})$, where $F_{\text{GEV}}$ is the cumulative density function of the GEV. We denote genome- and chromosome-wide error rate controlling  $p$-values as $\permpg$ and $\permpc$ respectively.
 
 The appropriateness of permutation-derived thresholds \cite{Doerge1996} is dependent on the CC having balanced founder haplotype contributions. This assumption was supported by simulations of the funnel breeding design \cite{Valdar2006c}. More recently, power simulations based on the observed CC strain genomes were performed \cite{Keele2019}, which found low levels of population structure for highly polygenic genetic architectures. Nevertheless, we use permutations given that molecular traits often have strong effect QTL that are detectable in the presence of subtle population structure.
@@ -568,7 +568,7 @@ Our detection criteria for local-QTL leverages our strong prior belief in local 
 
 \subsubsection*{Chromosome-wide analysis - Analysis C} 
 Chromosome-wide analysis involved examining QTL associations at all loci on the chromosome harboring the gene or chromatin region in question. The peak logP is input into a chromosome-wide GEV, producing a $\permpc$, which are further subjected to adjustment by FDR to account for multiple testing across the traits \cite{Chesler2005}. 
-Compared to Analysis L, this procedure is more stringent with respect local-QTL because of the additional FDR adjustment. In addition, it can detect distal-QTL outside the local region of the trait. 
+Compared to Analysis L, this procedure is more stringent with respect to local-QTL because of the additional FDR adjustment. In addition, it can detect distal-QTL outside the local region of the trait. 
 Note, since only the most significant QTL is recorded, this procedure will disregard local-QTL if a stronger distal-QTL on the chromosome is observed.
 
 \subsubsection*{Genome-wide analysis - Analysis G} 
@@ -592,7 +592,7 @@ For a pair of matched QTL $j$ and $k$ from different tissues, we calculated the 
 
 \subsubsection*{Variant association}
 
-Variant association has been used previously in MPP (\eg, \cite{Baud2014, Keele2018}), and uses the some underlying model as the haplotype-based mapping (Eq \ref{eq:alternative_model}), with the QTL term now representing imputed dosages of the minor allele. Variant association can more powerfully detect QTL than haplotype mapping if the simpler variant model is closer to the underlying biological mechanism \cite{Yalcin2005}, though it will struggle to detect multi-allelic QTL.
+Variant association has been used previously in MPP (\eg, \cite{Baud2014, Keele2018}), and uses the same underlying model as the haplotype-based mapping (Eq \ref{eq:alternative_model}), with the QTL term now representing imputed dosages of the minor allele. Variant association can more powerfully detect QTL than haplotype mapping if the simpler variant model is closer to the underlying biological mechanism \cite{Yalcin2005}, though it will struggle to detect multi-allelic QTL.
 
 Variant genotypes from mm10 (NCBI38) were obtained using the ISVdb \cite{Oreper2017} for the CC strains, which were converted to mm9 coordinates with the liftOver tool \cite{Lawrence2009}. Variants were filtered out if their minor allele frequencies $\le 0.1$ or they were not genotyped in one of the CC founder strains to avoid false signals.
 Tests of association at individual SNPs (variant association) were performed within the local windows of genes with local-QTL detected in more than one tissue. 
