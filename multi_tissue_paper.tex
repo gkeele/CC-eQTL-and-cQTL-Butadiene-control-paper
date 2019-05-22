@@ -794,24 +794,23 @@ The static version of the miQTL R package (1.1.1) used for this work is provided
 \begin{tableminipage}{\textwidth}
 \captionsetup{width=\textwidth}
 \centering
-\caption{\bf Number of differentially expressed genes and accessible chromatin regions detected between liver, lung, and kidney tissues
+\caption{\bf Number of differentially expressed genes and accessible chromatin regions detected between liver, lung, and kidney tissues at FDR < 0.1
 \label{tab:diff_gene}}
 \end{tableminipage}
 \begin{tableminipage}{\textwidth}
-\begin{tabularx}{\textwidth}{cll|XXX}
+\begin{tabularx}{\textwidth}{ll|XXX}
 \hline 
-& & & & \center{Tissue comparison} & \\
-& & & Liver vs Lung & Liver vs Kidney & Lung vs Kidney \\
+& & & \center{Tissue comparison} & \\
+& & Liver/lung & Liver/kidney & Lung/kidney \\
 \hline
 %%%%%%%%%%%%%%%%
-\parbox[t]{5mm}{\multirow{6}{*}{\rotatebox[origin=c]{90}{$q$-value < 0.1}}} & 
 Genes & Up-regulated & 2,473 (20.8\footnote{Percentage of all tested genes.\label{fn:total_perc_gene}}) & 2,123 (17.9\footref{fn:total_perc_gene}) & 2,246 (18.9\footref{fn:total_perc_gene}) \\
-& & Down-regulated & 3,236 (27.2\footref{fn:total_perc_gene}) & 1,441 (12.1\footref{fn:total_perc_gene}) & 2,527 (21.3\footref{fn:total_perc_gene}) \\
-& & Total & 5,709 (48.0\footref{fn:total_perc_gene}) & 3,564 (30.0\footref{fn:total_perc_gene}) & 4,773 (40.2\footref{fn:total_perc_gene}) \\
-\cline{2-6}
-& Chromatin Regions & Increased accessibility & 20,194 (19.6\footnote{Percentage of all tested chromatin regions prior to merging adjacent genomic windows.\label{fn:total_perc_chrom}}) & 15,252 (12.9\footref{fn:total_perc_chrom}) & 19,202 (17.4\footref{fn:total_perc_chrom}) \\
-& & Decreased accessibility & 20,603 (19.7\footref{fn:total_perc_chrom}) & 12,796 (11.4\footref{fn:total_perc_chrom}) & 12,967 (11.2\footref{fn:total_perc_chrom}) \\
-& & Total & 40,797 (39.3\footref{fn:total_perc_chrom}) & 28,048 (24.3\footref{fn:total_perc_chrom}) & 32,169 (28.6\footref{fn:total_perc_chrom}) \\
+& Down-regulated & 3,236 (27.2\footref{fn:total_perc_gene}) & 1,441 (12.1\footref{fn:total_perc_gene}) & 2,527 (21.3\footref{fn:total_perc_gene}) \\
+& Total & 5,709 (48.0\footref{fn:total_perc_gene}) & 3,564 (30.0\footref{fn:total_perc_gene}) & 4,773 (40.2\footref{fn:total_perc_gene}) \\
+\cline{2-5}
+Chromatin regions & Increased accessibility & 20,194 (19.6\footnote{Percentage of all tested chromatin regions prior to merging adjacent genomic windows.\label{fn:total_perc_chrom}}) & 15,252 (12.9\footref{fn:total_perc_chrom}) & 19,202 (17.4\footref{fn:total_perc_chrom}) \\
+& Decreased accessibility & 20,603 (19.7\footref{fn:total_perc_chrom}) & 12,796 (11.4\footref{fn:total_perc_chrom}) & 12,967 (11.2\footref{fn:total_perc_chrom}) \\
+& Total & 40,797 (39.3\footref{fn:total_perc_chrom}) & 28,048 (24.3\footref{fn:total_perc_chrom}) & 32,169 (28.6\footref{fn:total_perc_chrom}) \\
 \hline
 \end{tabularx}
 \end{tableminipage}
