@@ -46,6 +46,10 @@
 \newcommand{\GKinline}[1]{\textcolor{teal}{#1}}
 \newcommand{\GKst}[1]{\textcolor{teal}{\st{#1}}}
 
+\newcommand{\BQ}[2]{\textcolor{orange}{#1\footnote{\textcolor{orange}{BQ: #2}}}}
+\newcommand{\BQinline}[1]{\textcolor{orange}{#1}}
+\newcommand{\BQst}[1]{\textcolor{orange}{\st{#1}}}
+
 \newcommand{\ctwohtwo}{\texorpdfstring{C\textsubscript{2}H\textsubscript{2}}}
 
 \newcommand{\TFinline}[1]{\textcolor{violet}{#1}}
@@ -154,7 +158,7 @@ To aid in this effort, genetically-diverse mouse population resources have been 
 
 These mouse resources have previously been employed in mediation analyses across genomic assays. A genome-wide mediation approach in 192 DO mice was used in \citet{Chick2016} to link transcriptional and post-translational regulation of protein levels; they also used the CC to confirm results by showing that estimates of founder haplotype effects from each of the related populations corresponded. More recently, mediation analysis was used to connect chromatin accessibility with gene expression in embryonic stem cells derived from DO mice \citep{Skelly2019}.
 
-Here we use a sample composed of a single male mouse from 47 strains of the CC to investigate tissue-specific dynamics between gene expression and  chromatin accessibility, as determined by Assay for Transposase Accessible Chromatin sequencing (ATAC-seq), in lung, liver, and kidney tissues. We detect QTL underlying gene expression and chromatin accessibility variation across the strains and assess support for mediation of the effect of eQTL through chromatin accessibility using a novel implementation of methods adapted from \cite{Chick2016}. Additionally, we detect gene mediators of distal-eQTL. 
+Here we use a sample composed of a single male mouse from 47 \BQinline{CC} strains \BQst{of the CC} to investigate tissue-specific dynamics between gene expression and  chromatin accessibility, as determined by Assay for Transposase Accessible Chromatin sequencing (ATAC-seq), in lung, liver, and kidney tissues. We detect QTL underlying gene expression and chromatin accessibility variation across the strains and assess support for mediation of the effect of eQTL through chromatin accessibility using a novel implementation of methods adapted from \cite{Chick2016}. Additionally, we detect gene mediators of distal-eQTL. 
 %We identify and characterize examples of strong mediation, as well as co-localizing but independent eQTL and cQTL. 
 These findings demonstrate the experimental power of the CC resource for integrative analysis of multi-omic data to determine genetically-driven phenotype variation, despite limited sample size, and provide support for continued use of the CC in larger experiments going forward.
 
@@ -374,7 +378,7 @@ File S3 contains the founder haplotype mosaics used for this study in a format t
 \subsection{Differential gene expression and chromatin accessibility}
 
 \subsubsection{Gene expression and chromatin accessibility cluster by tissue}
-Gene expression and chromatin accessibility were measured with RNA-seq and ATAC-seq assays, respectively, from whole lung, liver, and kidney tissues in one male mouse from each of 47 CC strains. As the function of each tissue is quite distinct, we expected that these data would reflect tissue-specific differences. Principal components analysis (PCA) of each of the gene expression and chromatin accessibility profiles shows that the samples clearly cluster by tissue (Figure \ref{fig:pca_plots}). 
+Gene expression and chromatin accessibility were measured with RNA-seq and ATAC-seq assays, respectively, from whole lung, liver, and kidney tissues in one male mouse from each of 47 CC strains. As the function of each tissue is quite distinct, we expected that these data would reflect tissue-specific differences. Principal components analysis (PCA) of each of the gene expression and chromatin accessibility profiles show\BQinline{ed} that the samples clearly cluster\BQinline{ed} by tissue (Figure \ref{fig:pca_plots}). 
 
 \subsubsection{Differentially expressed genes strongly correspond with accessible chromatin regions} 
 We performed pairwise differential expression (DE) and differentially accessible region (DAR) analysis between the three tissues (Table \ref{tab:diff_gene}), and found between 3,564 - 5,709 DE genes and 28,048 - 40,797 DARs (FWER < 0.1). For both expression and chromatin accessibility, liver and kidney tissues were the most similar, while lung and liver were the most distinct, also seen in the PCA plots (Figure \ref{fig:pca_plots}). Pathway analyses showed many between-tissue differences related to metabolic and immune-related pathways (FWER < 0.1), reflecting the distinct demands of each tissue. Energy metabolism pathways were more active in liver and kidney and immune-related pathways were more pronounced in lung, as expected. We compared the concordance between DE genes and DARs genome-wide and observed that most DE gene promoters do not show significant differences in chromatin accessibility (Figure \ref{fig:diff_concordance}). In cases with significant variability in accessibility at the promoter of a DE gene, though, the vast majority agree in direction (\ie, higher expression with greater accessibility).
