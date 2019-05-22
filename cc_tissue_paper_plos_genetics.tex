@@ -147,6 +147,10 @@
 
 \newcommand{\permpmed}{\text{permP}^{m}}
 
+\newcommand{\WV}[2]{\textcolor{red}{#1\footnote{\textcolor{red}{WV: #2}}}}
+\newcommand{\WVinline}[1]{\textcolor{red}{#1}}
+
+
 
 % Remove comment for double spacing
 %\usepackage{setspace} 
@@ -319,10 +323,19 @@ Differential expression (DE) and differentially accessible region (DAR) analysis
 \subsection*{QTL detection}
 
 \subsubsection*{Gene expression}
-To evaluate the impact of genetic variation on gene expression, we performed eQTL mapping, doing so at three distinct scopes (see \textbf{Methods}): the local region of a gene (defined as within 10Mb of the gene transcription start site (TSS); Analysis L), the chromosome (Analysis C), and the genome (Analysis G). Additionally, we classify distal-eQTL located on the same chromosome as the associated gene as intra-chromosomal, and otherwise inter-chromosomal.
-After filtering out lowly expressed genes, the number of genes considered in eQTL mapping was 8401 for liver, 11357 for lung, and 10092 for kidney. A breakdown of the genes analyzed per tissue for QTL analysis is provided in \nameref{S_upset_outcomes}A using an UpSet plot \cite{Conway2017}. 
-Genomic locations of eQTL detected for each tissue are shown in Fig \ref{fig:grid_plot}A, with local-eQTL (light colored dots) detected through Analysis L and distal-eQTL (dark colored dots) detected through Analysis G, as well as summarized in \nameref{S_eqtl}. 
-We also identified eQTL with Analyses C and G using a more relaxed significance threshold (FDR $<$ 0.2; \nameref{S_grid_plot_lenient}A and \nameref{S_eqtl_lenient}), which increased the number of distal-eQTL detected by a greater extent than local-eQTL. Using Analysis L and requiring genome-wide significance, the percentage of tested genes with local-eQTL were 8.4\% for liver, 6.3\% for lung, and 9.5\% for kidney (\nameref{S_eqtl}). These percentages increase to 19.8\%, 16.6\%, and 20.8\% respectively with the less stringent Analysis L at chromosome-wide significance. Most genes with local-eQTL were observed in only one tissue (\nameref{S_upset_qtl}A).
+The impact of genetic variation on gene expression was eavluated by eQTL mapping. This was done at three levels of stringency and emphasis: 1) at the level of the local region of a gene, defined as within 10Mb of the gene transcription start site (TSS), and hereafter termed Analysis L; 2) at the level of the local chromosome (Analysis C); and 3) at level of the genome (Analysis G) (details in \textbf{Methods}).
+After filtering out lowly expressed genes, the number of genes examined in eQTL mapping was 8401 for liver, 11357 for lung, and 10092 for kidney (UpSet plot \cite{Conway2017} in \nameref{S_upset_outcomes}A).
+
+Analysis L detected local-eQTL for 19.8\% of genes tested in liver, 16.6\% in lung, and 20.8\% in kidney (chromosome-wide significance; \nameref{S_eqtl}).
+Most genes with local-eQTL were observed in only one tissue (\nameref{S_upset_qtl}A).
+Analysis C, which was more stringent, additionally detected intra-chromosomal distal-eQTL, while Analysis G, the most stringent, additionally detected interchromosomal distal-eQTL (\nameref{S_eqtl})\WV{}{Feel free to add more specificity; I couldn't figure it out, esp the numbers in Table S2 with superscript e}.
+Genomic locations of eQTL detected for each tissue \WV{across all analyses}{okay?} are shown in Fig \ref{fig:grid_plot}A.
+
+\WV{We also identified eQTL with Analyses C and G using a more relaxed significance threshold (FDR $<$ 0.2; \nameref{S_grid_plot_lenient}A and \nameref{S_eqtl_lenient}), which increased the number of distal-eQTL detected by a greater extent than local-eQTL. 
+Using Analysis L and requiring genome-wide significance, the percentage of tested genes with local-eQTL were 8.4\% for liver, 6.3\% for lung, and 9.5\% for kidney (\nameref{S_eqtl}). 
+These percentages increase to 19.8\%, 16.6\%, and 20.8\% respectively with the less stringent Analysis L at chromosome-wide significance. 
+Additionally, we classify distal-eQTL located on the same chromosome as the associated gene as intra-chromosomal, and otherwise inter-chromosomal.
+}{Do we need any of this?}
 
 \begin{figure}[h!]
 \caption{\textbf{Detected QTL are largely local for both gene expression (A) and chromatin accessibility (B).} 
@@ -331,7 +344,7 @@ Detected QTL from Analyses G and L are included, excluding intra-chromosomal dis
 \end{figure}
 
 \subsubsection*{Chromatin accessibility}
-To determine genetic effects on chromatin structure, genomic regions were divided into $\sim$300 base pair windows and analyses similar to eQTL were used to detect chromatin accessibility QTL (cQTL). We tested 11448, 24426, and 17918 chromatin regions in liver, lung, and kidney, respectively. The overlap in chromatin windows tested across tissues is described in \nameref{S_upset_outcomes}B. Overall, there were substantially fewer cQTL detected compared to eQTL for all tissues (Fig \ref{fig:grid_plot}B; \nameref{S_cqtl}, \nameref{S_eqtl_lenient}). As with eQTL, cQTL are more likely to be local than distal (66 - 94.1\% for Analysis G; 75 - 90\% for Analysis C).
+To determine genetic effects on chromatin structure, genomic regions were divided into $\sim$300 base pair windows and analyses similar to eQTL were used to detect chromatin accessibility QTL (cQTL). The number of chromatin regions tested were 11448 in liver, 24426 in lung, and 17918 in kidney. The overlap in chromatin windows tested across tissues is described in \nameref{S_upset_outcomes}B. Overall, there were substantially fewer cQTL detected compared to eQTL for all tissues (Fig \ref{fig:grid_plot}B; \nameref{S_cqtl}, \nameref{S_eqtl_lenient}). As with eQTL, cQTL are more likely to be local than distal (66 - 94.1\% for Analysis G; 75 - 90\% for Analysis C).
 
 \subsubsection*{Local-QTL have stronger effects than distal-QTL}
 For QTL detected on the same chromosome as the gene or chromatin region (intra-chromosomal), the strongest associations were observed within 10Mb of the gene TSS or chromatin window midpoint (\nameref{S_dist}). Intra-chromosomal distal-QTL had reduced statistical significance, more consistent with inter-chromosomal distal-QTL. This dynamic between local- and distal-QTL is also observed when using the QTL effect size as a summary of strength, which is likely biased upward due to the Beavis effect in 47 strains \cite{Keele2019}, shown in \nameref{S_effect_size_status}.
