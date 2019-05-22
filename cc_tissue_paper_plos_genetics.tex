@@ -483,14 +483,14 @@ Second, each tissue may have additional unique regulatory elements that further 
 \subsection*{Mediation analysis}
 
 Our mediation analysis approach was adapted from previous studies in DO mice \cite{Chick2016,Keller2018,Skelly2019} but adds the use of QTL effect sizes to establish consistency with the directionality of the relationships and the formal calculation of a mediation $p$-value through permutation.  Related conditional regression approaches were used in the incipient pre-CC lines \cite{Rutledge2014, Kelada2014}.
-Mediation analyses largely reflect the correlations between the variables after adjusting for additional sources of variation, such as covariates and batch effects. \BQ{We additionally required the mediator QTL to have a larger effect size than the outcome QTL aims to identify trios that are consistent with the proposed mediation models.}{Is there a typo in this sentence? It sounds like a run-on, and I don't understand what it is saying.} Measurement of mediator effect may be noisier, resulting in a reduced mediator QTL effect size and false negatives. 
+Mediation analyses largely reflect the correlations between the variables after adjusting for additional sources of variation, such as covariates and batch effects. We additionally required the mediator QTL to have a larger effect size than the outcome QTL, aiming to identify trios that are consistent with the causality of the proposed mediation model. Measurement of mediator effect may be noisier, resulting in a reduced mediator QTL effect size and false negatives. 
 Despite these limitations, mediation analysis provides specific causal candidates of QTL. For example, we showed strong evidence for \textit{Zfp985} mediating the genetic regulation of \textit{Akr1e1} (Fig \ref{fig:akr1e1_full_model}). Additional evidence suggested this is done by \textit{Zfp985} contributing to reduced \textit{Akr1e1} promoter activity. It is possible that \textit{Zfp985} is simply strongly correlated with the true mediator, and others have alternatively proposed \textit{Rex2} as a candidate \cite{HamiltonWilliams2010}, which we did not consider due to low expression in all three tissues. Regardless of the identity of the true mediator, our analysis has shown strong evidence that it acts causally by inducing heterochromatin nearby the \textit{Akr1e1} promoter.
 
 \subsection*{QTL mapping power and their effect size estimates}
-Our \BQinline{modest} sample size of 47 CC strains motivated our use of multiple scopes of significance, from testing for QTL locally to genome-wide. As expected, the additional detected local-QTL have smaller effect sizes (orange and purple dots for C and L, respectively; \nameref{S_qtl_effect_sizes_by_method}). Based on a recent evaluation of QTL mapping power in the CC using simulation \cite{Keele2019}, this study has approximately 80\% \BQinline{power} to detect genome-wide QTL with a 55\% effect size. Effect size estimates for genome-wide QTL (green dots; \nameref{S_qtl_effect_sizes_by_method}) are consistent with this expectation albeit potentially inflated due to the Beavis effect \cite{Xu2003}. 
+Our modest sample of 47 CC strains motivated our use of multiple scopes of significance, from testing for QTL locally to genome-wide. As expected, the additional detected local-QTL have smaller effect sizes (orange and purple dots for C and L, respectively; \nameref{S_qtl_effect_sizes_by_method}). Based on a recent evaluation of QTL mapping power in the CC using simulation \cite{Keele2019}, this study has approximately 80\% power to detect genome-wide QTL with a 55\% effect size or greater. Effect size estimates for genome-wide QTL (green dots; \nameref{S_qtl_effect_sizes_by_method}) are consistent with this expectation albeit potentially inflated due to the Beavis effect \cite{Xu2003}. 
 Effect size estimates provide interpretable point summaries for haplotype-based QTL mapping, analogous to minor allele effect estimates in SNP-based studies. We calculated estimates of effect size in two ways, one based on a fixed effect fitting of the QTL term and the other as a random term \cite{Wei2016}. 
 We primarily report fixed effects estimates due to their consistency with reported expectations \cite{Keele2019} for a study of this size. We believe the conservative shrinkage-based estimates were overly reduced. These QTL mapping results are largely consistent with primarily Mendelian genetic regulation of molecular traits (large effect sizes: $>$ 60\%).
-We explored the use of shrunken effect size estimates \BQinline{since} fixed effect estimates may be unstable due to overly influential data points. Notably, a small number of the distal-eQTL had low random effect size estimates (\nameref{S_qtl_effect_size_fixefvsranef}) compared to their fixed effects-based estimates. Alternatively, a residual variation estimate, \ie RSS, could be calculated from the shrunken haplotype effects to identify likely false positives, but not be as aggressively reduced as the variance component-based estimates, representing a middle ground approach \BQ{was found to be effective}{Should this be deleted?} \cite{Keele2018}.
+We explored the use of shrunken effect size estimates because fixed effect estimates may be unstable due to overly influential data points. Notably, a small number of the distal-eQTL had low random effect size estimates (\nameref{S_qtl_effect_size_fixefvsranef}) compared to their fixed effects-based estimates. Alternatively, a residual variation estimate, \ie RSS, could be calculated from the shrunken haplotype effects to identify likely false positives, but not be as aggressively reduced as the variance component-based estimates, representing a middle ground approach \cite{Keele2018}.
 
 \section*{Materials and methods}
 
@@ -758,7 +758,7 @@ The multi-stage conditional regression approach of Analysis G allows for the det
 
 \paragraph*{S2 Table.}
 \label{S_eqtl}
-{\bf Number of genes with eQTL detected in liver, lung, and kidney tissues.} 
+{\bf Number of genes with eQTL detected in liver, lung, and kidney tissues at FDR $<$ 0.1.} 
 (PDF)
 
 \paragraph*{S3 Table.}
@@ -768,7 +768,7 @@ The multi-stage conditional regression approach of Analysis G allows for the det
 
 \paragraph*{S4 Table.}
 \label{S_cqtl}
-{\bf Number of chromatin accessibility sites with cQTL detected in liver, lung, and kidney tissues.} 
+{\bf Number of chromatin accessibility sites with cQTL detected in liver, lung, and kidney tissues at FDR $<$ 0.1.} 
 (PDF)
 
 \paragraph*{S5 Table.}
@@ -1357,7 +1357,6 @@ Xu S.
 
 \setcounter{table}{0}
 \setcounter{figure}{0}
-\setcounter{page}{1}
 
 
 \begin{figure}[hp]
