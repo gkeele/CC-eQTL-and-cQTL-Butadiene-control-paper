@@ -331,7 +331,7 @@ After filtering out lowly expressed genes, the number of genes examined in eQTL 
 
 Analysis L detected local-eQTL for 19.8\% of genes tested in liver, 16.6\% in lung, and 20.8\% in kidney (chromosome-wide significance; \nameref{S_eqtl}).
 Most genes with local-eQTL were observed in only one tissue (\nameref{S_upset_qtl}A).
-Analysis C, which was more stringent, additionally detected intra-chromosomal distal-eQTL, while Analysis G, the most stringent, additionally detected inter-chromosomal distal-eQTL (\nameref{S_eqtl})\WV{}{Feel free to add more specificity; I couldn't figure it out, esp the numbers in Table S2 with superscript e}.
+Analysis C, which was more stringent, additionally detected intra-chromosomal distal-eQTL, while Analysis G, the most stringent, additionally detected inter-chromosomal distal-eQTL (\nameref{S_eqtl}).
 Genomic locations of eQTL detected for each tissue, excluding the inter-chromosomal distal-eQTL detected by Analysis C, are shown in Fig \ref{fig:grid_plot}A. See \nameref{S_grid_plot_lenient} and \nameref{S_eqtl_lenient} for eQTL counts with FDR $<$ 0.2.
 
 %\WV{We also identified eQTL with Analyses C and G using a more relaxed significance threshold (FDR $<$ 0.2; \nameref{S_grid_plot_lenient}A and \nameref{S_eqtl_lenient}), which increased the number of distal-eQTL detected by a greater extent than local-eQTL. 
@@ -638,19 +638,19 @@ Genes were categorized by the direction of the difference in expression and chro
 Sequence traits were filtered to remove outcomes more likely to cause in spurious QTL signal. Genes with TPM $\le 1$ and chromatin windows with TMP $\le 5$ for $\ge$ 50\% of samples were removed from analysis. After this filtering process, lung had the greatest number of traits analyzed, for both genes and chromatin windows, followed by kidney and then liver. (PDF)
 
 \paragraph*{S4 Fig.}
-\label{S_grid_plot_lenient}
-{\bf QTL mapping results using only Analysis G or Analysis C.}
-QTL map plots of eQTL (A) and cQTL (B) with FDR controlled at 0.1 and 0.2 for liver, lung, and kidney. Detected QTL from Analysis G (multi-stage FDR) and Analysis C (chromosome-wide FDR) are included. Analysis C, which uses FDR control for chromosome-wide significant QTL, produces a large number of intra-chromosomal distal QTL. The y-axis represents the genomic position of the gene or chromatin site, and the x-axis represents the genomic position of the QTL. Local-QTL appear as dots along the diagonal. (PDF)
-
-\paragraph*{S5 Fig.}
 \label{S_upset_qtl}
 {\bf Overlap across tissues of genes (A) and chromatin windows (B) with local-QTL detected.} 
 The majority of sequence traits with a local-QTL detected were identified in only a single tissue. Kidney had the highest number of local-eQTL, whereas lung had the highest number of local-cQTL. Liver had a relative lack of local-cQTL, which may relate to its having the fewest chromatin windows analyzed (\nameref{S_upset_outcomes}B). Results included local-QTL detected with Analysis G (FDR $<$ 0.1), Analysis C (FDR $<$ 0.1), and Analysis L (genome-wide and chromosome-wide). (PDF)
 
+\paragraph*{S5 Fig.}
+\label{S_grid_plot_lenient}
+{\bf QTL mapping results using only Analysis G or Analysis C.}
+QTL map plots of eQTL (A) and cQTL (B) with FDR controlled at 0.1 and 0.2 for liver, lung, and kidney. Detected QTL from Analysis G (multi-stage FDR) and Analysis C (chromosome-wide FDR) are included. Analysis C, which uses FDR control for chromosome-wide significant QTL, produces a large number of intra-chromosomal distal QTL. The y-axis represents the genomic position of the gene or chromatin site, and the x-axis represents the genomic position of the QTL. Local-QTL appear as dots along the diagonal. (PDF)
+
 \paragraph*{S6 Fig.}
 \label{S_dist}
 {\bf Highly significant QTL map nearby the gene TSS and chromatin window midpoint.}
-The permutation-based $p$-value (permP) from Analyses G (A) and C (B) for eQTL and cQTL by the distance (Mb) from the gene TSS and the midpoint of the chromatin site. Inter-chromosomal distal-QTL are not included. The red dashed lines represent 10Mb upstream and downstream of the gene TSS or the midpoint of the chromatin site for classifying QTL as local or distal. Significant signals (yellow or blue), based on $q\text{-value} \le 0.1$, are largely local. Analysis C detects many more intra-chromosomal distal-QTL. (PDF)
+The permutation-based $p$-value (permP) from Analyses G (A) and C (B) for eQTL and cQTL by the distance (Mb) from the gene TSS and the midpoint of the chromatin site. Inter-chromosomal distal-QTL are not included. The red dashed lines represent 10Mb upstream and downstream of the gene TSS or the midpoint of the chromatin site for classifying QTL as local or distal. Significant signals (yellow or blue), based on FDR $< 0.1$, are largely local. Analysis C detects many more intra-chromosomal distal-QTL. (PDF)
 
 \paragraph*{S7 Fig.}
 \label{S_effect_size_status}
@@ -690,17 +690,17 @@ A strong local-eQTL detected in liver. After conditioning on the local-eQTL, a s
 \paragraph*{S14 Fig.}
 \label{S_colocalization}
 {\bf Co-localizing eQTL and cQTL are not sufficient for statistical mediation.}
-The approach used to detect mediation through chromatin accessibility requires that the eQTL and cQTL co-localize (both within 10Mb of the gene TSS), as well as possess similar founder haplotype effect patterns. Co-localizing cQTL are observed for local-eQTL for both \textit{Hdhd3} in liver (A) and \textit{Acbd4} in kidney (B). QTL and mediation scans are shown, with chromosomes 4 and 11 blown up for \textit{Hdhd3} and \textit{Acbd4}, respectively. The red ticks denote the TSS for both genes. The founders effects were estimated as centered and scaled BLUPs. The founder effects for the eQTL and cQTL are highly correlated ($r = 0.96$) for \textit{Hdhd3}, but not for \textit{Acbd4} ($r = 0.52$). Strong mediation of the \textit{Hdhd3} eQTL through chromatin is detected, but not for \textit{Acbd4}. The effect size of the proximal cQTL to \textit{Acbd4} is smaller than its eQTL, also inconsistent with the relationship depicted in Figure \ref{fig:graph}A. (PDF)
+The approach used to detect mediation through chromatin accessibility requires that the eQTL and cQTL co-localize (both within 10Mb of the gene TSS), as well as possess similar founder haplotype effect patterns. Co-localizing cQTL are observed for local-eQTL for both \textit{Hdhd3} in liver (A) and \textit{Acbd4} in kidney (B). QTL and mediation scans are shown, with chromosomes 4 and 11 blown up for \textit{Hdhd3} and \textit{Acbd4}, respectively. The red ticks denote the TSS for both genes. The founders effects were estimated as centered and scaled BLUPs. The founder effects for the eQTL and cQTL are highly correlated ($r = 0.96$) for \textit{Hdhd3}, but not for \textit{Acbd4} ($r = 0.52$). Strong mediation of the \textit{Hdhd3} eQTL through chromatin is detected, but not for \textit{Acbd4}. The effect size of the proximal cQTL to \textit{Acbd4} is smaller than its eQTL, also inconsistent with the relationship depicted in Fig 6A. (PDF)
 
 \paragraph*{S15 Fig.}
 \label{S_ccnyl1_exmediation}
 {\bf Mediation of \textit{Ccnyl1} distal-eQTL through \textit{Zfp979} expression.}
-Expression of \textit{Ccnyl1} and \textit{Zfp979} are correlated ($r = 0.72$) in lung, which is also observed in the expression data categorized by diplotype and the founder effects estimated as scaled BLUPs. The distal-eQTL on chromosome 4 for \textit{Ccnyl1} corresponds closely to local-eQTL of \textit{Zfp979}. \textit{Ccnyl1} is located on chromosome 1, indicated by the red tick. \textit{Zfp979} and \textit{Zfp985}, both zinc finger proteins likely with DNA binding properties, are identified as strong candidate mediators of the distal-eQTL at genome-wide significance. The correlations, magnitude of effects, and mediation are consistent with the simple relationship depicted in the graph. The distal-eQTL and candidate mediators are located in a previously discovered region of interest \cite{HamiltonWilliams2013}, which also regulates \textit{Akr1e1} expression. (PDF)
+Expression of \textit{Ccnyl1} and \textit{Zfp979} are correlated ($r = 0.72$) in lung, which is also observed in the expression data categorized by diplotype and the founder effects estimated as scaled BLUPs. The distal-eQTL on chromosome 4 for \textit{Ccnyl1} corresponds closely to local-eQTL of \textit{Zfp979}. \textit{Ccnyl1} is located on chromosome 1, indicated by the red tick. \textit{Zfp979} and \textit{Zfp985}, both zinc finger proteins likely with DNA binding properties, are identified as strong candidate mediators of the distal-eQTL at genome-wide significance. The correlations, magnitude of effects, and mediation are consistent with the simple relationship depicted in the graph. The distal-eQTL and candidate mediators are located in a region of interest that regulates \textit{Akr1e1} expression. (PDF)
 
 \paragraph*{S16 Fig.}
 \label{S_akr1e1_exmediation}
 {\bf Mediation of \textit{Akr1e1} distal-eQTL through \textit{Zfp985} expression.}
-Expression of \textit{Akr1e1} and \textit{Zfp985} are anti-correlated ($r = -0.69$) in lung. This relationship is also observed in the expression data with bars representing the interquartile range, categorized by most likely diplotype, and the founder haplotype effects, estimated as scaled BLUPs. The QTL and mediation scans reveal that \textit{Akr1e1}, TSS marked with a red tick on chromosome 13, possesses a distal-eQTL on chromosome 4 that is proximal to the strong local-eQTL of \textit{Zfp985}. The mediation scan identifies \textit{Zfp985} as a strong candidate mediator consistent with the mediation model. A more complete picture of the genetic regulation of \textit{Akr1e1} expression is pieced together by looking across all three tissues and includes a potential chromatin mediator (Figure \ref{fig:akr1e1_full_model}). (PDF)
+Expression of \textit{Akr1e1} and \textit{Zfp985} are anti-correlated ($r = -0.69$) in lung. This relationship is also observed in the expression data with bars representing the interquartile range, categorized by most likely diplotype, and the founder haplotype effects, estimated as scaled BLUPs. The QTL and mediation scans reveal that \textit{Akr1e1}, TSS marked with a red tick on chromosome 13, possesses a distal-eQTL on chromosome 4 that is proximal to the strong local-eQTL of \textit{Zfp985}. The mediation scan identifies \textit{Zfp985} as a strong candidate mediator consistent with the mediation model. A more complete picture of the genetic regulation of \textit{Akr1e1} expression is pieced together by looking across all three tissues and includes a potential chromatin mediator (Fig 9). (PDF)
 
 \paragraph*{S17 Fig.}
 \label{S_do_akr1e1}
@@ -725,7 +725,7 @@ The effect size corresponding to the random effect fit is harshly penalized comp
 \paragraph*{S21 Fig.}
 \label{S_conditional_scan}
 {\bf Detection of local-eQTL after conditioning on distal-eQTL for \textit{Gpn3}.} 
-The multi-stage conditional regression approach of Analysis G allows for the detection of multiple genome-wide significant QTL, which can then be appropriately incorporated into a FDR procedure across many outcomes. In this example in lung tissue, the gene \textit{Gpn3} initially has a strong distal-eQTL on chromosome 8 (A). Though a peak is detected near the TSS of \textit{Gpn3}, it does not meet genome-wide significance. However, after conditioning on the distal-eQTL, the local-eQTL is detected (B). Horizontal dashed lines represent empirical 95\% significance thresholds based on 1000 permutations. (PDF)
+The multi-stage conditional regression approach of Analysis G allows for the detection of multiple genome-wide significant QTL, which can then be appropriately incorporated into a FDR procedure across many outcomes. In this example in lung tissue, the gene \textit{Gpn3} initially has a strong distal-eQTL on chromosome 8 (A). Though a peak is detected near the TSS of \textit{Gpn3}, it does not meet genome-wide significance. However, after conditioning on the distal-eQTL, the local-eQTL is detected (B). Horizontal dashed lines represent empirical 95\% significance thresholds based on 1,000 permutations. (PDF)
 
 
 %\paragraph*{S1 File.}

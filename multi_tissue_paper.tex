@@ -15,6 +15,7 @@
 %\usepackage[dvipsnames]{xcolor}
 %\usepackage{enumitem}
 %\newcommand{\method}[1]{\qquad Method #1}
+\usepackage{threeparttable}
 \usepackage{soul}
 \usepackage{xspace}
 \newcommand{\indep}{\rotatebox[origin=c]{90}{$\models$}}
@@ -789,188 +790,205 @@ The static version of the miQTL R package (1.1.1) used for this work is provided
 \renewcommand{\thefigure}{S\arabic{figure}}
 \setcounter{page}{1}
 
-\begin{table*}[h]
-\renewcommand{\familydefault}{\sfdefault}\normalfont
-\begin{tableminipage}{\textwidth}
-\captionsetup{width=\textwidth}
+\begin{table}[h]
+%\captionsetup{width=\textwidth}
+%\begin{minipage}{\textwidth}
 \centering
-\caption{\bf Number of differentially expressed genes and accessible chromatin regions detected between liver, lung, and kidney tissues at FDR < 0.1
+\begin{threeparttable}[b]
+\caption{\bf Number of differentially expressed genes and accessible chromatin regions detected between liver, lung, and kidney tissues at FDR $<$ 0.1
 \label{tab:diff_gene}}
-\end{tableminipage}
-\begin{tableminipage}{\textwidth}
+%\end{minipage}
+%\begin{minipage}{\textwidth}
 \begin{tabularx}{\textwidth}{ll|XXX}
 \hline 
 & & & \center{Tissue comparison} & \\
 & & Liver/lung & Liver/kidney & Lung/kidney \\
 \hline
 %%%%%%%%%%%%%%%%
-Genes & Up-regulated & 2,473 (20.8\footnote{Percentage of all tested genes.\label{fn:total_perc_gene}}) & 2,123 (17.9\footref{fn:total_perc_gene}) & 2,246 (18.9\footref{fn:total_perc_gene}) \\
-& Down-regulated & 3,236 (27.2\footref{fn:total_perc_gene}) & 1,441 (12.1\footref{fn:total_perc_gene}) & 2,527 (21.3\footref{fn:total_perc_gene}) \\
-& Total & 5,709 (48.0\footref{fn:total_perc_gene}) & 3,564 (30.0\footref{fn:total_perc_gene}) & 4,773 (40.2\footref{fn:total_perc_gene}) \\
+Genes & Up-regulated & 2,473 (20.8\tnote{a}) & 2,123 (17.9\tnote{a}) & 2,246 (18.9\tnote{a}) \\
+& Down-regulated & 3,236 (27.2\tnote{a}) & 1,441 (12.1\tnote{a}) & 2,527 (21.3\tnote{a}) \\
+& Total & 5,709 (48.0\tnote{a}) & 3,564 (30.0\tnote{a}) & 4,773 (40.2\tnote{a}) \\
 \cline{2-5}
-Chromatin regions & Increased accessibility & 20,194 (19.6\footnote{Percentage of all tested chromatin regions prior to merging adjacent genomic windows.\label{fn:total_perc_chrom}}) & 15,252 (12.9\footref{fn:total_perc_chrom}) & 19,202 (17.4\footref{fn:total_perc_chrom}) \\
-& Decreased accessibility & 20,603 (19.7\footref{fn:total_perc_chrom}) & 12,796 (11.4\footref{fn:total_perc_chrom}) & 12,967 (11.2\footref{fn:total_perc_chrom}) \\
-& Total & 40,797 (39.3\footref{fn:total_perc_chrom}) & 28,048 (24.3\footref{fn:total_perc_chrom}) & 32,169 (28.6\footref{fn:total_perc_chrom}) \\
+Chromatin regions & Increased accessibility & 20,194 (19.6\tnote{b}) & 15,252 (12.9\tnote{b}) & 19,202 (17.4\tnote{b}) \\
+& Decreased accessibility & 20,603 (19.7\tnote{b}) & 12,796 (11.4\tnote{b}) & 12,967 (11.2\tnote{b}) \\
+& Total & 40,797 (39.3\tnote{b}) & 28,048 (24.3\tnote{b}) & 32,169 (28.6\tnote{b}) \\
 \hline
 \end{tabularx}
-\end{tableminipage}
-\end{table*}
+\begin{tablenotes}
+     \item[a] Percentage of all tested genes.
+     \item[b] Percentage of all tested chromatin regions prior to merging adjacent genomic windows.
+   \end{tablenotes}
+\end{threeparttable}
+\end{table}
 
-\begin{table*}[h]
-\renewcommand{\familydefault}{\sfdefault}\normalfont
-\begin{tableminipage}{\textwidth}
-\captionsetup{width=\textwidth}
+\begin{table}[h]
 \centering
-\caption{\bf Number of genes with eQTL detected in liver, lung, and kidney tissues
+\begin{threeparttable}[b]
+\caption{\bf Number of genes with eQTL detected in liver, lung, and kidney tissues at FDR $<$ 0.1
 \label{tab:eqtl_mapping}}
-\end{tableminipage}
-\begin{tableminipage}{\textwidth}
 \begin{tabularx}{\textwidth}{ll|XXX}
 \hline 
 & & & \center{Tissue (\%)} & \\
 Procedure & eQTL type & Liver & Lung & Kidney \\
 \hline
 %%%%%%%%%%%%%%%%
-Analysis G\footnote{Analysis G: FDR < 0.1. \label{fn:method_one}} & All & 520 (6.2\footnote{Percentage of all tested genes.\label{fn:total_perc}}) & 478 (4.2\footref{fn:total_perc}) & 739 (7.3\footref{fn:total_perc}) \\
-& Local\footnote{10Mb upstream or downstream of gene TSS. \label{fn:local_eqtl}} & 400 (76.9\footnote{Percentage of genes with genome-wide eQTL.\label{fn:gw_eqtl_perc}}) & 369 (77.2\footref{fn:gw_eqtl_perc}) & 601 (81.3\footref{fn:gw_eqtl_perc}) \\
-& Distal\footnote{More than 10Mb upstream or downstream of gene TSS or on another chromosome. \label{fn:distal_eqtl}} & 132 (25.4\footref{fn:gw_eqtl_perc}) & 112 (23.4\footref{fn:gw_eqtl_perc}) & 148 (20.0\footref{fn:gw_eqtl_perc}) \\
+Analysis G & All & 520 (6.2\tnote{a}) & 478 (4.2\tnote{a}) & 739 (7.3\tnote{a}) \\
+& Local\tnote{d} & 400 (76.9\tnote{b}) & 369 (77.2\tnote{b}) & 601 (81.3\tnote{b}) \\
+& Distal\tnote{e} & 132 (25.4\tnote{b}) & 112 (23.4\tnote{b}) & 148 (20.0\tnote{b}) \\
 \hline
 % %%%%%%%%%%%%%%%%
-Analysis C\footnote{Analysis C: FDR < 0.1. \label{fn:method_two}} & All & 2,587 (30.8\footref{fn:total_perc}) & 2,069 (18.2\footref{fn:total_perc}) & 3,191 (31.6\footref{fn:total_perc}) \\
-& Local\footref{fn:local_eqtl} & 1,749 (67.6\footnote{Percentage of genes with chromosome-wide eQTL.\label{fn:cw_eqtl_perc}}) & 1,498 (72.4\footref{fn:cw_eqtl_perc}) & 2,214 (69.4\footref{fn:cw_eqtl_perc}) \\
-& Distal\footref{fn:distal_eqtl} & 838 (32.4\footref{fn:cw_eqtl_perc}) & 571 (27.6\footref{fn:cw_eqtl_perc}) & 977 (30.6\footref{fn:cw_eqtl_perc}) \\
+Analysis C & All & 2,587 (30.8\tnote{a}) & 2,069 (18.2\tnote{a}) & 3,191 (31.6\tnote{a}) \\
+& Local\tnote{d} & 1,749 (67.6\tnote{c}) & 1,498 (72.4\tnote{c}) & 2,214 (69.4\tnote{c}) \\
+& Distal\tnote{e} & 838 (32.4\tnote{c}) & 571 (27.6\tnote{c}) & 977 (30.6\tnote{c}) \\
 \hline
 % %%%%%%%%%%%%%%%%
-Analysis L\footnote{Analysis L: permP < 0.05. \label{fn:method_three}} & Local\footref{fn:local_eqtl} genome-wide & 702 (8.4\footref{fn:total_perc}) & 713 (6.3\footref{fn:total_perc}) & 955 (9.5\footref{fn:total_perc}) \\
-& Local\footref{fn:local_eqtl} chromosome-wide & 1,661 (19.8\footref{fn:total_perc}) & 1,880 (16.6\footref{fn:total_perc}) & 2,102 (20.8\footref{fn:total_perc}) \\
-% & chromatin mediator\footnote{Must be within 10Mb upstream or downstream of an local-eQTL that is at least chromosome-wide significant. Additionally, chromatin mediator must possess a local c-QTL that is at least chromosome-wide significant.} & genome-wide & 38 (2.2\footnote{Percentage of genes with a chromatin mediator that have at least a chromosome-wide significant local-eQTL from local analysis.\label{fn:mediator_perc}}) & 13 (0.9\footref{fn:mediator_perc}) & 19 (1.0\footref{fn:mediator_perc}) \\
-% & chromosome-wide & 99 (5.9\footref{fn:mediator_perc}) & 30 (2.0\footref{fn:mediator_perc}) & 49 (2.6\footref{fn:mediator_perc}) \\
+Analysis L\tnote{f} & Genome-wide FWER $<$ 0.05 & 702 (8.4\tnote{a}) & 713 (6.3\tnote{a}) & 955 (9.5\tnote{a}) \\
+& Chromosome-wide FWER $<$ 0.05 & 1,661 (19.8\tnote{a}) & 1,880 (16.6\tnote{a}) & 2,102 (20.8\tnote{a}) \\
 \hline
 \end{tabularx}
-\end{tableminipage}
-\end{table*}
+\begin{tablenotes}
+     \item[a] Percentage of all tested genes.
+     \item[b] Percentage of genes with eQTL from Analysis G.
+     \item[c] Percentage of genes with eQTL from Analysis C.
+     \item[d] Within 10Mb upstream or downstream of gene TSS.
+     \item[e] More than 10Mb upstream or downstream of gene TSS, or on another chromosome.
+     \item[f] Not FDR controlled.
+   \end{tablenotes}
+\end{threeparttable}
+\end{table}
 
-\begin{table*}[h]
-\renewcommand{\familydefault}{\sfdefault}\normalfont
-\begin{tableminipage}{\textwidth}
-\captionsetup{width=\textwidth}
+\clearpage
+
+\begin{table}[h]
 \centering
-\caption{\bf Number of genes with eQTL detected in liver, lung, and kidney tissues at FDR < 0.2
+\begin{threeparttable}[b]
+\caption{\bf Number of genes with eQTL detected in liver, lung, and kidney tissues at FDR $<$ 0.2
 \label{tab:eqtl_mapping_lenient}}
-\end{tableminipage}
-\begin{tableminipage}{\textwidth}
 \begin{tabularx}{\textwidth}{ll|XXX}
 \hline 
 & & & \center{Tissue (\%)} & \\
 Procedure & eQTL type & Liver & Lung & Kidney \\
 \hline
 %%%%%%%%%%%%%%%%
-Analysis G\footnote{Analysis G: FDR < 0.2.} & All & 881 (10.5\footref{fn:total_perc}) & 811 (7.1\footref{fn:total_perc}) & 1,189 (11.8\footref{fn:total_perc}) \\
-& Local\footnote{10Mb upstream or downstream of gene TSS. \label{fn:local_eqtl}} & 568 (64.5\footref{fn:gw_eqtl_perc}) & 522 (64.4\footref{fn:gw_eqtl_perc}) & 809 (68.0\footref{fn:gw_eqtl_perc}) \\
-& Distal\footnote{More than 10Mb upstream or downstream of gene TSS or on another chromosome. \label{fn:distal_eqtl}} & 339 (38.5\footref{fn:gw_eqtl_perc}) & 301 (37.1\footref{fn:gw_eqtl_perc}) & 411 (34.6\footref{fn:gw_eqtl_perc}) \\
+Analysis G & All & 881 (10.5\tnote{a}) & 811 (7.1\tnote{a}) & 1,189 (11.8\tnote{a}) \\
+& Local\tnote{d} & 568 (64.5\tnote{b}) & 522 (64.4\tnote{b}) & 809 (68.0\tnote{b}) \\
+& Distal\tnote{e} & 339 (38.5\tnote{b}) & 301 (37.1\tnote{b}) & 411 (34.6\tnote{b}) \\
 \hline
 % %%%%%%%%%%%%%%%%
-Analysis C\footnote{Analysis C: FDR < 0.2.} & All & 4,699 (55.9\footref{fn:total_perc}) & 3,675 (32.4\footref{fn:total_perc}) & 5,469 (54.2\footref{fn:total_perc}) \\
-& Local\footref{fn:local_eqtl} & 2,519 (53.6\footnote{Percentage of genes with chromosome-wide eQTL.\label{fn:cw_eqtl_perc}}) & 2,213 (60.2\footref{fn:cw_eqtl_perc}) & 3,099 (56.7\footref{fn:cw_eqtl_perc}) \\
-& Distal\footref{fn:distal_eqtl} & 2,180 (46.4\footref{fn:cw_eqtl_perc}) & 1,462 (39.8\footref{fn:cw_eqtl_perc}) & 2,370 (43.3\footref{fn:cw_eqtl_perc}) \\
+Analysis C & All & 4,699 (55.9\tnote{a}) & 3,675 (32.4\tnote{a}) & 5,469 (54.2\tnote{a}) \\
+& Local\tnote{d} & 2,519 (53.6\tnote{c}) & 2,213 (60.2\tnote{c}) & 3,099 (56.7\tnote{c}) \\
+& Distal\tnote{e} & 2,180 (46.4\tnote{c}) & 1,462 (39.8\tnote{c}) & 2,370 (43.3\tnote{c}) \\
 \hline
 \end{tabularx}
-\end{tableminipage}
-\end{table*}
+\begin{tablenotes}
+     \item[a] Percentage of all tested genes.
+     \item[b] Percentage of genes with eQTL from Analysis G.
+     \item[c] Percentage of genes with eQTL from Analysis C.
+     \item[d] Within 10Mb upstream or downstream of gene TSS.
+     \item[e] More than 10Mb upstream or downstream of gene TSS, or on another chromosome.
+   \end{tablenotes}
+\end{threeparttable}
+\end{table}
 
-\begin{table*}[h]
-\renewcommand{\familydefault}{\sfdefault}\normalfont
-\begin{tableminipage}{\textwidth}
-\captionsetup{width=\textwidth}
+
+\begin{table}[h]
 \centering
-\caption{\bf Number of chromatin accessibility sites with cQTL detected in liver, lung, and kidney tissues
+\begin{threeparttable}[b]
+\caption{\bf Number of chromatin accessibility sites with cQTL detected in liver, lung, and kidney tissues at FDR $<$ 0.1
 \label{tab:cqtl_mapping}}
-\end{tableminipage}
-\begin{tableminipage}{\textwidth}
 \begin{tabularx}{\textwidth}{ll|XXX}
 \hline 
 & & & \center{Tissue (\%)} & \\
 Procedure & cQTL type & Liver & Lung & Kidney \\
 \hline
 %%%%%%%%%%%%%%%%
-Analysis G\footnote{Analysis L: FDR < 0.1.} & All & 17 (0.1\footnote{Percentage of all tested chromatin site.\label{fn:total_perc}}) & 114 (0.5\footref{fn:total_perc}) & 59 (0.3\footref{fn:total_perc}) \\
-& Local\footnote{10Mb upstream or downstream of the midpoint of the chromatin accessibility site. \label{fn:local_cqtl}} & 16 (94.1\footnote{Percentage of chromatin accessibility sites with genome-wide cQTL.\label{fn:gw_cqtl_perc}}) & 78 (68.4\footref{fn:gw_cqtl_perc}) & 39 (66.1\footref{fn:gw_cqtl_perc}) \\
-& Distal\footnote{More than 10Mb upstream or downstream of the midpoint of the chromatin accessibility site or on another chromosome. \label{fn:distal_cqtl}} & 1 (5.9\footref{fn:gw_cqtl_perc}) & 36 (31.6\footref{fn:gw_cqtl_perc}) & 20 (33.9\footref{fn:gw_cqtl_perc}) \\
+Analysis G & All & 17 (0.1\tnote{a}) & 114 (0.5\tnote{a}) & 59 (0.3\tnote{a}) \\
+& Local\tnote{d} & 16 (94.1\tnote{b}) & 78 (68.4\tnote{b}) & 39 (66.1\tnote{b}) \\
+& Distal\tnote{e} & 1 (5.9\tnote{b}) & 36 (31.6\tnote{b}) & 20 (33.9\tnote{b}) \\
 \hline
 % %%%%%%%%%%%%%%%%
-Analysis C\footnote{Analysis C: FDR < 0.1.} & All & 39 (0.3\footref{fn:total_perc}) & 226 (0.9\footref{fn:total_perc}) & 130 (0.7\footref{fn:total_perc}) \\
-& Local\footref{fn:local_cqtl} & 35 (89.7\footnote{Percentage of chromatin accessibility sites with chromosome-wide cQTL.\label{fn:cw_cqtl_perc}}) & 186 (82.3\footref{fn:cw_cqtl_perc}) & 98 (75.4\footref{fn:cw_cqtl_perc}) \\
-& Distal\footref{fn:distal_cqtl} & 4 (10.3\footref{fn:cw_cqtl_perc}) & 40 (17.7\footref{fn:cw_cqtl_perc}) & 32 (24.6\footref{fn:cw_cqtl_perc}) \\
+Analysis C & All & 39 (0.3\tnote{a}) & 226 (0.9\tnote{a}) & 130 (0.7\tnote{a}) \\
+& Local\tnote{d} & 35 (89.7\tnote{c}) & 186 (82.3\tnote{c}) & 98 (75.4\tnote{c}) \\
+& Distal\tnote{e} & 4 (10.3\tnote{c}) & 40 (17.7\tnote{c}) & 32 (24.6\tnote{c}) \\
 \hline
 % %%%%%%%%%%%%%%%%
-Analysis L\footnote{Analysis L: permP < 0.05.} & Local\footref{fn:local_cqtl} genome-wide & 70 (0.6\footref{fn:total_perc}) & 244 (1.0\footref{fn:total_perc}) & 149 (0.8\footref{fn:total_perc}) \\
-& Local\footref{fn:local_cqtl} chromosome-wide & 299 (2.6\footref{fn:total_perc}) & 876 (3.6\footref{fn:total_perc}) & 616 (3.4\footref{fn:total_perc}) \\
-% & chromatin mediator\footnote{Must be within 10Mb upstream or downstream of an local-eQTL that is at least chromosome-wide significant. Additionally, chromatin mediator must possess a local c-QTL that is at least chromosome-wide significant.} & genome-wide & 38 (2.2\footnote{Percentage of genes with a chromatin mediator that have at least a chromosome-wide significant local-eQTL from local analysis.\label{fn:mediator_perc}}) & 13 (0.9\footref{fn:mediator_perc}) & 19 (1.0\footref{fn:mediator_perc}) \\
-% & chromosome-wide & 99 (5.9\footref{fn:mediator_perc}) & 30 (2.0\footref{fn:mediator_perc}) & 49 (2.6\footref{fn:mediator_perc}) \\
+Analysis L\tnote{f} & Genome-wide FWER $<$ 0.05 & 70 (0.6\tnote{a}) & 244 (1.0\tnote{a}) & 149 (0.8\tnote{a}) \\
+& Chromosome-wide FWER $<$ 0.05 & 299 (2.6\tnote{a}) & 876 (3.6\tnote{a}) & 616 (3.4\tnote{a}) \\
 \hline
 \end{tabularx}
-\end{tableminipage}
-\end{table*}
+\begin{tablenotes}
+     \item[a] Percentage of all tested chromatin regions.
+     \item[b] Percentage of genes with eQTL from Analysis G.
+     \item[c] Percentage of genes with eQTL from Analysis C.
+     \item[d] Within 10Mb upstream or downstream of chromatin region midpoint.
+     \item[e] More than 10Mb upstream or downstream of chromatin region midpoint, or on another chromosome.
+     \item[f] Not FDR controlled.
+   \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\clearpage
 
 \begin{table*}[h]
-\renewcommand{\familydefault}{\sfdefault}\normalfont
-\begin{tableminipage}{\textwidth}
-\captionsetup{width=\textwidth}
 \centering
-\caption{\bf Number of chromatin accessibility sites with cQTL detected in liver, lung, and kidney tissues at FDR < 0.2
+\begin{threeparttable}[b]
+\caption{\bf Number of chromatin accessibility sites with cQTL detected in liver, lung, and kidney tissues at FDR $<$ 0.2
 \label{tab:cqtl_mapping_lenient}}
-\end{tableminipage}
-\begin{tableminipage}{\textwidth}
 \begin{tabularx}{\textwidth}{ll|XXX}
 \hline 
 & & & \center{Tissue (\%)} & \\
 Procedure & cQTL type & Liver & Lung & Kidney \\
 \hline
 %%%%%%%%%%%%%%%%
-Analysis G\footnote{Analysis G: FDR < 0.1.} & All & 20 (0.2\footref{fn:total_perc}) & 220 (0.9\footref{fn:total_perc}) & 113 (0.6\footref{fn:total_perc}) \\
-& Local\footnote{10Mb upstream or downstream of the midpoint of the chromatin accessibility site. \label{fn:local_cqtl}} & 18 (90.0\footref{fn:gw_cqtl_perc}) & 116 (52.7\footref{fn:gw_cqtl_perc}) & 55 (48.7\footref{fn:gw_cqtl_perc}) \\
-& Distal\footnote{More than 10Mb upstream or downstream of the midpoint of the chromatin accessibility site. \label{fn:distal_cqtl}} & 2 (10.0\footref{fn:gw_cqtl_perc}) & 105 (47.7\footref{fn:gw_cqtl_perc}) & 58 (51.3\footref{fn:gw_cqtl_perc}) \\
+Analysis G & All & 20 (0.2\tnote{a}) & 220 (0.9\tnote{a}) & 113 (0.6\tnote{a}) \\
+& Local\tnote{d} & 18 (90.0\tnote{b}) & 116 (52.7\tnote{b}) & 55 (48.7\tnote{b}) \\
+& Distal\tnote{e} & 2 (10.0\tnote{b}) & 105 (47.7\tnote{b}) & 58 (51.3\tnote{b}) \\
 \hline
 % %%%%%%%%%%%%%%%%
-Analysis C\footnote{Analysis C: FDR < 0.1.} & All & 62 (0.5\footref{fn:total_perc}) & 309 (1.3\footref{fn:total_perc}) & 249 (1.4\footref{fn:total_perc}) \\
-& Local\footref{fn:local_cqtl} & 50 (80.6\footref{fn:cw_cqtl_perc}) & 238 (77.0\footref{fn:cw_cqtl_perc}) & 149 (59.8\footref{fn:cw_cqtl_perc}) \\
-& Distal\footref{fn:distal_cqtl} & 12 (19.4\footref{fn:cw_cqtl_perc}) & 71 (23.0\footref{fn:cw_cqtl_perc}) & 100 (40.2\footref{fn:cw_cqtl_perc}) \\
+Analysis C & All & 62 (0.5\tnote{a}) & 309 (1.3\tnote{a}) & 249 (1.4\tnote{a}) \\
+& Local\tnote{d} & 50 (80.6\tnote{c}) & 238 (77.0\tnote{c}) & 149 (59.8\tnote{c}) \\
+& Distal\tnote{e} & 12 (19.4\tnote{c}) & 71 (23.0\tnote{c}) & 100 (40.2\tnote{c}) \\
 \hline
 \end{tabularx}
-\end{tableminipage}
+\begin{tablenotes}
+     \item[a] Percentage of all tested chromatin regions.
+     \item[b] Percentage of genes with eQTL from Analysis G.
+     \item[c] Percentage of genes with eQTL from Analysis C.
+     \item[d] Within 10Mb upstream or downstream of chromatin region midpoint.
+     \item[e] More than 10Mb upstream or downstream of chromatin region midpoint, or on another chromosome.
+   \end{tablenotes}
+\end{threeparttable}
 \end{table*}
 
-\begin{table*}[h]
-\renewcommand{\familydefault}{\sfdefault}\normalfont
-\begin{tableminipage}{\textwidth}
-\captionsetup{width=\textwidth}
+
+\begin{table}[h]
 \centering
+\begin{threeparttable}[b]
 \caption{\bf Number of genes with chromatin mediation of local-eQTL in liver, lung, and kidney tissues
 \label{tab:mediation}}
-\end{tableminipage}
-\begin{tableminipage}{\textwidth}
 \begin{tabularx}{\textwidth}{ll|XXX}
 \hline 
 & & & \center{Tissue (\%)} & \\
 Procedure & Significance & Liver & Lung & Kidney \\
 \hline
 %%%%%%%%%%%%%%%%
-Analysis L\footnote{10Mb upstream or downstream of the gene TSS with local-eQTL that meets chromosome-wide significance through Analysis L. Additionally, chromatin mediator must possess a local-cQTL that meets chromosome-wide significance through Analysis L.} & genome-wide & 13 (0.8\footnote{Percentage of genes with a chromatin mediator that meet chromosome-wide significance for a local-eQTL through Analysis L.\label{fn:mediator_perc}}) & 42 (2.2\footref{fn:mediator_perc}) & 21 (1.0\footref{fn:mediator_perc}) \\
-& chromosome-wide & 35 (2.1\footref{fn:mediator_perc}) & 106 (5.6\footref{fn:mediator_perc}) & 66 (3.1\footref{fn:mediator_perc}) \\
+Analysis L\tnote{b} & genome-wide & 13 (0.8\tnote{a}) & 42 (2.2\tnote{a}) & 21 (1.0\tnote{a}) \\
+& chromosome-wide & 35 (2.1\tnote{a}) & 106 (5.6\tnote{a}) & 66 (3.1\tnote{a}) \\
 \hline
 \end{tabularx}
-\end{tableminipage}
-\end{table*}
+\begin{tablenotes}
+     \item[a] Percentage of genes with a chromatin mediator that meet chromosome-wide significance for a local-eQTL through Analysis L.
+     \item[b] 10Mb upstream or downstream of the gene TSS with local-eQTL that meets chromosome-wide significance through Analysis L. Additionally, chromatin mediator must possess a local-cQTL that meets chromosome-wide significance through Analysis L.
+   \end{tablenotes}
+\end{threeparttable}
+\end{table}
 
-\begin{table*}[h]
-\renewcommand{\familydefault}{\sfdefault}\normalfont
-\begin{tableminipage}{\textwidth}
-\captionsetup{width=\textwidth}
+\clearpage
+
+\begin{table}[h]
 \centering
 \caption{\bf Genes with distal-eQTL with gene mediators detected in lung and kidney tissues
 \label{tab:exmediation}}
-\end{tableminipage}
-\begin{tableminipage}{\textwidth}
 \begin{tabularx}{\textwidth}{lll|XXX}
 \hline 
 Tissue & Gene & Chr & Mediator gene & Chr & $\permpmed_{\text{G}}$ \\
@@ -988,8 +1006,7 @@ Kidney & \textit{C330018D20Rik} & 13 & \textit{Depdc1b} & 18 & 9.97e-04 \\
 & \textit{Oscp1} & 4 & \textit{Slc25a34} & 4 & 3.27e-03 \\
 \hline
 \end{tabularx}
-\end{tableminipage}
-\end{table*}
+\end{table}
 
 \clearpage
 
@@ -998,7 +1015,7 @@ Kidney & \textit{C330018D20Rik} & 13 & \textit{Depdc1b} & 18 & 9.97e-04 \\
 \centering
 \includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/gpn3_conditional_scan.pdf}
 \caption{\textbf{Detection of local-eQTL after conditioning on distal-eQTL for \textit{Gpn3}.} 
-The multi-stage conditional regression approach of Analysis G allows for the detection of multiple genome-wide significant QTL, which can then be appropriately incorporated into a FDR procedure across many outcomes. In this example in lung tissue, the gene \textit{Gpn3} initially has a strong distal-eQTL on chromosome 8 (A). Though a peak is detected near the TSS of \textit{Gpn3}, it does not meet genome-wide significance. However, after conditioning on the distal-eQTL, the local-eQTL is detected (B). Horizontal dashed lines represent empirical 95\% significance thresholds based on 1000 permutations.
+The multi-stage conditional regression approach of Analysis G allows for the detection of multiple genome-wide significant QTL, which can then be appropriately incorporated into a FDR procedure across many outcomes. In this example in lung tissue, the gene \textit{Gpn3} initially has a strong distal-eQTL on chromosome 8 (A). Though a peak is detected near the TSS of \textit{Gpn3}, it does not meet genome-wide significance. However, after conditioning on the distal-eQTL, the local-eQTL is detected (B). Horizontal dashed lines represent empirical 95\% significance thresholds based on 1,000 permutations.
 \label{fig:conditional_scans}}
 \end{figure*}
 
@@ -1056,7 +1073,7 @@ The majority of sequence traits with a local-QTL detected were identified in onl
 \centering
 \includegraphics[width=\textwidth]{figs/qtl_distance_all.png}
 \caption{\textbf{Highly significant QTL map nearby the gene TSS and chromatin window midpoint.} 
-The permutation-based $p$-value (permP) from Analyses G (A) and C (B) for eQTL and cQTL by the distance (Mb) from the gene TSS and the midpoint of the chromatin site. Inter-chromosomal distal-QTL are not included. The red dashed lines represent 10Mb upstream and downstream of the gene TSS or the midpoint of the chromatin site for classifying QTL as local or distal. Significant signals (yellow or blue), based on $q\text{-value} \le 0.1$, are largely local. Analysis C detects many more intra-chromosomal distal-QTL.
+The permutation-based $p$-value (permP) from Analyses G (A) and C (B) for eQTL and cQTL by the distance (Mb) from the gene TSS and the midpoint of the chromatin site. Inter-chromosomal distal-QTL are not included. The red dashed lines represent 10Mb upstream and downstream of the gene TSS or the midpoint of the chromatin site for classifying QTL as local or distal. Significant signals (yellow or blue), based on FDR $< 0.1$, are largely local. Analysis C detects many more intra-chromosomal distal-QTL.
 \label{fig:dist_all}}
 \end{figure*}
 
@@ -1151,7 +1168,7 @@ The approach used to detect mediation through chromatin accessibility requires t
 \centering
 \includegraphics[width=\textwidth, trim={0in 0.5in 0in 0in}, clip]{figs/ccnyl1_mediation.png}
 \caption{\textbf{Mediation of \textit{Ccnyl1} distal-eQTL through \textit{Zfp979} expression.} 
-Expression of \textit{Ccnyl1} and \textit{Zfp979} are correlated ($r = 0.72$) in lung, which is also observed in the expression data categorized by diplotype and the founder effects estimated as scaled BLUPs. The distal-eQTL on chromosome 4 for \textit{Ccnyl1} corresponds closely to local-eQTL of \textit{Zfp979}. \textit{Ccnyl1} is located on chromosome 1, indicated by the red tick. \textit{Zfp979} and \textit{Zfp985}, both zinc finger proteins likely with DNA binding properties, are identified as strong candidate mediators of the distal-eQTL at genome-wide significance. The correlations, magnitude of effects, and mediation are consistent with the simple relationship depicted in the graph. The distal-eQTL and candidate mediators are located in the same region of interest defined in \cite{HamiltonWilliams2013}, which also regulates \textit{Akr1e1} expression. 
+Expression of \textit{Ccnyl1} and \textit{Zfp979} are correlated ($r = 0.72$) in lung, which is also observed in the expression data categorized by diplotype and the founder effects estimated as scaled BLUPs. The distal-eQTL on chromosome 4 for \textit{Ccnyl1} corresponds closely to local-eQTL of \textit{Zfp979}. \textit{Ccnyl1} is located on chromosome 1, indicated by the red tick. \textit{Zfp979} and \textit{Zfp985}, both zinc finger proteins likely with DNA binding properties, are identified as strong candidate mediators of the distal-eQTL at genome-wide significance. The correlations, magnitude of effects, and mediation are consistent with the simple relationship depicted in the graph. The distal-eQTL and candidate mediators are located in a region of interest that regulates \textit{Akr1e1} expression. 
 \label{fig:ccnyl1_exmediation}}
 \end{figure*}
 
@@ -1205,7 +1222,7 @@ The model for the distal genetic regulation of \textit{Akr1e1} expression, descr
 \centering
 \includegraphics[width=0.9\textwidth, trim={0in 0in 0in 0in}, clip]{figs/fixefvsranef_qtl.pdf}
 \caption{\textbf{Comparison of QTL effect sizes estimates from fixed effects and random effects models.} 
-The effect size corresponding to the random effect fit is harshly penalized compared to the fixed effect estimate, likely due to a small sample size of 47 individuals. Notably, there are a number of distal-eQTL that are more harshly reduced by the random effects model compared to the other QTL, likely representing signals resulting from extreme observations or imbalances in founder contributions at the locus. QTL detected by Analysis G (FDR $\le 0.1$), 2 (FDR $\le 0.1$), and 3 are shown.
+The effect size corresponding to the random effect fit is harshly penalized compared to the fixed effect estimate, likely due to a modest sample size of 47 individuals. Notably, there are a number of distal-eQTL that are more harshly reduced by the random effects model compared to the other QTL, likely representing signals resulting from extreme observations or imbalances in founder contributions at the locus. QTL detected by Analyses G (FDR $< 0.1$), C (FDR $< 0.1$), and L are shown.
 \label{fig:qtl_effect_size_fixefvsranef}}
 \end{figure*}
 
