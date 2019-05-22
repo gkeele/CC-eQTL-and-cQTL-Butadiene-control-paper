@@ -147,6 +147,10 @@
 
 \newcommand{\permpmed}{\text{permP}^{m}}
 
+\newcommand{\WV}[2]{\textcolor{red}{#1\footnote{\textcolor{red}{WV: #2}}}}
+\newcommand{\WVinline}[1]{\textcolor{red}{#1}}
+
+
 
 % Remove comment for double spacing
 %\usepackage{setspace} 
@@ -210,6 +214,7 @@
 Gregory R. Keele\textsuperscript{1,2,10\Yinyang},
 Bryan C. Quach\textsuperscript{1,2,11\Yinyang},
 Jennifer W. Israel\textsuperscript{2},
+<<<<<<< HEAD
 Yihui Zhou\textsuperscript{7,8},
 Grace A. Chappell\textsuperscript{9},
 Lauren Lewis\textsuperscript{9},
@@ -218,6 +223,14 @@ Jeremy M. Simon\textsuperscript{2},
 Paul Cotney\textsuperscript{2},
 Gregory E. Crawford\textsuperscript{5,6},
 Fred A. Wright\textsuperscript{7,8},
+=======
+Grace A. Chappell\textsuperscript{10},
+Lauren Lewis\textsuperscript{10},
+Alexias Safi\textsuperscript{6,7},
+Jeremy M. Simon\textsuperscript{2},
+Paul Cotney\textsuperscript{2},
+Gregory E. Crawford\textsuperscript{6,7},
+>>>>>>> efc7968b514bfcade735c35688a3094b84b25473
 William Valdar\textsuperscript{2,4,\ddag*},
 Ivan Rusyn\textsuperscript{9,\ddag*}
 Terrence S. Furey\textsuperscript{2,3,4,\ddag*}
@@ -237,11 +250,15 @@ Terrence S. Furey\textsuperscript{2,3,4,\ddag*}
 \\
 \textbf{7} Department of Statistics, North Carolina State University, Raleigh, NC, United States of America
 \\
+<<<<<<< HEAD
 \textbf{8} Department of Biological Sciences, North Carolina State University, Raleigh, NC, United States of America
 \\
 \textbf{9} Department of Veterinary Integrative Biosciences, Texas A\&M University, College Station, TX, United States of America
 \\
 \textbf{10} The Jackson Laboratory, Bar Harbor, ME, United States of America
+=======
+\textbf{10} Department of Veterinary Integrative Biosciences, Texas A\&M University, College Station, TX, United States of America
+>>>>>>> efc7968b514bfcade735c35688a3094b84b25473
 \\
 \textbf{11} Center for Omics Discovery and Epidemiology, Research Triangle Institute (RTI) International, Research Triangle Park, NC, United States of America
 \\
@@ -318,15 +335,24 @@ These findings demonstrate the experimental power of the CC resource for integra
 Gene expression and chromatin accessibility were measured with RNA-seq and ATAC-seq assays, respectively, from whole lung, liver, and kidney tissues in one male mouse from each of 47 CC strains. As the function of each tissue is quite distinct, we expected that these data would reflect tissue-specific differences. Principal components analysis (PCA) of each of the gene expression and chromatin accessibility profiles shows that the samples clearly cluster by tissue (\nameref{S_pca}). 
 
 \subsubsection*{Differentially expressed genes strongly correspond with accessible chromatin regions} 
-We performed pairwise differential expression (DE) and differentially accessible region (DAR) analysis between the three tissues (\nameref{S_de}), and found between 3,564 - 5,709 DE genes and 28,048 - 40,797 DARs (FWER $<$ 0.1). For both expression and chromatin accessibility, liver and kidney tissues were the most similar, while lung and liver were the most distinct, also seen in the PCA plots (\nameref{S_pca}). Pathway analyses showed many between-tissue differences related to metabolic and immune-related pathways (FWER $<$ 0.1), reflecting the distinct demands of each tissue. Energy metabolism pathways were more active in liver and kidney and immune-related pathways were more pronounced in lung, as expected. We compared the concordance between DE genes and DARs genome-wide and observed that most DE gene promoters do not show significant differences in chromatin accessibility (\nameref{S_de_concordance}). In cases with significant variability in accessibility at the promoter of a DE gene, though, the vast majority agree in direction (\ie, higher expression with greater accessibility).
+Differential expression (DE) and differentially accessible region (DAR) analysis were performed between the three tissues (\nameref{S_de}), and revealed between 3,564 - 5,709 DE genes and 28,048 - 40,797 DARs (FWER $<$ 0.1). For both expression and chromatin accessibility, liver and kidney tissues were the most similar, while lung and liver were the most distinct, also seen in the PCA plots (\nameref{S_pca}). Pathway analyses showed many between-tissue differences related to metabolic and immune-related pathways (FWER $<$ 0.1), reflecting the distinct demands of each tissue. Energy metabolism pathways were more active in liver and kidney and immune-related pathways were more pronounced in lung, as expected. We compared the concordance between DE genes and DARs genome-wide and observed that most DE gene promoters do not show significant differences in chromatin accessibility (\nameref{S_de_concordance}). In cases with significant variability in accessibility at the promoter of a DE gene, though, the vast majority agree in direction (\ie, higher expression with greater accessibility).
 
 \subsection*{QTL detection}
 
 \subsubsection*{Gene expression}
-To evaluate the impact of genetic variation on gene expression, we performed eQTL mapping at three distinct scopes (see \textbf{Methods}): the local region of a gene (defined as within 10Mb of the gene TSS; Analysis L), the chromosome-wide (Analysis C), and genome-wide (Analysis G). Additionally, we classify distal-eQTL located on the same chromosome as the associated gene as intra-chromosomal, and otherwise inter-chromosomal.
-After filtering out lowly expressed genes, the number of genes considered in eQTL mapping was 8401 for liver, 11357 for lung, and 10092 for kidney. A breakdown of the genes analyzed per tissue for QTL analysis is provided in \nameref{S_upset_outcomes}A using an UpSet plot \cite{Conway2017}. 
-Genomic locations of eQTL detected for each tissue are shown in Fig \ref{fig:grid_plot}A, with local-eQTL (light colored dots) detected through Analysis L and distal-eQTL (dark colored dots) detected through Analysis G, as well as summarized in \nameref{S_eqtl}. 
-We also identified eQTL with Analyses C and G using a more relaxed significance threshold ($q$-value $<$ 0.2; \nameref{S_grid_plot_lenient}A and \nameref{S_eqtl_lenient}). Relaxing the FDR threshold from 0.1 to 0.2 increases the number of distal-eQTL detected to a greater extent than local-eQTL. Using Analysis L and requiring genome-wide significance, the percentage of tested genes with local-eQTL were 8.4\% for liver, 6.3\% for lung, and 9.5\% for kidney (\nameref{S_eqtl}). These percentages increase to 19.8\%, 16.6\%, and 20.8\% respectively with the less stringent chromosome-wide significance with Analysis L. Most genes with local-eQTL were observed in only one tissue (\nameref{S_upset_qtl}A).
+The impact of genetic variation on gene expression was eavluated by eQTL mapping. This was done at three levels of stringency and emphasis: 1) at the level of the local region of a gene, defined as within 10Mb of the gene transcription start site (TSS), and hereafter termed Analysis L; 2) at the level of the local chromosome (Analysis C); and 3) at level of the genome (Analysis G) (details in \textbf{Methods}).
+After filtering out lowly expressed genes, the number of genes examined in eQTL mapping was 8401 for liver, 11357 for lung, and 10092 for kidney (UpSet plot \cite{Conway2017} in \nameref{S_upset_outcomes}A).
+
+Analysis L detected local-eQTL for 19.8\% of genes tested in liver, 16.6\% in lung, and 20.8\% in kidney (chromosome-wide significance; \nameref{S_eqtl}).
+Most genes with local-eQTL were observed in only one tissue (\nameref{S_upset_qtl}A).
+Analysis C, which was more stringent, additionally detected intra-chromosomal distal-eQTL, while Analysis G, the most stringent, additionally detected interchromosomal distal-eQTL (\nameref{S_eqtl})\WV{}{Feel free to add more specificity; I couldn't figure it out, esp the numbers in Table S2 with superscript e}.
+Genomic locations of eQTL detected for each tissue \WV{across all analyses}{okay?} are shown in Fig \ref{fig:grid_plot}A.
+
+\WV{We also identified eQTL with Analyses C and G using a more relaxed significance threshold (FDR $<$ 0.2; \nameref{S_grid_plot_lenient}A and \nameref{S_eqtl_lenient}), which increased the number of distal-eQTL detected by a greater extent than local-eQTL. 
+Using Analysis L and requiring genome-wide significance, the percentage of tested genes with local-eQTL were 8.4\% for liver, 6.3\% for lung, and 9.5\% for kidney (\nameref{S_eqtl}). 
+These percentages increase to 19.8\%, 16.6\%, and 20.8\% respectively with the less stringent Analysis L at chromosome-wide significance. 
+Additionally, we classify distal-eQTL located on the same chromosome as the associated gene as intra-chromosomal, and otherwise inter-chromosomal.
+}{Do we need any of this?}
 
 \begin{figure}[h!]
 \caption{\textbf{Detected QTL are largely local for both gene expression (A) and chromatin accessibility (B).} 
@@ -335,7 +361,7 @@ Detected QTL from Analyses G and L are included, excluding intra-chromosomal dis
 \end{figure}
 
 \subsubsection*{Chromatin accessibility}
-To determine genetic effects on chromatin structure, genomic regions were divided into $\sim$300 base pair windows and analyses similar to eQTL were used to detect chromatin accessibility QTL (cQTL). We tested 11448, 24426, and 17918 chromatin regions in liver, lung, and kidney, respectively. The overlap in chromatin windows tested across tissues is described in \nameref{S_upset_outcomes}B. Overall, there were substantially fewer cQTL detected compared to eQTL for all tissues (Fig \ref{fig:grid_plot}B; \nameref{S_cqtl}). As with eQTL, cQTL are more likely to be local (66 - 94.1\% for Analysis G; 75 - 90\% for Analysis C).
+To determine genetic effects on chromatin structure, genomic regions were divided into $\sim$300 base pair windows and analyses similar to eQTL were used to detect chromatin accessibility QTL (cQTL). The number of chromatin regions tested were 11448 in liver, 24426 in lung, and 17918 in kidney. The overlap in chromatin windows tested across tissues is described in \nameref{S_upset_outcomes}B. Overall, there were substantially fewer cQTL detected compared to eQTL for all tissues (Fig \ref{fig:grid_plot}B; \nameref{S_cqtl}, \nameref{S_eqtl_lenient}). As with eQTL, cQTL are more likely to be local than distal (66 - 94.1\% for Analysis G; 75 - 90\% for Analysis C).
 
 \subsubsection*{Local-QTL have stronger effects than distal-QTL}
 For QTL detected on the same chromosome as the gene or chromatin region (intra-chromosomal), the strongest associations were observed within 10Mb of the gene TSS or chromatin window midpoint (\nameref{S_dist}). Intra-chromosomal distal-QTL had reduced statistical significance, more consistent with inter-chromosomal distal-QTL. This dynamic between local- and distal-QTL is also observed when using the QTL effect size as a summary of strength, which is likely biased upward due to the Beavis effect in 47 strains \cite{Keele2019}, shown in \nameref{S_effect_size_status}.
@@ -349,7 +375,7 @@ For a given trait, QTL from different tissues were paired based on co-localizing
 For local-eQTL, we detected 761 (liver/lung), 1206 (liver/kidney), and 1025 (lung/kidney) pairs. For distal-eQTL, we detected 61 (liver/lung), 120 (liver/kidney), and 59 (lung/kidney) pairs. For cQTL, the vast majority of pairs were local, with 55 (liver/lung), 56 (liver/kidney), and 142 (lung/kidney) pairs found. Only 4 distal-cQTL pairs were observed, all between lung and kidney. The effect sizes of paired QTL vary across tissues, though for any given tissue pairing, the effect sizes were significantly correlated (least significant $p$-value =\num{4.6e-8}; \nameref{S_qtl_effect_size_comparison}).
 
 \subsubsection*{Multi-tissue QTL pairs share similar haplotype effects across tissues}
-Testing correlation between the founder haplotype effects for pairs of QTL (FDR $\le 0.1$; \nameref{S_qtl_pair_histograms}) revealed significant positive correlations (FDR $\leq$ 0.1) for 345 (45.3\%; liver/lung), 623 (51.7\%; liver/kidney), and 498 (48.6\%; lung/kidney) local-eQTL pairs and 21 (31.8\%; liver/lung), 34 (28.8\%; liver/kidney), and 16 (27.1\%; lung/kidney) distal-eQTL pairs. Highly correlated QTL pairs were very close in genomic distance to each other (\nameref{S_qtl_cor_by_distance_comparison}), suggesting that the underlying causal variants are the same or linked. For local-cQTL, 47 (85.5\%; liver/lung), 48 (85.7\%; liver/kidney), and 118 (83.1\%; lung/kidney) significantly positively correlated pairs were identified. The correlations between distal-cQTLs were not formally tested because there were only four pairs; however, three of the four pairs had correlations greater than 0.5. No significantly negatively correlated QTL pairs were detected, after accounting for multiple testing (FDR $\leq$ 0.1).
+Testing correlation between the founder haplotype effects for pairs of QTL (FDR $\le 0.1$; \nameref{S_qtl_pair_histograms}) revealed significant positive correlations (FDR $<$ 0.1) for 345 (45.3\%; liver/lung), 623 (51.7\%; liver/kidney), and 498 (48.6\%; lung/kidney) local-eQTL pairs and 21 (31.8\%; liver/lung), 34 (28.8\%; liver/kidney), and 16 (27.1\%; lung/kidney) distal-eQTL pairs. Highly correlated QTL pairs were very close in genomic distance to each other (\nameref{S_qtl_cor_by_distance_comparison}), suggesting that the underlying causal variants are the same or linked. For local-cQTL, 47 (85.5\%; liver/lung), 48 (85.7\%; liver/kidney), and 118 (83.1\%; lung/kidney) significantly positively correlated pairs were identified. The correlations between distal-cQTLs were not formally tested because there were only four pairs; however, three of the four pairs had correlations greater than 0.5. No significantly negatively correlated QTL pairs were detected, after accounting for multiple testing (FDR $<$ 0.1).
 
 \subsubsection*{\textit{Cox7c}: Consistent haplotype effects for multi-tissue local-eQTL}
 Cytochrome c oxidase subunit 7C (\textit{Cox7c}) is an example of a gene that possess local-eQTL with highly correlated effects in all three tissues (Fig \ref{fig:correlated_local_eqtl}A).
@@ -378,7 +404,7 @@ In liver, the B6 haplotype resulted in lower expression compared to the other ha
 \subsubsection*{\textit{Akr1e1} and \textit{Per2}: Consistent haplotype effects for multi-tissue distal-eQTL}
 Founder haplotype effects that correlate across tissues can provide stronger confirmation of distal-QTL, even those with marginal significance. 
 For example, the Aldo-keto reductase family 1, member E1 (\textit{Akr1e1}; Fig \ref{fig:correlated_distal_eqtl}A) gene is located on chromosome 13 with no local-eQTL detected in any tissue. Distal-eQTL for \textit{Akr1e1} were detected in all tissues that localize to the same distal region on chromosome 4. The founder haplotype effects of the distal-eQTL are all highly correlated, with A/J, B6, 129, and CAST haplotypes corresponding to higher \textit{Akr1e1} expression. Across tissues, expression was significantly higher in liver and kidney compared to lung ($q = \num{1.63e-19}$ and $q = \num{4.40e-34}$, respectively).
-Another example is the Period circadian clock 2 (\textit{Per2}; Fig \ref{fig:correlated_distal_eqtl}B) gene, which possesses intra-chromosomal distal-eQTL that are detected in all three tissues that are approximately 100Mb away from the TSS at a lenient chromosome-wide significance (Analysis C; FDR $\leq$ 0.2). The founder haplotype effects are significantly correlated among the tissues, characterized by high expression with the NOD and PWK haplotypes present. Together, these findings provide strong validation for the distal-eQTL, which would commonly not even be detected based on tissue-stratified analyses.
+Another example is the Period circadian clock 2 (\textit{Per2}; Fig \ref{fig:correlated_distal_eqtl}B) gene, which possesses intra-chromosomal distal-eQTL that are detected in all three tissues that are approximately 100Mb away from the TSS at a lenient chromosome-wide significance (Analysis C; FDR $<$ 0.2). The founder haplotype effects are significantly correlated among the tissues, characterized by high expression with the NOD and PWK haplotypes present. Together, these findings provide strong validation for the distal-eQTL, which would commonly not even be detected based on tissue-stratified analyses.
 Other unique patterns of distal genetic regulation were detected, such as for Ring finger protein 13 gene (\textit{Rnf13}) with tissue-specific distal-eQTL, described in \nameref{S_rnf13_distal_eqtl}.
 
 \begin{figure}[h!]
@@ -546,7 +572,7 @@ Error rates were controlled by calculating a $p$-value for each QTL based on the
 The appropriateness of permutation-derived thresholds \cite{Doerge1996} is dependent on the CC having balanced founder haplotype contributions. This assumption was supported by simulations of the funnel breeding design \cite{Valdar2006c}. More recently, power simulations based on the observed CC strain genomes were performed \cite{Keele2019}, which found low levels of population structure for highly polygenic genetic architectures. Nevertheless, we use permutations given that molecular traits often have strong effect QTL that are detectable in the presence of subtle population structure.
 
 \subsubsection*{Local analysis - Analysis L} 
-Our detection criteria for local-QTL leverages our strong prior belief in local genetic regulation. For a given trait, this local analysis involved examining QTL associations at all loci within a 10Mb window of the gene transcription start site (TSS) or chromatin region midpoint. A QTL was detected if the $\text{permP}_{\text{C}} \leq 0.05$. Notably, we can also check whether the corresponding $\text{permP}_{\text{G}} \leq 0.05$, as an additional characterization of statistical significance of detected local-QTL.
+Our detection criteria for local-QTL leverages our strong prior belief in local genetic regulation. For a given trait, this local analysis involved examining QTL associations at all loci within a 10Mb window of the gene TSS or chromatin region midpoint. A QTL was detected if the $\text{permP}_{\text{C}} < 0.05$. Notably, we can also check whether the corresponding $\text{permP}_{\text{G}} < 0.05$, as an additional characterization of statistical significance of detected local-QTL.
 
 \subsubsection*{Chromosome-wide analysis - Analysis C} 
 Chromosome-wide analysis involved examining QTL associations at all loci on the chromosome harboring the gene or chromatin region in question. The peak logP is input into a chromosome-wide GEV, producing a $\permpc$, which are further subjected to adjustment by FDR to account for multiple testing across the traits \cite{Chesler2005}. 
@@ -652,7 +678,7 @@ The permutation-based $p$-value (permP) from Analyses G (A) and C (B) for eQTL a
 \paragraph*{S8 Fig.}
 \label{S_effect_size_status}
 {\bf QTL effect sizes by local/distal status.}
-Each dot represents a QTL detected through either Analyses G (A) or C (B) with FDR $\leq$ 0.1. The three horizontal bars represent the 25\textsuperscript{th}, 50\textsuperscript{th}, and 75\textsuperscript{th} quantiles of QTL effect sizes for all local-QTL per tissue. More local-eQTL are detected and have higher effects than distal-QTL. Analysis C detects a large number of intra-chromosomal distal-QTL that Analysis G does not, many of which have low effect sizes. Effect size estimates are based on a fixed effects model. (PDF)
+Each dot represents a QTL detected through either Analyses G (A) or C (B) with FDR $<$ 0.1. The three horizontal bars represent the 25\textsuperscript{th}, 50\textsuperscript{th}, and 75\textsuperscript{th} quantiles of QTL effect sizes for all local-QTL per tissue. More local-eQTL are detected and have higher effects than distal-QTL. Analysis C detects a large number of intra-chromosomal distal-QTL that Analysis G does not, many of which have low effect sizes. Effect size estimates are based on a fixed effects model. (PDF)
 
 \paragraph*{S9 Fig.}
 \label{S_qtl_effects_abs}
@@ -775,7 +801,7 @@ The effect size corresponding to the random effect fit is harshly penalized comp
 
 
 \section*{Acknowledgments}
-This work was funded by grants from the National Institute of Environmental Health Sciences (NIEHS) (R01-ES023195 to IR and GEC and P30-ES025128), with GRK and WV funded by grants from the National Institute of General Medical Sciences (NIGMS) (R01-GM104125 and R35-GM127000 to WV). From the UNC Department of Genetics, we thank Lucas T.\ Laudermilk for his insights on the functional mechanisms of zinc finger protein-induced gene silencing, and Samir N.\ P.\ Kelada and Lauren J.\ Donoghue for reading the manuscript, and providing thoughtful suggestions. We thank Gary A.\ Churchill of The Jackson Laboratory for discussions on mediation analysis that influenced this work. Additionally, GRK was partially supported through funding from Dr.\ Churchill and The Jackson Laboratory.
+This work was funded by grants from the National Institute of Environmental Health Sciences (NIEHS) (R01-ES023195 to IR and GEC and P30-ES025128), with GRK and WV funded by grants from the National Institute of General Medical Sciences (NIGMS) (R01-GM104125 and R35-GM127000 to WV). From UNC, we thank Lucas T.\ Laudermilk for his insights on the functional mechanisms of zinc finger protein-induced gene silencing, and Samir N.\ P.\ Kelada and Lauren J.\ Donoghue for reading the manuscript and providing thoughtful suggestions. We thank Fred A.\ Wright of North Carolina State University for helpful discussions on eQTL and mediation analyses. We thank Gary A.\ Churchill of The Jackson Laboratory for discussions on mediation analysis that influenced this work. Additionally, GRK was partially supported through funding from Dr.\ Churchill and The Jackson Laboratory.
 
 \section*{Author Contributions}
 
@@ -1340,7 +1366,73 @@ Xu S.
 
 \end{thebibliography}
 
+\newpage
 
+\setcounter{table}{0}
+\setcounter{figure}{0}
+\setcounter{page}{1}
+
+
+\begin{figure}[hp]
+\includegraphics[width=\linewidth, clip, trim={0in 0.1in 0in 0.2in}]{figs/overview_diagram_simplified.pdf}
+\caption{}
+\end{figure}
+
+\newpage
+
+\begin{figure}[hp]
+\includegraphics[width=\linewidth, clip, trim={0in 0.5in 0in 0in}]{figs/mediation_graph.pdf}
+\caption{}
+\end{figure}
+
+\newpage
+
+\begin{figure}[hp]
+\includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/qtl_map_main.png}
+\caption{}
+\end{figure}
+
+\newpage
+
+\begin{figure}[hp]
+\includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/correlated_local_eqtl_update.png}
+\caption{}
+\end{figure}
+
+\newpage
+
+\begin{figure}[hp]
+\includegraphics[width=\textwidth, trim={0in 0.5in 0in 0in}, clip]{figs/pik3c2g_example.pdf}
+\caption{}
+\end{figure}
+
+\newpage
+
+\begin{figure}[hp]
+\includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/correlated_distal_eqtl.pdf}
+\caption{}
+\end{figure}
+
+\newpage
+
+\begin{figure}[hp]
+\includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/ccdc137_mediation.png}
+\caption{}
+\end{figure}
+
+\newpage
+
+\begin{figure}[hp]
+\includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/circos_over_tissues.png}
+\caption{}
+\end{figure}
+
+\newpage
+
+\begin{figure}[hp]
+\includegraphics[width=\textwidth, trim={0in 0.1in 0in 0in}, clip]{figs/akr1e1_full_model_update.png}
+\caption{}
+\end{figure}
 
 \end{document}
 
