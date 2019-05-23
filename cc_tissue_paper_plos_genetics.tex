@@ -333,7 +333,7 @@ Differential expression (DE) and differentially accessible region (DAR) analysis
 The impact of genetic variation on gene expression was evaluated by eQTL mapping. This was done at three levels of stringency and emphasis: 1) at the level of the local region of a gene, defined as within 10Mb of the gene transcription start site (TSS), and hereafter termed Analysis L; 2) at the level of the chromosome on which the gene is located (Analysis C); and 3) at level of the genome (Analysis G) (details in \textbf{Methods}).
 After filtering out lowly expressed genes, the number of genes examined in eQTL mapping was 8401 for liver, 11357 for lung, and 10092 for kidney (UpSet plot \cite{Conway2017} in \nameref{S_upset_outcomes}A).
 
-Analysis L detected local-eQTL for 19.8\% of genes tested in liver, 16.6\% in lung, and 20.8\% in kidney (chromosome-wide significance; \nameref{S_eqtl}).
+Analysis L detected local-eQTL for 19.8\% of genes tested in liver, 16.6\% in lung, and 20.8\% in kidney (\nameref{S_eqtl}).
 Most genes with local-eQTL were observed in only one tissue (\nameref{S_upset_qtl}A).
 Analysis C, which was more stringent, additionally detected intra-chromosomal distal-eQTL, while Analysis G, the most stringent, additionally detected inter-chromosomal distal-eQTL (\nameref{S_eqtl}).
 Genomic locations of eQTL detected for each tissue, excluding the inter-chromosomal distal-eQTL detected by Analysis C, are shown in Fig \ref{fig:grid_plot}A. See \nameref{S_grid_plot_lenient} and \nameref{S_eqtl_lenient} for eQTL counts with FDR $<$ 0.2.
@@ -346,7 +346,7 @@ Genomic locations of eQTL detected for each tissue, excluding the inter-chromoso
 
 \begin{figure}[h!]
 \caption{\textbf{Detected QTL are largely local for both gene expression (A) and chromatin accessibility (B).} 
-Detected QTL from Analyses G and L are included, excluding intra-chromosomal distal-QTL detected through Analysis C. The y-axis represents the genomic position of the gene or chromatin site, and the x-axis represents the genomic position of the QTL. Local-QTL appear as dots along the diagonal, and distal-QTL off of it.
+QTL detected through all analyses, excluding intra-chromosomal distal-QTL detected through Analysis C. The y-axis represents the genomic position of the gene or chromatin site, and the x-axis represents the genomic position of the QTL. Local-QTL appear as dots along the diagonal, and distal-QTL off of it.
 \label{fig:grid_plot}}
 \end{figure}
 
@@ -489,8 +489,9 @@ Despite these limitations, mediation analysis provides specific causal candidate
 \subsection*{QTL mapping power and their effect size estimates}
 Our modest sample of 47 CC strains motivated our use of multiple scopes of significance, from testing for QTL locally to genome-wide. As expected, the additional detected local-QTL have smaller effect sizes (orange and purple dots for C and L, respectively; \nameref{S_qtl_effect_sizes_by_method}). Based on a recent evaluation of QTL mapping power in the CC using simulation \cite{Keele2019}, this study has approximately 80\% power to detect genome-wide QTL with a 55\% effect size or greater. Effect size estimates for genome-wide QTL (green dots; \nameref{S_qtl_effect_sizes_by_method}) are consistent with this expectation albeit potentially inflated due to the Beavis effect \cite{Xu2003}. 
 Effect size estimates provide interpretable point summaries for haplotype-based QTL mapping, analogous to minor allele effect estimates in SNP-based studies. We calculated estimates of effect size in two ways, one based on a fixed effect fitting of the QTL term and the other as a random term \cite{Wei2016}. 
-We primarily report fixed effects estimates due to their consistency with reported expectations \cite{Keele2019} for a study of this size. We believe the conservative shrinkage-based estimates were overly reduced. These QTL mapping results are largely consistent with primarily Mendelian genetic regulation of molecular traits (large effect sizes: $>$ 60\%).
-We explored the use of shrunken effect size estimates because fixed effect estimates may be unstable due to overly influential data points. Notably, a small number of the distal-eQTL had low random effect size estimates (\nameref{S_qtl_effect_size_fixefvsranef}) compared to their fixed effects-based estimates. Alternatively, a residual variation estimate, \ie RSS, could be calculated from the shrunken haplotype effects to identify likely false positives, but not be as aggressively reduced as the variance component-based estimates, representing a middle ground approach \cite{Keele2018}.
+We primarily report fixed effects estimates due to their consistency with reported expectations \cite{Keele2019} for a study of this size. %We believe the conservative shrinkage-based estimates were overly reduced. 
+Notably, these QTL mapping results are largely consistent with primarily Mendelian genetic regulation of molecular traits (large effect sizes: $>$ 60\%).
+Shrunken effect size estimates can be used to identify putative QTL with unstable fixed effect estimates that result from extreme data points, and thus aid in the identification of low confidence QTL. Notably, a small number of the distal-eQTL had low random effect size estimates (\nameref{S_qtl_effect_size_fixefvsranef}) compared to their fixed effects-based estimates. Alternatively, a residual variation estimate, \ie RSS, could be calculated from the shrunken haplotype effects to identify likely false positives, but not be as aggressively reduced as the variance component-based estimates, representing a middle ground approach \cite{Keele2018}.
 
 \section*{Materials and methods}
 
