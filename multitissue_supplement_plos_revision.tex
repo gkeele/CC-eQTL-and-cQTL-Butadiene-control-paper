@@ -125,17 +125,18 @@ For this study, simple models that consist of three variables are used: the inde
 \text{X}\textsuperscript{QTL} \quad \rightarrow \quad \text{Y}^{\text{G}_{j}}
 \label{rel:eQTL}
 \end{equation}
-When cQTL or proximal eQTL to distal-eQTL are detected, a similar relationship is detected:
+When cQTL or local-eQTL that potentially mediate distal-eQTL are detected, a similar relationship is observed:
 \begin{equation}
 \text{X}\textsuperscript{QTL} \quad \rightarrow \quad \text{M}
 \label{rel:cQTL}
 \end{equation}
-The previous traits (Y) can also be viewed as potential mediators (M). Here we consider two models of mediation: 1) the effect of an eQTL is mediated through local chromatin state ($\text{M}^{C_{k}}$) and 2) the effect of the distal-eQTL is mediated through a proximal gene ($\text{M}^{G_{k}}$), depicted in Fig 6. Co-localizing QTL are consistent with the co-occurrence of $X \rightarrow Y^{G_{j}}$ and $X \rightarrow Y^{C_{k}}$ at a locus. A true mediation relationship has an additional requirement, specifically that: 
+where M is some $Y^{G_{j}}$ or $Y^{C_{k}}$, a reasonable mediator of an eQTL. 
+Here we consider two models of mediation: 1) the effect of an eQTL is mediated through local chromatin state ($\text{M}^{C_{k}}$) and 2) the effect of the distal-eQTL is mediated through a nearby gene ($\text{M}^{G_{k}}$), depicted in Fig 6. Co-localizing QTL are consistent with the co-occurrence of $X \rightarrow Y^{G_{j}}$ and $X \rightarrow Y^{C_{k}}$ at a locus. A true full mediatory relationship has that additional requirement that: 
 \begin{equation}
 \text{X}\textsuperscript{QTL} \quad \indep \quad \text{Y}^{\text{G}_{j}} \quad | \quad \text{M}
 \label{rel:full_mediator}
 \end{equation}
-where ``A $\indep$ B'' indicates that A and B are independent of each other, and ``A $|$ B'' is A conditioned on variable B. X being fully independent of Y given M is consistent with X acting on Y completely through M, referred to as full mediation. In practice, the true relationship can be complex and obscured by noise, instead resulting in partial mediation, whereby X affects Y both directly and through M. Genome-wide data present a significant challenge to systematically testing these relationships.
+where ``A $\indep$ B'' indicates that A and B are independent of each other, and ``A $|$ B'' is A conditioned on variable B. X being fully independent of Y given M is consistent with X acting on Y completely through M, referred to as full mediation. In practice, the true relationship can be complex and obscured by noise, instead resulting in partial mediation, whereby X affects Y both directly and through M. Genome-wide data present a significant challenge to systematically testing these relationships because of the presence of many candidate mediators and their correlation structure.
 
 \subsection*{Mediation permutation scans}
 
@@ -498,7 +499,7 @@ QTL map plots of eQTL (A) and cQTL (B) with FDR controlled at 0.1 and 0.2 for li
 \centering
 \includegraphics[width=\textwidth]{figs/qtl_distance_all.png}
 \caption{\textbf{Highly significant QTL map nearby the gene TSS and chromatin window midpoint.} 
-The permutation-based $p$-value (permP) from Analyses G (A) and C (B) for eQTL and cQTL by the distance (Mb) from the gene TSS and the midpoint of the chromatin site. Inter-chromosomal distal-QTL are not included. The red dashed lines represent 10Mb upstream and downstream of the gene TSS or the midpoint of the chromatin site for classifying QTL as local or distal. Significant signals (yellow or blue), based on FDR $\le 0.1$, are largely local. Analysis C detects many more intra-chromosomal distal-QTL.
+The permutation-based $p$-value (permP) from Analyses G (A) and C (B) for eQTL and cQTL by the distance (Mb) from the gene TSS and the midpoint of the chromatin site. Inter-chromosomal distal-QTL are not included. The red dashed lines represent $\pm$ 10Mb of the gene TSS or the midpoint of the chromatin site for classifying QTL as local or distal. Significant signals (yellow or blue), based on FDR $\le 0.1$, are largely local. Analysis C detects many more intra-chromosomal distal-QTL.
 \label{fig:dist_all}}
 \end{figure*}
 
