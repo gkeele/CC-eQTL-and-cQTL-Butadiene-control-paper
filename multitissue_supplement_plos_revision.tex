@@ -140,7 +140,7 @@ where ``A $\indep$ B'' indicates that A and B are independent of each other, and
 
 \subsection*{Mediation permutation scans}
 
-Empirical $p$-values for the mediators can be defined through permutations, similarly to as is done with the QTL. Instead of permuting the trait outcome, the pairing of trait to QTL is maintained, and the mediator is permuted. GEVs are then fit for potential mediators from the minimum logP from the permutation scans, instead of the maximum logP in QTL scans. FWER-controlled mediation $p$-values are calculated from the GEV: $\permpmed = F_{\text{GEV}}(\text{logP})$. An FDR adjustment is not used with mediation because it is only evaluated for detected QTL, which violates the uniform null distribution expectations of FDR.
+Empirical $p$-values for the mediators can be defined through permutations, similarly to as is done with the QTL. Instead of permuting the trait outcome, the pairing of trait to QTL is maintained, and the mediator is permuted. GEVs are then fit for potential mediators from the minimum logP from the permutation scans, instead of the maximum logP in QTL scans. FWER-controlled mediation $p$-values are calculated from the GEV: $\permpmed = F_{\text{GEV}}(\text{logP})$. An additional FDR adjustment is not used with mediation because it is only evaluated for detected QTL, which violates the uniform null distribution expectations of FDR. Notably, the use of empirical genome-wide and chromosome-wide FWER controlling thresholds is relatively stringent, given that candidate mediators are required to localize near the eQTL.
 
 \subsection*{Mediation models}
 
@@ -150,7 +150,7 @@ Mediation through chromatin accessibility was evaluated for all local-eQTL detec
 \subsubsection*{Mediation of distal-eQTL through local gene expression.}
 Mediation of the effect of genome-wide significant distal-eQTL through proximal gene expression was evaluated. Genome-wide significance is required for distal-eQTL because there is not additional strong biological information to support reduced stringency as is the case with local signal. As with mediation through chromatin state, 1,000 permutations are used to define genome-wide mediation $p$-values, $\permpmed_{\text{G}}$. 
 
-Mediation of cQTL through other chromatin sites and gene expression were also considered, but did not result in the detection of any candidate mediators.
+Mediation of cQTL through other chromatin sites and gene expression were also considered, but did not result in the detection of any candidate mediators other than \textit{Zfp985} expression as a mediator of a distal-cQTL on chromosome 4 for a chromatin region located chromosome 13 near \textit{Akr1e1}.
 
 \subsection*{Formal mediation criterion}
 
@@ -161,7 +161,7 @@ Detection of mediation has some caveats and pitfalls compared to the statistical
     	\item Mediation through chromatin: $\permpmed_{\text{C}} < 0.05$ from Analysis L
         \item Mediation through expression: $\permpmed_{\text{G}} < 0.05$ from Analysis G
     \end{enumerate}
-    \item Detection of significant mediator within a 20Mb window centered around the eQTL from previous step.
+    \item Detection of significant mediator within a $\pm$ 10Mb window around the eQTL from previous step.
     \item Detection of a significant QTL for the mediator from previous step.
     \begin{enumerate}
     	\item Mediation through chromatin: $\permpmed_{\text{C}} < 0.05$ from Analysis L and within 10Mb upstream or downstream of gene TSS
@@ -541,7 +541,7 @@ Comparisons of QTL effects sizes between (liver/lung) are in the left column, (l
 \centering
 \includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/qtl_pair_cor_histograms.pdf}
 \caption{\textbf{Consistent genetic regulation of gene expression and chromatin accessibility observed across tissues.} 
-Enrichment of significantly correlated founder haplotype effects detected in QTL pairs for gene expression and chromatin accessibility. Pairs of QTL observed in multiple tissues were defined for local-eQTL (left column), distal-eQTL (middle column), and local-cQTL (right column). Only four pairs of distal-cQTL were observed, all shared between lung and kidney. A right-tailed test the correlation between founders effects ($H_{A}: r > 0$) was performed for each QTL pair, producing $p$-values that were then FDR adjusted. Null simulations of uncorrelated 8-element vector pairs for each class of QTL and pairwise tissue comparison emphasize the observed enrichment in correlated founder effects between QTL pairs.  
+There was an excess of significant positively correlated founder haplotype effects in QTL pairs across tissues for gene expression and chromatin accessibility. Pairs of QTL observed in multiple tissues were defined for local-eQTL (left column), distal-eQTL (middle column), and local-cQTL (right column). Only four pairs of distal-cQTL were observed, all shared between lung and kidney. A right-tailed test the correlation between founders effects ($H_{A}: r > 0$) was performed for each QTL pair, producing $p$-values that were then FDR adjusted. Null simulations of uncorrelated 8-element vector pairs for each class of QTL and pairwise tissue comparison emphasize the observed enrichment in correlated founder effects between QTL pairs.  
 \label{fig:qtl_pair_histograms}}
 \end{figure*}
 
@@ -649,7 +649,7 @@ Based on ranking mapping analyses with respect to the extent of scope, local (L;
 \centering
 \includegraphics[width=0.9\textwidth, trim={0in 0in 0in 0in}, clip]{figs/fixefvsranef_qtl.pdf}
 \caption{\textbf{Comparison of QTL effect sizes estimates from fixed effects and random effects models.} 
-The effect size corresponding to the random effect fit is harshly penalized compared to the fixed effect estimate, likely due to a modest sample size of 47 individuals. Notably, there are a number of distal-eQTL that are more harshly reduced by the random effects model compared to the other QTL, likely representing signals resulting from extreme observations or imbalances in founder contributions at the locus. QTL detected by Analyses G (FDR $< 0.1$), C (FDR $\le 0.1$), and L are shown.
+The effect size corresponding to the random effect fit is harshly penalized compared to the fixed effect estimate, likely due to a modest sample size of 47 individuals. Notably, there are a number of distal-eQTL that are more harshly reduced by the random effects model compared to the other QTL, likely representing signals resulting from extreme observations or imbalances in founder contributions at the locus. QTL detected by Analyses G (FDR $\le 0.1$), C (FDR $\le 0.1$), and L are shown.
 \label{fig:qtl_effect_size_fixefvsranef}}
 \end{figure*}
 
@@ -658,7 +658,7 @@ The effect size corresponding to the random effect fit is harshly penalized comp
 \centering
 \includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/gpn3_conditional_scan.pdf}
 \caption{\textbf{Detection of local-eQTL after conditioning on distal-eQTL for \textit{Gpn3}.} 
-The multi-stage conditional regression approach of Analysis G allows for the detection of multiple genome-wide significant QTL, which can then be appropriately incorporated into a FDR procedure across many outcomes. In this example in lung tissue, the gene \textit{Gpn3} initially has a strong distal-eQTL on chromosome 8 (A). Though a peak is detected near the TSS of \textit{Gpn3}, it does not meet genome-wide significance. However, after conditioning on the distal-eQTL, the local-eQTL is detected (B). Horizontal dashed lines represent empirical 95\% significance thresholds based on 1,000 permutations.
+The multi-stage conditional regression approach of Analysis G allows for the detection of multiple genome-wide significant QTL, which can then be appropriately incorporated into a FDR procedure across many outcomes. In this example in lung tissue, the gene \textit{Gpn3} initially has a strong distal-eQTL on chromosome 8 [top left]. Though a peak is detected near the TSS of \textit{Gpn3}, it does not meet genome-wide significance. However, after conditioning on the distal-eQTL, the local-eQTL is detected [bottom left]. Horizontal dashed lines represent empirical 95\% significance thresholds based on 1,000 permutations.
 \label{fig:conditional_scans}}
 \end{figure*}
 
