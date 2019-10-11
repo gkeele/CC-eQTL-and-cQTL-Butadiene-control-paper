@@ -125,18 +125,18 @@ For this study, simple models that consist of three variables are used: the inde
 \text{X}\textsuperscript{QTL} \quad \rightarrow \quad \text{Y}^{\text{G}_{j}}
 \label{rel:eQTL}
 \end{equation}
-When cQTL or local-eQTL that potentially mediate distal-eQTL are detected, a similar relationship is observed:
+Candidate mediators of eQTL, either chromatin regions or genes, must also possess their own local-QTL, represented similarly:
 \begin{equation}
 \text{X}\textsuperscript{QTL} \quad \rightarrow \quad \text{M}
 \label{rel:cQTL}
 \end{equation}
-where M is some $Y^{G_{j}}$ or $Y^{C_{k}}$, a reasonable mediator of an eQTL. 
-Here we consider two models of mediation: 1) the effect of an eQTL is mediated through local chromatin state ($\text{M}^{C_{k}}$) and 2) the effect of the distal-eQTL is mediated through a nearby gene ($\text{M}^{G_{k}}$), depicted in Fig 6. Co-localizing QTL are consistent with the co-occurrence of $X \rightarrow Y^{G_{j}}$ and $X \rightarrow Y^{C_{k}}$ at a locus. A true full mediatory relationship has that additional requirement that: 
+where M is some $Y^{G_{k}}$ or $Y^{C_{k}}$, a candidate mediator of the eQTL of $Y^{G_{j}}$. 
+Here we consider two models of mediation: 1) the effect of an eQTL is mediated through local chromatin state ($\text{M}^{C_{k}}$) and 2) the effect of the distal-eQTL is mediated through a nearby gene ($\text{M}^{G_{k}}$), depicted in Fig 6. Co-localizing QTL are consistent with the co-occurrence of $X \rightarrow Y^{G_{j}}$ and $X \rightarrow Y^{C_{k}}$ at a locus. If X is fully independent of Y given M, denoted as: 
 \begin{equation}
 \text{X}\textsuperscript{QTL} \quad \indep \quad \text{Y}^{\text{G}_{j}} \quad | \quad \text{M}
 \label{rel:full_mediator}
 \end{equation}
-where ``A $\indep$ B'' indicates that A and B are independent of each other, and ``A $|$ B'' is A conditioned on variable B. X being fully independent of Y given M is consistent with X acting on Y completely through M, referred to as full mediation. In practice, the true relationship can be complex and obscured by noise, instead resulting in partial mediation, whereby X affects Y both directly and through M. Genome-wide data present a significant challenge to systematically testing these relationships because of the presence of many candidate mediators and their correlation structure.
+where ``A $\indep$ B'' indicates that A and B are independent of each other and ``A $|$ B'' is A conditioned on B, then X acts on Y completely through M, which is commonly referred to as full mediation. In practice, the true relationship can be complex and obscured by noise, instead resulting in partial mediation, whereby X affects Y both directly and through M. Genome-wide data present a significant challenge to systematically testing these relationships because of the presence of many candidate mediators and their correlation structure.
 
 \subsection*{Mediation permutation scans}
 
