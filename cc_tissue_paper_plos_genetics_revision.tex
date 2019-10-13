@@ -459,7 +459,7 @@ The coiled-coil domain containing 137 gene (\textit{Ccdc137}) is a strong exampl
 \end{figure}
 
 \WVinline{Establishing mediation requires more than mere co-localization of eQTL and cQTL.}
-\WV{Local-eQTL and co-localizing cQTL were identified}{Are these examples demonstrating the above? If so, then qualify with preceding ``For example''} for both \GKinline{haloacid dehalogenase-like hydrolase domain containing 3 (\textit{Hdhd3})} in liver (\nameref{S_colocalization}A) and the \GKinline{acyl-Coenzyme A binding domain containing 4 (\textit{Acbd4})}  in kidney (\nameref{S_colocalization}B). Comparing the statistical associations at the loci for eQTL and cQTL, and the corresponding haplotype effects, however, showed better correspondence in the case of \textit{Hdhd3} than for \textit{Acbd4}: a strong mediation signal was detected for \textit{Hdhd3}, indicated by the decreased eQTL association when conditioning on the chromatin state, whereas mediation was not detected for \textit{Abcd4}, consistent with expression and chromatin accessibility having causally different origins.
+For example, local-eQTL and co-localizing cQTL were identified for both \GKinline{haloacid dehalogenase-like hydrolase domain containing 3 (\textit{Hdhd3})} in liver (\nameref{S_colocalization}A) and the \GKinline{acyl-Coenzyme A binding domain containing 4 (\textit{Acbd4})}  in kidney (\nameref{S_colocalization}B). Comparing the statistical associations at the loci for eQTL and cQTL, and the corresponding haplotype effects, however, showed better correspondence in the case of \textit{Hdhd3} than for \textit{Acbd4}: a strong mediation signal was detected for \textit{Hdhd3}, indicated by the decreased eQTL association when conditioning on the chromatin state, whereas mediation was not detected for \textit{Abcd4}, consistent with expression and chromatin accessibility having causally different origins.
 
 \subsection*{Mediation of eQTL by expression} 
 
@@ -503,14 +503,14 @@ In this study we performed QTL and mediation analyses of gene expression and chr
 
 \subsection*{Joint QTL analysis in multiple tissues}
 
-Multi-tissue QTL analyses are increasingly used in both humans, such as within the GTEx project \cite{GTEX2017}, 
-and in mice (\eg, \cite{Huang2009}\WV{}{Need a more recent ref than this}).
+Multi-tissue QTL analyses are increasingly used in both humans, such as within the GTEx project (\eg,\cite{GTEX2017, Fagny2017}), 
+and in mice (\eg, \cite{Huang2009, Sul2013}).
 We believe our use of formal statistical tests of the correlation coefficient between the founder haplotype effects of overlapping QTL is novel in defining co-localizing QTL across tissues. This method allows us to identify loci likely representing tissue-specific QTL with unique haplotype effects patterns, as demonstrated for the gene \textit{Pik3c2g} (Fig \ref{fig:pik3c2g}).
 This approach can also detect consistent haplotype effects, as with the gene \textit{Per2} (Fig \ref{fig:correlated_distal_eqtl}B), which possessed only marginally significant distal-eQTL in the three tissues, suggesting jointly mapping QTL across all tissues increases power. Formal joint analysis approaches have been proposed, largely implemented for detecting SNP associations, including meta-analysis on summary statistics (\eg, \cite{Fu2012a, Sul2013}) and fully joint analysis, including Bayesian hierarchical models \cite{Flutre2013} and mixed models \cite{Acharya2016}. Extending such methods to haplotype-based analysis in MPPs poses some challenges, including how to best generalize methods to more complex genetic models and for the CC with a limited number of unique genomes. 
 \WVinline{Nonetheless,} when multiple levels of molecular traits are measured, joint analyses could \WVinline{conceivably} be incorporated into the mediation framework to improve detection power.
 
 \subsection*{Correlated haplotype effects suggest subtle multi-allelic QTL}
-Haplotype-based association in MPP allows for the detection of multi-allelic QTL \cite{Crowley2015}, such as potentially observed within the kidney at the local-eQTL of \textit{Pik3c2g}, where mice with B6 contributions in the region have an intermediate level of expression. The correlation coefficient between the founder haplotype effects for QTL pairs provides an interesting summary, generally not possible in the simpler bi-allelic setting commonly used in variant association analysis. The extent of the correlation between the founder effects for QTL pairs of certain genes, such as \textit{Cox7c} (Fig \ref{fig:correlated_local_eqtl}A) suggests that these QTL are at least subtly multi-allelic. Correlated founder effects are consistent with \WVinline{the} genetic regulation, even local to the gene TSS, being potentially complex with \WV{strain-specific}{do you mean haplotype-specific/founder strain-specific, or do you mean CC strain-specific?} modifiers.
+Haplotype-based association in MPP allows for the detection of multi-allelic QTL \cite{Crowley2015}, such as potentially observed within the kidney at the local-eQTL of \textit{Pik3c2g}, where mice with B6 contributions in the region have an intermediate level of expression. The correlation coefficient between the founder haplotype effects for QTL pairs provides an interesting summary, generally not possible in the simpler bi-allelic setting commonly used in variant association analysis. The extent of the correlation between the founder effects for QTL pairs of certain genes, such as \textit{Cox7c} (Fig \ref{fig:correlated_local_eqtl}A) suggests that these QTL are at least subtly multi-allelic. Correlated founder effects are consistent with \WVinline{the} genetic regulation, even local to the gene TSS, being potentially complex, likely due to \GKinline{founder-specific} modifiers.
 
 \subsection*{Correlated haplotype effects with differential expression across tissues}
 
@@ -524,7 +524,7 @@ Second, each tissue may have additional unique regulatory elements that further 
 Mediation results largely reflect the correlations between the variables after adjusting for additional sources of variation, such as covariates and batch effects. We further require the mediator QTL to have a larger effect size than the outcome QTL in order to identify trios that are consistent with the proposed causal models.
 \WVinline{It must be emphasized, however,}\GKinline{ that these steps are not equivalent to experimentally controlling the directionality of the relationship between a gene's expression level and a putative mediator, nor is such control feasible in a large-scale experiment. Variable measurement error on the mediator and gene could flip the perceived directionality of the relationship, resulting in both false positive and negative mediations. Alternatively, the relationships could be more complex than the simple models used here, \eg feedback between the mediator and gene, which these procedures will not detect. Additionally, the causal mediator may not be observed in the data, allowing for other candidates, correlated with the missing causal element, to be incorrectly identified as mediators.} 
 
-Despite these limitations, the mediation analysis used here provides specific causal candidates \WV{of}{for? Not sure what is meant.} QTL. For example, we show strong evidence for ZFP985 mediating the genetic regulation of \textit{Akr1e1} (Fig \ref{fig:akr1e1_full_model}). Additional evidence suggests this is done by ZFP985 contributing to reduced \textit{Akr1e1} promoter activity. It is possible that \textit{Zfp985} expression is simply strongly correlated with the true mediator, and others have alternatively proposed \textit{Rex2} expression as a candidate \cite{HamiltonWilliams2010}, which we did not consider due to low expression in all three tissues. Regardless of the identity of the true mediator, our analysis shows strong evidence that it acts causally by \GKinline{reducing chromatin accessibility} near \textit{Akr1e1}.
+Despite these limitations, the mediation analysis used here provides specific causal candidates \GKinline{for local- (mediated through chromatin) and distal-eQTL (mediated through local genes)}. For example, we show strong evidence for ZFP985 mediating the genetic regulation of \textit{Akr1e1} (Fig \ref{fig:akr1e1_full_model}). Additional evidence suggests this is done by ZFP985 contributing to reduced \textit{Akr1e1} promoter activity. It is possible that \textit{Zfp985} expression is simply strongly correlated with the true mediator, and others have alternatively proposed \textit{Rex2} expression as a candidate \cite{HamiltonWilliams2010}, which we did not consider due to low expression in all three tissues. Regardless of the identity of the true mediator, our analysis shows strong evidence that it acts causally by \GKinline{reducing chromatin accessibility} near \textit{Akr1e1}.
 
 \subsection*{QTL mapping power and their effect size estimates}
 
@@ -1366,6 +1366,12 @@ Aguet F, Brown AA, Castel SE, Davis JR, He Y, Jo B, et~al.
 \newblock Nature. 2017;550(7675):204--213.
 \newblock doi:{10.1038/nature24277}.
 
+\bibitem{Fagny2017}
+Fagny M, Paulson JN, Kuijjer ML, Sonawane AR, Chen C, Lopes-Ramos CM, et~al.
+\newblock {Exploring regulation in tissues with eQTL networks}.
+\newblock Proceedings of the National Academy of Sciences. 2017;114(9):7841--50.
+\newblock doi:{10.1038/nature24277}.
+
 \bibitem{Huang2009}
 Huang GJ, Shifman S, Valdar W, Johannesson M, Yalcin B, Taylor MS, et~al.
 \newblock {High resolution mapping of expression QTLs in heterogeneous stock
@@ -1373,19 +1379,19 @@ Huang GJ, Shifman S, Valdar W, Johannesson M, Yalcin B, Taylor MS, et~al.
 \newblock Genome Research. 2009;19(6):1133--1140.
 \newblock doi:{10.1101/gr.088120.108}.
 
-\bibitem{Fu2012a}
-Fu J, Wolfs MGM, Deelen P, Westra HJ, Fehrmann RSN, {Te Meerman} GJ, et~al.
-\newblock {Unraveling the regulatory mechanisms underlying tissue-dependent
-  genetic variation of gene expression.}
-\newblock PLoS Genetics. 2012;8(1):e1002431.
-\newblock doi:{10.1371/journal.pgen.1002431}.
-
 \bibitem{Sul2013}
 Sul JH, Han B, Ye C, Choi T, Eskin E.
 \newblock {Effectively Identifying eQTLs from Multiple Tissues by Combining
   Mixed Model and Meta-analytic Approaches}.
 \newblock PLoS Genetics. 2013;9(6):e1003491.
 \newblock doi:{10.1371/journal.pgen.1003491}.
+
+\bibitem{Fu2012a}
+Fu J, Wolfs MGM, Deelen P, Westra HJ, Fehrmann RSN, {Te Meerman} GJ, et~al.
+\newblock {Unraveling the regulatory mechanisms underlying tissue-dependent
+  genetic variation of gene expression.}
+\newblock PLoS Genetics. 2012;8(1):e1002431.
+\newblock doi:{10.1371/journal.pgen.1002431}.
 
 \bibitem{Flutre2013}
 Flutre T, Wen X, Pritchard J, Stephens M.
@@ -1431,7 +1437,7 @@ Xu S.
 
 
 \begin{figure}[hp]
-\includegraphics[width=\linewidth, clip, trim={0in 0.1in 0in 0.2in}]{figs/overview_diagram_simplified.pdf}
+\includegraphics[width=\linewidth, clip, trim={0in 0.1in 0in 0.2in}]{figs/overview_diagram_simplified.png}
 \caption{}
 \end{figure}
 
