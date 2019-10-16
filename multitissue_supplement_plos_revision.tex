@@ -53,24 +53,69 @@
 
 \section*{Data and Supplement details}
 
-Data and analysis files in the \textbf{Supplement} include:
+Files  in the \textbf{Supplement} include:
 
 \begin{itemize}
-	\item File\_S1: data\_supplement\_details.pdf
-	\item File\_S2: miqtl\_1.1.1.tar.gz
-	\item File\_S3: cc\_genome\_cache.zip
-	\item File\_S4 - S6: \{liver,lung,kidney\}\_expression.csv
-	\item File\_S7 - S9: \{liver,lung,kidney\}\_chromatin.csv
-	\item File\_S10 - S12: de\_\{liver\_lung,liver\_kidney,lung\_kidney\}.csv
-	\item File\_S13 - S15: dar\_\{liver\_lung,liver\_kidney,lung\_kidney\}.csv
-	\item File\_S16 - S18: \{liver,lung,kidney\}\_local\_eqtl.csv
-	\item File\_S19 - S21: \{liver,lung,kidney\}\_distal\_eqtl.csv
-	\item File\_S22 - S24: \{liver,lung,kidney\}\_local\_cqtl.csv
-	\item File\_S25 - S27: \{liver,lung,kidney\}\_distal\_cqtl.csv
-	\item File\_S28 - S30: \{liver,lung,kidney\}\_chromatin\_mediation.csv
-	\item File\_S31: refseq\_mm9\_tss.txt.zip
-	\item File\_S32: supplement\_tables\_figures.pdf
-	\item File\_S33: appendices.pdf
+	\item File\_S1: \texttt{data\_supplement\_details.pdf}
+	\item Results files:
+	\begin{itemize}
+		\item File\_S2 - S4: \texttt{de\_}\{\texttt{liver\_lung},\texttt{liver\_kidney},\texttt{lung\_kidney}\}\texttt{.csv}
+		\item File\_S5 - S7: \texttt{dar\_}\{\texttt{liver\_lung},\texttt{liver\_kidney},\texttt{lung\_kidney}\}\texttt{.csv}
+		\item File\_S8 - S10: \{\texttt{liver},\texttt{lung},\texttt{kidney}\}\texttt{\_local\_eqtl.csv}
+		\item File\_S11 - S13: \{\texttt{liver},\texttt{lung},\texttt{kidney}\}\texttt{\_distal\_eqtl.csv}
+		\item File\_S14 - S16: \{\texttt{liver},\texttt{lung},\texttt{kidney}\}\texttt{\_local\_cqtl.csv}
+		\item File\_S17 - S19: \{\texttt{liver},\texttt{lung},\texttt{kidney}\}\texttt{\_distal\_cqtl.csv}
+		\item File\_S20 - S22: \{\texttt{liver},\texttt{lung},\texttt{kidney}\}\texttt{\_chromatin\_mediation.csv}
+	\end{itemize}
+	\item Additional resource files:
+	\begin{itemize}
+		\item File\_S23: \texttt{supplement\_tables\_figures.pdf}
+		\item File\_S24: \texttt{appendices.pdf}
+	\end{itemize}
+		\item Software files:
+	\begin{itemize}
+		\item File\_S25: \texttt{miqtl\_1.1.1.tar.gz}
+	\end{itemize}
+	\item R code:
+\end{itemize}
+
+The data necessary for these analyses and raw QTL results files have been stored at figshare (doi:10.6084/m9.figshare.9985514). These files include:
+
+\begin{itemize}
+	\item Data files:
+	\begin{itemize}
+		\item \texttt{cc\_genome\_cache\_full\_l2\_0.1.zip}
+		\begin{itemize}
+			\item Founder haplotype mosaics for the 47 strains based on Build37, derived from files at \url{http://csbio.unc.edu/CCstatus/index.py?run=FounderProbs}, used for haplotype-based QTL analysis. Haplotype intervals were thinned, averaging adjacent intervals for which the mean l2 norm $<$ 0.1 \cite{Keele2019}.
+		\end{itemize}
+		\item \{\texttt{liver},\texttt{lung},\texttt{kidney}\}\texttt{\_expression.csv.zip}
+		\item \{\texttt{liver},\texttt{lung},\texttt{kidney}\}\texttt{\_chromatin.csv.zip}
+		\item \texttt{refseq\_mm9\_tss.txt.zip}
+		\begin{itemize}
+			\item Gene annotation data for Build37, providing gene transcription start site information necessary for determining local/distal status for eQTL. 
+		\end{itemize}
+		\item \texttt{pik3c2g\_phylogeny.csv}
+		\begin{itemize}
+			\item Maps the founder haplotypes around \textit{Pik3c2g} to the three $\textit{Mus}$ sub-species lineages (\url{http://msub.csbio.unc.edu}) \cite{Wang2012}.
+		\end{itemize}
+		\item \texttt{isvdb\_var\_db.tar.gz}
+		\begin{itemize}
+			\item SNP dosages derived from the founder haplotype mosaics and variant-to-strain distribution pattern, using ISVdb (\url{http://isvdb.unc.edu}) \cite{Oreper2017}.
+		\end{itemize}
+		\item \texttt{qtl\_intervals\_for\_var\_association.csv}
+		\begin{itemize}
+			\item Defined regions around detected QTL used to select variants for association analysis.
+		\end{itemize}
+	\end{itemize}
+		\item Raw results files:
+	\begin{itemize}
+		\item \texttt{raw\_}\{\texttt{liver},\texttt{lung},\texttt{kidney}\}\texttt{.eqtl\_methodG.csv}
+		\item \texttt{raw\_}\{\texttt{liver},\texttt{lung},\texttt{kidney}\}\texttt{.eqtl\_methodL.csv}
+		\item \texttt{raw\_}\{\texttt{liver},\texttt{lung},\texttt{kidney}\}\texttt{.eqtl\_methodC.csv}
+		\item \texttt{raw\_}\{\texttt{liver},\texttt{lung},\texttt{kidney}\}\texttt{.cqtl\_methodG.csv}
+		\item \texttt{raw\_}\{\texttt{liver},\texttt{lung},\texttt{kidney}\}\texttt{.cqtl\_methodL.csv}
+		\item \texttt{raw\_}\{\texttt{liver},\texttt{lung},\texttt{kidney}\}\texttt{.cqtl\_methodC.csv}
+	\end{itemize}
 \end{itemize}
 
 \section*{miQTL package}
@@ -174,6 +219,27 @@ Detection of mediation has some caveats and pitfalls compared to the statistical
 \newpage
 
 \begin{thebibliography}{10}
+
+\bibitem{Keele2019}
+Keele GR, Crouse WL, Kelada SNP, Valdar W.
+\newblock {Determinants of QTL Mapping Power in the Realized Collaborative
+  Cross.}
+\newblock G3 (Bethesda, Md). 2019;9(May):459966.
+\newblock doi:{10.1534/g3.119.400194}.
+
+\bibitem{Wang2012}
+Wang JR, de Villena FPM, McMillan L.
+\newblock {Comparative analysis and visualization of multiple collinear genomes.}
+\newblock BMC Bioinformatics. 2012;13(S3):S13.
+\newblock doi:{10.1186/1471-2105-13-S3-S13}.
+
+\bibitem{Oreper2017}
+Oreper D, Cai Y, Tarantino LM, de~Villena FPM, Valdar W.
+\newblock {Inbred Strain Variant Database (ISVdb): A Repository for
+  Probabilistically Informed Sequence Differences Among the Collaborative Cross
+  Strains and Their Founders.}
+\newblock G3 (Bethesda, Md). 2017;7(6):1623--1630.
+\newblock doi:{10.1534/g3.117.041491}.
 
 \bibitem{Jansen2017}
 Jansen R, Hottenga JJ, Nivard MG, Abdellaoui A, Laport B, de~Geus EJ, et~al.
