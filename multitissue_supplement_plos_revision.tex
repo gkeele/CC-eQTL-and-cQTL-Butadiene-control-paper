@@ -99,11 +99,16 @@ Here we consider two models of mediation: 1) the effect of an eQTL is mediated t
 \text{X}\textsuperscript{QTL} \quad \indep \quad \text{Y}^{\text{G}_{j}} \quad | \quad \text{M}
 \label{rel:full_mediator}
 \end{equation}
-where ``A $\indep$ B'' indicates that A and B are independent of each other and ``A $|$ B'' is A conditioned on B, then X acts on Y completely through M, which is commonly referred to as full mediation. Partial mediatory relationships are also possible in which X affects Y both directly and through M, traditionally identified by testing for $M \quad \rightarrow \quad Y \quad | \quad X$. In practice, the true relationships among the variables can be complex and obscured by noise, making it hard to completely distinguish full mediation, partial mediation, and X separately affecting M and Y. Furthermore, genome-wide data present a significant challenge to systematically testing these relationships because of the presence of many candidate mediators, potential correlation structure due to linkage disequilibrium (LD), and error heterogeneity across the levels of genomic data. For these reasons, we do not use the traditional mediation tests \cite{Baron1986}, but adapt and simplify them for genomic data.
+where ``A $\indep$ B'' indicates that A and B are independent of each other and ``A $|$ B'' is A conditioned on B, then X acts on Y completely through M, which is commonly referred to as full mediation. Partial mediatory relationships are also possible in which X affects Y both directly and through M, traditionally identified by testing for:
+\begin{equation}
+\text{M} \quad \rightarrow \quad \text{Y}^{\text{G}_{j}} \quad | \quad \text{X}^{\text{QTL}}
+\label{rel:partal}
+\end{equation}
+In practice, the true relationships among the variables can be complex and obscured by noise, making it hard to completely distinguish full mediation, partial mediation, and X separately affecting M and Y. Furthermore, genome-wide data present a significant challenge to systematically testing these relationships because of the presence of many candidate mediators, potential correlation structure due to linkage disequilibrium (LD), and error heterogeneity across the levels of genomic data. For these reasons, we do not use the traditional mediation tests \cite{Baron1986}, but adapt and simplify them for genomic data.
 
 \subsection*{Scans}
 
-We perform mediation scans, described in Eq 3 of the Methods. These scans test for significant reduction in the relationship $X \quad \rightarrow \quad Y \quad | \quad M$, akin to the full mediator relationship (relationship 5), though without attempting to define a formal threshold for independence. The relationship is tested for all mediators within the local region of the eQTL ($\pm$10Mb).
+We perform mediation scans, described in Eq 3 of the Methods. These scans test for significant reduction in the relationship $X  \rightarrow Y | M$, akin to a full mediator (relationship 5), though without attempting to define a formal threshold for defining whether variables are weakly associated or independent. The relationship is tested for all mediators within the local region of the eQTL ($\pm$10Mb), thus could plausibly explain the eQTL.
 
 \subsubsection*{Permutations}
 
@@ -137,7 +142,7 @@ There are important caveats and pitfalls for mediation analysis compared to QTL 
     \item It is not possible to distinguish M $\rightarrow$ Y from M $\leftarrow$ Y given these data. If M is an intermediary of X on Y, the expectation is that the effect of X $\rightarrow$ M is greater than X $\rightarrow$ Y. We check that the effect size of the QTL for step 1 (X $\rightarrow$ Y) is less than the effect size of the QTL from step 3 (X $\rightarrow$ M). Failure of this step does not disprove the proposed mediation model, but it could suggest that the relationship between M and Y is more complicated than the simple models tested here, or that greater noise is incurred in the measurement of M than Y.
 \end{enumerate}
 
-Note: Step 4 is an approximation of testing whether M provides more information about Y than X, which in theory, could be more directly tested with the partial mediation test. However, we found this test was inconclusive (partial mediation $p$-value $<$ 0.1) for the clear example of \textit{Zfp985} expression mediating the distal-eQTL of \textit{Akr1e1}, suggesting the error heterogeneity across the measurements of these molecular phenotypes may be too great to allow for full use of traditional mediation tests, such as distinguishing partial mediation, full mediation, and X affecting M and Y separately. 
+Note: Step 4 is an approximation of testing whether M provides more information about Y than X, which in theory, could be more directly tested with the partial mediation test (relationship 6). However, we found this test was inconclusive (partial mediation $p$-value $<$ 0.1) for the clear example of \textit{Zfp985} expression mediating the distal-eQTL of \textit{Akr1e1}, suggesting the error heterogeneity across the measurements of these molecular phenotypes may be too great to allow for full use of traditional mediation tests, such as distinguishing partial mediation, full mediation, and X affecting M and Y separately. 
 
 \newpage
 
