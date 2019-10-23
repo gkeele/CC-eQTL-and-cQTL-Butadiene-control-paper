@@ -53,21 +53,21 @@
 
 \section*{S1 Appendix: CC strains}
 
-This study included males from the following 47 CC strains: CC001, CC002, CC003, CC004, CC005, CC006, CC007, CC010, CC011, CC012, CC013, CC015, CC016, CC017, CC019, CC020, CC021, CC023, CC024, CC025, CC027, CC028, CC029, CC030, CC031, CC032, CC033, CC035, CC036, CC037, CC038, CC039, CC040, CC041, CC042, CC043, CC044, CC045, CC046, CC049, CC053, CC055, CC057, CC059, CC061, CC062, and CC068.
+This study included a single male from the following 47 CC strains: CC001, CC002, CC003, CC004, CC005, CC006, CC007, CC010, CC011, CC012, CC013, CC015, CC016, CC017, CC019, CC020, CC021, CC023, CC024, CC025, CC027, CC028, CC029, CC030, CC031, CC032, CC033, CC035, CC036, CC037, CC038, CC039, CC040, CC041, CC042, CC043, CC044, CC045, CC046, CC049, CC053, CC055, CC057, CC059, CC061, CC062, and CC068.
 
 \newpage
 
-\section*{S2 Appendix: Detailed description of conditional genome-wide scans}
+\section*{S2 Appendix: Detailed description of conditional genome-wide scans (Analysis G)}
 
-Combining a per-trait family-wise error rate (FWER) control and across-trait false discovery rate (FDR) control restricts the mapping procedures ability to detect multiple QTL per outcome in a fully valid manner because the generalized extreme value distribution (GEV) used for FWER control is fit from the maximum statistical score per trait. To include additional strong statistical scores is potentially biasing, as would be the case when there are multiple associations above the FWER threshold, increasing the enrichment in small $p$-values. This inflation is precisely the pattern of association the FDR procedure detects. To avoid this problem, a multi-stage conditional regression approach was used \cite{Jansen2017}. The procedure is described in the following steps:
+QTL analysis for a large panel of molecular traits, such as gene expression or chromatin accessibility, poses a large multiple testing problem: all loci tested for each of many traits. Analysis G employs a per-trait family-wise error rate (FWER) control and across-trait false discovery rate (FDR) control, which restricts its ability to detect multiple QTL per outcome in a non-biased manner. This bias is due to the generalized extreme value distribution (GEV), used for FWER control, being fit from the maximum statistical score per trait. To include additional strong statistical scores is potentially biasing, as would be the case when there are multiple associations above the FWER threshold, increasing the enrichment in small $p$-values, which is precisely the pattern of association FDR procedures aim to detect. To avoid this problem, a multi-stage conditional regression approach was used \cite{Jansen2017}. The procedure is described in the following steps:
 \begin{enumerate}
-    \item For a given trait, conduct a genome scan according to this model: 
+    \item For a given trait, conduct a genome scan according to model: 
 \begin{equation}
     y_i = \mu + \text{batch}_{b[i]} + \text{QTL}_i + \varepsilon_i,
       \label{eq:alternative_model}
  \end{equation}
     where $y_{i}$ is the trait level for individual $i$, $\mu$ is the intercept, $\text{batch}_b$ is a categorical fixed effect covariate with five levels $b=1,\dots,5$ representing five sequencing batches for both gene expression and chromatin accessibility and $b[i]$ denoting the batch relevant to $i$, $\varepsilon_i\sim\text{N}(0,\sigma^2)$ models the residual error, and $\text{QTL}_{i}$ models the genetic effect at the locus.
-    \item Perform genome scans for the permuted trait to characterize a GEV. Calculate a genome-wide error rate controlled $p$-value, $\permpg$, from the observed maximum logP of the genome scan of the trait. The $\permpg$ is stored to be used as input to an FDR procedure.
+    \item Perform permutation scans to characterize a GEV. Calculate a genome-wide error rate controlled $p$-value, $\permpg$, from the observed maximum logP of the genome scan. The $\permpg$ is stored to be used as input to an FDR procedure.
     \item Specify a genome-wide $\alpha_{\text{step}}$ for determining whether subsequent conditional scans should be conducted for the trait. We set $\alpha_{\text{step}} = 0.1$. If $\permpg > \alpha_{\text{step}}$, no further conditional scans are conducted.
     \item If $\permpg \le \alpha_{\text{step}}$, steps 1-3 are repeated for an additional conditional scan of the outcome. For $j > 1$, the $j^{\text{th}}$ conditional scan uses the same form of alternative and null model as described in Eq \ref{eq:alternative_model}, except with the inclusion of locus effects from the peak associations from previous stages. Generally, the alternative model for conditional scan $J$ follows as:
 \begin{equation}
@@ -77,18 +77,18 @@ y_{i} = \mu + \text{QTL}_{i} + \sum_{j=1}^{J-1}\text{locus}_{i}^{j} + \text{batc
 with $\text{locus}_{i}^{j}$ representing the locus effect of the peak association from the $j^{\text{th}}$ stage scan of the outcome for individual $i$, and is also included in the null model of conditional scans. Now steps 2-4 are repeated.
 \end{enumerate}
 
-A multi-stage conditional scan approach could have issues with over-fitting 47 data points per trait, given that each $\text{QTL}$ and $\text{locus}$ effect represents the estimation of seven fixed effects. However, the permutations were found to appropriately compensate for this potential problem in the recalculation of the GEV based on permutations of the conditional scans in step 2. S21 Fig provides a clear example in which the gene \textit{Gpn3} has a local-eQTL detected after a strong distal-eQTL is conditioned for within the model in lung tissue. 
+A multi-stage conditional scan approach could have issues with over-fitting, given the data comprise 47 mice and each $\text{QTL}$ and $\text{locus}$ effect represents the estimation of seven fixed effects. However, permutation thresholds were found to appropriately compensate for this potential problem based on the recalculation of the GEV using permutations of the conditional scans in step 2. Fig S21 provides a clear example in which the gene \textit{Gpn3} has a local-eQTL detected after a strong distal-eQTL is conditioned on in lung tissue. 
 
 \newpage
 
 \section*{S3 Appendix: Mediation analysis}
 
-For this study, simple models that consist of three variables are used: the independent variable X, the mediator M, and the dependent variable Y \cite{Baron1986,MacKinnon2007}. Superscripts are used to indicate whether a variable is the QTL, chromatin accessibility at site $k$ ($\text{C}_{k}$), or expression of gene $j$ ($\text{G}_{j}$) in the model. When an eQTL is detected, the following relationship is supported:
+For this study, simple mediation models consisting of three variables were used: the independent variable X, the mediator M, and the dependent variable Y \cite{Baron1986,MacKinnon2007}. Superscripts are used to indicate whether a variable is the QTL, chromatin accessibility at site $k$ ($\text{C}_{k}$), or expression of gene $j$ ($\text{G}_{j}$) in the model. When an eQTL is detected, the following relationship is supported:
 \begin{equation}
 \text{X}\textsuperscript{QTL} \quad \rightarrow \quad \text{Y}^{\text{G}_{j}}
 \label{rel:eQTL}
 \end{equation}
-Candidate mediators of eQTL, either chromatin regions or genes, must also possess their own local-QTL, represented similarly:
+Candidate mediators of eQTL, either nearby chromatin regions or genes, must also possess their own local-QTL, represented similarly:
 \begin{equation}
 \text{X}\textsuperscript{QTL} \quad \rightarrow \quad \text{M}
 \label{rel:cQTL}
@@ -99,39 +99,45 @@ Here we consider two models of mediation: 1) the effect of an eQTL is mediated t
 \text{X}\textsuperscript{QTL} \quad \indep \quad \text{Y}^{\text{G}_{j}} \quad | \quad \text{M}
 \label{rel:full_mediator}
 \end{equation}
-where ``A $\indep$ B'' indicates that A and B are independent of each other and ``A $|$ B'' is A conditioned on B, then X acts on Y completely through M, which is commonly referred to as full mediation. In practice, the true relationship can be complex and obscured by noise, instead resulting in partial mediation, whereby X affects Y both directly and through M. Genome-wide data present a significant challenge to systematically testing these relationships because of the presence of many candidate mediators and their correlation structure.
+where ``A $\indep$ B'' indicates that A and B are independent of each other and ``A $|$ B'' is A conditioned on B, then X acts on Y completely through M, which is commonly referred to as full mediation. Partial mediatory relationships are also possible in which X affects Y both directly and through M, traditionally identified by testing for $M \quad \rightarrow \quad Y \quad | \quad X$. In practice, the true relationships among the variables can be complex and obscured by noise, making it hard to completely distinguish full mediation, partial mediation, and X separately affecting M and Y. Furthermore, genome-wide data present a significant challenge to systematically testing these relationships because of the presence of many candidate mediators, potential correlation structure due to linkage disequilibrium (LD), and error heterogeneity across the levels of genomic data. For these reasons, we do not use the traditional mediation tests \cite{Baron1986}, but adapt and simplify them for genomic data.
 
-\subsection*{Mediation permutation scans}
+\subsection*{Scans}
 
-Empirical $p$-values for the mediators can be defined through permutations, similarly to as is done with the QTL. Instead of permuting the trait outcome, the pairing of trait to QTL is maintained, and the mediator is permuted. GEVs are then fit for potential mediators from the minimum logP from the permutation scans, instead of the maximum logP in QTL scans. FWER-controlled mediation $p$-values are calculated from the GEV: $\permpmed = F_{\text{GEV}}(\text{logP})$. An additional FDR adjustment is not used with mediation because it is only evaluated for detected QTL, which violates the uniform null distribution expectations of FDR. Notably, the use of empirical genome-wide and chromosome-wide FWER controlling thresholds is relatively stringent, given that candidate mediators are required to localize near the eQTL.
+We perform mediation scans, described in Eq 3 of the Methods. These scans test for significant reduction in the relationship $X \quad \rightarrow \quad Y \quad | \quad M$, akin to the full mediator relationship (relationship 5), though without attempting to define a formal threshold for independence. The relationship is tested for all mediators within the local region of the eQTL ($\pm$10Mb).
 
-\subsection*{Mediation models}
+\subsubsection*{Permutations}
+
+Empirical $p$-values for the mediators can be defined through permutations, similarly to as is done with the QTL. Instead of permuting the trait outcome, the pairing of trait to QTL is maintained, and the mediator is permuted. GEVs are then fit for potential mediators from the minimum logP from the permutation scans, instead of the maximum logP in QTL scans. FWER-controlled mediation $p$-values are calculated from the cumulative distribution function of the GEV: $\permpmed = F_{\text{GEV}}(\text{logP})$. An additional FDR adjustment is not used with mediation because it is only evaluated for detected QTL, which we found likely to violate the uniform null distribution expectations of FDR. Notably, we use the genome-wide and chromosome-wide measurement of molecular traits, the vast majority of which are ineligible to be mediators of the eQTL due to location, to characterize empirical error distributions for the mediator test, and thus derive FWER-controlling thresholds. This approach is statistically stringent, given that mediators must be local to the eQTL, which is appealing in terms of controlling false positives that could result in biologically-complex data.
+
+\subsection*{Mediation criterion}
 
 \subsubsection*{Mediation of local-eQTL through chromatin state.}
-Mediation through chromatin accessibility was evaluated for all local-eQTL detected through the lenient Analysis L, leveraging prior knowledge of the predominance of local genetic regulation and the effects of proximal chromatin state. Candidate mediators are detected at genome and chromosome-wide significance through 1,000 permutations to define GEVs for FWER control of minimum mediation logP. Genome-wide mediation is detected if $\permpmed_{\text{G}} < 0.05$ and local chromosome-wide if $\permpmed_{\text{C}} < 0.05$. 
+Mediation through chromatin accessibility was evaluated for all local-eQTL detected through the lenient Analysis L, leveraging prior knowledge of the predominance of local genetic regulation and the effects of proximal chromatin state. Candidate mediators are detected at genome and chromosome-wide significance through 1,000 permutations. Genome-wide mediation is detected if $\permpmed_{\text{G}} < 0.05$ and chromosome-wide if $\permpmed_{\text{C}} < 0.05$. 
 
 \subsubsection*{Mediation of distal-eQTL through local gene expression.}
-Mediation of the effect of genome-wide significant distal-eQTL through proximal gene expression was evaluated. Genome-wide significance is required for distal-eQTL because there is not additional strong biological information to support reduced stringency as is the case with local signal. As with mediation through chromatin state, 1,000 permutations are used to define genome-wide mediation $p$-values, $\permpmed_{\text{G}}$. 
+Mediation of the effect of genome-wide significant distal-eQTL (Analysis G) through the expression of nearby genes was evaluated. Genome-wide significance is required for distal-eQTL because there is not additional strong biological information to support reduced stringency as is the case with local-eQTL. As with mediation through chromatin state, 1,000 permutations are used to derive genome-wide mediation $p$-values, $\permpmed_{\text{G}}$. 
 
 Mediation of cQTL through other chromatin sites and gene expression were also considered, but did not result in the detection of any candidate mediators other than \textit{Zfp985} expression as a mediator of a distal-cQTL on chromosome 4 for a chromatin region located chromosome 13 near \textit{Akr1e1}.
 
-\subsection*{Formal mediation criterion}
+\subsubsection*{Mediation steps}
 
-Detection of mediation has some caveats and pitfalls compared to the statistical analyses used for QTL mapping, in part due to the fact that the relationships \ref{rel:eQTL} and \ref{rel:cQTL} could be complex, whereas the directionality of the relationships for QTL is fixed because the genetic state at the QTL cannot change because of the trait. This does not hold for the mediation model, where Y could in fact causally influence M (Y $\rightarrow$ M). \cite{Didelez2007} note that false mediation signals can be detected when the association between the M and Y are particularly strong, whereby M acts as a surrogate for X. Based on concerns over fitting relatively complex models to data comprising 47 observations, we use stringent requirements for declaring evidence for mediation:
+There are important caveats and pitfalls for mediation analysis compared to QTL mapping, in part due to the fact that the relationships \ref{rel:eQTL} and \ref{rel:cQTL} could be complex, whereas the directionality of the relationships for QTL is fixed because the genetic state at the QTL cannot change because of the trait. This does not hold for the mediation model, where Y could in fact causally influence M (Y $\rightarrow$ M). False mediation can be detected when the association between X and M are particularly strong, whereby M acts as a surrogate for X \cite{Didelez2007}. Based on concerns over fitting relatively complex models to data comprising 47 mice, we use stringent requirements for declaring evidence for mediation:
 \begin{enumerate}
 	\item Detection of a significant eQTL (relationship \ref{rel:eQTL}).
     \begin{enumerate}
     	\item Mediation through chromatin: $\permpmed_{\text{C}} < 0.05$ from Analysis L
         \item Mediation through expression: $\permpmed_{\text{G}} < 0.05$ from Analysis G
     \end{enumerate}
-    \item Detection of significant mediator within a $\pm$ 10Mb window around the eQTL from previous step.
+    \item Detection of significant mediator within a $\pm$10Mb window around the eQTL from previous step.
     \item Detection of a significant QTL for the mediator from previous step.
     \begin{enumerate}
-    	\item Mediation through chromatin: $\permpmed_{\text{C}} < 0.05$ from Analysis L and within 10Mb upstream or downstream of gene TSS
-        \item Mediation through expression: $\permpmed_{\text{G}} < 0.05$ from Analysis G and within 10Mb upstream or downstream of the eQTL position
+    	\item Mediation through chromatin: $\permpmed_{\text{C}} < 0.05$ from Analysis L and within $\pm$10Mb of gene TSS
+        \item Mediation through expression: $\permpmed_{\text{G}} < 0.05$ from Analysis G and within $\pm$10Mb of the eQTL position
     \end{enumerate}
     \item It is not possible to distinguish M $\rightarrow$ Y from M $\leftarrow$ Y given these data. If M is an intermediary of X on Y, the expectation is that the effect of X $\rightarrow$ M is greater than X $\rightarrow$ Y. We check that the effect size of the QTL for step 1 (X $\rightarrow$ Y) is less than the effect size of the QTL from step 3 (X $\rightarrow$ M). Failure of this step does not disprove the proposed mediation model, but it could suggest that the relationship between M and Y is more complicated than the simple models tested here, or that greater noise is incurred in the measurement of M than Y.
 \end{enumerate}
+
+Note: Step 4 is an approximation of testing whether M provides more information about Y than X, which in theory, could be more directly tested with the partial mediation test. However, we found this test was inconclusive (partial mediation $p$-value $<$ 0.1) for the clear example of \textit{Zfp985} expression mediating the distal-eQTL of \textit{Akr1e1}, suggesting the error heterogeneity across the measurements of these molecular phenotypes may be too great to allow for full use of traditional mediation tests, such as distinguishing partial mediation, full mediation, and X affecting M and Y separately. 
 
 \newpage
 
