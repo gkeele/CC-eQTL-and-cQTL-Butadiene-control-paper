@@ -284,7 +284,7 @@ Terrence S. Furey\textsuperscript{2,3,4,\ddag*}
 \end{flushleft}
 % Please keep the abstract below 300 words
 \section*{Abstract}
-Gene transcription profiles across tissues are largely defined by the activity of regulatory elements, most of which correspond to regions of accessible chromatin. Regulatory element activity is in turn modulated by genetic variation, resulting in variable transcription rates across individuals. The interplay of these factors, however, is poorly understood. Here we characterize expression and chromatin state dynamics across three tissues---liver, lung, and kidney---in 47 strains of the Collaborative Cross (CC) mouse population, \WVinline{examining} the regulation of these dynamics by expression quantitative trait loci (eQTL) and chromatin QTL (cQTL). QTL whose allelic effects were \WVinline{consistent} across tissues were detected for 1,101 genes and 133 chromatin regions. \WVinline{Also detected were eQTL and cQTL whose allelic effects differed across tissues}, including local eQTL for \textit{Pik3c2g} detected in all three tissues but with distinct allelic effects. Leveraging overlapping measurements of gene expression and chromatin accessibility on the same mice from multiple tissues, we used mediation analysis to identify chromatin and gene expression intermediates of eQTL effects. Based on QTL and mediation analyses over multiple tissues, we propose a causal model for the distal genetic regulation of \textit{Akr1e1}, a gene involved in glycogen metabolism, through the zinc finger transcription factor \textit{Zfp985} and chromatin intermediates. This analysis demonstrates the complexity of transcriptional and chromatin dynamics and their regulation over multiple tissues, as well as the value of the CC and related genetic resource populations for identifying specific regulatory mechanisms within cells and tissues.
+Gene transcription profiles across tissues are largely defined by the activity of regulatory elements, most of which correspond to regions of accessible chromatin. Regulatory element activity is in turn modulated by genetic variation, resulting in variable transcription rates across individuals. The interplay of these factors, however, is poorly understood. Here we characterize expression and chromatin state dynamics across three tissues---liver, lung, and kidney---in 47 strains of the Collaborative Cross (CC) mouse population, examining the regulation of these dynamics by expression quantitative trait loci (eQTL) and chromatin QTL (cQTL). QTL whose allelic effects were consistent across tissues were detected for 1,101 genes and 133 chromatin regions. Also detected were eQTL and cQTL whose allelic effects differed across tissues, including local-eQTL for \textit{Pik3c2g} detected in all three tissues but with distinct allelic effects. Leveraging overlapping measurements of gene expression and chromatin accessibility on the same mice from multiple tissues, we used mediation analysis to identify chromatin and gene expression intermediates of eQTL effects. Based on QTL and mediation analyses over multiple tissues, we propose a causal model for the distal genetic regulation of \textit{Akr1e1}, a gene involved in glycogen metabolism, through the zinc finger transcription factor \textit{Zfp985} and chromatin intermediates. This analysis demonstrates the complexity of transcriptional and chromatin dynamics and their regulation over multiple tissues, as well as the value of the CC and related genetic resource populations for identifying specific regulatory mechanisms within cells and tissues.
 
 
 % Please keep the Author Summary between 150 and 200 words
@@ -303,11 +303,11 @@ One approach to shed light on these dynamics is to pair complementary datasets f
 In human data, co-occurence of QTL across various multi-omic data has been used to assess potentially related and connected biological processes; examples include gene expression with chromatin accessibility \cite{Degner2012} or regulatory elements \cite{Pai2015},  and ribosome occupancy with protein abundances \cite{Battle2015}.
 More formal integration through statistical mediation analyses has also been used to investigate relationships between levels of human biological data, such as distal genetic regulation through local gene expression \cite{Battle2014,Yang2017}, and eQTL with regulatory elements \cite{Alasoo2017, Roytman2018, Wu2018} and physiological phenotypes, such as cardiometabolic traits \cite{Raulerson2019}.
 
-Though genetic association studies of human populations have been highly successful \cite{Visscher2017}, animal models allow for more deliberate control of confounding sources of variation, including experimental conditions and population structure\WVinline{, and as such} provide a potentially powerful basis for detecting associations and even causal linkages.
+Though genetic association studies of human populations have been highly successful \cite{Visscher2017}, animal models allow for more deliberate control of confounding sources of variation, including experimental conditions and population structure, and as such provide a potentially powerful basis for detecting associations and even causal linkages.
 Towards this end, genetically-diverse mouse population resources have been established, including the Collaborative Cross (CC) \cite{Churchill2004,Hall2012,Srivastava2017} and the Diversity Outbred (DO) population \cite{Churchill2012}. The CC and the DO are multiparental populations (MPP), derived from the same eight founder strains (short names in parentheses): A/J (AJ), C57BL/6J (B6), 129S1/SvImJ (129), NOD/ShiLtJ (NOD), NZO/H1LtJ (NZO), CAST/EiJ (CAST), PWK/PhJ (PWK), and WSB/EiJ (WSB). The CC are recombinant inbred strains and therefore replicable across and within studies; the DO are largely heterozygous, outbred animals, bred with a random mating strategy that seeks to maximize diversity. 
 MPPs similar to the CC or DO have also been developed in other species, including rats, \textit{Arabidopsis}, \textit{Drosophila}, and yeast, and the use of MPPs in model organism research has accelerated significantly in recent years (\cite{DeKoning2017} and refs therein).
 
-As with humans, it is only recently that studies on MPPs have used mediation analysis \WVinline{to connect genetic variants with different levels of genomic data}. A genome-wide mediation approach in 192 DO mice was used to link transcriptional and post-translational regulation of protein levels \cite{Chick2016}. CC mice were then used to confirm results by showing correspondence with estimates of founder haplotype effects from each of the related populations. More recently, mediation analysis was used to connect chromatin accessibility with gene expression in embryonic stem cells derived from DO mice \cite{Skelly2019}. 
+As with humans, it is only recently that studies on MPPs have used mediation analysis to connect genetic variants with different levels of genomic data. A genome-wide mediation approach in 192 DO mice was used to link transcriptional and post-translational regulation of protein levels \cite{Chick2016}. CC mice were then used to confirm results by showing correspondence with estimates of founder haplotype effects from each of the related populations. More recently, mediation analysis was used to connect chromatin accessibility with gene expression in embryonic stem cells derived from DO mice \cite{Skelly2019}. 
 The CC and DO, and MPPs more broadly, have well-characterized haplotype structures that provide a unique opportunity for studying mediation at the haplotype level. This is potentially advantageous because haplotypes can capture genetic variation and its effects more comprehensively than can individual SNPs \cite{Zhang2014}, the latter being the predominant basis for comparable mediation analyses in humans.
 %\TF{}{Do you mean that these allow for a more direct tracing back to the parental strains? Arguably, though, you can lose resolution as the haplotype blocks are larger than in human.}
 %\GK{}{Reviewer 1 mentioned providing a review of MPP in the context of mediation analysis ("significance of this concept in MPP"). Which is hard because we already cite pretty much what there is with the DO papers from Churchill. This was my attempt to describe added benefit that MPP could provide to mediation. I agree that the resolution will be worse, particularly in the CC, but our ability to fit a more complex genetic model (haplotypes) is stably allows for essentially better pattern matching between the levels of data. Whereas in humans, it would be a more complex process of looking for similar SNP effects and the LD patterns. I think all that gets nicely folded up into a haplotype-based mediation analysis.}
@@ -322,7 +322,7 @@ These findings demonstrate the experimental power of the CC resource for integra
 
 \subsubsection*{Gene expression and chromatin accessibility cluster by tissue}
 Gene expression and chromatin accessibility were measured with RNA-seq and ATAC-seq assays, respectively, from whole lung, liver, and kidney tissues in one male mouse from each of 47 CC strains (Fig \ref{fig:overview}). 
-(The use of only male mice was due to practical constraints; results for females may differ \cite{Chick2016}.) \WVinline{Each tissue has a distinct function and we expected those differences to be reflected in the data. This was borne out by principal} components analysis (PCA) of each of the gene expression and chromatin accessibility profiles, which showed that the samples clearly clustered by tissue (\nameref{S_pca}). 
+(The use of only male mice was due to practical constraints; results for females may differ \cite{Chick2016}.) Each tissue has a distinct function and we expected those differences to be reflected in the data. This was borne out by principal components analysis (PCA) of each of the gene expression and chromatin accessibility profiles, which showed that the samples clearly clustered by tissue (\nameref{S_pca}). 
 
 \begin{figure}[!h]
 \caption{{\bf Diagram of the experiment and analyses.}
@@ -386,8 +386,8 @@ For all QTL we estimated the effects of the underlying (founder) haplotypes. Con
 
 \subsection*{QTL paired across tissues and correlated haplotype effects}
 
-\WVinline{For a given trait, QTL from different tissues were paired if they co-localized to approximately the same genomic region. In the case of local-QTL, both had to be within the local window, defined as 10Mb up or downstream of the gene TSS or chromatin region midpoint; thus, the maximum possible distance between them was 20Mb. In the case of distal-eQTL, they had to be within 10Mb of each other.
-Consistency between these cross-tissue QTL pairs was assessed by calculating the correlation between their haplotype effects (FDR $\le 0.1$; Fig \ref{fig:qtl_results}D and \nameref{S_qtl_pair_histograms}), with significant positive correlations implying that the paired QTL acted similarly and likely represent multi-tissue QTL.}
+For a given trait, QTL from different tissues were paired if they co-localized to approximately the same genomic region. In the case of local-QTL, both had to be within the local window, defined as 10Mb up or downstream of the gene TSS or chromatin region midpoint; thus, the maximum possible distance between them was 20Mb. In the case of distal-eQTL, they had to be within 10Mb of each other.
+Consistency between these cross-tissue QTL pairs was assessed by calculating the correlation between their haplotype effects (FDR $\le 0.1$; Fig \ref{fig:qtl_results}D and \nameref{S_qtl_pair_histograms}), with significant positive correlations implying that the paired QTL acted similarly and likely represent multi-tissue QTL.
 For local-eQTL, we found significant haplotype effect correlations between 346 of 761 possible pairs (45.5\%) in liver/lung, 623 of 1206 (51.7\%) in liver/kidney, and 497 of 1025 (48.5\%) in lung/kidney. For distal-eQTL, we found significant correlations between 21 of 61 possible pairs (31.8\%) in liver/lung, 34 of 120 (28.8\%) in liver/kidney, and 16 of 59 (27.1 \%) in lung/kidney. For cQTL, the vast majority of correlated pairs were local, with 47 of 55 (85.5\%) possible pairs in liver/lung, 48 of 56 (85.7\%) in liver/kidney, and 118 of 142 (83.1\%) in lung/kidney being significantly correlated. Only 4 distal-cQTL pairs were observed, all between lung and kidney, with three of the four pairs possessing nominal correlation $p$-values $\le$ 0.05. The effect sizes of paired QTL varied across tissues, though for any given tissue pairing, the effect sizes were significantly correlated (least significant $p$-value =\num{4.6e-8}; Fig \ref{fig:qtl_results}F and \nameref{S_qtl_effect_size_comparison}). No significantly negatively correlated QTL pairs were detected after accounting for multiple testing (FDR $\le 0.1$).
 %, consistent with being tissue-specific QTL with transgressive effects when compared across tissues.}
 
@@ -401,14 +401,14 @@ The local-eQTL consistently drove higher expression when the CAST haplotype was 
 
 \begin{figure}[h!]
 \caption{\textbf{Examples of genes with local-eQTL observed in all three tissues.} 
-(A) \textit{Cox7c} possesses local-eQTL with highly correlated haplotype effects across all three tissues, supportive of shared causal origin. (B) \textit{Slc44a3} has a more complicated pattern of local-eQTL haplotype effects across the tissues, with correlated effects shared between lung and kidney, and transgressive effects in the liver eQTL by comparison, consistent with distinct casual variants comparing liver to lung and kidney. For both genes, the expression data are plotted with bars representing the interquartile ranges of likely founder haplotype pair (diplotype). Differential expression between tissues is highlighted. The haplotype association for each tissue is also included near the gene TSS with variant association overlaid. The most statistically rigorous method that detected the QTL (Analysis L, C, or G) is also included. The red tick represents the gene TSS, the black tick represents the variant association peak, and the colored tick represents the haplotype association peak. Haplotype effects, estimated as constrained best linear unbiased predictions (BLUPs), are also included with their pairwise correlations. \WVinline{GREG, WHAT DOES THIS MEAN: }Estimated effects were generally consistent with the expression data.
+(A) \textit{Cox7c} possesses local-eQTL with highly correlated haplotype effects across all three tissues, supportive of shared causal origin. (B) \textit{Slc44a3} has a more complicated pattern of local-eQTL haplotype effects across the tissues, with correlated effects shared between lung and kidney, and transgressive effects in the liver eQTL by comparison, consistent with distinct casual variants comparing liver to lung and kidney. For both genes, the expression data are plotted with bars representing the interquartile ranges of likely founder haplotype pair (diplotype). Differential expression between tissues is highlighted. The haplotype association for each tissue is also included near the gene TSS with variant association overlaid. The most statistically rigorous method that detected the QTL (Analysis L, C, or G) is also included. The red tick represents the gene TSS, the black tick represents the variant association peak, and the colored tick represents the haplotype association peak. Haplotype effects, estimated as constrained best linear unbiased predictions (BLUPs).%, are also included with their pairwise correlations. \WVinline{GREG, WHAT DOES THIS MEAN: }Estimated effects were generally consistent with the expression data.
 \label{fig:correlated_local_eqtl}}
 \end{figure}
 
 \subsubsection*{\textit{Slc44a3} and \textit{Pik3c2g}: Tissue-specific haplotype effects for local-eQTL}
 %We refer to QTL detected in only a subset of the three tissues as tissue-selective because we cannot definitively show that the QTL is not present in the other tissues, but undetected.
-\WVinline{We found instances where haplotype effects across the three tissues were inconsistent, referring to these as tissue-specific effects (within this subset of tissues). 
-The strongest support of tissue-specificity would be given by QTL pairs whose effects are uncorrelated.}
+We found instances where haplotype effects across the three tissues were inconsistent, referring to these as tissue-specific effects (within this subset of tissues). 
+The strongest support of tissue-specificity would be given by QTL pairs whose effects are uncorrelated.
 For example, the solute carrier family 44, member 3 (\textit{Slc44a3}) gene has local-eQTL effects that are correlated in lung and kidney but anticorrelated liver (Fig \ref{fig:correlated_local_eqtl}B), suggesting the liver eQTL could be transgressive \cite{Rieseberg1999} relative to the eQTL in lung and kidney, whereby the effects of the haplotypes are reversed. 
 For \textit{Slc44a3}, CAST, PWK, and WSB haplotypes result in higher expression in liver but lower expression in lung and kidney.
 The local-eQTL for \textit{Slc44a3} were more similar in location in lung and kidney whereas the liver eQTL was more distal to the gene TSS. Overall, the expression data, estimated effects, and patterns of association are consistent with lung and kidney sharing a causal local-eQTL that is distinct from the one in liver. 
@@ -510,7 +510,7 @@ We found that the effect sizes of cQTL are on average lower than eQTL (see \name
 
 \subsection*{Reduced cQTL and mediation signal in liver compared with lung and kidney}
 
-\WVinline{Detecting QTL and mediation depends not only on sample size but also on biological and technical factors that are difficult to quantify across the tissues. Although it is possible that liver has fewer actual cQTL (and thus fewer chromatin mediators) than lung and kidney, it is also possible that the signal quality of the ATAC-seq is lower for this tissue, resulting in fewer detections due to increased technical noise.} True biological differences in the number of cQTL and mediator usage among the tissues would likely reflect multi-level regulatory programs specific to each tissue, a complex subject requiring more targeted experiments than used here.
+Detecting QTL and mediation depends not only on sample size but also on biological and technical factors that are difficult to quantify across the tissues. Although it is possible that liver has fewer actual cQTL (and thus fewer chromatin mediators) than lung and kidney, it is also possible that the signal quality of the ATAC-seq is lower for this tissue, resulting in fewer detections due to increased technical noise. True biological differences in the number of cQTL and mediator usage among the tissues would likely reflect multi-level regulatory programs specific to each tissue, a complex subject requiring more targeted experiments than used here.
 
 \subsection*{Joint QTL analysis in multiple tissues}
 
@@ -616,7 +616,7 @@ These protocols used two types of multiple test correction: a permutation-based 
 The FWER was controlled based on permutations specific to each trait. The sample index was permuted 1,000 times and recorded, and then genome scans performed for each trait, using the same permutation orderings. Given a trait, the maximum logP from either the entire genome or the chromosome for each permutation was collected and used to fit a null generalized extreme value distribution (GEV) in order to control the genome- and chromosome-wide error rates, respectively \cite{Dudbridge2004}. 
 Error rates were controlled by calculating a $p$-value for each QTL based on the respective cumulative density functions from the GEVs: $\text{permP} = 1 - F_{\text{GEV}}(\text{logP})$, where $F_{\text{GEV}}$ is the cumulative density function of the GEV. We denote genome- and chromosome-wide error rate controlling  $p$-values as $\permpg$ and $\permpc$ respectively.
 
-\WVinline{The appropriateness of permutation-derived thresholds \cite{Doerge1996} relies on the CC strains being equally related, thus possessing little population structure and being exchangeable. This assumption was supported by simulations of the funnel breeding design \cite{Valdar2006c}. More recent simulations based on the observed CC strain genomes \cite{Keele2019} found non-exchangeable population structure for highly polygenic genetic architectures, albeit it low levels.} Nevertheless, we use permutations given that molecular traits often have strong effect QTL that are detectable in the presence of subtle population structure.
+The appropriateness of permutation-derived thresholds \cite{Doerge1996} relies on the CC strains being equally related, thus possessing little population structure and being exchangeable. This assumption was supported by simulations of the funnel breeding design \cite{Valdar2006c}. More recent simulations based on the observed CC strain genomes \cite{Keele2019} found non-exchangeable population structure for highly polygenic genetic architectures, albeit at low levels. Nevertheless, we use permutations given that molecular traits often have strong effect QTL that are detectable in the presence of subtle population structure.
 
 \subsubsection*{Local analysis - Analysis L} 
 Our detection criteria for local-QTL leverages our strong prior belief in local genetic regulation. For a given trait, this local analysis involved examining QTL associations at all loci within a 10Mb window of the gene TSS or chromatin region midpoint. A QTL was detected if the $\text{permP}_{\text{C}} < 0.05$. Notably, we can also check whether the corresponding $\text{permP}_{\text{G}} < 0.05$, as an additional characterization of statistical significance of detected local-QTL.
@@ -664,7 +664,7 @@ In our study, mediation describes when an eQTL ($X$) appears to act on its targe
 
 Traditional mediation analysis \cite{Baron1986} tests whether the data, for predefined $X$, $Y$ and $M$, are consistent with mediation, doing so in four steps. Steps (1) and (2) establish positive associations $X\rightarrow Y$ and $X\rightarrow M$; this corresponds to our requirement that both the transcript $Y$ and the candidate mediator $M$ have a co-localizing QTL $X$. Step (3) establishes mediation by testing for the conditional association $M\rightarrow Y|X$; this corresponds to testing whether the mediator explains variation in gene expression even after controling for the QTL. Step (4) distinguishes ``full mediation'', where mediation explains the association between $X$ and $Y$ entirely, \ie, the QTL acts entirely through the mediator, from ``partial mediation'', where the QTL acts partly through the mediator and partly directly (or through other unmodeled routes).
 
-\WVinline{In our study, we use an empirical approximation of the above adapted to genome-wide data, \GKinline{building on mediation analysis used in studies of DO mice}\cite{Chick2016,Keller2018,Skelly2019}. In outline: For a given eQTL, \ie, a QTL for which step (1) ($X\rightarrow Y$) has been established, we performed a genome-wide mediation scan. This mediation scan consisted of testing step (4) ($X\rightarrow Y|M$), that is, testing whether the eQTL association was significantly reduced when adding the mediator as a covariate, for a large number of ``potential'' mediators, namely all chromatin regions (or transcripts) genome-wide. Note that most of these potential mediators would be formally ineligible under a traditional analysis (\ie, $X\rightarrow M$ would not hold) but here helped to define a background (null) level of association. The results of the mediation scan were then filtered to include only results satisfying both of the following criteria:  first, the mediator must posess a co-localizing QTL, \ie, a QTL for which step (2) ($X\rightarrow M$) does hold; second, the association between QTL and mediator must be stronger than that between QTL and transcript ($X\rightarrow M\; > \; X\rightarrow M$), this approximating step (3) ($X\rightarrow Y|M$). We did not attempt to distinguish between partial and full mediation since this distinction was too easily obscured by noise. }
+In our study, we use an empirical approximation of the above adapted to genome-wide data, building on mediation analysis used in studies of DO mice\cite{Chick2016,Keller2018,Skelly2019}. In outline: For a given eQTL, \ie, a QTL for which step (1) ($X\rightarrow Y$) has been established, we performed a genome-wide mediation scan. This mediation scan consisted of testing step (4) ($X\rightarrow Y|M$), that is, testing whether the eQTL association was significantly reduced when adding the mediator as a covariate, for a large number of ``potential'' mediators, namely all chromatin regions (or transcripts) genome-wide. Note that most of these potential mediators would be formally ineligible under a traditional analysis (\ie, $X\rightarrow M$ would not hold) but here helped to define a background (null) level of association. The results of the mediation scan were then filtered to include only results satisfying both of the following criteria:  first, the mediator must posess a co-localizing QTL, \ie, a QTL for which step (2) ($X\rightarrow M$) does hold; second, the association between QTL and mediator must be stronger than that between QTL and transcript ($X\rightarrow M\; > \; X\rightarrow M$), this approximating step (3) ($M\rightarrow Y|X$). We did not attempt to distinguish between partial and full mediation since this distinction was too easily obscured by noise. 
 
 % Our study:
 %  i. find eQTL (Step 1: X->Y)
@@ -682,7 +682,7 @@ Traditional mediation analysis \cite{Baron1986} tests whether the data, for pred
 %Similar to the QTL mapping genome scan described in Eq \ref{eq:alternative_model}, the mediation scan involves comparing alternative and null models at each potential mediator across the genome.
 
 %The genome-wide mediation scan is described in more detail below.
-\WVinline{The genome-wide mediation scan procedure in more detail was as follows.}
+The genome-wide mediation scan procedure in more detail was as follows.
 Consider an eQTL that our previous genome scan has already shown to affect the expression of gene $j$. Denote the expression level for $j$ in individual $i$ as  $y^{\text{G}_{j}}_{i}$ and eQTL effect as $\text{eQTL}_{i}^{\text{G}_{j}}$ (these respectively correspond to $Y$ and $X$ in the mediation description above). Further, consider a proposed mediator $k\in\mathcal{K}$, where $\mathcal{K}$ is the set of all eligible chromatin accessible sites or expressed genes, and let $m_{ik}$ be the value of that mediator for individual $i$. The mediation scan for a given gene/eQTL pair $j$ proceeds by performing, for each proposed mediator $k\in\mathcal{K}$, a model comparison between the alternative model,
 \begin{equation}
 y^{\text{G}_{j}}_{i} = \mu + \text{eQTL}_{i}^{\text{G}_{j}} + m_{ik} + \text{batch}_{b[i]} + \varepsilon_{i}\,,
@@ -706,7 +706,7 @@ As with the QTL mapping procedures, we performed mediation scans on 1,000 permut
 , permuting the mediators rather than the outcome, to characterize GEVs from the minimum logP, that is, $\permpmed = F_{\text{GEV}}(\text{logP})$, at both chromosome- and genome-wide levels. 
 
 Detection of mediation is dependent on a number of assumptions about the underlying variables, their relationships, and those relationships' directionality \cite{Mackinnon2007}. Many of these cannot be controlled in a system as complex as chromatin accessibility and transcriptional regulation in whole living organisms. Nevertheless, signals in the data that are consistent with the mediation model represent candidate causal factors that regulate gene expression.
-Though it is impossible to ensure that the \WVinline{direction of causation is indeed $M\rightarrow Y$, as assumed by the mediation analysis,} we require additional checks to formally declare mediation of an eQTL. The presence of the relationship $X \rightarrow Y$ is already established in that mediation scans are only performed for detected eQTL. In addition for any candidate mediator with a significant $\permpmed$, we require detection of a mediator QTL: $X \rightarrow M$. These requirements, as mentioned earlier, are consistent with traditional mediation analysis. Finally, in an attempt to identify mediator-to-gene relationships consistent with the proposed models, we require that $X \rightarrow M $ is more significant than $ X \rightarrow Y$. Though this step cannot confirm the directionality of the relationship between $M$ and $Y$, as variable noise level between $M$ and $Y$ could reduce the estimated effect size of their respective QTL, it will identify candidate mediators that are consistent with the proposed models. Further details on the mediation analysis are described in \nameref{S3_Appendix}, including the permutation approach and the formal criterion by which mediation is declared for both chromatin and gene mediators (Fig \ref{fig:graph}).
+Though it is impossible to ensure that the direction of causation is indeed $M\rightarrow Y$, as assumed by the mediation analysis, we require additional checks to formally declare mediation of an eQTL. The presence of the relationship $X \rightarrow Y$ is already established in that mediation scans are only performed for detected eQTL. In addition for any candidate mediator with a significant $\permpmed$, we require detection of a mediator QTL: $X \rightarrow M$. These requirements, as mentioned earlier, are consistent with traditional mediation analysis. Finally, in an attempt to identify mediator-to-gene relationships consistent with the proposed models, we require that $X \rightarrow M $ is more significant than $ X \rightarrow Y$. Though this step cannot confirm the directionality of the relationship between $M$ and $Y$, as variable noise level between $M$ and $Y$ could reduce the estimated effect size of their respective QTL, it will identify candidate mediators that are consistent with the proposed models. Further details on the mediation analysis are described in \nameref{S3_Appendix}, including the permutation approach and the formal criterion by which mediation is declared for both chromatin and gene mediators (Fig \ref{fig:graph}).
 
 \subsection*{Software}
 
@@ -1482,71 +1482,71 @@ Xu S.
 
 \end{thebibliography}
 
-\newpage
-
-\setcounter{table}{0}
-\setcounter{figure}{0}
-
-
-\begin{figure}[hp]
-\includegraphics[width=\linewidth, clip, trim={0in 0.1in 0in 0.2in}]{figs/overview_diagram_simplified.png}
-\caption{}
-\end{figure}
-
-\newpage
-
-\begin{figure}[hp]
-\includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/mapping_results_revision.pdf}
-\caption{}
-\end{figure}
-
-\newpage
-
-\begin{figure}[hp]
-\includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/correlated_local_eqtl.png}
-\caption{}
-\end{figure}
-
-\newpage
-
-\begin{figure}[hp]
-\includegraphics[width=\textwidth, trim={0in 0.5in 0in 0in}, clip]{figs/pik3c2g_example.png}
-\caption{}
-\end{figure}
-
-\newpage
-
-\begin{figure}[hp]
-\includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/correlated_distal_eqtl.png}
-\caption{}
-\end{figure}
-
-\newpage
-
-\begin{figure}[hp]
-\includegraphics[width=\linewidth, clip, trim={0in 0in 0in 0in}]{figs/mediation_graph.png}
-\caption{}
-\end{figure}
-
-
-\begin{figure}[hp]
-\includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/ccdc137_mediation.png}
-\caption{}
-\end{figure}
-
-\newpage
-
-\begin{figure}[hp]
-\includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/circos_over_tissues.png}
-\caption{}
-\end{figure}
-
-\newpage
-
-\begin{figure}[hp]
-\includegraphics[width=\textwidth, trim={0in 0.1in 0in 0in}, clip]{figs/akr1e1_full_model_update.png}
-\caption{}
-\end{figure}
+%\newpage
+%
+%\setcounter{table}{0}
+%\setcounter{figure}{0}
+%
+%
+%\begin{figure}[hp]
+%\includegraphics[width=\linewidth, clip, trim={0in 0.1in 0in 0.2in}]{figs/overview_diagram_simplified.png}
+%\caption{}
+%\end{figure}
+%
+%\newpage
+%
+%\begin{figure}[hp]
+%\includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/mapping_results_revision.pdf}
+%\caption{}
+%\end{figure}
+%
+%\newpage
+%
+%\begin{figure}[hp]
+%\includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/correlated_local_eqtl.png}
+%\caption{}
+%\end{figure}
+%
+%\newpage
+%
+%\begin{figure}[hp]
+%\includegraphics[width=\textwidth, trim={0in 0.5in 0in 0in}, clip]{figs/pik3c2g_example.png}
+%\caption{}
+%\end{figure}
+%
+%\newpage
+%
+%\begin{figure}[hp]
+%\includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/correlated_distal_eqtl.png}
+%\caption{}
+%\end{figure}
+%
+%\newpage
+%
+%\begin{figure}[hp]
+%\includegraphics[width=\linewidth, clip, trim={0in 0in 0in 0in}]{figs/mediation_graph.png}
+%\caption{}
+%\end{figure}
+%
+%
+%\begin{figure}[hp]
+%\includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/ccdc137_mediation.png}
+%\caption{}
+%\end{figure}
+%
+%\newpage
+%
+%\begin{figure}[hp]
+%\includegraphics[width=\textwidth, trim={0in 0in 0in 0in}, clip]{figs/circos_over_tissues.png}
+%\caption{}
+%\end{figure}
+%
+%\newpage
+%
+%\begin{figure}[hp]
+%\includegraphics[width=\textwidth, trim={0in 0.1in 0in 0in}, clip]{figs/akr1e1_full_model_update.png}
+%\caption{}
+%\end{figure}
 
 \end{document}
 
