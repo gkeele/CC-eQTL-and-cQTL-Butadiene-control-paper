@@ -1,0 +1,89 @@
+\documentclass[10pt,letterpaper,twoside]{article}
+
+\usepackage{gensymb}
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand*{\thesubfigure}{\Alph{subfigure}}
+\usepackage{tabularx, multirow}
+\usepackage{makecell}
+\usepackage{hyperref}
+\hypersetup{draft}
+
+\renewcommand{\figurename}{Fig}
+
+\usepackage{siunitx}
+\sisetup{output-exponent-marker=\ensuremath{\mathrm{e}}}
+
+\bibliographystyle{plos2015}
+
+\usepackage{threeparttable}
+\usepackage[dvipsnames]{xcolor}
+%\usepackage{enumitem}
+%\newcommand{\method}[1]{\qquad Method #1}
+\usepackage{graphicx}
+\usepackage{soul}
+\usepackage{xspace}
+\usepackage[margin=1in]{geometry}
+\newcommand{\indep}{\rotatebox[origin=c]{90}{$\models$}}
+\newcommand{\eg}{\emph{e.g.}\xspace}
+\newcommand{\ie}{\emph{i.e.}\xspace}
+\newcommand{\T}{^\mathrm{T}}
+\newcommand{\bbeta}{\boldsymbol{\beta}}
+\newcommand{\blup}{\widetilde{\bbeta}}
+\newcommand{\bzero}{\mathbf{0}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bX}{\mathbf{X}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\tausq}{\tau^{2}}
+\newcommand{\qtl}{\widehat{h^{2}}_{\text{QTL}}}
+
+%\newlength{\myFootnoteLabel}
+%\newenvironment{tableminipage}[1]{\begin{minipage}{#1}\renewcommand\footnoterule{ \kern -1ex}%
+%\setlength{\myFootnoteLabel}{0.5em}%
+%}{\end{minipage}}
+
+\newcommand{\permpc}{\text{permP}_{\text{C}}}
+\newcommand{\permpg}{\text{permP}_{\text{G}}}
+
+\newcommand{\permpmed}{\text{permP}^{m}}
+
+\newcommand{\ctwohtwo}{\texorpdfstring{C\textsubscript{2}H\textsubscript{2}}}
+
+\begin{document}
+
+\section*{S2 Appendix: Detailed description of conditional genome-wide scans (Analysis G)}
+
+QTL analysis for a large panel of molecular traits, such as gene expression or chromatin accessibility, poses a large multiple testing problem: all loci tested for each of many traits. Analysis G employs a per-trait family-wise error rate (FWER) control and across-trait false discovery rate (FDR) control, which restricts its ability to detect multiple QTL per outcome in a non-biased manner. This bias is due to the generalized extreme value distribution (GEV), used for FWER control, being fit from the maximum statistical score per trait. To include additional strong statistical scores is potentially biasing, as would be the case when there are multiple associations above the FWER threshold, increasing the enrichment in small $p$-values, which is precisely the pattern of association FDR procedures aim to detect. To avoid this problem, a multi-stage conditional regression approach was used \cite{Jansen2017}. The procedure is described in the following steps:
+\begin{enumerate}
+    \item For a given trait, conduct a genome scan according to model: 
+\begin{equation}
+    y_i = \mu + \text{batch}_{b[i]} + \text{QTL}_i + \varepsilon_i,
+      \label{eq:alternative_model}
+ \end{equation}
+    where $y_{i}$ is the trait level for individual $i$, $\mu$ is the intercept, $\text{batch}_b$ is a categorical fixed effect covariate with five levels $b=1,\dots,5$ representing five sequencing batches for both gene expression and chromatin accessibility and $b[i]$ denoting the batch relevant to $i$, $\varepsilon_i\sim\text{N}(0,\sigma^2)$ models the residual error, and $\text{QTL}_{i}$ models the genetic effect at the locus.
+    \item Perform permutation scans to characterize a GEV. Calculate a genome-wide error rate controlled $p$-value, $\permpg$, from the observed maximum logP of the genome scan. The $\permpg$ is stored to be used as input to an FDR procedure.
+    \item Specify a genome-wide $\alpha_{\text{step}}$ for determining whether subsequent conditional scans should be conducted for the trait. We set $\alpha_{\text{step}} = 0.1$. If $\permpg > \alpha_{\text{step}}$, no further conditional scans are conducted.
+    \item If $\permpg \le \alpha_{\text{step}}$, steps 1-3 are repeated for an additional conditional scan of the outcome. For $j > 1$, the $j^{\text{th}}$ conditional scan uses the same form of alternative and null model as described in Eq \ref{eq:alternative_model}, except with the inclusion of locus effects from the peak associations from previous stages. Generally, the alternative model for conditional scan $J$ follows as:
+\begin{equation}
+y_{i} = \mu + \text{QTL}_{i} + \sum_{j=1}^{J-1}\text{locus}_{i}^{j} + \text{batch}_{b[i]} + \varepsilon_{i},
+\label{eq:conditional_model}
+\end{equation}
+with $\text{locus}_{i}^{j}$ representing the locus effect of the peak association from the $j^{\text{th}}$ stage scan of the outcome for individual $i$, and is also included in the null model of conditional scans. Now steps 2-4 are repeated.
+\end{enumerate}
+
+A multi-stage conditional scan approach could have issues with over-fitting, given the data comprise 47 mice and each $\text{QTL}$ and $\text{locus}$ effect represents the estimation of seven fixed effects. However, permutation thresholds were found to appropriately compensate for this potential problem based on the recalculation of the GEV using permutations of the conditional scans in step 2. Fig S21 provides a clear example in which the gene \textit{Gpn3} has a local-eQTL detected after a strong distal-eQTL is conditioned on in lung tissue. 
+
+\begin{thebibliography}{10}
+
+\bibitem{Jansen2017}
+Jansen R, Hottenga JJ, Nivard MG, Abdellaoui A, Laport B, de~Geus EJ, et~al.
+\newblock {Conditional eQTL analysis reveals allelic heterogeneity of gene
+  expression.}
+\newblock Human Molecular Genetics. 2017;26(8):1444--1451.
+\newblock doi:{10.1093/hmg/ddx043}.
+
+\end{thebibliography}
+
+\end{document}
+
+
